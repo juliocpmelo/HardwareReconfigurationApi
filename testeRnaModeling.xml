@@ -1,0 +1,156 @@
+<hardwareTopEntity name="adder8Bits" deviceTarget="EP1C6F256C6" deviceFamily="Cyclone">
+	<generic name="data_length" type="integer" defaultValue="16"/>
+	<generic name="addr_length" type="integer" defaultValue="5"/>
+
+	<input name="clk" type="std_logic"/>
+	<input name="rst" type="std_logic"/>
+	<input name="wr0" type="std_logic"/>
+	<input name="wr1" type="std_logic"/>
+	<input name="wr2" type="std_logic"/>
+	
+	<input name="in_x0" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="in_x1" type="std_logic_vector(data_length-1 downto 0)"/>
+	
+	<input name="w0_i" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="w1_i" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="w2_i" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="w3_i" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="w4_i" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="w5_i" type="std_logic_vector(data_length-1 downto 0)"/>
+	
+	<input name="bias0" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="bias1" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="bias2" type="std_logic_vector(data_length-1 downto 0)"/>
+	
+	<output name="addr0" type="std_logic_vector(addr_length-1 downto 0)"/>
+	<output name="addr1" type="std_logic_vector(addr_length-1 downto 0)"/>
+	<output name="addr2" type="std_logic_vector(addr_length-1 downto 0)"/>
+	
+	<output name="a0" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="b0" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="a1" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="b1" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="a2" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="b2" type="out std_logic_vector(data_length-1 downto 0)"/>
+	
+	<output name="regx0" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="regx1" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="regx2" type="out std_logic_vector(data_length-1 downto 0)"/>
+	
+	<output name="net0" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="net1" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="net2" type="out std_logic_vector(data_length-1 downto 0)"/>
+	
+	<output name="neuron_x0" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="neuron_x1" type="out std_logic_vector(data_length-1 downto 0)"/>
+	
+	<output name="result" type="out std_logic_vector(data_length-1 downto 0)"/>
+	
+	<!--assignments-->
+	<!--assignments-->
+	
+	<componentBase>
+		<component name="teste_neuronio" file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/teste_neuronio.vhd">
+		
+			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/calc_net.vhd"/>
+			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/fnet_test.vhd"/>
+			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/lut.vhd"/>
+			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/mult_gen.vhd"/>
+			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/neuronio.vhd"/>
+			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/reg.vhd"/>
+			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/somador_gen.vhd"/>
+			<!--generic values are only bound to vhdl definition-->
+			<generic name="data_length" type="integer" defaultValue="16"/>
+			<generic name="addr_length" type="integer" defaultValue="5"/>
+			
+			<input name="clk" type="std_logic"/>
+			<input name="rst" type="std_logic"/>
+			<input name="wr_result" type="std_logic"/>
+			
+			<input name="x0" type="std_logic_vector(data_length-1 downto 0)"/>
+			<input name="x1" type="std_logic_vector(data_length-1 downto 0)"/>
+			<input name="w0" type="std_logic_vector(data_length-1 downto 0)"/>
+			<input name="w1" type="std_logic_vector(data_length-1 downto 0)"/>
+			<input name="bias" type="std_logic_vector(data_length-1 downto 0)"/>
+			
+			<output name="addr" type="std_logic_vector(addr_length-1 downto 0)"/>
+			
+			<output name="a" type="std_logic_vector(data_length-1 downto 0)"/>
+			<output name="b" type="std_logic_vector(data_length-1 downto 0)"/>
+			<output name="regx" type="std_logic_vector(data_length-1 downto 0)"/>
+			<output name="x" type="std_logic_vector(data_length-1 downto 0)"/>
+			<output name="y" type="std_logic_vector(data_length-1 downto 0)"/>
+		</component>
+	</componentBase>
+	
+	<signalBase>
+		<signal name="y1" type="std_logic_vector(data_length - 1 downto 0)"/>
+		<signal name="y0" type="std_logic_vector(data_length - 1 downto 0)"/>
+	</signalBase>
+	
+	<instance name="neuron0" type="teste_neuronio">
+		<genericMap  genericName="data_length" value="data_length"/>
+		<!-- if we are going to declare the signals there is no need to put the bind component tag -->
+		<portMap portName="clk" value="clk"/>
+		<portMap portName="rst" value="rst"/>
+		<portMap portName="wr_result" value="wr0"/>
+		<portMap portName="x0" value="in_x0"/>
+		<portMap portName="x1" value="in_x1"/>
+		<portMap portName="w0" value="w0_i"/>
+		<portMap portName="w1" value="w2_i"/>
+		<portMap portName="bias" value="bias0"/>
+		<portMap portName="addr" value="addr0"/>
+		<portMap portName="a" value="a0"/>
+		<portMap portName="b" value="b0"/>
+		<portMap portName="regx" value="regx0"/>
+		<portMap portName="x" value="net0"/>
+		<portMap portName="y" value="y0"/>
+	</instance>
+	
+	<instance name="neuron1" type="teste_neuronio">
+		<genericMap  genericName="data_length" value="data_length"/>
+		<!-- if we are going to declare the signals there is no need to put the bind component tag -->
+		<portMap portName="clk" value="clk"/>
+		<portMap portName="rst" value="rst"/>
+		<portMap portName="wr_result" value="wr1"/>
+		<portMap portName="x0" value="in_x0"/>
+		<portMap portName="x1" value="in_x1"/>
+		<portMap portName="w0" value="w1_i"/>
+		<portMap portName="w1" value="w3_i"/>
+		<portMap portName="bias" value="bias1"/>
+		<portMap portName="addr" value="addr1"/>
+		<portMap portName="a" value="a1"/>
+		<portMap portName="b" value="b1"/>
+		<portMap portName="regx" value="regx1"/>
+		<portMap portName="x" value="net1"/>
+		<portMap portName="y" value="y1"/>
+	</instance>
+	
+	<instance name="neuron2" type="teste_neuronio">
+		<genericMap  genericName="data_length" value="data_length"/>
+		<!-- if we are going to declare the signals there is no need to put the bind component tag -->
+		<portMap portName="clk" value="clk"/>
+		<portMap portName="rst" value="rst"/>
+		<portMap portName="wr_result" value="wr2"/>
+		<portMap portName="x0" value="y0"/>
+		<portMap portName="x1" value="y1"/>
+		<portMap portName="w0" value="w4_i"/>
+		<portMap portName="w1" value="w5_i"/>
+		<portMap portName="bias" value="bias2"/>
+		<portMap portName="addr" value="addr2"/>
+		<portMap portName="a" value="a2"/>
+		<portMap portName="b" value="b2"/>
+		<portMap portName="regx" value="regx2"/>
+		<portMap portName="x" value="net2"/>
+		<portMap portName="y" value="result"/>
+	</instance>
+	
+	<!-- signal maps are still available but only for signals -->
+	<!-- <signalMap signal="neuron_x0" value="y0"/>
+	<signalMap signal="neuron_x1" value="y1"/>-->
+	
+	<!--sginal map changed to ioMap just to clear that neuron_x0 and  neuron_x1 are outputs not signals-->
+	<ioMap name="neuron_x0" signal="y0"/>
+	<ioMap name="neuron_x1" signal="y1"/>
+	
+</hardwareTopEntity>

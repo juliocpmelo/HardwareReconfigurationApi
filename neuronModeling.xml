@@ -1,0 +1,146 @@
+<!-- name attribute is mandatory the others are optional -->
+<hardwareTopEntity name="adder8Bits" deviceTarget="EP1C6F256C6" deviceFamily="Cyclone">
+
+	<generic name="data_length" type="integer" defaultValue="16"/>
+	<generic name="addr_length" type="integer" defaultValue="5"/>
+	
+	<input name="clk" type="std_logic"/>
+	<input name="rst" type="std_logic"/>
+	<input name="wr_result" type="std_logic	"/>
+	
+	<input name="x0" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="x1" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="w0" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="w1" type="std_logic_vector(data_length-1 downto 0)"/>
+	<input name="bias" type="std_logic_vector(data_length-1 downto 0)"/>
+	
+	<output name="addr" type="std_logic_vector(addr_length-1 downto 0)"/>
+	
+	<output name="a" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="b" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="regx" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="x" type="out std_logic_vector(data_length-1 downto 0)"/>
+	<output name="y" type="out std_logic_vector(data_length-1 downto 0)"/>
+	
+	
+	<!--port assignments to the FPGA device, maybe its interesting that we put the device family and name here too.-->
+	<assign port="A" to="Pin_28"/>
+	<assign port="B" to="Pin_29"/>
+	<assign port="C" to="Pin_30"/>
+	
+	<componentBase>
+		<!--maybe add the design file in the component definition could be good-->
+		<component name="neuronio" designFile="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_neuronio/neuronio.vhd">
+			<!--generic values are only bound to vhdl definition-->
+			<generic name="N" type="integer" defaultValue="16"/>
+			
+			<input name="clk" type="std_logic"/>
+			<input name="clr" type="std_logic"/>
+			
+			<input name="x0" type="std_logic_vector(N-1 downto 0)"/>
+			<input name="x1" type="std_logic_vector(N-1 downto 0)"/>
+			<input name="w0" type="std_logic_vector(N-1 downto 0)"/>
+			<input name="w1" type="std_logic_vector(N-1 downto 0)"/>
+			<input name="bias" type="std_logic_vector(N-1 downto 0)"/>
+			
+			<output name="z" type="std_logic_vector(N-1 downto 0)"/>
+		</component>
+		<component name="fnet_test" designFile="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_neuronio/fnet_test.vhd">
+			<!--generic values are only bound to vhdl definition-->
+			<generic name="data_length" type="integer" defaultValue="16"/>
+			<generic name="addr_length" type="integer" defaultValue="5"/>
+			
+			<input name="clk" type="std_logic"/>
+			<input name="input" type="std_logic_vector(data_length-1 downto 0)"/>
+			
+			<output name="address" type="std_logic_vector(addr_length-1 downto 0)"/>
+			<output name="a" type="std_logic_vector(data_length-1 downto 0)"/>
+			<output name="b" type="std_logic_vector(data_length-1 downto 0)"/>
+			<output name="regx" type="std_logic_vector(data_length-1 downto 0)"/>
+			<output name="yfnet" type="std_logic_vector(data_length-1 downto 0)"/>
+		</component>
+		<component name="reg" designFile="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_neuronio/reg.vhd">
+			<generic name="num_bit" type="integer" defaultValue="16"/>
+			
+			<input name="clk" type="std_logic"/>
+			<input name="enb" type="std_logic" defaultValue="1"/>
+			<input name="clr" type="std_logic" defaultValue="0"/>
+			
+			<output name="d" type="std_logic_vector(num_bit-1 downto 0)"/>
+			<output name="q" type="std_logic_vector(num_bit-1 downto 0)"/>
+		</component>
+		
+	</componentBase>
+	
+	<!--wondering if this is really necessry-->
+	<signalBase>
+		<signal name="z" type="std_logic_vector(data_length - 1 downto 0)"/>
+		<signal name="yfnet_delay" type="std_logic_vector(data_length - 1 downto 0)"/>
+		<signal name="yfnet" type="signed(data_length - 1 downto 0)"/>
+	</signalBase>
+	
+	<!--
+		generic map declaration
+		<generic name="name" value="25/otherGenericName">
+	</instance>
+	-->
+	<instance name="net0" type="neuronio">
+		<!-- index or range should be necessary to better map the signals -->
+		<genericMap value="data_length"/>
+		<portMap portName="clk" value="clk"/>
+		<portMap portName="clr" value="rst"/>
+		<portMap portName="x0" value="x0"/>
+		<portMap portName="x1" value="x1"/>
+		<portMap portName="w0" value="w0"/>
+		<portMap portName="w1" value="w1"/>
+		<portMap portName="bias" value="bias"/>
+		<portMap portName="z" value="z"/>
+	</instance>
+	<!-- index or range should be necessary to do the bind-->
+	<!--<bindComponent componentA="net0" componentAPort="clk" signal="clk"/> 
+	<bindComponent componentA="net0" componentAPort="clr" signal="rst"/> 
+	<bindComponent componentA="net0" componentAPort="x0" signal="x0"/> 
+	<bindComponent componentA="net0" componentAPort="x1" signal="x1"/> 
+	<bindComponent componentA="net0" componentAPort="w0" signal="w0"/> 
+	<bindComponent componentA="net0" componentAPort="w1" signal="w1"/> 
+	<bindComponent componentA="net0" componentAPort="bias" signal="bias"/>
+	<bindComponent componentA="net0" componentAPort="z" signal="z"/>
+	-->
+	
+	<instance name="fnet0" type="fnet_test">
+		<genericMap value="data_length"/>
+		<genericMap value="addr_length"/>
+		
+		<portMap portName="clk" value="clk"/>
+		<portMap portName="inputX" value="z"/>
+		<portMap portName="address" value="addr"/>
+		<portMap portName="a" value="a"/>
+		<portMap portName="b" value="b"/>
+		<portMap portName="regx" value="regx"/>
+		<portMap portName="yfnet" value="yfnet"/>
+	</instance>
+	
+	<!--<bindComponent componentA="fnet0" componentAPort="clk" signal="clk"/>
+	<bindComponent componentA="fnet0" componentAPort="inputX" signal="z"/>
+	<bindComponent componentA="fnet0" componentAPort="address" signal="addr"/>
+	<bindComponent componentA="fnet0" componentAPort="a" signal="a"/>
+	<bindComponent componentA="fnet0" componentAPort="b" signal="b"/>
+	<bindComponent componentA="fnet0" componentAPort="regx" signal="regx"/>
+	<bindComponent componentA="fnet0" componentAPort="yfnet" signal="yfnet"/>-->
+	
+	<instance name="delay0" type="reg">
+		<genericMap value="data_length"/>
+		
+		<portMap portName="clk" value="clk"/>
+		<portMap portName="enb" value="wr_result"/>
+		<portMap portName="clr" value="rst"/>
+		<portMap portName="d" value="std_logic_vector(yfnet)"/>
+		<portMap portName="q" value="yfnet_delay"/>
+	</instance>
+	
+	<!--extra signal assignment that are out of the port map structure-->
+	<signalMap signal="x" value="z"/>
+	<signalMap signal="y" value="yfnet_delay"/>
+	
+	
+</hardwareTopEntity>
