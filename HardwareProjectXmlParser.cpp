@@ -8,12 +8,6 @@ HardwareProjectXmlParser::HardwareProjectXmlParser(string xmlProjectFile){
     this->xmlProjectFile = xmlProjectFile;
 }
 
-                    /*if(genericInitializationTable.count(nameStr) > 0){
-                        pair<string,string> p;
-                        p.first = paramNameStr;
-                        p.second = paramValueStr;
-                        genericInitializationTable[nameStr].push_back(p);
-                    }*/
 /*obs : not using xmlFree as it results in a compilation bug because of the libxml2 compiled for windows*/
 void HardwareProjectXmlParser::parseComponentBase(xmlNode * componentBaseNode){
     xmlNode *componentNode = NULL;
@@ -218,8 +212,7 @@ void HardwareProjectXmlParser::parseInstance(xmlNode * componentNode){
     map<Component, vector<ComponentInstance>, ComponentCompare >::iterator it;
     for(it=componentTable.begin(); it != componentTable.end(); it++){
         if(it->first.name == instanceTypeStr){
-            ComponentInstance instance;
-            instance.name = instanceNameStr;
+            ComponentInstance instance(instanceNameStr,instanceTypeStr);
             instance.genericMaps = genericMaps;
             instance.portMaps = portMaps;
             it->second.push_back(instance);
@@ -258,16 +251,18 @@ void HardwareProjectXmlParser::parseSignals(xmlNode * componentNode){
     }
 }
 
-void HardwareProjectXmlParser::parseSignalMap(xmlNode * currentNode){
-    xmlChar *signalName = xmlGetProp(currentNode, (const xmlChar *)"signal");
+void HardwareProjectXmlParser::parseMap(xmlNode * currentNode){
+    cout<<__FILE__<<"::"<<__LINE__<<endl;
+    xmlChar *signalName = xmlGetProp(currentNode, (const xmlChar *)"name");
     string signalNameStr = "";
     signalNameStr = string((const char*)signalName);
-    
+    cout<<__FILE__<<"::"<<__LINE__<<endl;    
     xmlChar *value = xmlGetProp(currentNode, (const xmlChar *)"value");
     string valueStr = "";
     valueStr = string((const char*)value);
     pair<string, string> v(signalNameStr,valueStr);
     signalMaps.push_back(v);
+    cout<<__FILE__<<"::"<<__LINE__<<endl;    
 }
 
 void HardwareProjectXmlParser::parseRoot(xmlNode * rootNode){
@@ -302,9 +297,10 @@ void HardwareProjectXmlParser::parseRoot(xmlNode * rootNode){
                 cout<<"signal base tag"<<endl;
                 parseSignals(currentNode);
             }
-            else if(xmlStrcmp(currentNode->name, (const xmlChar *)"signalMap") == 0){
-                 cout<<"parsing signal map tag"<<endl;
-                parseSignalMap(currentNode);
+            else if(xmlStrcmp(currentNode->name, (const xmlChar *)"ioMap") == 0 ||
+                    xmlStrcmp(currentNode->name, (const xmlChar *)"signalMap") == 0){
+                 cout<<"parsing "<<currentNode->name<<endl;
+                parseMap(currentNode);
             }
         }
     }
@@ -374,6 +370,7 @@ string HardwareProjectXmlParser::getValidComponentInstanceName(string componentT
         componentName<<componentType<<rNumber;
         nameValid = true;
         for(map<Component, vector<ComponentInstance>, ComponentCompare >::iterator it = componentTable.begin(); it!= componentTable.end(); it ++){
+//            if(it->se)
         }
     }
     return componentName.str();
@@ -566,8 +563,35 @@ void HardwareProjectXmlParser::buildMainEntityFile(string projectPath){
 }
 
 
+void HardwareProjectXmlParser::addComponentInstance(ComponentInstance instance){
+    map<Component, vector<ComponentInstance>, ComponentCompare >::iterator it;
+    for(it=componentTable.begin(); it != componentTable.end(); it++){
+        if(it->first.name == instance.type){
+            it->second.push_back(instance);
+        }
+    }
+}
 
+void HardwareProjectXmlParser::addSignal(Signal signal){
+    signals[signal.name] = signal.type;
+}
 
+void HardwareProjectXmlParser::addMap(string name, string value){
+    pair<string, string> v(name,value);
+    signalMaps.push_back(v);
+}
 
+void HardwareProjectXmlParser::addGeneric(std::string name, std::string type, std::string defaultValue){
+    pair<string,string> v(type,defaultValue);
+    genericTable[name] = v;
+}
 
+//TODO check if there is no default value to inputs
+void HardwareProjectXmlParser::addInput(std::string name, std::string type, std::string defaultValue){
+    inputTable[name] = type;
+}
+//TODO check if there is no default value to outputs
+void HardwareProjectXmlParser::addOutput(std::string name, std::string type, std::string defaultValue){
+    outputTable[name] = type;
+}
 

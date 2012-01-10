@@ -12,14 +12,12 @@ HardwareProject::HardwareProject(std::string projectName, std::string projectPat
 	this->projectPath = projectPath;
     this->hardwareProjectXmlParser = new HardwareProjectXmlParser(xmlLocation);
     hardwareProjectXmlParser->parseMainEntityXmlFile();
-
     if(hardwareProjectXmlParser->deviceTarget != "")
         this->deviceName = hardwareProjectXmlParser->deviceTarget;
     if(hardwareProjectXmlParser->deviceFamily != "")
         this->deviceFamily = hardwareProjectXmlParser->deviceFamily;
 
-    hardwareProjectXmlParser->buildMainEntityFile(projectPath);
-};
+}
 			
 void HardwareProject::burnProject(std::string cableName, std::string programmingMode){
 	string systemCommand = "";
@@ -60,6 +58,12 @@ void HardwareProject::generateConfigFile(){
     configFile<<"project_close "<<endl;
     
     cout<<"config file saved to "<<fileLocation<<endl;
+}
+
+void HardwareProject::generateHDLFile(){
+    //
+    hardwareProjectXmlParser->buildMainEntityFile(projectPath);
+    
 }
 
 static void copyAllFilesToWorkingDir(vector<string> files, string path){
@@ -114,21 +118,27 @@ void HardwareProject::addFile(string file){
 }
 
 void HardwareProject::addComponentInstance(ComponentInstance* instance){
-   /* ComponentInstance instance;
-    instance.genericMaps = genericMap;
-    instance.portMaps = portMap;
-    if(name != "")
-        instance.name = name;
-    else
-        instance.name = hardwareProjectXmlParser->getValidInstanceName(componentType);
-    hardwareProjectXmlParser->addInstance(componentType, instance);
-*/
+    hardwareProjectXmlParser->addComponentInstance(*instance);
 }
 
-void HardwareProject::addSignal(){}
+void HardwareProject::addSignal(Signal* signal){
+    hardwareProjectXmlParser->addSignal(*signal);
+}
 
 void HardwareProject::addComponent(){}
 
-void HardwareProject::addInput(){}
+void HardwareProject::addInput(std::string name, std::string type, std::string defaultValue){
+    hardwareProjectXmlParser->addInput(name, type, defaultValue);
+}
 
-void HardwareProject::addOutput(){}
+void HardwareProject::addOutput(std::string name, std::string type, std::string defaultValue){
+    hardwareProjectXmlParser->addOutput(name, type, defaultValue);
+}
+
+void HardwareProject::addGeneric(std::string name, std::string type, std::string defaultValue){
+    hardwareProjectXmlParser->addGeneric(name, type, defaultValue);
+}
+
+void HardwareProject::ioMap(string ioName, Signal *signal){
+    hardwareProjectXmlParser->addMap(ioName, signal->name);
+}

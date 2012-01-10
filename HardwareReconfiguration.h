@@ -45,6 +45,8 @@ class HardwareProject{
 		void compileProject();
 
         void generateConfigFile();
+
+        void generateHDLFile();
 		
         /**
 		*\brief sets the assignments in the project
@@ -60,6 +62,7 @@ class HardwareProject{
         void addInput(std::string name, std::string type, std::string defaultValue="");
         void addOutput(std::string name, std::string type, std::string defaultValue="");
         void addGeneric(std::string name, std::string type, std::string defaultValue="");
+        void ioMap(std::string ioName, Signal *signal);
 
         /*TODO add component definition*/
         void addComponent();

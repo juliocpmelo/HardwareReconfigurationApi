@@ -14,11 +14,11 @@ int main(int argc, char *argv[]){
 	int var = 0;
 	cout<<"running project"<<endl;
 
-    p1->addFile("C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/fpgaProjects/Adder8Bits/combinationalLibrary.vhd");
+    //p1->addFile("C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/fpgaProjects/Adder8Bits/combinationalLibrary.vhd");
    // p1->setDevice("EP1C6F256C6");
    // p1->setDeviceFamily("Cyclone");
-    p1->generateConfigFile();
-    p1->compileProject();
+    //p1->generateConfigFile();
+  //  p1->compileProject();
     
     char ch;
     while(true){
@@ -26,9 +26,10 @@ int main(int argc, char *argv[]){
         switch (ch){
             case 'a':
             {
+                cout<<"generating through software"<<endl;
                 HardwareProject *project = new HardwareProject("neuronio_test", 
                                                                "C:/Documents and Settings/schneider/Meus Documentos/julio/doutorado/fpgaProjects/TestHardwareBuilding/",
-                                                               "C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/softwareReconfigurationTests/rnaBaseComponents.xml");
+                                                               "C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/HardwareReconfigurationApi/rnaBaseComponents.xml");
                 /*
             	<generic name="data_length" type="integer" defaultValue="16"/>
             	<generic name="addr_length" type="integer" defaultValue="5"/>
@@ -106,25 +107,25 @@ int main(int argc, char *argv[]){
                 project->addOutput("addr1","std_logic_vector(addr_length-1 downto 0)");
                 project->addOutput("addr2","std_logic_vector(addr_length-1 downto 0)");
 
-                project->addOutput("a0","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("b0","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("a1","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("b1","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("a2","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("b2","out std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("a0","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("b0","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("a1","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("b1","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("a2","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("b2","std_logic_vector(data_length-1 downto 0)");
 
-                project->addOutput("regx0","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("regx1","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("regx2","out std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("regx0","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("regx1","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("regx2","std_logic_vector(data_length-1 downto 0)");
 
-                project->addOutput("net0","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("net1","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("net2","out std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("net0","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("net1","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("net2","std_logic_vector(data_length-1 downto 0)");
 
-                project->addOutput("neuron_x0","out std_logic_vector(data_length-1 downto 0)");
-                project->addOutput("neuron_x1","out std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("neuron_x0","std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("neuron_x1","std_logic_vector(data_length-1 downto 0)");
 
-                project->addOutput("result","out std_logic_vector(data_length-1 downto 0)");
+                project->addOutput("result","std_logic_vector(data_length-1 downto 0)");
 
                 /*
                 <signalBase>
@@ -172,7 +173,7 @@ int main(int argc, char *argv[]){
                 neuronio0->portMap("regx","regx0");
                 neuronio0->portMap("x","net0");
                 neuronio0->portMap("y","y0");
-                project->addComponentInstance(neuronio2);
+                project->addComponentInstance(neuronio0);
 
                 /*
             	<instance name="neuron1" type="teste_neuronio">
@@ -209,7 +210,7 @@ int main(int argc, char *argv[]){
                 neuronio1->portMap("regx","regx1");
                 neuronio1->portMap("x","net1");
                 neuronio1->portMap("y","y1");
-                project->addComponentInstance(neuronio2);
+                project->addComponentInstance(neuronio1);
 
             	/*
             	<instance name="neuron2" type="teste_neuronio">
@@ -250,6 +251,7 @@ int main(int argc, char *argv[]){
 
                 project->ioMap("neuron_x0", signal1);
                 project->ioMap("neuron_x1", signal2);
+                project->generateHDLFile();
                 project->generateConfigFile();
                 project->compileProject();
     
@@ -259,7 +261,8 @@ int main(int argc, char *argv[]){
             {
             	HardwareProject *p1 = new HardwareProject("adder8Bits", 
                                                           "C:/Documents and Settings/schneider/Meus Documentos/julio/doutorado/fpgaProjects/TestHardwareBuilding/", 
-                                                          "C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/softwareReconfigurationTests/testeRnaModeling.xml");
+                                                          "C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/HardwareReconfigurationApi/testeRnaModeling.xml");
+                p1->generateHDLFile();
                 p1->generateConfigFile();
                 p1->compileProject();
             }

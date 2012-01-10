@@ -9,6 +9,9 @@
 #include <vector>
 #include <set>
 
+#include "ComponentInstance.h"
+#include "Signal.h"
+
 typedef struct Component_t{
     std::string name;
     std::vector< std::pair <std::string, std::string> > inputs;
@@ -22,30 +25,6 @@ typedef struct ComponentCompare_t {
     return (a.name < b.name);}
 }ComponentCompare;
 
-typedef struct Signal_t{
-    std::string name;
-    std::string type;
-    bool isDirectBind;
-}Signal;
-
-typedef struct SignalCompare_t {
-  bool operator() (const Signal& a, const Signal& b) const
-  {return (a.name < b.name);}
-}SignalCompare;
-
-/*typedef struct ComponentBind_t{
-    std::string port;
-    Signal signal;
-}ComponentBind;*/
-
-typedef struct ComponentInstance_t{
-    std::string name;
-   // std::vector<ComponentBind> binds;
-    //! port => value
-    std::vector< std::pair<std::string,std::string> > portMaps;
-    //! port => value
-    std::vector< std::pair<std::string,std::string> > genericMaps;
-}ComponentInstance;
 
 
 class HardwareProjectXmlParser{
@@ -77,13 +56,18 @@ class HardwareProjectXmlParser{
         void buildMainEntityFile(std::string projectPath);
 
         /*real time hardware editing commands*/
-        void addInstance(ComponentInstance instance, std::string componentType);
+        void addComponentInstance(ComponentInstance instance);
+        void addSignal(Signal signal);
+        void addMap(std::string name, std::string value);
+        void addInput(std::string name, std::string type, std::string defaultValue);
+        void addOutput(std::string name, std::string type, std::string defaultValue);
+        void addGeneric(std::string name, std::string type, std::string defaultValue);
 
         std::string getValidComponentInstanceName(std::string componentType);
         
     private:
         void parseComponentBase(xmlNode * componentNode);
-        void parseSignalMap(xmlNode *);
+        void parseMap(xmlNode *);
         void parseOutput(xmlNode * componentNode);
         void parseInput(xmlNode * componentNode);
         void parseInstance(xmlNode * componentNode);
