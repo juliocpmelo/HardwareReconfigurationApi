@@ -146,11 +146,11 @@
 	</instance>
 	
 	<!-- signal maps are still available but only for signals -->
-	<!-- <signalMap signal="neuron_x0" value="y0"/>
-	<signalMap signal="neuron_x1" value="y1"/>-->
+	<!-- <signalMap name="neuron_x0" value="y0"/>
+	<signalMap name="neuron_x1" value="y1"/>-->
 	
 	<!--sginal map changed to ioMap just to clear that neuron_x0 and  neuron_x1 are outputs not signals-->
-	<ioMap name="neuron_x0" signal="y0"/>
-	<ioMap name="neuron_x1" signal="y1"/>
+	<ioMap name="neuron_x0" value="y0"/>
+	<ioMap name="neuron_x1" value="y1"/>
 	
 </hardwareTopEntity>
