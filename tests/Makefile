@@ -1,0 +1,37 @@
+
+#includes do system-c
+INCLUDES=-I../ \
+				 -I./../libxml2-2.7.8.win32/include \
+				 -I./../systemc-2.3.0/include \
+				 -I./../iconv-1.9.2.win32/include/ \
+				 -I./../zlib-1.2.5/include/
+
+COMPONENT_NAME=HardwareReconfTests
+
+#libs do system-c
+LDFLAGS=-L./../systemc-2.3.0/lib-cygwin -lsystemc \
+				-L./../iconv-1.9.2.win32/lib -liconv \
+				-L../lib -lhardwarereconfigurationapi \
+				./../libxml2-2.7.8.win32/lib/libxml2.lib \
+				./../zlib-1.2.5/lib/zlib.lib 
+
+CPPFLAGS=-Wall -fPIC $(INCLUDES)
+
+SRCS=$(shell find -name '*.cpp')
+OBJS=$(SRCS:.cpp=.o)
+
+all: $(OBJS) executable
+
+executable:
+	@mkdir -p bin
+	  $(CXX) -o ./bin/$(COMPONENT_NAME) $(OBJS) $(LDFLAGS) -lpthread -lm
+
+cleanobjs:
+	rm -f $(OBJS)
+
+clean: cleanobjs
+	  rm -f $(COMPONENT_NAME)
+
+distclean: clean
+	  rm -f $(COMPONENT_NAME)
+
