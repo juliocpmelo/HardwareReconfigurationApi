@@ -18,7 +18,13 @@ HardwareProject::HardwareProject(std::string projectName, std::string projectPat
         this->deviceFamily = hardwareProjectXmlParser->deviceFamily;
 
 }
-			
+
+void HardwareProject::setTopLevelComponent(HardwareComponent *topLevelComponent){
+	this->topLevelComponent = topLevelComponent;
+
+}
+
+
 void HardwareProject::burnProject(std::string cableName, std::string programmingMode){
 	string systemCommand = "";
 	systemCommand += "C:/altera/70/quartus/bin/quartus_pgm "; //programmer executable name
@@ -117,28 +123,3 @@ void HardwareProject::addFile(string file){
      projectFiles.push_back(file);
 }
 
-void HardwareProject::addComponentInstance(ComponentInstance* instance){
-    hardwareProjectXmlParser->addComponentInstance(*instance);
-}
-
-void HardwareProject::addSignal(Signal* signal){
-    hardwareProjectXmlParser->addSignal(*signal);
-}
-
-void HardwareProject::addComponent(){}
-
-void HardwareProject::addInput(std::string name, std::string type, std::string defaultValue){
-    hardwareProjectXmlParser->addInput(name, type, defaultValue);
-}
-
-void HardwareProject::addOutput(std::string name, std::string type, std::string defaultValue){
-    hardwareProjectXmlParser->addOutput(name, type, defaultValue);
-}
-
-void HardwareProject::addGeneric(std::string name, std::string type, std::string defaultValue){
-    hardwareProjectXmlParser->addGeneric(name, type, defaultValue);
-}
-
-void HardwareProject::ioMap(string ioName, Signal *signal){
-    hardwareProjectXmlParser->addMap(ioName, signal->name);
-}

@@ -232,7 +232,7 @@ void HardwareProjectXmlParser::parseAssignment(xmlNode * componentNode){
     assignments[portNameStr] = assignToStr;
 }
 
-void HardwareProjectXmlParser::parseSignals(xmlNode * componentNode){
+void HardwareProjectXmlParser::parseSignalComponents(xmlNode * componentNode){
     xmlNode *currentNode = NULL;
     vector<pair<string,string> > genericMaps;
     for (currentNode = componentNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
@@ -295,7 +295,7 @@ void HardwareProjectXmlParser::parseRoot(xmlNode * rootNode){
             }
             else if(xmlStrcmp(currentNode->name, (const xmlChar *)"signalBase") == 0){
                 cout<<"signal base tag"<<endl;
-                parseSignals(currentNode);
+                parseSignalComponents(currentNode);
             }
             else if(xmlStrcmp(currentNode->name, (const xmlChar *)"ioMap") == 0 ||
                     xmlStrcmp(currentNode->name, (const xmlChar *)"signalMap") == 0){
@@ -496,7 +496,7 @@ void HardwareProjectXmlParser::buildMainEntityFile(string projectPath){
     for(map<string,string>::iterator it = signals.begin(); it!= signals.end(); it ++){
         designFile<<"\t"<<"signal "<<it->first<<" : "<<it->second<<";"<<endl;
     }
-  //  for(set<Signal,SignalCompare>::iterator it = signalList.begin(); it!= signalList.end(); it ++){
+  //  for(set<SignalComponent,SignalComponentCompare>::iterator it = signalList.begin(); it!= signalList.end(); it ++){
    //     designFile<<"\t"<<"signal "<<it->name<<" : "<<it->type<<";"<<endl;
    // }
     
@@ -572,7 +572,7 @@ void HardwareProjectXmlParser::addComponentInstance(ComponentInstance instance){
     }
 }
 
-void HardwareProjectXmlParser::addSignal(Signal signal){
+void HardwareProjectXmlParser::addSignal(SignalComponent signal){
     signals[signal.name] = signal.type;
 }
 

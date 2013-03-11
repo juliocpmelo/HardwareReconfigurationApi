@@ -10,7 +10,8 @@
 #include <set>
 
 #include "ComponentInstance.h"
-#include "Signal.h"
+#include "SignalComponent.h"
+
 
 typedef struct Component_t{
     std::string name;
@@ -26,13 +27,15 @@ typedef struct ComponentCompare_t {
 }ComponentCompare;
 
 
-
+/*
+ *! TODO change to build HardwareComponent instead of old API
+ * */
 class HardwareProjectXmlParser{
     public:
         std::map<Component, std::vector<ComponentInstance>, ComponentCompare > componentTable;
         std::map<std::string, std::vector< std::pair<std::string,std::string> > > genericInitializationTable;
         std::map<std::string, std::set< std::string > > componentPorts;
-        std::set<Signal, SignalCompare> signalList;
+        std::set<SignalComponent, SignalComponentCompare> signalList;
         std::map<std::string, std::string > inputTable; //input name, input type
         std::map<std::string, std::string > outputTable; //output name, output type
         std::map<std::string, std::pair<std::string, std::string> > genericTable; //generic name, generic type, generic default value
@@ -57,7 +60,7 @@ class HardwareProjectXmlParser{
 
         /*real time hardware editing commands*/
         void addComponentInstance(ComponentInstance instance);
-        void addSignal(Signal signal);
+        void addSignal(SignalComponent signal);
         void addMap(std::string name, std::string value);
         void addInput(std::string name, std::string type, std::string defaultValue);
         void addOutput(std::string name, std::string type, std::string defaultValue);
@@ -76,7 +79,7 @@ class HardwareProjectXmlParser{
         
         
         void parseGeneric(xmlNode * componentNode);
-        void parseSignals(xmlNode * componentNode);
+        void parseSignalComponents(xmlNode * componentNode);
 
         
       
