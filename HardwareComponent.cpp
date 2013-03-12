@@ -1,6 +1,17 @@
 #include "HardwareComponent.h"
 using namespace std;
 
+HardwareComponent::HardwareComponent(sc_module_name name, HardwareComponentInfo *infoTable) : sc_module(name){
+	if(infoTable == NULL) {//implies that this component will be dinamically created.
+
+		componentInfo = new HardwareComponentInfo();
+		dinamic = true;
+	}
+	else{
+		componentInfo = infoTable;
+	}
+}
+
 void HardwareComponent::addPortAttributes(std::string name, DataType type, int size){
 	if(ports.count(name)!=0){
 		sc_attribute< int > portSize("PortSize",size);
