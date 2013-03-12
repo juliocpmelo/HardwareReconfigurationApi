@@ -1,15 +1,15 @@
-#include "HardwareProjectXmlParser.h"
+#include "HardwareComponentXmlParser.h"
 #include <sstream>
 #include <fstream>
 
 using namespace std;
 
-HardwareProjectXmlParser::HardwareProjectXmlParser(string xmlProjectFile){
+HardwareComponentXmlParser::HardwareComponentXmlParser(string xmlProjectFile){
     this->xmlProjectFile = xmlProjectFile;
 }
 
 /*obs : not using xmlFree as it results in a compilation bug because of the libxml2 compiled for windows*/
-void HardwareProjectXmlParser::parseComponentBase(xmlNode * componentBaseNode){
+void HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode){
     xmlNode *componentNode = NULL;
     cout<<__FILE__<<"::"<<__LINE__<<endl;
     for(componentNode = componentBaseNode->xmlChildrenNode; componentNode; componentNode = componentNode->next){
@@ -113,7 +113,7 @@ void HardwareProjectXmlParser::parseComponentBase(xmlNode * componentBaseNode){
 }
 
 
-void HardwareProjectXmlParser::parseOutput(xmlNode * componentNode){
+void HardwareComponentXmlParser::parseOutput(xmlNode * componentNode){
     xmlChar *outputName = xmlGetProp(componentNode, (const xmlChar *)"name");
     string outputNameStr((const char*)outputName);
     cout<<"output name "<<outputNameStr<<endl;
@@ -128,7 +128,7 @@ void HardwareProjectXmlParser::parseOutput(xmlNode * componentNode){
     outputTable[outputNameStr] = typeStr;
 }
 
-void HardwareProjectXmlParser::parseInput(xmlNode * componentNode){
+void HardwareComponentXmlParser::parseInput(xmlNode * componentNode){
     xmlChar *inputName = xmlGetProp(componentNode, (const xmlChar *)"name");
     string inputNameStr((const char*)inputName);
     cout<<"input name "<<inputNameStr<<endl;
@@ -143,7 +143,7 @@ void HardwareProjectXmlParser::parseInput(xmlNode * componentNode){
     inputTable[inputNameStr] = typeStr;
 }
 
-void HardwareProjectXmlParser::parseGeneric(xmlNode * componentNode){
+void HardwareComponentXmlParser::parseGeneric(xmlNode * componentNode){
     xmlChar *genericName = xmlGetProp(componentNode, (const xmlChar *)"name");
     string genericNameStr((const char*)genericName);
     cout<<"generic name "<<genericNameStr<<endl;
@@ -165,7 +165,7 @@ void HardwareProjectXmlParser::parseGeneric(xmlNode * componentNode){
     genericTable[genericNameStr] = v;
 }
 
-void HardwareProjectXmlParser::parseInstance(xmlNode * componentNode){
+void HardwareComponentXmlParser::parseInstance(xmlNode * componentNode){
     xmlChar *instanceName = xmlGetProp(componentNode, (const xmlChar *)"name");
     string instanceNameStr((const char*)instanceName);
     cout<<"instance name "<<instanceNameStr<<endl;
@@ -221,7 +221,7 @@ void HardwareProjectXmlParser::parseInstance(xmlNode * componentNode){
     
 }
 
-void HardwareProjectXmlParser::parseAssignment(xmlNode * componentNode){
+void HardwareComponentXmlParser::parseAssignment(xmlNode * componentNode){
     xmlChar *portName = xmlGetProp(componentNode, (const xmlChar *)"port");
     string portNameStr((const char*)portName);
     cout<<"instance name "<<portNameStr<<endl;
@@ -232,7 +232,7 @@ void HardwareProjectXmlParser::parseAssignment(xmlNode * componentNode){
     assignments[portNameStr] = assignToStr;
 }
 
-void HardwareProjectXmlParser::parseSignalComponents(xmlNode * componentNode){
+void HardwareComponentXmlParser::parseSignalComponents(xmlNode * componentNode){
     xmlNode *currentNode = NULL;
     vector<pair<string,string> > genericMaps;
     for (currentNode = componentNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
@@ -251,7 +251,7 @@ void HardwareProjectXmlParser::parseSignalComponents(xmlNode * componentNode){
     }
 }
 
-void HardwareProjectXmlParser::parseMap(xmlNode * currentNode){
+void HardwareComponentXmlParser::parseMap(xmlNode * currentNode){
     cout<<__FILE__<<"::"<<__LINE__<<endl;
     xmlChar *signalName = xmlGetProp(currentNode, (const xmlChar *)"name");
     string signalNameStr = "";
@@ -265,7 +265,7 @@ void HardwareProjectXmlParser::parseMap(xmlNode * currentNode){
     cout<<__FILE__<<"::"<<__LINE__<<endl;    
 }
 
-void HardwareProjectXmlParser::parseRoot(xmlNode * rootNode){
+void HardwareComponentXmlParser::parseRoot(xmlNode * rootNode){
     xmlNode *currentNode = NULL;
     for (currentNode = rootNode; currentNode; currentNode = currentNode->next) {
         if (currentNode->type == XML_ELEMENT_NODE) {
@@ -306,7 +306,7 @@ void HardwareProjectXmlParser::parseRoot(xmlNode * rootNode){
     }
 }
 
-void HardwareProjectXmlParser::parseMainEntityXmlFile(){
+void HardwareComponentXmlParser::parseMainEntityXmlFile(){
     xmlDoc         *doc = NULL;
     xmlNode        *root_element = NULL;
     char workingDir[256];
@@ -357,7 +357,7 @@ void HardwareProjectXmlParser::parseMainEntityXmlFile(){
     }
 }
 
-string HardwareProjectXmlParser::getValidComponentInstanceName(string componentType){
+string HardwareComponentXmlParser::getValidComponentInstanceName(string componentType){
     srand(time(NULL));
 
     int rNumber = rand();
@@ -376,194 +376,8 @@ string HardwareProjectXmlParser::getValidComponentInstanceName(string componentT
     return componentName.str();
 }
 
-void HardwareProjectXmlParser::buildMainEntityFile(string projectPath){
-    ofstream designFile;
-    string fileLocation = projectPath+entityNameStr+".vhdl";
-    designFile.open (fileLocation.c_str());
-    designFile <<"-- This file was auto generated by the HardwareProjectXmlParser"<<endl<<endl;
-    designFile <<"library ieee, combinationalLibrary;"<<endl;
-    designFile <<"use ieee.std_logic_1164.all;"<<endl;
-    designFile <<"use ieee.std_logic_unsigned.all;"<<endl<<endl;
 
-    designFile <<"entity "<<entityNameStr<<" is"<<endl; //TODO place the main tag name here
-    if(genericTable.size() > 0){
-        designFile <<"generic ("<<endl;
-        map<string, pair<string,string> >::iterator lastElement = genericTable.end();
-        lastElement --;
-        for(map<string, pair<string,string> >::iterator it = genericTable.begin(); it != lastElement; it++){
-            if(it->second.second == "") //has no default value
-                designFile <<"\t"<<it->first<<" : "<<it->second.first<<";"<<endl;
-            else
-                designFile <<"\t"<<it->first<<" : "<<it->second.first<<" := "<<it->second.second<<";"<<endl;
-        }
-        if(lastElement->second.second == "") //has no default value
-                designFile <<"\t"<<lastElement->first<<" : "<<lastElement->second.first<<";"<<endl;
-        else
-            designFile <<"\t"<<lastElement->first<<" : "<<lastElement->second.first<<" := "<<lastElement->second.second<<endl;
-        designFile <<");"<<endl;
-    }
-    designFile <<"port ("<<endl;
-
-    /*generate the header of the entity with the input/outputs*/
-    if(inputTable.size() > 0 && outputTable.size() > 0){
-        map<string, string >::iterator lastElement = outputTable.end();
-        lastElement --;
-        for(map<string, string >::iterator it = inputTable.begin(); it != inputTable.end(); it++){
-            designFile <<"\t"<<it->first<<": in "<<it->second<<";"<<endl;
-        }
-        for(map<string, string >::iterator it = outputTable.begin(); it != lastElement; it++){
-           designFile <<"\t"<<it->first<<": out "<<it->second<<";"<<endl;
-        }
-        designFile <<"\t"<<lastElement->first<<": out "<<lastElement->second<<endl;
-    }
-    else if(inputTable.size() > 0){
-        map<string, string >::iterator lastElement = inputTable.end();
-        lastElement --;
-        for(map<string, string >::iterator it = inputTable.begin(); it != lastElement; it++){
-            designFile <<"\t"<<it->first<<": in "<<it->second<<";"<<endl;
-        }
-        designFile <<"\t"<<lastElement->first<<": out "<<lastElement->second<<endl;
-    }
-    else if(outputTable.size() > 0){
-        map<string, string >::iterator lastElement = outputTable.end();
-        lastElement --;
-        for(map<string, string >::iterator it = outputTable.begin(); it != lastElement; it++){
-            designFile <<"\t"<<it->first<<": out "<<it->second<<";"<<endl;
-        }
-        designFile <<"\t"<<lastElement->first<<": out "<<lastElement->second<<endl;
-    }
-    designFile <<");"<<endl;
-    designFile <<"end "<<entityNameStr<<";"<<endl<<endl;
-
-    designFile<<"architecture arch of "<<entityNameStr<<" is"<<endl;
-
-    /*generate the component declaration in the architecture file*/
-    for(map<Component, vector<ComponentInstance>, ComponentCompare >::iterator it = componentTable.begin(); it!= componentTable.end(); it ++){
-        designFile<<"\t"<<"component "<<it->first.name<<endl;
-        map<string, pair<string,string> > genericInputs = it->first.genericTable;
-        if(genericInputs.size() > 0){
-            designFile <<"\t\tgeneric ("<<endl;
-            map<string, pair<string,string> >::iterator lastElement = genericInputs.end();
-            lastElement --;
-            for(map<string, pair<string,string> >::iterator it = genericInputs.begin(); it != lastElement; it++){
-                if(it->second.second == "") //has no default value
-                    designFile <<"\t\t\t"<<it->first<<" : "<<it->second.first<<";"<<endl;
-                else
-                    designFile <<"\t\t\t"<<it->first<<" : "<<it->second.first<<" := "<<it->second.second<<";"<<endl;
-            }
-            if(lastElement->second.second == "") //has no default value
-                    designFile <<"\t\t\t"<<lastElement->first<<" : "<<lastElement->second.first<<";"<<endl;
-            else
-                designFile <<"\t\t\t"<<lastElement->first<<" : "<<lastElement->second.first<<" := "<<lastElement->second.second<<endl;
-            designFile <<"\t\t);"<<endl;
-        }
-        designFile<<"\t\t"<<"port( "<<endl;
-
-        vector< pair<string,string> > inputPorts = it->first.inputs;
-        vector< pair<string,string> > outputPorts = it->first.outputs;
-        if(inputPorts.size() > 0 && outputPorts.size() > 0){
-            for(vector< pair<string,string> >::iterator it2 = inputPorts.begin(); it2!= inputPorts.end(); it2 ++){
-                designFile<<"\t\t\t"<<it2->first<<": in "<<it2->second<<";"<<endl;
-            }
-            vector< pair<string,string> >::iterator lastElement = outputPorts.end();
-            lastElement--;
-            for(vector< pair<string,string> >::iterator it2 = outputPorts.begin(); it2!= lastElement; it2 ++){
-                designFile<<"\t\t\t"<<it2->first<<": out "<<it2->second<<";"<<endl;
-            }
-            designFile<<"\t\t\t"<<lastElement->first<<": out "<<lastElement->second<<endl;
-        }
-        else if(inputPorts.size() > 0){
-            vector< pair<string,string> >::iterator lastElement = inputPorts.end();
-            lastElement--;
-            for(vector< pair<string,string> >::iterator it2 = inputPorts.begin(); it2!= lastElement; it2 ++){
-                designFile<<"\t\t\t"<<it2->first<<": in "<<it2->second<<";"<<endl;
-            }
-            designFile<<"\t\t\t"<<lastElement->first<<": in "<<lastElement->second<<endl;
-        }
-        else if(outputPorts.size() > 0){
-            vector< pair<string,string> >::iterator lastElement = outputPorts.end();
-            lastElement--;
-            for(vector< pair<string,string> >::iterator it2 = outputPorts.begin(); it2!= lastElement; it2 ++){
-                designFile<<"\t\t\t"<<it2->first<<": out "<<it2->second<<";"<<endl;
-            }
-            designFile<<"\t\t\t"<<lastElement->first<<": out "<<lastElement->second<<endl;
-        }
-        designFile<<"\t\t"<<");"<<endl;
-        designFile<<"\tend component;"<<endl;
-
-    }
-    
-    for(map<string,string>::iterator it = signals.begin(); it!= signals.end(); it ++){
-        designFile<<"\t"<<"signal "<<it->first<<" : "<<it->second<<";"<<endl;
-    }
-  //  for(set<SignalComponent,SignalComponentCompare>::iterator it = signalList.begin(); it!= signalList.end(); it ++){
-   //     designFile<<"\t"<<"signal "<<it->name<<" : "<<it->type<<";"<<endl;
-   // }
-    
-    designFile<<"begin"<<endl;
-
-    for(map<Component, vector<ComponentInstance>, ComponentCompare >::iterator it = componentTable.begin(); it!= componentTable.end(); it ++){
-        vector<ComponentInstance>::iterator instanceIt;
-        for(instanceIt = it->second.begin(); instanceIt != it->second.end(); instanceIt ++){
-            if(instanceIt->portMaps.size() > 0){ //dont initialize a component without binds
-                designFile<<instanceIt->name<<" : "<<it->first.name<<endl;
-                if(instanceIt->genericMaps.size() > 0){
-                    designFile<<"generic map ("<<endl;
-                    vector<pair<string,string> >::iterator lastElement = instanceIt->genericMaps.end();
-                    lastElement --;
-                    bool useGenericNames = false;
-                    if(instanceIt->genericMaps.begin()->first != "") //if the first one uses the format genericName => value the others must use it too
-                        useGenericNames = true;
-                    for(vector<pair<string,string> >::iterator genericIt = instanceIt->genericMaps.begin(); genericIt != lastElement; genericIt ++){
-                        if(useGenericNames)
-                            designFile<<genericIt->first<<" => "<<genericIt->second<<endl;
-                        else
-                            designFile<<genericIt->second<<endl;
-                    }
-                    if(useGenericNames)
-                        designFile<<lastElement->first<<" => "<<lastElement->second<<endl;
-                    else
-                        designFile<<lastElement->second<<endl;
-                    designFile<<")"<<endl;
-                }
-                designFile<<"port map ("<<endl;
-               
-                vector<pair<string,string> >::iterator lastElement = instanceIt->portMaps.end();
-                lastElement --;
-                bool usePortNames = false;
-                if(instanceIt->portMaps.begin()->first != "") //if the first one uses the format portName => value the others must use it too
-                    usePortNames = true;
-                for(vector<pair<string,string> >::iterator genericIt = instanceIt->portMaps.begin(); genericIt != lastElement; genericIt ++){
-                    if(usePortNames)
-                        designFile<<genericIt->first<<" => "<<genericIt->second<<endl;
-                    else
-                        designFile<<genericIt->second<<endl;
-                }
-                if(usePortNames)
-                    designFile<<lastElement->first<<" => "<<lastElement->second<<endl;
-                else
-                    designFile<<lastElement->second<<endl;
-                designFile<<")"<<endl;
-            
-                designFile<<");"<<endl<<endl;
-            }
-        }
-    }
-
-    for(vector< pair<string,string> >::iterator it = signalMaps.begin(); it!=signalMaps.end(); it++){
-        designFile<<it->first<<" <= "<<it->second<<";"<<endl;
-    }
-    designFile<<endl;
-
-    designFile<<"end arch;"<<endl;
-    
-    designFile.close();
-    cout<<"design file saved to "<<fileLocation<<endl;
-
-}
-
-
-void HardwareProjectXmlParser::addComponentInstance(ComponentInstance instance){
+void HardwareComponentXmlParser::addComponentInstance(ComponentInstance instance){
     map<Component, vector<ComponentInstance>, ComponentCompare >::iterator it;
     for(it=componentTable.begin(); it != componentTable.end(); it++){
         if(it->first.name == instance.type){
@@ -572,26 +386,26 @@ void HardwareProjectXmlParser::addComponentInstance(ComponentInstance instance){
     }
 }
 
-void HardwareProjectXmlParser::addSignal(SignalComponent signal){
+void HardwareComponentXmlParser::addSignal(SignalComponent signal){
     signals[signal.name] = signal.type;
 }
 
-void HardwareProjectXmlParser::addMap(string name, string value){
+void HardwareComponentXmlParser::addMap(string name, string value){
     pair<string, string> v(name,value);
     signalMaps.push_back(v);
 }
 
-void HardwareProjectXmlParser::addGeneric(std::string name, std::string type, std::string defaultValue){
+void HardwareComponentXmlParser::addGeneric(std::string name, std::string type, std::string defaultValue){
     pair<string,string> v(type,defaultValue);
     genericTable[name] = v;
 }
 
 //TODO check if there is no default value to inputs
-void HardwareProjectXmlParser::addInput(std::string name, std::string type, std::string defaultValue){
+void HardwareComponentXmlParser::addInput(std::string name, std::string type, std::string defaultValue){
     inputTable[name] = type;
 }
 //TODO check if there is no default value to outputs
-void HardwareProjectXmlParser::addOutput(std::string name, std::string type, std::string defaultValue){
+void HardwareComponentXmlParser::addOutput(std::string name, std::string type, std::string defaultValue){
     outputTable[name] = type;
 }
 

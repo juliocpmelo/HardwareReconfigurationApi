@@ -1,5 +1,5 @@
-#ifndef HardwareProjectXmlParser_H
-#define HardwareProjectXmlParser_H
+#ifndef HardwareComponentXmlParser_H
+#define HardwareComponentXmlParser_H
 
 #include <libxml/parser.h>
 #include <libxml/tree.h>
@@ -30,7 +30,7 @@ typedef struct ComponentCompare_t {
 /*
  *! TODO change to build HardwareComponent instead of old API
  * */
-class HardwareProjectXmlParser{
+class HardwareComponentXmlParser{
     public:
         std::map<Component, std::vector<ComponentInstance>, ComponentCompare > componentTable;
         std::map<std::string, std::vector< std::pair<std::string,std::string> > > genericInitializationTable;
@@ -54,9 +54,8 @@ class HardwareProjectXmlParser{
         std::string xmlProjectFile;
         int signalCount;
     public:
-        HardwareProjectXmlParser(std::string xmlProjectFile);
+        HardwareComponentXmlParser(std::string xmlProjectFile);
         void parseMainEntityXmlFile();
-        void buildMainEntityFile(std::string projectPath);
 
         /*real time hardware editing commands*/
         void addComponentInstance(ComponentInstance instance);
@@ -80,9 +79,7 @@ class HardwareProjectXmlParser{
         
         void parseGeneric(xmlNode * componentNode);
         void parseSignalComponents(xmlNode * componentNode);
-
-        
       
 };
 
-#endif //HardwareProjectXmlParser_H
+#endif //HardwareComponentXmlParser_H
