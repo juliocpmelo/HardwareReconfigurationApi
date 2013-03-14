@@ -34,7 +34,7 @@ int main(int argc, char *argv[]){
                                                                "C:/Documents and Settings/schneider/Meus Documentos/julio/doutorado/fpgaProjects/TestHardwareBuilding/",
                                                                "C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/HardwareReconfigurationApi/rnaBaseComponents.xml");
 
-								HardwareComponent *topComponent = new HardwareComponent("neuronio_test");
+								HardwareComponent *topComponent = new HardwareComponent("neuronio_test", NULL);
 								ComponentDatabase *database = new ComponentDatabase();
 
 							//does not make any sence to use generic inputs here since it will be the top entity
@@ -265,8 +265,8 @@ int main(int argc, char *argv[]){
 
 
 
-                project->setTopLevelComponent(topComponnt);
-                project->generateHdlFiles(topComponnt);
+                project->setTopLevelComponent(topComponent);
+                project->generateHDLFiles(topComponent);
                 project->generateConfigFile();
                 project->compileProject();
     
@@ -277,7 +277,7 @@ int main(int argc, char *argv[]){
             	HardwareProject *p1 = new HardwareProject("adder8Bits", 
                                                           "C:/Documents and Settings/schneider/Meus Documentos/julio/doutorado/fpgaProjects/TestHardwareBuilding/", 
                                                           "C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/HardwareReconfigurationApi/testeRnaModeling.xml");
-                p1->generateHDLFile();
+                p1->generateHDLFiles(NULL);
                 p1->generateConfigFile();
                 p1->compileProject();
             }

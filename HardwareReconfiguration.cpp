@@ -10,12 +10,12 @@ using namespace std;
 HardwareProject::HardwareProject(std::string projectName, std::string projectPath, std::string xmlLocation){
 	this->projectName = projectName;
 	this->projectPath = projectPath;
-    this->hardwareProjectXmlParser = new HardwareProjectXmlParser(xmlLocation);
-    hardwareProjectXmlParser->parseMainEntityXmlFile();
-    if(hardwareProjectXmlParser->deviceTarget != "")
-        this->deviceName = hardwareProjectXmlParser->deviceTarget;
-    if(hardwareProjectXmlParser->deviceFamily != "")
-        this->deviceFamily = hardwareProjectXmlParser->deviceFamily;
+    this->hardwareComponentXmlParser = new HardwareComponentXmlParser(xmlLocation);
+    hardwareComponentXmlParser->parseMainEntityXmlFile();
+    if(hardwareComponentXmlParser->deviceTarget != "")
+        this->deviceName = hardwareComponentXmlParser->deviceTarget;
+    if(hardwareComponentXmlParser->deviceFamily != "")
+        this->deviceFamily = hardwareComponentXmlParser->deviceFamily;
 
 }
 
@@ -58,7 +58,7 @@ void HardwareProject::generateConfigFile(){
     configFile<<"set_global_assignment -name TOP_LEVEL_ENTITY "<<projectName<<endl;
 
     configFile<<"#assignements "<<endl;
-    for(map<string, string >::iterator it = hardwareProjectXmlParser->assignments.begin(); it!= hardwareProjectXmlParser->assignments.end(); it++){
+    for(map<string, string >::iterator it = hardwareComponentXmlParser->assignments.begin(); it!= hardwareComponentXmlParser->assignments.end(); it++){
         configFile<<"set_location_assignment -to "<<it->first<<" "<<it->second<<endl;
     }
     configFile<<"project_close "<<endl;
@@ -66,9 +66,9 @@ void HardwareProject::generateConfigFile(){
     cout<<"config file saved to "<<fileLocation<<endl;
 }
 
-void HardwareProject::generateHDLFile(){
+void HardwareProject::generateHDLFiles(HardwareComponent *comp){
     //
-    hardwareProjectXmlParser->buildMainEntityFile(projectPath);
+//    hardwareComponentXmlParser->buildMainEntityFile(projectPath);
     
 }
 
@@ -88,7 +88,7 @@ void HardwareProject::compileProject(){
     chdir(projectPath.c_str());
     copyAllFilesToWorkingDir(projectFiles, projectPath);
 
-    copyAllFilesToWorkingDir(vector<string>(hardwareProjectXmlParser->dependencyFiles.begin(), hardwareProjectXmlParser->dependencyFiles.end()), projectPath);
+    copyAllFilesToWorkingDir(vector<string>(hardwareComponentXmlParser->dependencyFiles.begin(), hardwareComponentXmlParser->dependencyFiles.end()), projectPath);
 	string systemCommand = "";
     systemCommand += "C:/altera/70/quartus/bin/quartus_sh -t \"" + projectPath + "config_file.tcl\"";  //compiler executable name
     cout<<"executing system command"<<systemCommand<<endl;

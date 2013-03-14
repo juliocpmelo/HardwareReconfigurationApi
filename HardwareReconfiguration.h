@@ -2,7 +2,7 @@
 #ifndef HardwareReconfiguration_h
 #define HardwareReconfiguration_h
 
-#include "HardwareProjectXmlParser.h"
+#include "HardwareComponentXmlParser.h"
 #include "HardwareComponent.h"
 #include <iostream>
 #include <map>
@@ -18,9 +18,9 @@ class HardwareProject{
 
 		std::map<std::string, std::string> assigments;
 		std::vector<std::string> projectFiles;
-		HardwareProjectXmlParser *hardwareProjectXmlParser;
+		HardwareComponentXmlParser *hardwareComponentXmlParser;
 
-		HardwareComponent *topTopLevelComponent;
+		HardwareComponent *topLevelComponent;
 	public:
 		/**
 		*\param projectName project name
@@ -28,7 +28,11 @@ class HardwareProject{
 		*/
 		HardwareProject(std::string projectName, std::string projectPath, std::string xmlLocation);
 
-		void setTopLevelComponent(HardwareComponent * toplevelComponent);
+		/**
+		 *\param topLevelComponent the top level component to this hardware project
+		 */
+		void setTopLevelComponent(HardwareComponent *topLevelComponent);
+
 		
 		/**
 		*\brief sets the device target device name
@@ -51,7 +55,7 @@ class HardwareProject{
 
 		void generateConfigFile();
 
-		void generateHDLFile();
+		void generateHDLFiles(HardwareComponent *comp);
 
 		/**
 		 *\brief sets the assignments in the project

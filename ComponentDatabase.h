@@ -6,6 +6,8 @@
 
 class ComponentDatabase{
 	public:
+		std::map<std::string, HardwareComponent::HarwareComponentInfo*> componentCache;
+	public:
 		//static ComponentDatabase* getInstance();
 		//looks up for a component with given locator and instantiate it with the given name
 		HardwareComponent *getHardwareComponent(std::string instanceName, std::string componentLocator);

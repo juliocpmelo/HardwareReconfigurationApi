@@ -7,7 +7,8 @@ ComponentDatabase::ComponentDatabase(){
 
 HardwareComponent* ComponentDatabase::getHardwareComponent(std::string instanceName, std::string componentLocator){
 //do component lookup
-	return new HardwareComponent(sc_module_name(instanceName.c_str()));
+	HardwareComponent::HardwareComponentInfo *componentInfo = NULL;
+	return new HardwareComponent(sc_module_name(instanceName.c_str()), componentInfo);
 }
 
 sc_signal_resolved *ComponentDatabase::createSignal(std::string name, HardwareComponent::DataType type, int size){

@@ -24,6 +24,7 @@ SC_MODULE(HardwareComponent) {
 
 	public:
 		std::map<std::string, sc_port_base*> ports;
+		bool isDynamic;
 		HardwareComponentInfo *componentInfo;
 		//table containing information about the component
 	

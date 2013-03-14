@@ -3,12 +3,12 @@ using namespace std;
 
 HardwareComponent::HardwareComponent(sc_module_name name, HardwareComponentInfo *infoTable) : sc_module(name){
 	if(infoTable == NULL) {//implies that this component will be dinamically created.
-
 		componentInfo = new HardwareComponentInfo();
-		dinamic = true;
+		isDynamic = true;
 	}
 	else{
 		componentInfo = infoTable;
+		isDynamic = false;
 	}
 }
 
