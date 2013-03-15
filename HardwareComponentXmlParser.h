@@ -50,12 +50,16 @@ class HardwareComponentXmlParser{
         std::string deviceTarget;
 
         std::set<std::string> dependencyFiles;
-    private:
         std::string xmlProjectFile;
+    private:
         int signalCount;
     public:
-        HardwareComponentXmlParser(std::string xmlProjectFile);
-        void parseMainEntityXmlFile();
+        HardwareComponentXmlParser();
+				
+				/*
+				 * parses the actual xmlFile and converts it into a HardwareComponentInfo vector
+				 */
+				std::vector<HardwareComponent::HardwareComponentInfo*> getComponentInfo();
 
         /*real time hardware editing commands*/
         void addComponentInstance(ComponentInstance instance);
@@ -74,7 +78,9 @@ class HardwareComponentXmlParser{
         void parseInput(xmlNode * componentNode);
         void parseInstance(xmlNode * componentNode);
         void parseAssignment(xmlNode * componentNode);
-        void parseRoot(xmlNode * rootNode);
+
+				/*xml file that represents a whole hardware description*/
+				void parseHardwareTopEntity(xmlNode * rootNode);
         
         
         void parseGeneric(xmlNode * componentNode);

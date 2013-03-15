@@ -2,11 +2,16 @@
 #define ComponentDatabase_h
 
 #include <iostream>
+#include <map>
 #include "HardwareComponent.h"
 
 class ComponentDatabase{
+	private:
+		HardwareComponentXmlParser *componentsXmlParser;
+		std::map<std:string, HardwareComponent::HardwareComponentInfo*> loadedComponents;
+
 	public:
-		std::map<std::string, HardwareComponent::HarwareComponentInfo*> componentCache;
+		std::map<std::string, HardwareComponent::HarwareComponentInfo*> componentCachei;
 	public:
 		//static ComponentDatabase* getInstance();
 		//looks up for a component with given locator and instantiate it with the given name

@@ -16,6 +16,9 @@ SC_MODULE(HardwareComponent) {
 	typedef struct HardwareComponentInfo_t{
 	/*maybe put here the files and dependencies*/
     std::string name;
+    std::vector< std::pair <std::string, std::string> > inputs;
+    std::vector< std::pair <std::string, std::string> > outputs;
+    std::map<std::string, std::pair<std::string, std::string> > genericTable;
 
 	}HardwareComponentInfo;
 

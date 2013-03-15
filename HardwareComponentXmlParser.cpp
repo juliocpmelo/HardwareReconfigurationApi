@@ -4,14 +4,13 @@
 
 using namespace std;
 
-HardwareComponentXmlParser::HardwareComponentXmlParser(string xmlProjectFile){
-    this->xmlProjectFile = xmlProjectFile;
+HardwareComponentXmlParser::HardwareComponentXmlParser(){
+//    this->xmlProjectFile = xmlProjectFile;
 }
 
 /*obs : not using xmlFree as it results in a compilation bug because of the libxml2 compiled for windows*/
 void HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode){
     xmlNode *componentNode = NULL;
-    cout<<__FILE__<<"::"<<__LINE__<<endl;
     for(componentNode = componentBaseNode->xmlChildrenNode; componentNode; componentNode = componentNode->next){
         if (componentNode->type == XML_ELEMENT_NODE) {
             xmlChar *name = xmlGetProp(componentNode, (const xmlChar *)"name");
@@ -25,7 +24,7 @@ void HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode)
                 dependencyFiles.insert(fileStr);
             }
 
-            Component component;
+						HardwareComponent::ComponentInfo *componentInfo = new HardwarComponent::ComponentInfo();
             component.name = nameStr;
             cout<<"component table size "<<componentTable.size()<<endl;
             cout<<"component declarations size "<<componentTable.count(component)<<" for "<<component.name<<endl;
@@ -53,7 +52,7 @@ void HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode)
                                 defaultValueStr = string((const char*)defaultValue);
                             }
                             pair<string,string> v(typeStr,defaultValueStr);
-                            component.genericTable[genericNameStr] = v;
+                            component->genericTable[genericNameStr] = v;
                             
                         }
                         else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){
@@ -70,7 +69,7 @@ void HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode)
                             pair<string,string> p;
                             p.first = inputNameStr;
                             p.second = inputTypeStr;
-                            component.inputs.push_back(p);
+                            component->inputs.push_back(p);
                         }
                         else if(xmlStrcmp(currentNode->name, (const xmlChar *)"output") == 0){
                             cout<<"output tag"<<endl;
@@ -86,7 +85,7 @@ void HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode)
                             pair<string,string> p;
                             p.first = outputNameStr;
                             p.second = outputTypeStr;
-                            component.outputs.push_back(p);
+                            component->outputs.push_back(p);
                         }
                         else if(xmlStrcmp(currentNode->name, (const xmlChar *)"dependency") == 0){
                             xmlChar *file = xmlGetProp(currentNode, (const xmlChar *)"file");
@@ -124,7 +123,7 @@ void HardwareComponentXmlParser::parseOutput(xmlNode * componentNode){
         typeStr = string((const char*)type);
     else
         typeStr = "std_logic";
-     cout<<"output type "<<typeStr<<endl;
+    cout<<"output type "<<typeStr<<endl;
     outputTable[outputNameStr] = typeStr;
 }
 
@@ -265,7 +264,7 @@ void HardwareComponentXmlParser::parseMap(xmlNode * currentNode){
     cout<<__FILE__<<"::"<<__LINE__<<endl;    
 }
 
-void HardwareComponentXmlParser::parseRoot(xmlNode * rootNode){
+void HardwareComponentXmlParser::parseHardwareTopEntity(xmlNode * rootNode){
     xmlNode *currentNode = NULL;
     for (currentNode = rootNode; currentNode; currentNode = currentNode->next) {
         if (currentNode->type == XML_ELEMENT_NODE) {
@@ -332,7 +331,7 @@ void HardwareComponentXmlParser::parseMainEntityXmlFile(){
             if (currentNode->type == XML_ELEMENT_NODE) {
                 cout<<"xlm element node "<<currentNode->name<<endl;
 
-                if(xmlStrcmp(currentNode->name, (const xmlChar *)"hardwareTopEntity") == 0){
+                if(xmlStrcmp(currentNode->name, (const xmlChar *)"ComponentBase") == 0){
                     xmlChar *entityName = xmlGetProp(currentNode, (const xmlChar *)"name");
                     this->entityNameStr = string((const char*)entityName);
 
@@ -345,7 +344,22 @@ void HardwareComponentXmlParser::parseMainEntityXmlFile(){
                         this->deviceTarget = string((const char*)deviceTarget);
 
 
-                    parseRoot(currentNode->xmlChildrenNode);
+                    parseComponentBase(currentNode->xmlChildrenNode);
+                }
+								else if(xmlStrcmp(currentNode->name, (const xmlChar *)"HardwareTopEntity") == 0){
+                    xmlChar *entityName = xmlGetProp(currentNode, (const xmlChar *)"name");
+                    this->entityNameStr = string((const char*)entityName);
+
+                    xmlChar *deviceFamily = xmlGetProp(currentNode, (const xmlChar *)"deviceFamily");
+                    if(deviceFamily != NULL)
+                        this->deviceFamily = string((const char*)deviceFamily);
+
+                    xmlChar *deviceTarget = xmlGetProp(currentNode, (const xmlChar *)"deviceTarget");
+                    if(deviceTarget != NULL)
+                        this->deviceTarget = string((const char*)deviceTarget);
+
+
+                    parseHardwareTopEntity(currentNode->xmlChildrenNode);
                 }
             }
         }
