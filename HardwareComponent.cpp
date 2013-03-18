@@ -2,13 +2,27 @@
 using namespace std;
 
 HardwareComponent::HardwareComponent(sc_module_name name, HardwareComponentInfo *infoTable) : sc_module(name){
+	isDynamic = true;
 	if(infoTable == NULL) {//implies that this component will be dinamically created.
 		componentInfo = new HardwareComponentInfo();
-		isDynamic = true;
 	}
 	else{
 		componentInfo = infoTable;
+		buildComponentPorts();
 		isDynamic = false;
+	}
+}
+
+void HardwareComponent::buildComponentPorts(){
+	for (std::map< string, PortInfo >::iterator it= componentInfo->inputs.begin(); it!=componentInfo->inputs.end(); it++){
+		addInput(it->second.name,it->second.type,it->second.size);
+		sc_attribute< string > portGeneric("GenericExpression",it->second.genericExpression);
+		ports[it->second.name]->add_attribute(portGeneric);
+	}
+	for (std::map< string, PortInfo >::iterator it= componentInfo->outputs.begin(); it!=componentInfo->outputs.end(); it++){
+		addOutput(it->second.name,it->second.type,it->second.size);
+		sc_attribute< string > portGeneric("GenericExpression",it->second.genericExpression);
+		ports[it->second.name]->add_attribute(portGeneric);
 	}
 }
 
@@ -22,18 +36,24 @@ void HardwareComponent::addPortAttributes(std::string name, DataType type, int s
 }
 
 void HardwareComponent::addInput(std::string name, DataType type, int size){
-	ports[name]	= new sc_in< sc_logic >(name.c_str());
-	addPortAttributes(name, type, size);
+	if(isDynamic){
+		ports[name]	= new sc_in< sc_logic >(name.c_str());
+		addPortAttributes(name, type, size);
+	}
 }
 
 void HardwareComponent::addOutput(std::string name, DataType type, int size){
-	ports[name]	= new sc_out< sc_logic >(name.c_str());
-	addPortAttributes(name, type, size);
+	if(isDynamic){
+		ports[name]	= new sc_out< sc_logic >(name.c_str());
+		addPortAttributes(name, type, size);
+	}
 }
 
 void HardwareComponent::addInout(std::string name, DataType type, int size){
-	ports[name]	= new sc_inout< sc_logic >(name.c_str());
-	addPortAttributes(name, type, size);
+	if(isDynamic){
+		ports[name]	= new sc_inout< sc_logic >(name.c_str());
+		addPortAttributes(name, type, size);
+	}
 }
 
 sc_port_base* HardwareComponent::getPort(std::string name){
@@ -90,5 +110,4 @@ void HardwareComponent::portMap(std::string selfPortName, sc_signal_resolved *si
 
 void HardwareComponent::addChildComponent(sc_module * child){
 	this->add_child_object(child);
-
 }
