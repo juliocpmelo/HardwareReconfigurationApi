@@ -82,7 +82,7 @@ std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParse
 								inputSize = 1;
 
 							HardwareComponent::PortInfo info = {inputNameStr,inputType, inputSize};
-							componentInfo->inputs.push_back(info);
+							componentInfo->inputs[inputNameStr] = info;
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"output") == 0){
 							cout<<"output tag"<<endl;
@@ -108,7 +108,7 @@ std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParse
 								outputSize = 1;
 
 							HardwareComponent::PortInfo info = {outputNameStr,outputType, outputSize};
-							componentInfo->outputs.push_back(info);
+							componentInfo->outputs[outputNameStr] = info;
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"dependency") == 0){
 							xmlChar *file = xmlGetProp(currentNode, (const xmlChar *)"file");
