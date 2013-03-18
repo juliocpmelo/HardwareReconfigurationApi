@@ -9,99 +9,121 @@ HardwareComponentXmlParser::HardwareComponentXmlParser(){
 }
 
 /*obs : not using xmlFree as it results in a compilation bug because of the libxml2 compiled for windows*/
-void HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode){
+std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode){
     xmlNode *componentNode = NULL;
-    for(componentNode = componentBaseNode->xmlChildrenNode; componentNode; componentNode = componentNode->next){
-        if (componentNode->type == XML_ELEMENT_NODE) {
-            xmlChar *name = xmlGetProp(componentNode, (const xmlChar *)"name");
-            string nameStr((const char*)name);
-            cout<<"componentName "<<nameStr<<endl;
+		vector<HardwareComponent::HardwareComponentInfo*> loadedComponents;
+		for(componentNode = componentBaseNode->xmlChildrenNode; componentNode; componentNode = componentNode->next){
+			HardwareComponent::HardwareComponentInfo *componentInfo = NULL;
+			if (componentNode->type == XML_ELEMENT_NODE &&
+					xmlStrcmp(componentNode->name, (const xmlChar*)"component") == 0) {
 
-            xmlChar *file = xmlGetProp(componentNode, (const xmlChar *)"file");
-            string fileStr = "";
-            if(file!=NULL){
-                fileStr = string((const char*)file);
-                dependencyFiles.insert(fileStr);
-            }
+				componentInfo = new HardwareComponent::HardwareComponentInfo();
+				xmlChar *name = xmlGetProp(componentNode, (const xmlChar *)"name");
+				string nameStr((const char*)name);
+				cout<<"componentName "<<nameStr<<endl;
+				componentInfo->name = nameStr;
 
-						HardwareComponent::ComponentInfo *componentInfo = new HardwarComponent::ComponentInfo();
-            component.name = nameStr;
-            cout<<"component table size "<<componentTable.size()<<endl;
-            cout<<"component declarations size "<<componentTable.count(component)<<" for "<<component.name<<endl;
-            if(componentTable.count(component) == 0){ //not add components again in the component table
-                xmlNode *currentNode = NULL;
-                for (currentNode = componentNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
-                    if (currentNode->type == XML_ELEMENT_NODE) {
-                        if(xmlStrcmp(currentNode->name, (const xmlChar *)"generic") == 0){
-                            xmlChar *genericName = xmlGetProp(currentNode, (const xmlChar *)"name");
-                            string genericNameStr((const char*)genericName);
-                            cout<<"generic tag name "<<genericNameStr<<endl;
+				xmlChar *file = xmlGetProp(componentNode, (const xmlChar *)"file");
+				string fileStr = "";
+				if(file!=NULL){
+					fileStr = string((const char*)file);
+					componentInfo->dependencyFiles.insert(fileStr);
+				}
 
-                            xmlChar *type = xmlGetProp(currentNode, (const xmlChar *)"type");
-                            string typeStr = "";
-                            if(type != NULL){
-                                typeStr = string((const char*)type);
-                            }
-                            else
-                                typeStr = "integer";
-                            
-                        
-                            xmlChar *defaultValue = xmlGetProp(currentNode, (const xmlChar *)"defaultValue");
-                            string defaultValueStr = "";
-                            if(defaultValue != NULL){
-                                defaultValueStr = string((const char*)defaultValue);
-                            }
-                            pair<string,string> v(typeStr,defaultValueStr);
-                            component->genericTable[genericNameStr] = v;
-                            
-                        }
-                        else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){
-                            cout<<"input tag"<<endl;
-                            xmlChar *inputName = xmlGetProp(currentNode, (const xmlChar *)"name");
-                            string inputNameStr((const char*)inputName);
-    
-                            xmlChar *inputType = xmlGetProp(currentNode, (const xmlChar *)"type");
-                            string inputTypeStr;
-                            if(inputType == NULL)
-                                inputTypeStr = "std_logic";
-                            else
-                                inputTypeStr = string((const char*)inputType);
-                            pair<string,string> p;
-                            p.first = inputNameStr;
-                            p.second = inputTypeStr;
-                            component->inputs.push_back(p);
-                        }
-                        else if(xmlStrcmp(currentNode->name, (const xmlChar *)"output") == 0){
-                            cout<<"output tag"<<endl;
-                            xmlChar *outputName = xmlGetProp(currentNode, (const xmlChar *)"name");
-                            string outputNameStr((const char*)outputName);
-    
-                            xmlChar *outputType = xmlGetProp(currentNode, (const xmlChar *)"type");
-                            string outputTypeStr;
-                            if(outputType == NULL)
-                                outputTypeStr = "std_logic";
-                            else
-                                outputTypeStr = string((const char*)outputType);
-                            pair<string,string> p;
-                            p.first = outputNameStr;
-                            p.second = outputTypeStr;
-                            component->outputs.push_back(p);
-                        }
-                        else if(xmlStrcmp(currentNode->name, (const xmlChar *)"dependency") == 0){
-                            xmlChar *file = xmlGetProp(currentNode, (const xmlChar *)"file");
-                            fileStr = "";
-                            if(file!=NULL){
-                                fileStr = string((const char*)file);
-                                dependencyFiles.insert(fileStr);
-                            }
-                            dependencyFiles.insert(fileStr);
-                        }
-                    }
-                }
-            }
-            componentTable[component] = vector<ComponentInstance>();
-        }
-    }
+				loadedComponents.push_back(componentInfo);
+
+				xmlNode *currentNode = NULL;
+				for (currentNode = componentNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
+					if (currentNode->type == XML_ELEMENT_NODE) {
+						if(xmlStrcmp(currentNode->name, (const xmlChar *)"generic") == 0){
+							xmlChar *genericName = xmlGetProp(currentNode, (const xmlChar *)"name");
+							string genericNameStr((const char*)genericName);
+							cout<<"generic tag name "<<genericNameStr<<endl;
+
+							xmlChar *type = xmlGetProp(currentNode, (const xmlChar *)"type");
+							string typeStr = "";
+							if(type != NULL){
+								typeStr = string((const char*)type);
+							}
+							else
+								typeStr = "integer";
+
+
+							xmlChar *defaultValue = xmlGetProp(currentNode, (const xmlChar *)"defaultValue");
+							string defaultValueStr = "";
+							if(defaultValue != NULL){
+								defaultValueStr = string((const char*)defaultValue);
+							}
+							pair<string,string> v(typeStr,defaultValueStr);
+							componentInfo->genericTable[genericNameStr] = v;
+
+						}
+						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){
+							cout<<"input tag"<<endl;
+							xmlChar *inputName = xmlGetProp(currentNode, (const xmlChar *)"name");
+							string inputNameStr((const char*)inputName);
+
+							xmlChar *inputTypeChar = xmlGetProp(currentNode, (const xmlChar *)"type");
+							HardwareComponent::DataType inputType;
+							if(xmlStrcmp(inputTypeChar,(const xmlChar*) "bit") == 0)
+								inputType = HardwareComponent::DataType_bit;
+							else if(xmlStrcmp(inputTypeChar,(const xmlChar*) "vector") == 0)
+								inputType = HardwareComponent::DataType_vector;
+							else if(xmlStrcmp(inputTypeChar,(const xmlChar*) "integer") == 0)
+								inputType = HardwareComponent::DataType_integer;
+							else
+								inputType = HardwareComponent::DataType_bit;
+
+							xmlChar *inputSizeChar = xmlGetProp(currentNode, (const xmlChar *)"size");
+							int inputSize;
+							if(inputSizeChar != NULL)
+								inputSize = atoi((const char*)inputSizeChar);
+							else
+								inputSize = 1;
+
+							HardwareComponent::PortInfo info = {inputNameStr,inputType, inputSize};
+							componentInfo->inputs.push_back(info);
+						}
+						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"output") == 0){
+							cout<<"output tag"<<endl;
+							xmlChar *outputName = xmlGetProp(currentNode, (const xmlChar *)"name");
+							string outputNameStr((const char*)outputName);
+
+							xmlChar *outputTypeChar = xmlGetProp(currentNode, (const xmlChar *)"type");
+							HardwareComponent::DataType outputType;
+							if(xmlStrcmp(outputTypeChar,(const xmlChar*)"bit")==0)
+								outputType = HardwareComponent::DataType_bit;
+							else if(xmlStrcmp(outputTypeChar,(const xmlChar*)"vector")==0)
+								outputType = HardwareComponent::DataType_vector;
+							else if(xmlStrcmp(outputTypeChar,(const xmlChar*)"integer")==0)
+								outputType = HardwareComponent::DataType_integer;
+							else
+								outputType = HardwareComponent::DataType_bit;
+
+							xmlChar *outputSizeChar = xmlGetProp(currentNode, (const xmlChar *)"size");
+							int outputSize;
+							if(outputSizeChar != NULL)
+								outputSize = atoi((const char*)outputSizeChar);
+							else
+								outputSize = 1;
+
+							HardwareComponent::PortInfo info = {outputNameStr,outputType, outputSize};
+							componentInfo->outputs.push_back(info);
+						}
+						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"dependency") == 0){
+							xmlChar *file = xmlGetProp(currentNode, (const xmlChar *)"file");
+							fileStr = "";
+							if(file!=NULL){
+								fileStr = string((const char*)file);
+								dependencyFiles.insert(fileStr);
+							}
+							componentInfo->dependencyFiles.insert(fileStr);
+						}
+					}
+				}
+			}
+		}
+		return loadedComponents;
    // xmlFree(type);
    // xmlChar *header = xmlGetProp(componentNode, (const xmlChar *)"header");
    // cout<<"header "<<header<<endl;
@@ -305,70 +327,104 @@ void HardwareComponentXmlParser::parseHardwareTopEntity(xmlNode * rootNode){
     }
 }
 
-void HardwareComponentXmlParser::parseMainEntityXmlFile(){
-    xmlDoc         *doc = NULL;
-    xmlNode        *root_element = NULL;
-    char workingDir[256];
-    
-    doc = xmlReadFile(xmlProjectFile.c_str(), NULL, 0);
-    
-    if (doc == NULL)
-    {
-        cout<<"error: could not parse file "<<xmlProjectFile<<endl;
-    }
-    else
-    {
-    
-        /*
-        * Get the root element node
-        */
-        signalCount = 0;
-        root_element = xmlDocGetRootElement(doc);
-        
-        xmlNode *currentNode = NULL;
- 
-        for (currentNode = root_element; currentNode; currentNode = currentNode->next) {
-            if (currentNode->type == XML_ELEMENT_NODE) {
-                cout<<"xlm element node "<<currentNode->name<<endl;
+std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseXmlComponentFile(std::string xmlFile){
+	xmlDoc         *doc = NULL;
+	xmlNode        *root_element = NULL;
+	char workingDir[256];
+	doc = xmlReadFile(xmlFile.c_str(), NULL, 0);
 
-                if(xmlStrcmp(currentNode->name, (const xmlChar *)"ComponentBase") == 0){
-                    xmlChar *entityName = xmlGetProp(currentNode, (const xmlChar *)"name");
-                    this->entityNameStr = string((const char*)entityName);
+	vector<HardwareComponent::HardwareComponentInfo*> retVector;
 
-                    xmlChar *deviceFamily = xmlGetProp(currentNode, (const xmlChar *)"deviceFamily");
-                    if(deviceFamily != NULL)
-                        this->deviceFamily = string((const char*)deviceFamily);
+	if (doc == NULL)
+	{
+		cout<<"error: could not parse file "<<xmlProjectFile<<endl;
+	}
+	else
+	{
 
-                    xmlChar *deviceTarget = xmlGetProp(currentNode, (const xmlChar *)"deviceTarget");
-                    if(deviceTarget != NULL)
-                        this->deviceTarget = string((const char*)deviceTarget);
+		/*
+		 * Get the root element node
+		 */
+		signalCount = 0;
+		root_element = xmlDocGetRootElement(doc);
 
+		xmlNode *currentNode = NULL;
 
-                    parseComponentBase(currentNode->xmlChildrenNode);
-                }
-								else if(xmlStrcmp(currentNode->name, (const xmlChar *)"HardwareTopEntity") == 0){
-                    xmlChar *entityName = xmlGetProp(currentNode, (const xmlChar *)"name");
-                    this->entityNameStr = string((const char*)entityName);
+		for (currentNode = root_element; currentNode; currentNode = currentNode->next) {
+			if (currentNode->type == XML_ELEMENT_NODE) {
+				cout<<"xlm element node "<<currentNode->name<<endl;
 
-                    xmlChar *deviceFamily = xmlGetProp(currentNode, (const xmlChar *)"deviceFamily");
-                    if(deviceFamily != NULL)
-                        this->deviceFamily = string((const char*)deviceFamily);
+				if(xmlStrcmp(currentNode->name, (const xmlChar *)"ComponentBase") == 0){
+					xmlChar *entityName = xmlGetProp(currentNode, (const xmlChar *)"name");
+					this->entityNameStr = string((const char*)entityName);
 
-                    xmlChar *deviceTarget = xmlGetProp(currentNode, (const xmlChar *)"deviceTarget");
-                    if(deviceTarget != NULL)
-                        this->deviceTarget = string((const char*)deviceTarget);
+					xmlChar *deviceFamily = xmlGetProp(currentNode, (const xmlChar *)"deviceFamily");
+					if(deviceFamily != NULL)
+						this->deviceFamily = string((const char*)deviceFamily);
+
+					xmlChar *deviceTarget = xmlGetProp(currentNode, (const xmlChar *)"deviceTarget");
+					if(deviceTarget != NULL)
+						this->deviceTarget = string((const char*)deviceTarget);
 
 
-                    parseHardwareTopEntity(currentNode->xmlChildrenNode);
-                }
-            }
-        }
-        
-        /*
-        * free the document
-        */
-        xmlFreeDoc(doc);
-    }
+					retVector = parseComponentBase(currentNode->xmlChildrenNode);
+				}
+			}
+		}
+	}
+	return retVector;
+}
+
+HardwareComponent* HardwareComponentXmlParser::parseMainEntityXmlFile(std::string xmlFile){
+	xmlDoc         *doc = NULL;
+	xmlNode        *root_element = NULL;
+	char workingDir[256];
+
+	doc = xmlReadFile(xmlFile.c_str(), NULL, 0);
+
+	if (doc == NULL)
+	{
+		cout<<"error: could not parse file "<<xmlProjectFile<<endl;
+	}
+	else
+	{
+
+		/*
+		 * Get the root element node
+		 */
+		signalCount = 0;
+		root_element = xmlDocGetRootElement(doc);
+
+		xmlNode *currentNode = NULL;
+
+		for (currentNode = root_element; currentNode; currentNode = currentNode->next) {
+			if (currentNode->type == XML_ELEMENT_NODE) {
+				cout<<"xlm element node "<<currentNode->name<<endl;
+
+				if(xmlStrcmp(currentNode->name, (const xmlChar *)"HardwareTopEntity") == 0){
+					xmlChar *entityName = xmlGetProp(currentNode, (const xmlChar *)"name");
+					this->entityNameStr = string((const char*)entityName);
+
+					xmlChar *deviceFamily = xmlGetProp(currentNode, (const xmlChar *)"deviceFamily");
+					if(deviceFamily != NULL)
+						this->deviceFamily = string((const char*)deviceFamily);
+
+					xmlChar *deviceTarget = xmlGetProp(currentNode, (const xmlChar *)"deviceTarget");
+					if(deviceTarget != NULL)
+						this->deviceTarget = string((const char*)deviceTarget);
+
+
+					parseHardwareTopEntity(currentNode->xmlChildrenNode);
+				}
+			}
+		}
+
+		/*
+		 * free the document
+		 */
+		xmlFreeDoc(doc);
+	}
+	return NULL;
 }
 
 string HardwareComponentXmlParser::getValidComponentInstanceName(string componentType){

@@ -11,19 +11,20 @@
 
 #include "ComponentInstance.h"
 #include "SignalComponent.h"
+#include "HardwareComponent.h"
 
 
 typedef struct Component_t{
-    std::string name;
-    std::vector< std::pair <std::string, std::string> > inputs;
-    std::vector< std::pair <std::string, std::string> > outputs;
-    std::map<std::string, std::pair<std::string, std::string> > genericTable;
+	std::string name;
+	std::vector< std::pair <std::string, std::string> > inputs;
+	std::vector< std::pair <std::string, std::string> > outputs;
+	std::map<std::string, std::pair<std::string, std::string> > genericTable;
 }Component;
 
 typedef struct ComponentCompare_t {
-  bool operator() (const Component& a, const Component& b) const
-  { //std::cout<<"comparing "<<a.name<<" with "<<b.name<<" value "<<(a.name == b.name)<<std::endl;
-    return (a.name < b.name);}
+	bool operator() (const Component& a, const Component& b) const
+	{ //std::cout<<"comparing "<<a.name<<" with "<<b.name<<" value "<<(a.name == b.name)<<std::endl;
+		return (a.name < b.name);}
 }ComponentCompare;
 
 
@@ -31,61 +32,63 @@ typedef struct ComponentCompare_t {
  *! TODO change to build HardwareComponent instead of old API
  * */
 class HardwareComponentXmlParser{
-    public:
-        std::map<Component, std::vector<ComponentInstance>, ComponentCompare > componentTable;
-        std::map<std::string, std::vector< std::pair<std::string,std::string> > > genericInitializationTable;
-        std::map<std::string, std::set< std::string > > componentPorts;
-        std::set<SignalComponent, SignalComponentCompare> signalList;
-        std::map<std::string, std::string > inputTable; //input name, input type
-        std::map<std::string, std::string > outputTable; //output name, output type
-        std::map<std::string, std::pair<std::string, std::string> > genericTable; //generic name, generic type, generic default value
+	public:
+		std::map<Component, std::vector<ComponentInstance>, ComponentCompare > componentTable;
+		std::map<std::string, std::vector< std::pair<std::string,std::string> > > genericInitializationTable;
+		std::map<std::string, std::set< std::string > > componentPorts;
+		std::set<SignalComponent, SignalComponentCompare> signalList;
+		std::map<std::string, std::string > inputTable; //input name, input type
+		std::map<std::string, std::string > outputTable; //output name, output type
+		std::map<std::string, std::pair<std::string, std::string> > genericTable; //generic name, generic type, generic default value
 
-        std::map<std::string, std::string > assignments; //
-        std::map<std::string, std::string > signals; //singal name, signal type
+		std::map<std::string, std::string > assignments; //
+		std::map<std::string, std::string > signals; //singal name, signal type
 
-        std::vector< std::pair<std::string,std::string> > signalMaps;
+		std::vector< std::pair<std::string,std::string> > signalMaps;
 
-        std::string entityNameStr;
-        std::string deviceFamily;
-        std::string deviceTarget;
+		std::string entityNameStr;
+		std::string deviceFamily;
+		std::string deviceTarget;
 
-        std::set<std::string> dependencyFiles;
-        std::string xmlProjectFile;
-    private:
-        int signalCount;
-    public:
-        HardwareComponentXmlParser();
-				
-				/*
-				 * parses the actual xmlFile and converts it into a HardwareComponentInfo vector
-				 */
-				std::vector<HardwareComponent::HardwareComponentInfo*> getComponentInfo();
+		std::set<std::string> dependencyFiles;
+		std::string xmlProjectFile;
+	private:
+		int signalCount;
+	public:
+		HardwareComponentXmlParser();
 
-        /*real time hardware editing commands*/
-        void addComponentInstance(ComponentInstance instance);
-        void addSignal(SignalComponent signal);
-        void addMap(std::string name, std::string value);
-        void addInput(std::string name, std::string type, std::string defaultValue);
-        void addOutput(std::string name, std::string type, std::string defaultValue);
-        void addGeneric(std::string name, std::string type, std::string defaultValue);
+		/*
+		 * parses the actual xmlFile and converts it into a HardwareComponentInfo vector
+		 */
+		std::vector<HardwareComponent::HardwareComponentInfo*> getComponentInfo();
 
-        std::string getValidComponentInstanceName(std::string componentType);
-        
-    private:
-        void parseComponentBase(xmlNode * componentNode);
-        void parseMap(xmlNode *);
-        void parseOutput(xmlNode * componentNode);
-        void parseInput(xmlNode * componentNode);
-        void parseInstance(xmlNode * componentNode);
-        void parseAssignment(xmlNode * componentNode);
+		/*real time hardware editing commands*/
+		void addComponentInstance(ComponentInstance instance);
+		void addSignal(SignalComponent signal);
+		void addMap(std::string name, std::string value);
+		void addInput(std::string name, std::string type, std::string defaultValue);
+		void addOutput(std::string name, std::string type, std::string defaultValue);
+		void addGeneric(std::string name, std::string type, std::string defaultValue);
 
-				/*xml file that represents a whole hardware description*/
-				void parseHardwareTopEntity(xmlNode * rootNode);
-        
-        
-        void parseGeneric(xmlNode * componentNode);
-        void parseSignalComponents(xmlNode * componentNode);
-      
+		std::string getValidComponentInstanceName(std::string componentType);
+		std::vector<HardwareComponent::HardwareComponentInfo*> parseXmlComponentFile(std::string xmlFile);
+		HardwareComponent* parseMainEntityXmlFile(std::string xmlFile);
+
+	private:
+		std::vector<HardwareComponent::HardwareComponentInfo*> parseComponentBase(xmlNode * componentNode);
+		void parseMap(xmlNode *);
+		void parseOutput(xmlNode * componentNode);
+		void parseInput(xmlNode * componentNode);
+		void parseInstance(xmlNode * componentNode);
+		void parseAssignment(xmlNode * componentNode);
+
+		/*xml file that represents a whole hardware description*/
+		void parseHardwareTopEntity(xmlNode * rootNode);
+
+
+		void parseGeneric(xmlNode * componentNode);
+		void parseSignalComponents(xmlNode * componentNode);
+
 };
 
 #endif //HardwareComponentXmlParser_H

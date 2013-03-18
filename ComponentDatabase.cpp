@@ -5,7 +5,7 @@ ComponentDatabase::ComponentDatabase(){
 	componentsXmlParser = new HardwareComponentXmlParser();
 }
 
-HardwareComponent::HardwareComponentInfo* getHardwareComponentInfo(std::string componentLocator){
+HardwareComponent::HardwareComponentInfo* ComponentDatabase::getHardwareComponentInfo(std::string componentLocator){
 	if(loadedComponents.count(componentLocator) != 0)
 		return loadedComponents[componentLocator];
 
@@ -23,7 +23,7 @@ HardwareComponent* ComponentDatabase::getHardwareComponent(std::string instanceN
 }
 
 
-sc_signal_resolved *ComponentDatabase::createSignal(std::string name, HardwareComponent::DataType type, int size){
+sc_signal_resolved* ComponentDatabase::createSignal(std::string name, HardwareComponent::DataType type, int size){
 
 	sc_signal_resolved *signal = new sc_signal_resolved(name.c_str());
 	sc_attribute<int> signalSize("SignalSize",size);
