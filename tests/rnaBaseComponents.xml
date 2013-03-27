@@ -1,41 +1,60 @@
-<hardwareTopEntity name="adder8Bits" deviceTarget="EP1C6F256C6" deviceFamily="Cyclone">
+<componentBase>
+	<component name="teste_neuronio" file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/teste_neuronio.vhd">
 
-	<!--assignments-->
-	<!--assignments-->
-	
-	<componentBase>
-		<component name="teste_neuronio" file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/teste_neuronio.vhd">
-		
-			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/calc_net.vhd"/>
-			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/fnet_test.vhd"/>
-			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/lut.vhd"/>
-			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/mult_gen.vhd"/>
-			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/neuronio.vhd"/>
-			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/reg.vhd"/>
-			<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/somador_gen.vhd"/>
-			<!--generic values are only bound to vhdl definition-->
-			<generic name="data_length" type="integer" defaultValue="16"/>
-			<generic name="addr_length" type="integer" defaultValue="5"/>
-			
-			<input name="clk" type="std_logic"/>
-			<input name="rst" type="std_logic"/>
-			<input name="wr_result" type="std_logic"/>
-			
-			<input name="x0" type="std_logic_vector(data_length-1 downto 0)"/>
-			<input name="x1" type="std_logic_vector(data_length-1 downto 0)"/>
-			<input name="w0" type="std_logic_vector(data_length-1 downto 0)"/>
-			<input name="w1" type="std_logic_vector(data_length-1 downto 0)"/>
-			<input name="bias" type="std_logic_vector(data_length-1 downto 0)"/>
-			
-			<output name="addr" type="std_logic_vector(addr_length-1 downto 0)"/>
-			
-			<output name="a" type="std_logic_vector(data_length-1 downto 0)"/>
-			<output name="b" type="std_logic_vector(data_length-1 downto 0)"/>
-			<output name="regx" type="std_logic_vector(data_length-1 downto 0)"/>
-			<output name="x" type="std_logic_vector(data_length-1 downto 0)"/>
-			<output name="y" type="std_logic_vector(data_length-1 downto 0)"/>
-		</component>
-	</componentBase>
-	
-	
-</hardwareTopEntity>
+		<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/calc_net.vhd"/>
+		<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/fnet_test.vhd"/>
+		<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/lut.vhd"/>
+		<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/mult_gen.vhd"/>
+		<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/neuronio.vhd"/>
+		<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/reg.vhd"/>
+		<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/somador_gen.vhd"/>
+		<!--generic values are only bound to vhdl definition-->
+
+		<generic name="data_length" type="integer" defaultValue="16"/>
+		<generic name="addr_length" type="integer" defaultValue="5"/>
+
+		<input name="clk" type="bit"/>
+		<input name="rst" type="bit"/>
+		<input name="wr_result" type="bit"/>
+
+		<input name="x0" type="vector" size="#data_length"/>
+		<input name="x1" type="vector" size="#data_length"/>
+		<input name="w0" type="vector" size="#data_length"/>
+		<input name="w1" type="vector" size="#data_length"/>
+		<input name="bias" type="vector" size="#data_length"/>
+
+		<output name="addr" type="vector" size="#addr_length"/>
+
+		<output name="a" type="vector" size="#data_length"/>
+		<output name="b" type="vector" size="#data_length"/>
+		<output name="regx" type="vector" size="#data_length"/>
+		<output name="x" type="vector" size="#data_length"/>
+		<output name="y" type="vector" size="#data_length"/>
+
+		<declaration>
+			component teste_neuronio
+				generic (
+					addr_length : integer := 5;
+					data_length : integer := 16
+				);
+				port( 
+					clk: in std_logic;
+					rst: in std_logic;
+					wr_result: in std_logic;
+					x0: in std_logic_vector(data_length-1 downto 0);
+					x1: in std_logic_vector(data_length-1 downto 0);
+					w0: in std_logic_vector(data_length-1 downto 0);
+					w1: in std_logic_vector(data_length-1 downto 0);
+					bias: in std_logic_vector(data_length-1 downto 0);
+					addr: out std_logic_vector(addr_length-1 downto 0);
+					a: out std_logic_vector(data_length-1 downto 0);
+					b: out std_logic_vector(data_length-1 downto 0);
+					regx: out std_logic_vector(data_length-1 downto 0);
+					x: out std_logic_vector(data_length-1 downto 0);
+					y: out std_logic_vector(data_length-1 downto 0)
+				);
+			end component;
+		</declaration>
+
+	</component>
+</componentBase>
