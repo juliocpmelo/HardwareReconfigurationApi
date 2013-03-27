@@ -16,20 +16,21 @@ HardwareComponent::HardwareComponent(sc_module_name name, HardwareComponentInfo 
 void HardwareComponent::buildComponentPorts(){
 	for (std::map< string, PortInfo >::iterator it= componentInfo->inputs.begin(); it!=componentInfo->inputs.end(); it++){
 		addInput(it->second.name,it->second.type,it->second.size);
-		sc_attribute< string > portGeneric("GenericExpression",it->second.genericExpression);
-		ports[it->second.name]->add_attribute(portGeneric);
 	}
 	for (std::map< string, PortInfo >::iterator it= componentInfo->outputs.begin(); it!=componentInfo->outputs.end(); it++){
 		addOutput(it->second.name,it->second.type,it->second.size);
-		sc_attribute< string > portGeneric("GenericExpression",it->second.genericExpression);
-		ports[it->second.name]->add_attribute(portGeneric);
 	}
 }
 
+/* 
+ * using declaration file attribute of HardwareComponentInfo there is no need to 
+ * put the port datatypes and sizes as attributes for the ports.
+ */
 void HardwareComponent::addPortAttributes(std::string name, DataType type, int size){
 	if(ports.count(name)!=0){
 		sc_attribute< int > portSize("PortSize",size);
 		sc_attribute< DataType > portType("DataType",type);
+		/*check data sizes if possible*/
 		ports[name]->add_attribute(portSize);
 		ports[name]->add_attribute(portType);
 	}

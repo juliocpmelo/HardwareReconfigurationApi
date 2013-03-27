@@ -55,7 +55,7 @@ std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParse
 								defaultValueStr = string((const char*)defaultValue);
 							}
 							pair<string,string> v(typeStr,defaultValueStr);
-							componentInfo->genericTable[genericNameStr] = v;
+							componentInfo->componentParameters[genericNameStr] = v;
 
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){
@@ -111,6 +111,33 @@ std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParse
 							componentInfo->outputs[outputNameStr] = info;
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"dependency") == 0){
+							xmlChar *file = xmlGetProp(currentNode, (const xmlChar *)"file");
+							fileStr = "";
+							if(file!=NULL){
+								fileStr = string((const char*)file);
+								dependencyFiles.insert(fileStr);
+							}
+							componentInfo->dependencyFiles.insert(fileStr);
+						}
+						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"declaration") == 0){
+							if (xmlHasProp(currentNode, (const xmlChar *)"file")){ //declaration in a file
+								/*get the file string and fill the component declaration string*/
+							}
+							else{ //declaration as string
+								xmlNode *textNode = NULL;
+								for(textNode = currentNode->xmlChildrenNode; textNode; textNode = textNode->next){
+									if (textNode->type == XML_TEXT_NODE) {
+										xmlChar *declaration = textNode->content;
+										string declarationStr = "";
+										if(declaration!=NULL){
+											componentInfo->componentDeclaration = string((const char*)declaration);
+											break;
+										}
+									}
+								}
+							}
+						}
+						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"declaration") == 0){
 							xmlChar *file = xmlGetProp(currentNode, (const xmlChar *)"file");
 							fileStr = "";
 							if(file!=NULL){
