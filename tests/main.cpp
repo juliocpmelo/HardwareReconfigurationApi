@@ -149,7 +149,7 @@ int main(int argc, char *argv[]){
 								sc_signal_resolved *signaly1 = database->createSignal("y1", HardwareComponent::DataType_vector, 8);
                 
 								/*
-            	<instance name="neuron0" type="teste_neuronio">
+            	<instance name="neuron0" type="./rnaBaseComponents.xml:teste_neuronio">
             		<genericMap  genericName="data_length" value="data_length"/>
             		<!-- if we are going to declare the signals there is no need to put the bind topComponent tag -->
             		<portMap portName="clk" value="clk"/>
@@ -169,8 +169,8 @@ int main(int argc, char *argv[]){
             	</instance>
                 */
 
-								//ComponentDatabase is supposed to find and load the "teste_neuronio" topComponent
-								HardwareComponent *neuronio0 = database->getHardwareComponent("neuronio0", "teste_neuronio");
+								//ComponentDatabase is supposed to find and load the "./rnaBaseComponents.xml:teste_neuronio" topComponent
+								HardwareComponent *neuronio0 = database->getHardwareComponent("neuronio0", "./rnaBaseComponents.xml:teste_neuronio");
 								topComponent->addChildComponent(neuronio0);
 								neuronio0->portMap("clk",topComponent->getPort("clk"));
                 neuronio0->portMap("rst",topComponent->getPort("rst"));
@@ -188,7 +188,7 @@ int main(int argc, char *argv[]){
                 neuronio0->portMap("y",signaly0);
 
                 /*
-            	<instance name="neuron1" type="teste_neuronio">
+            	<instance name="neuron1" type="./rnaBaseComponents.xml:teste_neuronio">
             		<genericMap  genericName="data_length" value="data_length"/>
             		<!-- if we are going to declare the signals there is no need to put the bind topComponent tag -->
             		<portMap portName="clk" value="clk"/>
@@ -208,7 +208,7 @@ int main(int argc, char *argv[]){
             	</instance>
                 */
 								
-								HardwareComponent *neuronio1 = database->getHardwareComponent("neuronio1", "teste_neuronio");
+								HardwareComponent *neuronio1 = database->getHardwareComponent("neuronio1", "./rnaBaseComponents.xml:teste_neuronio");
 								topComponent->addChildComponent(neuronio1);
                 neuronio1->portMap("clk",topComponent->getPort("clk"));
                 neuronio1->portMap("rst",topComponent->getPort("rst"));
@@ -226,7 +226,7 @@ int main(int argc, char *argv[]){
                 neuronio1->portMap("y",signaly1);
  
             	/*
-            	<instance name="neuron2" type="teste_neuronio">
+            	<instance name="neuron2" type="./rnaBaseComponents.xml:teste_neuronio">
             		<genericMap  genericName="data_length" value="data_length"/>
             		<!-- if we are going to declare the signals there is no need to put the bind topComponent tag -->
             		<portMap portName="clk" value="clk"/>
@@ -246,7 +246,7 @@ int main(int argc, char *argv[]){
             	</instance>
             	*/
 								
-								HardwareComponent *neuronio2 = database->getHardwareComponent("neuronio2", "teste_neuronio");
+								HardwareComponent *neuronio2 = database->getHardwareComponent("neuronio2", "./rnaBaseComponents.xml:teste_neuronio");
 								topComponent->addChildComponent(neuronio2);
 							  neuronio2->portMap("clk",topComponent->getPort("clk"));
                 neuronio2->portMap("rst",topComponent->getPort("rst"));

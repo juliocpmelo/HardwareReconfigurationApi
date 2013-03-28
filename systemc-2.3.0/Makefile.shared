@@ -21,7 +21,7 @@ cleanobjs:
 	rm -f $(OBJS)
 
 clean: cleanobjs
-	rm -f lib/$(COMPONENT_NAME).dll
+	rm -f lib-cygwin/$(COMPONENT_NAME).dll
 
 distclean: clean
 	rm -f $(COMPONENT_NAME)
