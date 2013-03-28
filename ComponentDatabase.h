@@ -9,16 +9,17 @@
 class ComponentDatabase{
 	private:
 		HardwareComponentXmlParser *componentsXmlParser;
-		std::map<std::string, HardwareComponent::HardwareComponentInfo*> loadedComponents;
+		//double map with first key being the locator, second key being the component name, 
+		//maping the component info
+		std::map<std::string, std::map< std::string, HardwareComponent::HardwareComponentInfo*> > loadedComponents;
 
-	public:
-		std::map<std::string, HardwareComponent::HardwareComponentInfo*> componentCache;
 	public:
 		//static ComponentDatabase* getInstance();
 		//looks up for a component with given locator and instantiate it with the given name
-		HardwareComponent *getHardwareComponent(std::string instanceName, std::string componentLocator);
+		//TODO: check uri format
+		HardwareComponent *getHardwareComponent(std::string instanceName, std::string componentURI);
 		sc_signal_resolved *createSignal(std::string name, HardwareComponent::DataType type, int size=1);
-		HardwareComponent::HardwareComponentInfo* getHardwareComponentInfo(std::string componentLocator);
+		HardwareComponent::HardwareComponentInfo* getHardwareComponentInfo(std::string componentURI);
 		ComponentDatabase();
 
 };

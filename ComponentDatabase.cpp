@@ -1,24 +1,32 @@
 
 #include "ComponentDatabase.h"
 
+using namespace std;
+
 ComponentDatabase::ComponentDatabase(){
 	componentsXmlParser = new HardwareComponentXmlParser();
 }
 
-HardwareComponent::HardwareComponentInfo* ComponentDatabase::getHardwareComponentInfo(std::string componentLocator){
-	if(loadedComponents.count(componentLocator) != 0)
-		return loadedComponents[componentLocator];
-
-	/* 
-	 * we could check here if its a local or if its a remote location first, however for
-	 * first implementation only local components are allowed
-	 */
-	HardwareComponent::HardwareComponentInfo *componentInfo;
+HardwareComponent::HardwareComponentInfo* ComponentDatabase::getHardwareComponentInfo(std::string componentURI){
+	string componentLocator = componentURI.substr(0,(componentURI.find_last_of(":")));
+	if(loadedComponents.count(componentLocator) == 0){
+		/* 
+		 * we could check here if its a local or if its a remote location first, 
+		 * however for first implementations only local components are allowed
+		 */
+		map<string, HardwareComponent::HardwareComponentInfo*> loadedComponentInfos = componentsXmlParser->parseXmlComponentFile(componentLocator);
+		loadedComponents[componentLocator] = loadedComponentInfos;
+	}
+	
+	string componentName = componentURI.substr(componentURI.find_last_of(":") + 1);
+	if ((loadedComponents[componentLocator]).count(componentName) != 0)
+		return (loadedComponents[componentLocator])[componentName];
+	return NULL;
 }
 
-HardwareComponent* ComponentDatabase::getHardwareComponent(std::string instanceName, std::string componentLocator){
+HardwareComponent* ComponentDatabase::getHardwareComponent(std::string instanceName, std::string componentURI){
 //do component lookup
-	HardwareComponent::HardwareComponentInfo *componentInfo = NULL;
+	HardwareComponent::HardwareComponentInfo *componentInfo = getHardwareComponentInfo(componentURI);
 	return new HardwareComponent(sc_module_name(instanceName.c_str()), componentInfo);
 }
 

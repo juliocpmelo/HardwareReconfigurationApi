@@ -9,9 +9,9 @@ HardwareComponentXmlParser::HardwareComponentXmlParser(){
 }
 
 /*obs : not using xmlFree as it results in a compilation bug because of the libxml2 compiled for windows*/
-std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode){
+std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode){
     xmlNode *componentNode = NULL;
-		vector<HardwareComponent::HardwareComponentInfo*> loadedComponents;
+		map<string, HardwareComponent::HardwareComponentInfo*> loadedComponents;
 		for(componentNode = componentBaseNode->xmlChildrenNode; componentNode; componentNode = componentNode->next){
 			HardwareComponent::HardwareComponentInfo *componentInfo = NULL;
 			if (componentNode->type == XML_ELEMENT_NODE &&
@@ -30,7 +30,7 @@ std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParse
 					componentInfo->dependencyFiles.insert(fileStr);
 				}
 
-				loadedComponents.push_back(componentInfo);
+				loadedComponents[nameStr] = componentInfo;
 
 				xmlNode *currentNode = NULL;
 				for (currentNode = componentNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
@@ -354,13 +354,13 @@ void HardwareComponentXmlParser::parseHardwareTopEntity(xmlNode * rootNode){
     }
 }
 
-std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseXmlComponentFile(std::string xmlFile){
+std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseXmlComponentFile(std::string xmlFile){
 	xmlDoc         *doc = NULL;
 	xmlNode        *root_element = NULL;
 	char workingDir[256];
 	doc = xmlReadFile(xmlFile.c_str(), NULL, 0);
 
-	vector<HardwareComponent::HardwareComponentInfo*> retVector;
+	map<string, HardwareComponent::HardwareComponentInfo*> retMap;
 
 	if (doc == NULL)
 	{
@@ -382,24 +382,12 @@ std::vector<HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParse
 				cout<<"xlm element node "<<currentNode->name<<endl;
 
 				if(xmlStrcmp(currentNode->name, (const xmlChar *)"ComponentBase") == 0){
-					xmlChar *entityName = xmlGetProp(currentNode, (const xmlChar *)"name");
-					this->entityNameStr = string((const char*)entityName);
-
-					xmlChar *deviceFamily = xmlGetProp(currentNode, (const xmlChar *)"deviceFamily");
-					if(deviceFamily != NULL)
-						this->deviceFamily = string((const char*)deviceFamily);
-
-					xmlChar *deviceTarget = xmlGetProp(currentNode, (const xmlChar *)"deviceTarget");
-					if(deviceTarget != NULL)
-						this->deviceTarget = string((const char*)deviceTarget);
-
-
-					retVector = parseComponentBase(currentNode->xmlChildrenNode);
+					retMap = parseComponentBase(currentNode->xmlChildrenNode);
 				}
 			}
 		}
 	}
-	return retVector;
+	return retMap;
 }
 
 HardwareComponent* HardwareComponentXmlParser::parseMainEntityXmlFile(std::string xmlFile){

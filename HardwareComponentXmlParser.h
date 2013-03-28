@@ -71,11 +71,12 @@ class HardwareComponentXmlParser{
 		void addGeneric(std::string name, std::string type, std::string defaultValue);
 
 		std::string getValidComponentInstanceName(std::string componentType);
-		std::vector<HardwareComponent::HardwareComponentInfo*> parseXmlComponentFile(std::string xmlFile);
+		std::map<std::string, HardwareComponent::HardwareComponentInfo*> parseXmlComponentFile(std::string xmlFile);
 		HardwareComponent* parseMainEntityXmlFile(std::string xmlFile);
 
 	private:
-		std::vector<HardwareComponent::HardwareComponentInfo*> parseComponentBase(xmlNode * componentNode);
+		
+		std::map<std::string, HardwareComponent::HardwareComponentInfo*> parseComponentBase(xmlNode * componentNode);
 		void parseMap(xmlNode *);
 		void parseOutput(xmlNode * componentNode);
 		void parseInput(xmlNode * componentNode);
