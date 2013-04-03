@@ -8,10 +8,10 @@ INCLUDES=-I./libxml2-2.7.8.win32/include \
 COMPONENT_NAME=hardwarereconfigurationapi
 
 #libs do system-c
-LDFLAGS=-L./systemc-2.3.0/lib-cygwin -lsystemc \
-				./libxml2-2.7.8.win32/lib/libxml2.lib \
-				-L./iconv-1.9.2.win32/lib -liconv \
-				./zlib-1.2.5/lib/zlib.lib
+LDFLAGS=-L./iconv-1.9.2.win32/lib -liconv \
+				-L./systemc-2.3.0/lib-cygwin -lsystemc \
+				-L./libxml2-2.7.8.win32/bin/ -lxml2 \
+				-L./zlib-1.2.5/bin -lz 
 
 CPPFLAGS=-Wall -fPIC $(INCLUDES)
 

@@ -9,11 +9,11 @@ INCLUDES=-I../ \
 COMPONENT_NAME=HardwareReconfTests
 
 #libs do system-c
-LDFLAGS=-L./../systemc-2.3.0/lib-cygwin -lsystemc \
-				-L./../iconv-1.9.2.win32/lib -liconv \
-				-L../lib -lhardwarereconfigurationapi \
-				./../libxml2-2.7.8.win32/lib/libxml2.lib \
-				./../zlib-1.2.5/lib/zlib.lib 
+LDFLAGS=-L../systemc-2.3.0/lib-cygwin -lsystemc \
+				-L../iconv-1.9.2.win32/lib -liconv \
+				-L../libxml2-2.7.8.win32/bin/ -lxml2 \
+				-L../zlib-1.2.5/bin -lz \
+				-L../lib -lhardwarereconfigurationapi 
 
 CPPFLAGS=-Wall -fPIC $(INCLUDES)
 
