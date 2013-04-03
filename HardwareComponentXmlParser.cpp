@@ -358,6 +358,7 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 	xmlDoc         *doc = NULL;
 	xmlNode        *root_element = NULL;
 	char workingDir[256];
+	cout<<"parsing description file "<<xmlFile<<endl;
 	doc = xmlReadFile(xmlFile.c_str(), NULL, 0);
 
 	map<string, HardwareComponent::HardwareComponentInfo*> retMap;

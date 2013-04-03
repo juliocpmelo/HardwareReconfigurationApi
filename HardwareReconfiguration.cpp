@@ -10,12 +10,12 @@ using namespace std;
 HardwareProject::HardwareProject(std::string projectName, std::string projectPath, std::string xmlLocation){
 	this->projectName = projectName;
 	this->projectPath = projectPath;
-    this->hardwareComponentXmlParser = new HardwareComponentXmlParser();
-  HardwareComponent* comp=  hardwareComponentXmlParser->parseMainEntityXmlFile(xmlLocation);
-    if(hardwareComponentXmlParser->deviceTarget != "")
-        this->deviceName = hardwareComponentXmlParser->deviceTarget;
-    if(hardwareComponentXmlParser->deviceFamily != "")
-        this->deviceFamily = hardwareComponentXmlParser->deviceFamily;
+   // this->hardwareComponentXmlParser = new HardwareComponentXmlParser();
+  //HardwareComponent* comp=  hardwareComponentXmlParser->parseMainEntityXmlFile(xmlLocation);
+   // if(hardwareComponentXmlParser->deviceTarget != "")
+   //     this->deviceName = hardwareComponentXmlParser->deviceTarget;
+  //  if(hardwareComponentXmlParser->deviceFamily != "")
+   //     this->deviceFamily = hardwareComponentXmlParser->deviceFamily;
 
 }
 

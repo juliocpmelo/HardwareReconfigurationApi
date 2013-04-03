@@ -38,22 +38,29 @@ void HardwareComponent::addPortAttributes(std::string name, DataType type, int s
 
 void HardwareComponent::addInput(std::string name, DataType type, int size){
 	if(isDynamic){
+		this->sc_get_curr_simcontext()->hierarchy_push (this);
 		ports[name]	= new sc_in< sc_logic >(name.c_str());
 		addPortAttributes(name, type, size);
+		this->sc_get_curr_simcontext()->hierarchy_pop ();
+		//this->getSimulationContext()->hierarchy_pop();
 	}
 }
 
 void HardwareComponent::addOutput(std::string name, DataType type, int size){
 	if(isDynamic){
+		this->sc_get_curr_simcontext()->hierarchy_push (this);
 		ports[name]	= new sc_out< sc_logic >(name.c_str());
 		addPortAttributes(name, type, size);
+		this->sc_get_curr_simcontext()->hierarchy_pop ();
 	}
 }
 
 void HardwareComponent::addInout(std::string name, DataType type, int size){
 	if(isDynamic){
+		this->sc_get_curr_simcontext()->hierarchy_push (this);
 		ports[name]	= new sc_inout< sc_logic >(name.c_str());
 		addPortAttributes(name, type, size);
+		this->sc_get_curr_simcontext()->hierarchy_pop ();
 	}
 }
 
