@@ -1,4 +1,5 @@
 #include "HardwareReconfiguration.h"
+#include "HardwareComponentConverterVHDL.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <windows.h>
@@ -21,7 +22,6 @@ HardwareProject::HardwareProject(std::string projectName, std::string projectPat
 
 void HardwareProject::setTopLevelComponent(HardwareComponent *topLevelComponent){
 	this->topLevelComponent = topLevelComponent;
-
 }
 
 
@@ -36,6 +36,7 @@ void HardwareProject::burnProject(std::string cableName, std::string programming
 void HardwareProject::setDevice(std::string deviceName){
      this->deviceName = deviceName;
 }
+
 void HardwareProject::setDeviceFamily(std::string deviceFamily){
      this->deviceFamily = deviceFamily;
 }
@@ -68,7 +69,8 @@ void HardwareProject::generateConfigFile(){
 
 void HardwareProject::generateHDLFiles(HardwareComponent *comp){
     //
-//    hardwareComponentXmlParser->buildMainEntityFile(projectPath);
+		HardwareComponentConverterVHDL *converter = new HardwareComponentConverterVHDL();
+    converter->buildTopComponentFile(projectPath, topLevelComponent);
     
 }
 
