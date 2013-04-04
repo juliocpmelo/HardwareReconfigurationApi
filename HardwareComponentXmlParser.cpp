@@ -12,6 +12,7 @@ HardwareComponentXmlParser::HardwareComponentXmlParser(){
 std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode){
     xmlNode *componentNode = NULL;
 		map<string, HardwareComponent::HardwareComponentInfo*> loadedComponents;
+		cout<<__FILE__<<"::"<<__LINE__<<endl;
 		for(componentNode = componentBaseNode->xmlChildrenNode; componentNode; componentNode = componentNode->next){
 			HardwareComponent::HardwareComponentInfo *componentInfo = NULL;
 			if (componentNode->type == XML_ELEMENT_NODE &&
@@ -380,14 +381,14 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 
 		for (currentNode = root_element; currentNode; currentNode = currentNode->next) {
 			if (currentNode->type == XML_ELEMENT_NODE) {
-				cout<<"xlm element node "<<currentNode->name<<endl;
-
-				if(xmlStrcmp(currentNode->name, (const xmlChar *)"ComponentBase") == 0){
-					retMap = parseComponentBase(currentNode->xmlChildrenNode);
+				if(xmlStrcmp(currentNode->name, (const xmlChar *)"componentBase") == 0){
+					cout<<"parsing node "<<currentNode->name<<endl;
+					retMap = parseComponentBase(currentNode);
 				}
 			}
 		}
 	}
+	cout<<"returning"<<endl;
 	return retMap;
 }
 
