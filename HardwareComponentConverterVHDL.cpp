@@ -2,6 +2,8 @@
 #include "HardwareComponentConverterVHDL.h"
 #include <sstream>
 #include <map>
+#include <deque>
+
 using namespace std;
 
 HardwareComponentConverterVHDL::HardwareComponentConverterVHDL(){
@@ -12,29 +14,46 @@ std::string HardwareComponentConverterVHDL::translateType(HardwareComponent::Dat
 	stringstream convertedType;
 	switch (type){
 		case HardwareComponent::DataType_vector:{
-			convertedType<<"std_logic_vector("<<size-1<<" downto 0)"<<endl;
+			convertedType<<"std_logic_vector("<<size-1<<" downto 0)";
+			break;
 		}
 		case HardwareComponent::DataType_bit:{
-			convertedType<<"std_logic"<<endl;
+			convertedType<<"std_logic";
+			break;
 		}
 		case HardwareComponent::DataType_integer:{
-			convertedType<<"integer : range (0 to "<<size<<")"<<endl;
+			/*TODO think about integer range*/
+			convertedType<<"integer : range (0 to "<<size<<")";
+			break;
 		}
 	}
 	return convertedType.str();
 }
 
-std::string HardwareComponentConverterVHDL::translatePort(sc_port_base* port){
+std::string HardwareComponentConverterVHDL::translatePort(HardwareComponent::PortInfo* portInfo){
 	
 	stringstream convertedPort;
-
+	sc_port_base * port = portInfo->scPort;
+	cout<<" processing to "<<port->name()<<endl;
+	
 	if(strcmp(port->kind(),"sc_in") == 0){
-		convertedPort<<"\t"<<port->name()<<": in ";
-		sc_attribute<int> *size = dynamic_cast<sc_attribute<int>*>(port->get_attribute("PortSize"));
-		sc_attribute<HardwareComponent::DataType> *type = dynamic_cast<sc_attribute<HardwareComponent::DataType>*>(port->get_attribute("PortType"));
-		string typeStr = translateType(type->value,size->value);
-		convertedPort<<typeStr<<endl;
+		convertedPort<<"\t"<<port->basename()<<": in ";
+		string typeStr = translateType(portInfo->type,portInfo->size);
+		convertedPort<<typeStr;
 	}
+	else if(strcmp(port->kind(),"sc_out") == 0){
+		convertedPort<<"\t"<<port->basename()<<": out ";
+		string typeStr = translateType(portInfo->type,portInfo->size);
+		convertedPort<<typeStr;
+	}
+	else if(strcmp(port->kind(),"sc_inout") == 0){
+		convertedPort<<"\t"<<port->basename()<<": in ";
+		string typeStr = translateType(portInfo->type,portInfo->size);
+		convertedPort<<typeStr;
+	}
+
+
+	cout<<" converted to "<<convertedPort.str()<<endl;
 
 	return convertedPort.str();
 
@@ -44,34 +63,98 @@ std::string HardwareComponentConverterVHDL::translateSignal(sc_signal_resolved* 
 	
 	stringstream convertedSignal;
 	
+	cout<<"proecessing signal "<<signal->name()<<endl;
 	sc_attribute<int> *size = dynamic_cast<sc_attribute<int>*>(signal->get_attribute("SignalSize"));
-	sc_attribute<HardwareComponent::DataType> *type = dynamic_cast<sc_attribute<HardwareComponent::DataType>*>(signal->get_attribute("SignalType"));
+	sc_attribute<HardwareComponent::DataType> *type = dynamic_cast<sc_attribute<HardwareComponent::DataType>*>(signal->get_attribute("DataType"));
 
 	convertedSignal<<"signal "<<signal->name()<<" : "<<translateType(type->value, size->value);
 	return convertedSignal.str();
 }
 
-std::vector<sc_signal_resolved* > * HardwareComponentConverterVHDL::getSignals(HardwareComponent *comp) {
-	std::vector<sc_signal_resolved* > *signals = new vector<sc_signal_resolved* >;
+std::vector<sc_signal_resolved* > HardwareComponentConverterVHDL::getSignals(HardwareComponent *comp) {
+	std::vector<sc_signal_resolved* > signals;
 	std::vector<sc_object*> children = comp->get_child_objects();
 	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
 		if ( std::string((*i)->kind())=="sc_signal_resolved")	{
 			sc_signal_resolved* mptr = dynamic_cast<sc_signal_resolved*>(*i);
-			signals->push_back(mptr);
+			signals.push_back(mptr);
 		}
 	}
 	return signals;
 }
 
+std::set<HardwareComponent::HardwareComponentInfo* > HardwareComponentConverterVHDL::getUsedComponents(HardwareComponent *comp) {
+	std::set<HardwareComponent::HardwareComponentInfo*> infoSet;
+
+	std::deque<HardwareComponent*> componentDeque;
+
+	componentDeque.push_back(comp);
+	while (!componentDeque.empty()){
+		HardwareComponent * currentComp = componentDeque.front();
+		std::vector<sc_object*> children = currentComp->get_child_objects();
+		for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
+			if ( std::string((*i)->kind())=="sc_module")	{
+				HardwareComponent* mptr = dynamic_cast<HardwareComponent*>(*i);
+				componentDeque.push_back(mptr);
+				infoSet.insert(mptr->componentInfo);
+			}
+		}
+		componentDeque.pop_front();
+	}
+	return infoSet;
+}
+
+
+std::vector<HardwareComponent* > HardwareComponentConverterVHDL::getChildModules(HardwareComponent *comp) {
+	std::vector<HardwareComponent*> retVector;
+
+
+	std::vector<sc_object*> children = comp->get_child_objects();
+	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
+		if ( std::string((*i)->kind())=="sc_module")	{
+			HardwareComponent* mptr = dynamic_cast<HardwareComponent*>(*i);
+			retVector.push_back(mptr);
+		}
+	}
+
+	return retVector;
+}
+
+sc_port_base* HardwareComponentConverterVHDL::getConnectedPort(sc_object* channel, sc_module* component){
+
+	std::vector<sc_object*> children = component->get_child_objects();
+	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
+		if (std::string((*i)->kind())=="sc_in" || std::string((*i)->kind()) =="sc_out") {
+			sc_port_base * port = dynamic_cast<sc_port_base*>(*i);
+			if(port->get_interface() != NULL){
+				sc_object * connectedChannel = dynamic_cast<sc_object*>(port->get_interface());
+				std::cout<<"comparing "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
+				if(channel->name() == connectedChannel->name())
+					return port;
+			}
+		}
+	}
+	return NULL;
+}
+
+
+
+
 
 void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, HardwareComponent *topComponent){
+
+		topComponent->sc_get_curr_simcontext()->initialize(true);
+
     ofstream designFile;
-    string fileLocation = projectPath+topComponent->name()+".vhdl";
+    string fileLocation = projectPath+"/"+topComponent->name()+".vhdl";
+		cout<<"generating vhdl to component "<<topComponent->name()<<" file :"<<fileLocation<<endl;
     designFile.open (fileLocation.c_str());
     designFile <<"-- This file was auto generated by the HardwareProjectXmlParser"<<endl<<endl;
     designFile <<"library ieee, combinationalLibrary;"<<endl;
     designFile <<"use ieee.std_logic_1164.all;"<<endl;
     designFile <<"use ieee.std_logic_unsigned.all;"<<endl<<endl;
+
+		cout<<__FILE__<<"::"<<__LINE__<<endl;
 
 		/* by default dont generate main entity with generics
     if(genericTable.size() > 0){
@@ -97,11 +180,11 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
     designFile <<"entity "<<topComponent->name()<<" is"<<endl; //TODO place the main tag name here
     designFile <<"port ("<<endl;
 		
-    std::map<std::string, sc_port_base* > *portsTable = &(topComponent->ports);
+    std::map<std::string, HardwareComponent::PortInfo*> portsTable = topComponent->ports;
 
-		map<string, sc_port_base*>::iterator lastElement = portsTable->end();
+		map<string, HardwareComponent::PortInfo*>::iterator lastElement = portsTable.end();
 		lastElement --;
-		for(map<string, sc_port_base*>::iterator it = portsTable->begin(); it != portsTable->end(); it++){
+		for(map<string, HardwareComponent::PortInfo*>::iterator it = portsTable.begin(); it != portsTable.end(); it++){
 			if (it == lastElement)
 				designFile<<translatePort(it->second)<<endl;
 			else
@@ -114,125 +197,64 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 
     designFile<<"architecture arch of "<<topComponent->name()<<" is"<<endl;
 
+    designFile <<"-- Component Declaration"<<endl<<endl;
+		set<HardwareComponent::HardwareComponentInfo*> usedComponentsInfo = getUsedComponents(topComponent);
     /*generate the component declaration in the architecture file*/
-/*    for(set<HardwareComponent::HardwareComponentInfo*>::iterator it = usedComponensInfo.begin(); it!= usedComponentsInfo.end(); it ++){
-        designFile<<"\t"<<"component "<<it->first.name<<endl;
-        map<string, pair<string,string> > genericInputs = it->first.genericTable;
-        if(genericInputs.size() > 0){
-            designFile <<"\t\tgeneric ("<<endl;
-            map<string, pair<string,string> >::iterator lastElement = genericInputs.end();
-            lastElement --;
-            for(map<string, pair<string,string> >::iterator it = genericInputs.begin(); it != lastElement; it++){
-                if(it->second.second == "") //has no default value
-                    designFile <<"\t\t\t"<<it->first<<" : "<<it->second.first<<";"<<endl;
-                else
-                    designFile <<"\t\t\t"<<it->first<<" : "<<it->second.first<<" := "<<it->second.second<<";"<<endl;
-            }
-            if(lastElement->second.second == "") //has no default value
-                    designFile <<"\t\t\t"<<lastElement->first<<" : "<<lastElement->second.first<<";"<<endl;
-            else
-                designFile <<"\t\t\t"<<lastElement->first<<" : "<<lastElement->second.first<<" := "<<lastElement->second.second<<endl;
-						
-            designFile <<"\t\t);"<<endl;
-						
-        }
-
-        vector< pair<string,string> > inputPorts = it->first.inputs;
-        vector< pair<string,string> > outputPorts = it->first.outputs;
-        if(inputPorts.size() > 0 && outputPorts.size() > 0){
-            for(vector< pair<string,string> >::iterator it2 = inputPorts.begin(); it2!= inputPorts.end(); it2 ++){
-                designFile<<"\t\t\t"<<it2->first<<": in "<<it2->second<<";"<<endl;
-            }
-            vector< pair<string,string> >::iterator lastElement = outputPorts.end();
-            lastElement--;
-            for(vector< pair<string,string> >::iterator it2 = outputPorts.begin(); it2!= lastElement; it2 ++){
-                designFile<<"\t\t\t"<<it2->first<<": out "<<it2->second<<";"<<endl;
-            }
-            designFile<<"\t\t\t"<<lastElement->first<<": out "<<lastElement->second<<endl;
-        }
-        else if(inputPorts.size() > 0){
-            vector< pair<string,string> >::iterator lastElement = inputPorts.end();
-            lastElement--;
-            for(vector< pair<string,string> >::iterator it2 = inputPorts.begin(); it2!= lastElement; it2 ++){
-                designFile<<"\t\t\t"<<it2->first<<": in "<<it2->second<<";"<<endl;
-            }
-            designFile<<"\t\t\t"<<lastElement->first<<": in "<<lastElement->second<<endl;
-        }
-        else if(outputPorts.size() > 0){
-            vector< pair<string,string> >::iterator lastElement = outputPorts.end();
-            lastElement--;
-            for(vector< pair<string,string> >::iterator it2 = outputPorts.begin(); it2!= lastElement; it2 ++){
-                designFile<<"\t\t\t"<<it2->first<<": out "<<it2->second<<";"<<endl;
-            }
-            designFile<<"\t\t\t"<<lastElement->first<<": out "<<lastElement->second<<endl;
-        }
-        designFile<<"\t\t"<<");"<<endl;
-        designFile<<"\tend component;"<<endl;
-
+    for(set<HardwareComponent::HardwareComponentInfo*>::iterator it = usedComponentsInfo.begin(); it!= usedComponentsInfo.end(); it ++){
+    	designFile<<(*it)->componentDeclaration<<endl;
+			
     }
-				*/
     
-		vector<sc_signal_resolved*> *signals = getSignals(topComponent);
-    for(vector<sc_signal_resolved*>::iterator it = signals->begin(); it!= signals->end(); it ++){
+    designFile <<"-- Signal Declaration"<<endl<<endl;
+		vector<sc_signal_resolved*> signals = getSignals(topComponent);
+    for(vector<sc_signal_resolved*>::iterator it = signals.begin(); it!= signals.end(); it ++){
 			string translation = translateSignal(*it);
 			designFile<<translateSignal(*it)<<";"<<endl;
     }
 		
     designFile<<"begin"<<endl;
-/*
-    for(map<Component, vector<ComponentInstance>, ComponentCompare >::iterator it = componentTable.begin(); it!= componentTable.end(); it ++){
-        vector<ComponentInstance>::iterator instanceIt;
-        for(instanceIt = it->second.begin(); instanceIt != it->second.end(); instanceIt ++){
-            if(instanceIt->portMaps.size() > 0){ //dont initialize a component without binds
-                designFile<<instanceIt->name<<" : "<<it->first.name<<endl;
-                if(instanceIt->genericMaps.size() > 0){
-                    designFile<<"generic map ("<<endl;
-                    vector<pair<string,string> >::iterator lastElement = instanceIt->genericMaps.end();
-                    lastElement --;
-                    bool useGenericNames = false;
-                    if(instanceIt->genericMaps.begin()->first != "") //if the first one uses the format genericName => value the others must use it too
-                        useGenericNames = true;
-                    for(vector<pair<string,string> >::iterator genericIt = instanceIt->genericMaps.begin(); genericIt != lastElement; genericIt ++){
-                        if(useGenericNames)
-                            designFile<<genericIt->first<<" => "<<genericIt->second<<endl;
-                        else
-                            designFile<<genericIt->second<<endl;
-                    }
-                    if(useGenericNames)
-                        designFile<<lastElement->first<<" => "<<lastElement->second<<endl;
-                    else
-                        designFile<<lastElement->second<<endl;
-                    designFile<<")"<<endl;
-                }
-                designFile<<"port map ("<<endl;
-               
-                vector<pair<string,string> >::iterator lastElement = instanceIt->portMaps.end();
-                lastElement --;
-                bool usePortNames = false;
-                if(instanceIt->portMaps.begin()->first != "") //if the first one uses the format portName => value the others must use it too
-                    usePortNames = true;
-                for(vector<pair<string,string> >::iterator genericIt = instanceIt->portMaps.begin(); genericIt != lastElement; genericIt ++){
-                    if(usePortNames)
-                        designFile<<genericIt->first<<" => "<<genericIt->second<<endl;
-                    else
-                        designFile<<genericIt->second<<endl;
-                }
-                if(usePortNames)
-                    designFile<<lastElement->first<<" => "<<lastElement->second<<endl;
-                else
-                    designFile<<lastElement->second<<endl;
-                designFile<<")"<<endl;
-            
-                designFile<<");"<<endl<<endl;
-            }
-        }
-    }
 
-    for(vector< pair<string,string> >::iterator it = signalMaps.begin(); it!=signalMaps.end(); it++){
+    designFile <<"-- Architectural Declaration"<<endl<<endl;
+
+
+		vector<HardwareComponent*> childModules = getChildModules(topComponent);
+
+
+    
+		for (vector<HardwareComponent*>::iterator it = childModules.begin(); it != childModules.end(); it++){
+			std::vector<sc_object*> children = (*it)->get_child_objects();
+			for (std::vector<sc_object*>::iterator it2 = children.begin(); it2 != children.end(); it2++) {
+				if (std::string((*it2)->kind()) =="sc_in" || 
+						std::string((*it2)->kind()) =="sc_out" ||
+						std::string((*it2)->kind()) =="sc_inout") {
+					std::cout<<"processing port "<<(*it2)->name()<<std::endl;
+					sc_port_base * port = dynamic_cast<sc_port_base*>(*it2);
+
+					if(port->get_interface() != NULL){
+						sc_object * channel = dynamic_cast<sc_object*>(port->get_interface());
+
+						sc_port_base *connectedPort = getConnectedPort(channel, topComponent);
+
+						if( connectedPort != NULL){ //if any of the component's a port is connected to the current channel it is a direct connection
+							cout<<"port "<<connectedPort->name() << " directly connected to "<<port->name()<<endl;
+						}
+						else{ //else it should be connected through a signal
+							cout<<"port "<<port->name()<<" connectet through signal "<<channel->name()<<endl;
+						}
+					}
+				}
+			}
+		}
+
+
+/*    for(vector< pair<string,string> >::iterator it = signalMaps.begin(); it!=signalMaps.end(); it++){
         designFile<<it->first<<" <= "<<it->second<<";"<<endl;
     }
-    designFile<<endl;
 */
+    designFile<<endl;
+
+
+
     designFile<<"end arch;"<<endl;
     
     designFile.close();

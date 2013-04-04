@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <systemc>
+#include <set>
 
 class HardwareComponentConverterVHDL{
 	public:
@@ -13,13 +14,15 @@ class HardwareComponentConverterVHDL{
 		HardwareComponentConverterVHDL();
 
 		std::string translateType(HardwareComponent::DataType type, int size);
-		std::string translatePort(sc_port_base* port);
+		std::string translatePort(HardwareComponent::PortInfo* port);
 		std::string translateSignal(sc_signal_resolved *signal);
-		std::vector<sc_signal_resolved*>* getSignals(HardwareComponent topComponent);
 
 		void buildTopComponentFile(std::string projectPath, HardwareComponent *topComponent);
 
-		std::vector<sc_signal_resolved* > * getSignals(HardwareComponent *comp);
+		std::vector<sc_signal_resolved* > getSignals(HardwareComponent *comp);
+		std::set<HardwareComponent::HardwareComponentInfo* > getUsedComponents(HardwareComponent *comp);
+		std::vector<HardwareComponent* > getChildModules(HardwareComponent *comp);
+		sc_port_base* getConnectedPort(sc_object* channel, sc_module* component);
 
 	private:
 
