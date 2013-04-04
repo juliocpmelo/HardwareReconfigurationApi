@@ -28,20 +28,24 @@ void HardwareComponent::buildComponentPorts(){
  */
 void HardwareComponent::addPortAttributes(std::string name, DataType type, int size){
 	if(ports.count(name)!=0){
-		sc_attribute< int > portSize("PortSize",size);
-		sc_attribute< DataType > portType("DataType",type);
+//		sc_attribute< int > portSize("PortSize",size);
+//		sc_attribute< DataType > portType("DataType",type);
 		/*check data sizes if possible*/
-		ports[name]->add_attribute(portSize);
-		ports[name]->add_attribute(portType);
+		ports[name]->name = name;
+		ports[name]->size = size;
+		ports[name]->type = type;
+
 	}
 }
 
 void HardwareComponent::addInput(std::string name, DataType type, int size){
 	if(isDynamic){
 		this->sc_get_curr_simcontext()->hierarchy_push (this);
-		ports[name]	= new sc_in< sc_logic >(name.c_str());
+		ports[name]	= new PortInfo();
+		ports[name]->scPort = new sc_in< sc_logic >(name.c_str());
 		addPortAttributes(name, type, size);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
+
 		//this->getSimulationContext()->hierarchy_pop();
 	}
 }
@@ -49,16 +53,20 @@ void HardwareComponent::addInput(std::string name, DataType type, int size){
 void HardwareComponent::addOutput(std::string name, DataType type, int size){
 	if(isDynamic){
 		this->sc_get_curr_simcontext()->hierarchy_push (this);
-		ports[name]	= new sc_out< sc_logic >(name.c_str());
+		ports[name]	= new PortInfo();
+		ports[name]->scPort = new sc_out< sc_logic >(name.c_str());
+
 		addPortAttributes(name, type, size);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
+
 	}
 }
 
 void HardwareComponent::addInout(std::string name, DataType type, int size){
 	if(isDynamic){
 		this->sc_get_curr_simcontext()->hierarchy_push (this);
-		ports[name]	= new sc_inout< sc_logic >(name.c_str());
+		ports[name]	= new PortInfo();
+		ports[name]->scPort = new sc_inout< sc_logic >(name.c_str());
 		addPortAttributes(name, type, size);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
 	}
@@ -66,33 +74,37 @@ void HardwareComponent::addInout(std::string name, DataType type, int size){
 
 sc_port_base* HardwareComponent::getPort(std::string name){
 	if(ports.count(name)!=0)
-		return ports[name];
+		return ports[name]->scPort;
 	return NULL;
 }
 
 void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 	if(ports.count(selfPortName) != 0 && port!= NULL){
-		if(string(ports[selfPortName]->kind()) == "sc_in"
+		if(string(ports[selfPortName]->scPort->kind()) == "sc_in"
 			 && string(port->kind()) == "sc_in"){
-			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName] );
+		cout<<"binding port"<<this->name()<<":"<<selfPortName<<" to "<<port->name()<<endl;
+			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName]->scPort );
 			sc_in<sc_logic> * bindedPort = dynamic_cast<sc_in<sc_logic>* >( port );
 			(*selfPort)(*bindedPort);
 		}
-		else if(string(ports[selfPortName]->kind()) == "sc_in"
+		else if(string(ports[selfPortName]->scPort->kind()) == "sc_in"
 			 && string(port->kind()) == "sc_out"){
-			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName] );
+		cout<<"binding port"<<this->name()<<":"<<selfPortName<<" to "<<port->name()<<endl;
+			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName]->scPort );
 			sc_out<sc_logic> * bindedPort = dynamic_cast<sc_out<sc_logic>* >( port );
 			(*selfPort)(*bindedPort);
 		}
-		else if(string(ports[selfPortName]->kind()) == "sc_out"
+		else if(string(ports[selfPortName]->scPort->kind()) == "sc_out"
 			 && string(port->kind()) == "sc_out"){
-			sc_out<sc_logic> * selfPort = dynamic_cast<sc_out<sc_logic>* >( ports[selfPortName] );
+		cout<<"binding port"<<this->name()<<":"<<selfPortName<<" to "<<port->name()<<endl;
+			sc_out<sc_logic> * selfPort = dynamic_cast<sc_out<sc_logic>* >( ports[selfPortName]->scPort );
 			sc_out<sc_logic> * bindedPort = dynamic_cast<sc_out<sc_logic>* >( port );
 			(*selfPort)(*bindedPort);
 		}
-		if(string(ports[selfPortName]->kind()) == "sc_inout"
+		if(string(ports[selfPortName]->scPort->kind()) == "sc_inout"
 			 && string(port->kind()) == "sc_inout"){
-			sc_inout<sc_logic> * selfPort = dynamic_cast<sc_inout<sc_logic>* >( ports[selfPortName] );
+		cout<<"binding port"<<this->name()<<":"<<selfPortName<<" to "<<port->name()<<endl;
+			sc_inout<sc_logic> * selfPort = dynamic_cast<sc_inout<sc_logic>* >( ports[selfPortName]->scPort );
 			sc_inout<sc_logic> * bindedPort = dynamic_cast<sc_inout<sc_logic>* >( port );
 			(*selfPort)(*bindedPort);
 		}
@@ -101,21 +113,24 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 
 void HardwareComponent::portMap(std::string selfPortName, sc_signal_resolved *signal){
 	if(ports.count(selfPortName) != 0){
-		if(string(ports[selfPortName]->kind()) == "sc_in"){
-			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName] );
+		if(string(ports[selfPortName]->scPort->kind()) == "sc_in"){
+			cout<<"binding signal"<<signal->name()<<" to port "<<this->name()<<":"<<selfPortName<<endl;
+			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName]->scPort );
 			(*selfPort)(*signal);
 		}
-		else if(string(ports[selfPortName]->kind()) == "sc_out"){
-			sc_out<sc_logic> * selfPort = dynamic_cast<sc_out<sc_logic>* >( ports[selfPortName] );
+		else if(string(ports[selfPortName]->scPort->kind()) == "sc_out"){
+			cout<<"binding signal"<<signal->name()<<" to port "<<this->name()<<":"<<selfPortName<<endl;
+			sc_out<sc_logic> * selfPort = dynamic_cast<sc_out<sc_logic>* >( ports[selfPortName]->scPort );
 			(*selfPort)(*signal);
 		}
-		if(string(ports[selfPortName]->kind()) == "sc_inout"){
-			sc_inout<sc_logic> * selfPort = dynamic_cast<sc_inout<sc_logic>* >( ports[selfPortName] );
+		else if(string(ports[selfPortName]->scPort->kind()) == "sc_inout"){
+			cout<<"binding signal"<<signal->name()<<" to port "<<this->name()<<":"<<selfPortName<<endl;
+			sc_inout<sc_logic> * selfPort = dynamic_cast<sc_inout<sc_logic>* >( ports[selfPortName]->scPort );
 			(*selfPort)(*signal);
 		}
 	}
 }
 
-void HardwareComponent::addChildComponent(sc_module * child){
+void HardwareComponent::addChildObject(sc_object * child){
 	this->add_child_object(child);
 }
