@@ -71,7 +71,7 @@ sc_port_base* HardwareComponent::getPort(std::string name){
 }
 
 void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
-	if(ports.count(selfPortName) != 0){
+	if(ports.count(selfPortName) != 0 && port!= NULL){
 		if(string(ports[selfPortName]->kind()) == "sc_in"
 			 && string(port->kind()) == "sc_in"){
 			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName] );
