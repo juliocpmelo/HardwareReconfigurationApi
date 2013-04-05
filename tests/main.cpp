@@ -15,7 +15,7 @@ using namespace std;
 int main(int argc, char *argv[]){
 	cout<<"This progam will test the capability of reconfiguring the FPGA through software"<<endl;
 	int var = 0;
-	cout<<"running project"<<endl;
+	cout<<"running project, type a or b"<<endl;
 
     //p1->addFile("C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/fpgaProjects/Adder8Bits/combinationalLibrary.vhd");
    // p1->setDevice("EP1C6F256C6");
@@ -31,10 +31,11 @@ int main(int argc, char *argv[]){
             {
                 cout<<"generating through software"<<endl;
                 HardwareProject *project = new HardwareProject("neuronio_test", 
-                                                               "C:/Documents and Settings/schneider/Meus Documentos/julio/doutorado/fpgaProjects/TestHardwareBuilding/",
-                                                               "C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/HardwareReconfigurationApi/rnaBaseComponents.xml");
+                                                               "./TestRNABuilding",
+                                                               "D:/Users/Julio/Documents/HardwareReconfiguration/HardwareReconfigurationApi/rnaBaseComponents.xml");
 
 								HardwareComponent *topComponent = new HardwareComponent("neuronio_test", NULL);
+								cout << __FILE__ << "::" << __LINE__ <<endl; 
 								ComponentDatabase *database = new ComponentDatabase();
 
 							//does not make any sence to use generic inputs here since it will be the top entity
@@ -67,6 +68,7 @@ int main(int argc, char *argv[]){
             	<input name="bias2" type="std_logic_vector(data_length-1 downto 0)"/>
             	*/
 								//new API with system C
+								cout << __FILE__ << "::" << __LINE__ <<endl; 
                 topComponent->addInput("clk",HardwareComponent::DataType_bit);
                 topComponent->addInput("rst",HardwareComponent::DataType_bit);
                 topComponent->addInput("wr0",HardwareComponent::DataType_bit);
@@ -146,8 +148,10 @@ int main(int argc, char *argv[]){
             	*/
 
 								sc_signal_resolved *signaly0 = database->createSignal("y0", HardwareComponent::DataType_vector, 8);
+								topComponent->addChildObject(signaly0);
 								sc_signal_resolved *signaly1 = database->createSignal("y1", HardwareComponent::DataType_vector, 8);
-                
+								topComponent->addChildObject(signaly1);
+
 								/*
             	<instance name="neuron0" type="./rnaBaseComponents.xml:teste_neuronio">
             		<genericMap  genericName="data_length" value="data_length"/>
@@ -171,7 +175,7 @@ int main(int argc, char *argv[]){
 
 								//ComponentDatabase is supposed to find and load the "./rnaBaseComponents.xml:teste_neuronio" topComponent
 								HardwareComponent *neuronio0 = database->getHardwareComponent("neuronio0", "./rnaBaseComponents.xml:teste_neuronio");
-								topComponent->addChildComponent(neuronio0);
+								topComponent->addChildObject(neuronio0);
 								neuronio0->portMap("clk",topComponent->getPort("clk"));
                 neuronio0->portMap("rst",topComponent->getPort("rst"));
                 neuronio0->portMap("wr_result",topComponent->getPort("wr0"));
@@ -209,7 +213,7 @@ int main(int argc, char *argv[]){
                 */
 								
 								HardwareComponent *neuronio1 = database->getHardwareComponent("neuronio1", "./rnaBaseComponents.xml:teste_neuronio");
-								topComponent->addChildComponent(neuronio1);
+								topComponent->addChildObject(neuronio1);
                 neuronio1->portMap("clk",topComponent->getPort("clk"));
                 neuronio1->portMap("rst",topComponent->getPort("rst"));
                 neuronio1->portMap("wr_result",topComponent->getPort("wr1"));
@@ -247,7 +251,7 @@ int main(int argc, char *argv[]){
             	*/
 								
 								HardwareComponent *neuronio2 = database->getHardwareComponent("neuronio2", "./rnaBaseComponents.xml:teste_neuronio");
-								topComponent->addChildComponent(neuronio2);
+								topComponent->addChildObject(neuronio2);
 							  neuronio2->portMap("clk",topComponent->getPort("clk"));
                 neuronio2->portMap("rst",topComponent->getPort("rst"));
                 neuronio2->portMap("wr_result",topComponent->getPort("wr2"));
@@ -264,11 +268,15 @@ int main(int argc, char *argv[]){
                 neuronio2->portMap("y",topComponent->getPort("result"));
 
 
+ 								topComponent->portMap("neuron_x0",signaly0);
+                topComponent->portMap("neuron_x1",signaly1);
+
+
 
                 project->setTopLevelComponent(topComponent);
                 project->generateHDLFiles(topComponent);
-                project->generateConfigFile();
-                project->compileProject();
+                //project->generateConfigFile();
+                //project->compileProject();
     
             }
             break;
