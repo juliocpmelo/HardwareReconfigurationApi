@@ -120,6 +120,7 @@ std::vector<HardwareComponent* > HardwareComponentConverterVHDL::getChildModules
 	return retVector;
 }
 
+/*returns the port of the given component that is connected with the given channel*/
 sc_port_base* HardwareComponentConverterVHDL::getConnectedPort(sc_object* channel, sc_module* component){
 
 	std::vector<sc_object*> children = component->get_child_objects();
@@ -128,7 +129,7 @@ sc_port_base* HardwareComponentConverterVHDL::getConnectedPort(sc_object* channe
 			sc_port_base * port = dynamic_cast<sc_port_base*>(*i);
 			if(port->get_interface() != NULL){
 				sc_object * connectedChannel = dynamic_cast<sc_object*>(port->get_interface());
-				std::cout<<"comparing "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
+				std::cout<<"testing port "<<port->name()<<" that uses channel "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
 				if(channel->name() == connectedChannel->name())
 					return port;
 			}
@@ -143,7 +144,7 @@ sc_port_base* HardwareComponentConverterVHDL::getConnectedPort(sc_object* channe
 
 void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, HardwareComponent *topComponent){
 
-		topComponent->sc_get_curr_simcontext()->initialize(true);
+		//topComponent->sc_get_curr_simcontext()->initialize(true);
 
     ofstream designFile;
     string fileLocation = projectPath+"/"+topComponent->name()+".vhdl";
