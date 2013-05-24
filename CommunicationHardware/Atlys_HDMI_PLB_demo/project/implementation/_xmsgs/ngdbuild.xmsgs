@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="ConstraintSystem" num="193" delta="old" >The <arg fmt="%s" index="1">TNM</arg> &apos;<arg fmt="%s" index="2">TNM_TIG_MCB_DDR2_S6_DONE_CAL_SYNCH</arg>&apos;, does not directly or indirectly drive any flip-flops, latches and/or RAMs and cannot be actively used by the referencing <arg fmt="%s" index="3">TIG</arg> constraint &apos;<arg fmt="%s" index="4"></arg>&apos;. If clock manager blocks are directly or indirectly driven, a new TNM constraint will not be derived since the referencing constraint is not a PERIOD constraint. This TNM is used in the following user group or specification:
+<arg fmt="%s" index="5">&lt;TIMESPEC &quot;TS_TIG_MCB_DDR2_S6_DONE_CAL_SYNCH&quot; = FROM FFS TO &quot;TNM_TIG_MCB_DDR2_S6_DONE_CAL_SYNCH&quot; TIG;&gt; [D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/implementation/system_mcb_ddr2_wrapper.ncf(8)]
+</arg></msg>
+
+<msg type="warning" file="ConstraintSystem" num="197" delta="old" >The following specification is invalid because the referenced TNM constraint was removed:
+<arg fmt="%s" index="1">&lt;TIMESPEC &quot;TS_TIG_MCB_DDR2_S6_DONE_CAL_SYNCH&quot; = FROM FFS TO &quot;TNM_TIG_MCB_DDR2_S6_DONE_CAL_SYNCH&quot; TIG;&gt; [D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/implementation/system_mcb_ddr2_wrapper.ncf(8)]</arg>
+</msg>
+
+<msg type="info" file="NgdBuild" num="981" delta="old" >Could not find any associations for the following constraint:
+    &apos;<arg fmt="%s" index="1">&lt;INST &quot;MCB_DDR2/mpmc_core_0/gen_spartan6_mcb.s6_phy_top_if/uo_done_cal_d1*&quot; TNM=&quot;TNM_TIG_MCB_DDR2_S6_DONE_CAL_SYNCH&quot;;&gt; [D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/implementation/system_mcb_ddr2_wrapper.ncf(7)]</arg>&apos;
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">pll_module_0/pll_module_0/PLL_ADV_inst</arg>&apos; of type <arg fmt="%s" index="2">PLL_ADV</arg> has been changed from &apos;<arg fmt="%s" index="3">VIRTEX5</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="56" delta="old" >Constraint <arg fmt="%s" index="1">&lt;TIMESPEC TS_TIG_MCB_DDR2_S6_DONE_CAL_SYNCH = FROM FFS TO &quot;TNM_TIG_MCB_DDR2_S6_DONE_CAL_SYNCH&quot; TIG;&gt;</arg>: Unable to find an active <arg fmt="%s" index="2">&apos;TimeGrp&apos; or &apos;TNM&apos; or &apos;TPSync&apos;</arg> constraint named &apos;<arg fmt="%s" index="3">TNM_TIG_MCB_DDR2_S6_DONE_CAL_SYNCH</arg>&apos;.
+</msg>
+
+<msg type="info" file="ConstraintSystem" num="178" delta="old" ><arg fmt="%s" index="1">TNM</arg> &apos;<arg fmt="%s" index="2">sys_clk_pin</arg>&apos;, used in period specification &apos;<arg fmt="%s" index="3">TS_sys_clk_pin</arg>&apos;, was traced into <arg fmt="%s" index="4">PLL_ADV</arg> instance <arg fmt="%s" index="5">clock_generator_0/PLL0_INST/Using_PLL_ADV.PLL_ADV_inst</arg>. The following new TNM groups and period specifications were generated at the <arg fmt="%s" index="6">PLL_ADV</arg> output(s): 
+<arg fmt="%s" index="7">CLKOUT1</arg>: <arg fmt="%s" index="8">&lt;TIMESPEC TS_clk_600_0000MHz180PLL0_nobuf = PERIOD &quot;clk_600_0000MHz180PLL0_nobuf&quot; TS_sys_clk_pin * 6 PHASE 0.833333333 ns HIGH 50%&gt;</arg>
+</msg>
+
+<msg type="info" file="ConstraintSystem" num="178" delta="old" ><arg fmt="%s" index="1">TNM</arg> &apos;<arg fmt="%s" index="2">sys_clk_pin</arg>&apos;, used in period specification &apos;<arg fmt="%s" index="3">TS_sys_clk_pin</arg>&apos;, was traced into <arg fmt="%s" index="4">PLL_ADV</arg> instance <arg fmt="%s" index="5">clock_generator_0/PLL0_INST/Using_PLL_ADV.PLL_ADV_inst</arg>. The following new TNM groups and period specifications were generated at the <arg fmt="%s" index="6">PLL_ADV</arg> output(s): 
+<arg fmt="%s" index="7">CLKOUT0</arg>: <arg fmt="%s" index="8">&lt;TIMESPEC TS_clk_600_0000MHzPLL0_nobuf = PERIOD &quot;clk_600_0000MHzPLL0_nobuf&quot; TS_sys_clk_pin * 6 HIGH 50%&gt;</arg>
+</msg>
+
+<msg type="info" file="ConstraintSystem" num="178" delta="old" ><arg fmt="%s" index="1">TNM</arg> &apos;<arg fmt="%s" index="2">sys_clk_pin</arg>&apos;, used in period specification &apos;<arg fmt="%s" index="3">TS_sys_clk_pin</arg>&apos;, was traced into <arg fmt="%s" index="4">PLL_ADV</arg> instance <arg fmt="%s" index="5">clock_generator_0/PLL0_INST/Using_PLL_ADV.PLL_ADV_inst</arg>. The following new TNM groups and period specifications were generated at the <arg fmt="%s" index="6">PLL_ADV</arg> output(s): 
+<arg fmt="%s" index="7">CLKOUT2</arg>: <arg fmt="%s" index="8">&lt;TIMESPEC TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PERIOD &quot;clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2&quot; TS_sys_clk_pin * 0.75 HIGH 50%&gt;</arg>
+</msg>
+
+<msg type="info" file="ConstraintSystem" num="178" delta="old" ><arg fmt="%s" index="1">TNM</arg> &apos;<arg fmt="%s" index="2">clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2</arg>&apos;, used in period specification &apos;<arg fmt="%s" index="3">TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2</arg>&apos;, was traced into <arg fmt="%s" index="4">PLL_ADV</arg> instance <arg fmt="%s" index="5">pll_module_0/PLL_ADV_inst</arg>. The following new TNM groups and period specifications were generated at the <arg fmt="%s" index="6">PLL_ADV</arg> output(s): 
+<arg fmt="%s" index="7">CLKOUT3</arg>: <arg fmt="%s" index="8">&lt;TIMESPEC TS_pll_module_0_CLKOUT3 = PERIOD &quot;pll_module_0_CLKOUT3&quot; TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 HIGH 50%&gt;</arg>
+</msg>
+
+<msg type="info" file="ConstraintSystem" num="178" delta="old" ><arg fmt="%s" index="1">TNM</arg> &apos;<arg fmt="%s" index="2">clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2</arg>&apos;, used in period specification &apos;<arg fmt="%s" index="3">TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2</arg>&apos;, was traced into <arg fmt="%s" index="4">PLL_ADV</arg> instance <arg fmt="%s" index="5">pll_module_0/PLL_ADV_inst</arg>. The following new TNM groups and period specifications were generated at the <arg fmt="%s" index="6">PLL_ADV</arg> output(s): 
+<arg fmt="%s" index="7">CLKOUT1</arg>: <arg fmt="%s" index="8">&lt;TIMESPEC TS_pll_module_0_pll_module_0_CLKOUT1_BUF = PERIOD &quot;pll_module_0_pll_module_0_CLKOUT1_BUF&quot; TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 HIGH 50%&gt;</arg>
+</msg>
+
+<msg type="info" file="ConstraintSystem" num="178" delta="old" ><arg fmt="%s" index="1">TNM</arg> &apos;<arg fmt="%s" index="2">clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2</arg>&apos;, used in period specification &apos;<arg fmt="%s" index="3">TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2</arg>&apos;, was traced into <arg fmt="%s" index="4">PLL_ADV</arg> instance <arg fmt="%s" index="5">pll_module_0/PLL_ADV_inst</arg>. The following new TNM groups and period specifications were generated at the <arg fmt="%s" index="6">PLL_ADV</arg> output(s): 
+<arg fmt="%s" index="7">CLKOUT0</arg>: <arg fmt="%s" index="8">&lt;TIMESPEC TS_pll_module_0_CLKOUT0 = PERIOD &quot;pll_module_0_CLKOUT0&quot; TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 * 10 HIGH 50%&gt;</arg>
+</msg>
+
+<msg type="info" file="ConstraintSystem" num="178" delta="old" ><arg fmt="%s" index="1">TNM</arg> &apos;<arg fmt="%s" index="2">clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2</arg>&apos;, used in period specification &apos;<arg fmt="%s" index="3">TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2</arg>&apos;, was traced into <arg fmt="%s" index="4">PLL_ADV</arg> instance <arg fmt="%s" index="5">pll_module_0/PLL_ADV_inst</arg>. The following new TNM groups and period specifications were generated at the <arg fmt="%s" index="6">PLL_ADV</arg> output(s): 
+<arg fmt="%s" index="7">CLKOUT2</arg>: <arg fmt="%s" index="8">&lt;TIMESPEC TS_pll_module_0_pll_module_0_CLKOUT2_BUF = PERIOD &quot;pll_module_0_pll_module_0_CLKOUT2_BUF&quot; TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 * 2 HIGH 50%&gt;</arg>
+</msg>
+
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;fpga_0_MCB_DDR2_zio_pin&quot; IOSTANDARD = &quot;SSTL18_II&quot;&gt;</arg> is overridden on the design object <arg fmt="%s" index="2">fpga_0_MCB_DDR2_zio_pin</arg> by the constraint <arg fmt="%s" index="3">&lt;Net fpga_0_MCB_DDR2_zio_pin IOSTANDARD = LVCMOS18_JEDEC;&gt; [system.ucf(10)]</arg>.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;fpga_0_MCB_DDR2_rzq_pin&quot; IOSTANDARD = &quot;SSTL18_II&quot;&gt;</arg> is overridden on the design object <arg fmt="%s" index="2">fpga_0_MCB_DDR2_rzq_pin</arg> by the constraint <arg fmt="%s" index="3">&lt;Net fpga_0_MCB_DDR2_rzq_pin IOSTANDARD = LVCMOS18_JEDEC;&gt; [system.ucf(9)]</arg>.
+</msg>
+
+<msg type="info" file="NgdBuild" num="1222" delta="old" >Setting <arg fmt="%s" index="1">CLKIN1_PERIOD</arg> attribute associated with <arg fmt="%s" index="2">PLL</arg> instance <arg fmt="%s" index="3">pll_module_0/PLL_ADV_inst</arg> to <arg fmt="%s" index="4">13.333333</arg> ns based on the period specification (<arg fmt="%s" index="5">&lt;TIMESPEC TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PERIOD &quot;clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2&quot; TS_sys_clk_pin * 0.75 HIGH 50%&gt;</arg>).
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Decode_I/Using_FPGA.Gen_Bits[27].MEM_EX_Result_Inst</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N26</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N27</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N28</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N29</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N30</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N31</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N32</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N33</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N34</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N35</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N36</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N37</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N38</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N39</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N40</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N41</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N42</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N43</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N44</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N45</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N46</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="old" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">N47</arg>&apos; has no driver
+</msg>
+
+</messages>
+

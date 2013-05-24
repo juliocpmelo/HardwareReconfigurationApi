@@ -1,0 +1,14 @@
+/*
+ * CommunicationManager.c
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+#include <CommunicationManager.h>
+
+CommunicationManager* createComunnicationManager(char* serverId){
+	CommunicationManager* commMng = malloc(sizeof(CommunicationManager));
+
+	return commMng;
+}

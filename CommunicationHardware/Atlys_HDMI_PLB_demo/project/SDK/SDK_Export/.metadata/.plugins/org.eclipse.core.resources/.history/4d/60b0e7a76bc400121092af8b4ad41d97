@@ -1,0 +1,42 @@
+/*
+ * ArchitectureManager.c
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+#include "ArchitectureManager.h"
+#include <stdio.h>
+#include <string.h>
+
+HardwareComponent* getHardwareComponent(ArchitectureManager* architectureManager, char* componentName){
+
+	ComponentSetNode *actComponentIt = architectureManager->components->first;
+	while (actComponentIt != NULL){
+		if(strcmp(actComponentIt->instanceName,componentName) == 0)
+			return actComponentIt->comp;
+		else
+			actComponentIt = actComponentIt->next;
+	}
+}
+
+void setPortValue(void* self,const char* componentName, const char* portName, int value){
+
+	ArchitectureManager* selfInstance = (ArchitectureManager*) self;
+	/*translate component name and port name into the register address*/
+
+
+
+	//selfInstance->hardwareInterface->setRegisterValue(VIDEO_FILTER_BASEADDR + videoFilter_xAccess, value));
+	selfInstance->hardwareInterface->setRegisterValue(selfInstance->hardwareInterface,0,0);
+}
+
+int getPortValue(HardwareInterfaceModule_t* self,const char componentName, const char* portName){
+
+
+}
+
+ArcthiectureManager* createArchitectureManager(){
+
+
+}

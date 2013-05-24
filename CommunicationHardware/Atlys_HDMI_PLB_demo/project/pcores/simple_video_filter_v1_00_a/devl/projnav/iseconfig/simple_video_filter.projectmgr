@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--This is an ISE project configuration file.-->
+<!--It holds project specific layout data for the projectmgr plugin.-->
+<!--Copyright (c) 1995-2009 Xilinx, Inc.  All rights reserved.-->
+<Project version="2" owner="projectmgr" name="simple_video_filter" >
+   <!--This is an ISE project configuration file.-->
+   <ItemView engineview="SynthesisOnly" guiview="Source" compilemode="AutoCompile" >
+      <ClosedNodes>
+         <ClosedNodesVersion>2</ClosedNodesVersion>
+         <ClosedNode>/LineBuffer_wrapper - Behavioral D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|LineBuffer|LineBufferWrapper.vhd</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/PLBV46_SLAVE_SINGLE_I - plbv46_slave_single - implementation</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/line_buffer_wrapper_inst - LineBuffer_wrapper - Behavioral</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/filterXConstants_U - sobel_filterXConstants</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/filterYConstants_U - sobel_filterYConstants</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/pixelLine_U - sobel_pixelLine</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_3s_8s_13_2_U1 - sobel_mul_3s_8s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_3s_8s_13_2_U2 - sobel_mul_3s_8s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_3s_8s_13_2_U3 - sobel_mul_3s_8s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_3s_8s_13_2_U4 - sobel_mul_3s_8s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_3s_8s_13_2_U5 - sobel_mul_3s_8s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_3s_8s_13_2_U6 - sobel_mul_3s_8s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_8ns_3s_13_2_U1 - sobel_mul_8ns_3s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_8ns_3s_13_2_U2 - sobel_mul_8ns_3s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_8ns_3s_13_2_U3 - sobel_mul_8ns_3s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_8ns_3s_13_2_U4 - sobel_mul_8ns_3s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_8ns_3s_13_2_U5 - sobel_mul_8ns_3s_13_2</ClosedNode>
+         <ClosedNode>/simple_video_filter - IMP D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|vhdl|simple_video_filter.vhd/USER_LOGIC_I - user_logic - IMP/sobel_wrapper_inst - SobelWrapper - Behavioral/sobel_inst - sobel/sobel_mul_8ns_3s_13_2_U6 - sobel_mul_8ns_3s_13_2</ClosedNode>
+         <ClosedNode>/sobel_filterXConstants D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|verilog|SobelFilter|sobel_filterXConstants.v</ClosedNode>
+         <ClosedNode>/sobel_filterYConstants D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|verilog|SobelFilter|sobel_filterYConstants.v</ClosedNode>
+         <ClosedNode>/sobel_mul_8ns_3s_13_2 D:|Users|Julio|Downloads|Atlys_HDMI_PLB_demo|project|pcores|simple_video_filter_v1_00_a|hdl|verilog|SobelFilter|sobel_mul_8ns_3s_13_2.v</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>filterXConstants_U - sobel_filterXConstants (D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_filterXConstants.v)</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000431000000020000000000000000000000000200000064ffffffff000000810000000300000002000004310000000100000003000000000000000100000003</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
+      <CurrentItem>filterXConstants_U - sobel_filterXConstants (D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_filterXConstants.v)</CurrentItem>
+   </ItemView>
+   <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>Configure Target Device</ClosedNode>
+         <ClosedNode>Implement Design</ClosedNode>
+         <ClosedNode>User Constraints</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem></SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000183000000010000000100000000000000000000000064ffffffff000000810000000000000001000001830000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem></CurrentItem>
+   </ItemView>
+   <ItemView guiview="File" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+      </ClosedNodes>
+      <SelectedItems/>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000003a3000000040101000100000000000000000000000064ffffffff0000008100000000000000040000009c00000001000000000000004400000001000000000000006600000001000000000000025d0000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\counter_f.vhd</CurrentItem>
+   </ItemView>
+   <ItemView guiview="Library" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>plbv46_slave_single_v1_01_a</ClosedNode>
+         <ClosedNode>proc_common_v3_00_a</ClosedNode>
+         <ClosedNode>simple_video_filter_v1_00_a</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems/>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000000f8000000010001000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>plbv46_slave_single_v1_01_a</CurrentItem>
+   </ItemView>
+   <SourceProcessView>000000ff00000000000000020000011b0000011b01000000050100000002</SourceProcessView>
+   <CurrentView>Implementation</CurrentView>
+   <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem></SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000183000000010000000100000000000000000000000064ffffffff000000810000000000000001000001830000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem></CurrentItem>
+   </ItemView>
+   <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VERILOG" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>Design Utilities</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem></SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000183000000010000000100000000000000000000000064ffffffff000000810000000000000001000001830000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem></CurrentItem>
+   </ItemView>
+</Project>

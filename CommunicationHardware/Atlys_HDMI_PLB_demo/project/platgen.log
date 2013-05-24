@@ -1,0 +1,564 @@
+Release 14.4 - platgen Xilinx EDK 14.4 Build EDK_P.49d
+ (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: platgen -p xc6slx45csg324-2 -lang vhdl -intstyle default -msg
+__xps/ise/xmsgprops.lst system.mhs 
+
+Parse D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/system.mhs ...
+
+Read MPD definitions ...
+
+Overriding IP level properties ...
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_BASEFAMILY value to spartan6 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 155 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_SPEEDGRADE_INT value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 160 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_IODELAY_GRP value to MCB_DDR2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 182 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_USE_MCB_S6_PHY value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 219 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_DATA_DEPTH value to 64 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 266 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_DATA_WIDTH value to 16 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 267 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_NUM_BANK_BITS value to 3 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 268 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_NUM_COL_BITS value to 10 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 270 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TRAS value to 45000 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 271 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TRASMAX value to 70200000 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 272 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TRC value to 57500 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 273 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TRCD value to 12500 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 274 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TWR value to 15000 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 276 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TRP value to 12500 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 277 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TMRD value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 278 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TRRD value to 10000 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 279 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TRFC value to 127500 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 280 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TREFI value to 7800000 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 281 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TCCD value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 283 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_TWTR value to 7500 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 284 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_CAS_A_FMAX value to 200.0 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 290 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_CAS_A value to 3 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 291 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_CAS_B_FMAX value to 266.0 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 292 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_CAS_B value to 4 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 293 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_CAS_C_FMAX value to 400.0 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 294 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_CAS_C value to 5 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 295 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_PART_CAS_D_FMAX value to 1.0 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 296 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_BANKADDR_WIDTH value to 3 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 309 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_DM_WIDTH value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 312 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_DQS_WIDTH value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 313 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_PIM1_DATA_WIDTH value to 32 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 405 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_PIM2_DATA_WIDTH value to 32 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 456 
+
+Computing clock values...
+INFO:EDK:740 - Cannot determine the input clock associated with port :
+   ilmb_cntlr:BRAM_Clk_A. Clock DRCs will not be performed on this core and
+   cores connected to it. 
+INFO:EDK:740 - Cannot determine the input clock associated with port :
+   dlmb_cntlr:BRAM_Clk_A. Clock DRCs will not be performed on this core and
+   cores connected to it. 
+
+Performing IP level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION IPLEVEL_DRC_PROC...
+Address Map for Processor microblaze_0
+  (0000000000-0x00003fff) dlmb_cntlr	dlmb
+  (0000000000-0x00003fff) ilmb_cntlr	ilmb
+  (0x48000000-0x4fffffff) MCB_DDR2	microblaze_0_DXCL
+  (0x48000000-0x4fffffff) MCB_DDR2	microblaze_0_IXCL
+  (0x81400000-0x8140ffff) Push_Buttons_5Bits	mb_plb
+  (0x81600000-0x8160ffff) xps_iic_0	mb_plb
+  (0x81800000-0x8180ffff) xps_intc_0	mb_plb
+  (0x84000000-0x8400ffff) RS232_Uart_1	mb_plb
+  (0x84400000-0x8440ffff) mdm_0	mb_plb
+  (0xc0e00000-0xc0e0ffff) hdmi_out_0	mb_plb
+  (0xc7000000-0xc700ffff) simple_video_filter_0	mb_plb
+  (0xcc800000-0xcc80ffff) hdmi_in_0	mb_plb
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_NUM_MASTERS value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 79 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_MID_WIDTH value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 81 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_DWIDTH value to 32 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 83 
+INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:ilmb - tool is overriding PARAMETER
+   C_LMB_NUM_SLAVES value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
+   \lmb_v10_v2_1_0.mpd line 82 
+INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:dlmb - tool is overriding PARAMETER
+   C_LMB_NUM_SLAVES value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
+   \lmb_v10_v2_1_0.mpd line 82 
+INFO:EDK:4130 - IPNAME: bram_block, INSTANCE:lmb_bram - tool is overriding
+   PARAMETER C_MEMSIZE value to 0x4000 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\bram_block_v1_00_a\d
+   ata\bram_block_v2_1_0.mpd line 78 
+INFO:EDK:4130 - IPNAME: xps_uartlite, INSTANCE:RS232_Uart_1 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_uartlite_v1_02_a
+   \data\xps_uartlite_v2_1_0.mpd line 84 
+INFO:EDK:4130 - IPNAME: xps_gpio, INSTANCE:Push_Buttons_5Bits - tool is
+   overriding PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_gpio_v2_00_a\dat
+   a\xps_gpio_v2_1_0.mpd line 82 
+INFO:EDK:4130 - IPNAME: mdm, INSTANCE:mdm_0 - tool is overriding PARAMETER
+   C_SPLB_MID_WIDTH value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_10_a\data\mdm
+   _v2_1_0.mpd line 118 
+INFO:EDK:4130 - IPNAME: mdm, INSTANCE:mdm_0 - tool is overriding PARAMETER
+   C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_10_a\data\mdm
+   _v2_1_0.mpd line 119 
+INFO:EDK:4130 - IPNAME: xps_intc, INSTANCE:xps_intc_0 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_intc_v2_01_a\dat
+   a\xps_intc_v2_1_0.mpd line 83 
+INFO:EDK:4130 - IPNAME: hdmi_in, INSTANCE:hdmi_in_0 - tool is overriding
+   PARAMETER C_SPLB_DWIDTH value to 32 -
+   D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\hdmi_in_v1_00_a\d
+   ata\hdmi_in_v2_1_0.mpd line 29 
+INFO:EDK:4130 - IPNAME: hdmi_in, INSTANCE:hdmi_in_0 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\hdmi_in_v1_00_a\d
+   ata\hdmi_in_v2_1_0.mpd line 30 
+INFO:EDK:4130 - IPNAME: hdmi_in, INSTANCE:hdmi_in_0 - tool is overriding
+   PARAMETER C_SPLB_MID_WIDTH value to 1 -
+   D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\hdmi_in_v1_00_a\d
+   ata\hdmi_in_v2_1_0.mpd line 31 
+INFO:EDK:4130 - IPNAME: xps_iic, INSTANCE:xps_iic_0 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_iic_v2_03_a\data
+   \xps_iic_v2_1_0.mpd line 85 
+INFO:EDK:4130 - IPNAME: hdmi_out, INSTANCE:hdmi_out_0 - tool is overriding
+   PARAMETER C_SPLB_DWIDTH value to 32 -
+   D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\hdmi_out_v1_01_a\
+   data\hdmi_out_v2_1_0.mpd line 32 
+INFO:EDK:4130 - IPNAME: hdmi_out, INSTANCE:hdmi_out_0 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\hdmi_out_v1_01_a\
+   data\hdmi_out_v2_1_0.mpd line 33 
+INFO:EDK:4130 - IPNAME: hdmi_out, INSTANCE:hdmi_out_0 - tool is overriding
+   PARAMETER C_SPLB_MID_WIDTH value to 1 -
+   D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\hdmi_out_v1_01_a\
+   data\hdmi_out_v2_1_0.mpd line 34 
+INFO:EDK:4130 - IPNAME: simple_video_filter, INSTANCE:simple_video_filter_0 -
+   tool is overriding PARAMETER C_SPLB_DWIDTH value to 32 -
+   D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\simple_video_filt
+   er_v1_00_a\data\simple_video_filter_v2_1_0.mpd line 28 
+INFO:EDK:4130 - IPNAME: simple_video_filter, INSTANCE:simple_video_filter_0 -
+   tool is overriding PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\simple_video_filt
+   er_v1_00_a\data\simple_video_filter_v2_1_0.mpd line 29 
+INFO:EDK:4130 - IPNAME: simple_video_filter, INSTANCE:simple_video_filter_0 -
+   tool is overriding PARAMETER C_SPLB_MID_WIDTH value to 1 -
+   D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\simple_video_filt
+   er_v1_00_a\data\simple_video_filter_v2_1_0.mpd line 30 
+
+Checking platform address map ...
+
+Checking platform configuration ...
+IPNAME: plb_v46, INSTANCE: mb_plb - 2 master(s) : 8 slave(s) 
+IPNAME: lmb_v10, INSTANCE: ilmb - 1 master(s) : 1 slave(s) 
+IPNAME: lmb_v10, INSTANCE: dlmb - 1 master(s) : 1 slave(s) 
+
+Checking port drivers...
+WARNING:EDK:4180 - PORT: VFBC1_Rd_Clk, CONNECTOR: hdmi_in_0_VFBC_OUT_rd_clk - No
+   driver found. Port will be driven to GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1339 
+WARNING:EDK:4180 - PORT: VFBC1_Rd_Reset, CONNECTOR: hdmi_in_0_VFBC_OUT_rd_reset
+   - No driver found. Port will be driven to GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1340 
+WARNING:EDK:4180 - PORT: VFBC1_Rd_Read, CONNECTOR: hdmi_in_0_VFBC_OUT_rd_read -
+   No driver found. Port will be driven to GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1341 
+WARNING:EDK:4180 - PORT: VFBC1_Rd_End_Burst, CONNECTOR:
+   hdmi_in_0_VFBC_OUT_rd_end_burst - No driver found. Port will be driven to GND
+   -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1342 
+WARNING:EDK:4180 - PORT: VFBC1_Rd_Flush, CONNECTOR: hdmi_in_0_VFBC_OUT_rd_flush
+   - No driver found. Port will be driven to GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1343 
+WARNING:EDK:4180 - PORT: VFBC2_Wd_Clk, CONNECTOR: hdmi_out_0_VFBC_OUT_wd_clk -
+   No driver found. Port will be driven to GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1534 
+WARNING:EDK:4180 - PORT: VFBC2_Wd_Reset, CONNECTOR: hdmi_out_0_VFBC_OUT_wd_reset
+   - No driver found. Port will be driven to GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1535 
+WARNING:EDK:4180 - PORT: VFBC2_Wd_Write, CONNECTOR: hdmi_out_0_VFBC_OUT_wd_write
+   - No driver found. Port will be driven to GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1536 
+WARNING:EDK:4180 - PORT: VFBC2_Wd_End_Burst, CONNECTOR:
+   hdmi_out_0_VFBC_OUT_wd_end_burst - No driver found. Port will be driven to
+   GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1537 
+WARNING:EDK:4180 - PORT: VFBC2_Wd_Flush, CONNECTOR: hdmi_out_0_VFBC_OUT_wd_flush
+   - No driver found. Port will be driven to GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1538 
+WARNING:EDK:4180 - PORT: VFBC2_Wd_Data, CONNECTOR: hdmi_out_0_VFBC_OUT_wd_data -
+   No driver found. Port will be driven to GND -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1539 
+WARNING:EDK:4180 - PORT: VFBC2_Wd_Data_BE, CONNECTOR:
+   hdmi_out_0_VFBC_OUT_wd_data_be - No driver found. Port will be driven to GND
+   -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1540 
+WARNING:EDK:4181 - PORT: VFBC1_Rd_Data, CONNECTOR: hdmi_in_0_VFBC_OUT_rd_data -
+   floating connection -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1344 
+WARNING:EDK:4181 - PORT: VFBC1_Rd_Empty, CONNECTOR: hdmi_in_0_VFBC_OUT_rd_empty
+   - floating connection -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1345 
+WARNING:EDK:4181 - PORT: VFBC1_Rd_Almost_Empty, CONNECTOR:
+   hdmi_in_0_VFBC_OUT_rd_almost_empty - floating connection -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1346 
+WARNING:EDK:4181 - PORT: VFBC2_Wd_Full, CONNECTOR: hdmi_out_0_VFBC_OUT_wd_full -
+   floating connection -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1541 
+WARNING:EDK:4181 - PORT: VFBC2_Wd_Almost_Full, CONNECTOR:
+   hdmi_out_0_VFBC_OUT_wd_almost_full - floating connection -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 1542 
+
+Performing Clock DRCs...
+
+Performing Reset DRCs...
+
+Overriding system level properties...
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_D_PLB value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_40_b\d
+   ata\microblaze_v2_1_0.mpd line 231 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_I_PLB value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_40_b\d
+   ata\microblaze_v2_1_0.mpd line 234 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_ADDR_TAG_BITS value to 16 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_40_b\d
+   ata\microblaze_v2_1_0.mpd line 335 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_DCACHE_ADDR_TAG value to 16 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_40_b\d
+   ata\microblaze_v2_1_0.mpd line 365 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_USE_INTERRUPT value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_40_b\d
+   ata\microblaze_v2_1_0.mpd line 399 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_USE_EXT_BRK value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_40_b\d
+   ata\microblaze_v2_1_0.mpd line 400 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_USE_EXT_NM_BRK value to 1 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_40_b\d
+   ata\microblaze_v2_1_0.mpd line 401 
+INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:dlmb_cntlr - tcl is
+   overriding PARAMETER C_MASK value to 0x88000000 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
+   _10_c\data\lmb_bram_if_cntlr_v2_1_0.mpd line 92 
+INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:ilmb_cntlr - tcl is
+   overriding PARAMETER C_MASK value to 0x88000000 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
+   _10_c\data\lmb_bram_if_cntlr_v2_1_0.mpd line 92 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_MEM_CAS_LATENCY value to 5 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 300 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_PIM0_SUBTYPE value to IXCL -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 356 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_PIM0_B_SUBTYPE value to DXCL -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 361 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_PIM1_SUBTYPE value to VFBC -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 407 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_PIM1_B_SUBTYPE value to VFBC -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 412 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_PIM2_SUBTYPE value to VFBC -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 458 
+INFO:EDK:4130 - IPNAME: mpmc, INSTANCE:MCB_DDR2 - tcl is overriding PARAMETER
+   C_PIM2_B_SUBTYPE value to VFBC -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mpmc_v6_06_a\data\mp
+   mc_v2_1_0.mpd line 463 
+INFO:EDK:4130 - IPNAME: xps_intc, INSTANCE:xps_intc_0 - tcl is overriding
+   PARAMETER C_KIND_OF_INTR value to 0b11111111111111111111111111111100 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_intc_v2_01_a\dat
+   a\xps_intc_v2_1_0.mpd line 88 
+INFO:EDK:4130 - IPNAME: xps_intc, INSTANCE:xps_intc_0 - tcl is overriding
+   PARAMETER C_KIND_OF_EDGE value to 0b11111111111111111111111111111111 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_intc_v2_01_a\dat
+   a\xps_intc_v2_1_0.mpd line 89 
+INFO:EDK:4130 - IPNAME: xps_intc, INSTANCE:xps_intc_0 - tcl is overriding
+   PARAMETER C_KIND_OF_LVL value to 0b11111111111111111111111111111111 -
+   C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_intc_v2_01_a\dat
+   a\xps_intc_v2_1_0.mpd line 90 
+
+Running system level update procedures...
+
+Running UPDATE Tcl procedures for OPTION SYSLEVEL_UPDATE_PROC...
+
+Running system level DRCs...
+
+Performing System level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION SYSLEVEL_DRC_PROC...
+
+Running UPDATE Tcl procedures for OPTION PLATGEN_SYSLEVEL_UPDATE_PROC...
+INFO: The microblaze_0 core has constraints automatically generated by XPS in
+implementation/microblaze_0_wrapper/microblaze_0_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+INFO: The ilmb core has constraints automatically generated by XPS in
+implementation/ilmb_wrapper/ilmb_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+INFO: The dlmb core has constraints automatically generated by XPS in
+implementation/dlmb_wrapper/dlmb_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+INFO: The MCB_DDR2 core has constraints automatically generated by XPS in
+implementation/mcb_ddr2_wrapper/mcb_ddr2_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+
+Modify defaults ...
+
+Creating stub ...
+
+Processing licensed instances ...
+Completion time: 0.00 seconds
+
+Creating hardware output directories ...
+
+Managing hardware (BBD-specified) netlist files ...
+IPNAME:hdmi_in INSTANCE:hdmi_in_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 263 -
+Copying (BBD-specified) netlist files.
+
+Managing cache ...
+IPNAME:microblaze INSTANCE:microblaze_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 49 -
+Copying cache implementation netlist
+IPNAME:plb_v46 INSTANCE:mb_plb -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 75 -
+Copying cache implementation netlist
+IPNAME:lmb_v10 INSTANCE:ilmb -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 82 -
+Copying cache implementation netlist
+IPNAME:lmb_v10 INSTANCE:dlmb -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 89 -
+Copying cache implementation netlist
+IPNAME:lmb_bram_if_cntlr INSTANCE:dlmb_cntlr -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 96 -
+Copying cache implementation netlist
+IPNAME:lmb_bram_if_cntlr INSTANCE:ilmb_cntlr -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 105 -
+Copying cache implementation netlist
+IPNAME:bram_block INSTANCE:lmb_bram -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 114 -
+Copying cache implementation netlist
+IPNAME:xps_uartlite INSTANCE:rs232_uart_1 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 121 -
+Copying cache implementation netlist
+IPNAME:xps_gpio INSTANCE:push_buttons_5bits -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 135 -
+Copying cache implementation netlist
+IPNAME:mpmc INSTANCE:mcb_ddr2 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 149 -
+Copying cache implementation netlist
+IPNAME:mdm INSTANCE:mdm_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 228 -
+Copying cache implementation netlist
+IPNAME:proc_sys_reset INSTANCE:proc_sys_reset_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 240 -
+Copying cache implementation netlist
+IPNAME:xps_intc INSTANCE:xps_intc_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 253 -
+Copying cache implementation netlist
+IPNAME:hdmi_in INSTANCE:hdmi_in_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 263 -
+Copying cache implementation netlist
+IPNAME:pll_module INSTANCE:pll_module_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 274 -
+Copying cache implementation netlist
+IPNAME:xps_iic INSTANCE:xps_iic_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 296 -
+Copying cache implementation netlist
+IPNAME:hdmi_out INSTANCE:hdmi_out_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 307 -
+Copying cache implementation netlist
+
+Elaborating instances ...
+IPNAME:bram_block INSTANCE:lmb_bram -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 114 -
+elaborating IP
+IPNAME:clock_generator INSTANCE:clock_generator_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 203 -
+elaborating IP
+ClkGen elaborate status: PASSED
+----------------------------------------
+----------------------------------------
+
+Writing HDL for elaborated instances ...
+
+Inserting wrapper level ...
+Completion time: 1.00 seconds
+
+Constructing platform-level connectivity ...
+Completion time: 0.00 seconds
+
+Writing (top-level) BMM ...
+
+Writing (top-level and wrappers) HDL ...
+
+Generating synthesis project file ...
+
+Running XST synthesis ...
+
+INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
+   IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
+   synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
+INSTANCE:clock_generator_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 203 -
+Running XST synthesis
+INSTANCE:hdmi_in_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 263 -
+Running XST synthesis
+INSTANCE:hdmi_out_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 307 -
+Running XST synthesis
+INSTANCE:simple_video_filter_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 324 -
+Running XST synthesis
+
+Running NGCBUILD ...
+IPNAME:system_clock_generator_0_wrapper INSTANCE:clock_generator_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 203 -
+Running NGCBUILD
+IPNAME:system_hdmi_in_0_wrapper INSTANCE:hdmi_in_0 -
+D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\system.mhs line 263 -
+Running NGCBUILD
+INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
+   If any constraint needs to be overridden, this should be done by modifying
+   the data/system.ucf file.
+
+Rebuilding cache ...
+
+Total run time: 58.00 seconds

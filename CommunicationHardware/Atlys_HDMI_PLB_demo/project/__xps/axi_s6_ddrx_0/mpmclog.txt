@@ -1,0 +1,24 @@
+Di 23. Apr 18:13:40 2013 
+Error in Data Width 16
+Di 23. Apr 18:13:40 2013Error in RTT (nominal) - ODT parameter RZQ/4
+Di 23. Apr 18:13:40 2013Error in Output Drive Strength parameter RZQ/6
+Di 23. Apr 18:13:40 2013Error in Output Drive Strength parameter RZQ/6
+Di 23. Apr 18:13:41 2013 
+Error in Data Width 16
+Di 23. Apr 18:13:41 2013Error in RTT (nominal) - ODT parameter RZQ/4
+Di 23. Apr 18:13:41 2013Error in Output Drive Strength parameter RZQ/6
+Di 23. Apr 18:13:41 2013Error in Output Drive Strength parameter RZQ/6
+Di 23. Apr 18:13:42 2013 
+Error in Data Width 16
+Di 23. Apr 18:13:42 2013Error in RZQ Pin loc 
+Di 23. Apr 18:13:42 2013 
+Error in Data Width 16
+Di 23. Apr 18:13:42 2013Error in RTT (nominal) - ODT parameter RZQ/4
+Di 23. Apr 18:13:42 2013Error in Output Drive Strength parameter RZQ/6
+Di 23. Apr 18:13:42 2013Error in Output Drive Strength parameter RZQ/6
+Di 23. Apr 18:13:53 2013Error in RTT (nominal) - ODT parameter RZQ/4
+Di 23. Apr 18:13:53 2013Error in Output Drive Strength parameter RZQ/6
+Di 23. Apr 18:13:53 2013Error in Output Drive Strength parameter RZQ/6
+Di 23. Apr 18:13:53 2013Error in RTT (nominal) - ODT parameter RZQ/4
+Di 23. Apr 18:13:53 2013Error in Output Drive Strength parameter RZQ/6
+Di 23. Apr 18:13:53 2013Error in Output Drive Strength parameter RZQ/6

@@ -1,0 +1,9 @@
+-batch 
+-create hdmi_out 
+-ver 1.00.a 
+-dir "C:\EDK_Projects_13_2\Atlys_HDMI_out" 
+-lang vhdl 
+-bus plbv46 s 
+-rst 
+-reg 1 
+-xps 

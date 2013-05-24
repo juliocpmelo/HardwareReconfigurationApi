@@ -1,0 +1,31 @@
+/*
+ * HardwareComponent.h
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+#ifndef HARDWARECOMPONENT_H_
+#define HARDWARECOMPONENT_H_
+
+typedef int (*GetPort_t)(char* portName);
+/*
+ * Node of the HardwareReisterMap
+ * Keeps the information about the port and registerId that is used to access register data
+ */
+typedef struct HardwareRegisterMapNode_t{
+	char* portName;
+	int registerId;
+	struct HardwareRegisterMapNode_t *next;
+}HardwareRegisterMapNode;
+
+typedef struct HardwareRegisterMap_t{
+	HardwareRegisterMapNode *first;
+}HardwareRegisterMap;
+
+typedef struct HardwareComponent_t{
+	HardwareRegisterMap hardwareRegiterMap;
+	GetPort_t getPortId;
+} HardwareComponent;
+
+#endif /* HARDWARECOMPONENT_H_ */

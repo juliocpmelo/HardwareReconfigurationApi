@@ -1,0 +1,14 @@
+#Fri Apr 26 19:48:28 CEST 2013
+com.xilinx.sdk.linkgen.prefs.FBTest\:.rodata=mcb_ddr2_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.FBTest\:Heap-size=1024
+com.xilinx.sdk.linkgen.prefs.FBTest\:.text=mcb_ddr2_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.FBTest\:.sbss2=mcb_ddr2_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.FBTest\:.bss=mcb_ddr2_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.FBTest\:.sdata=mcb_ddr2_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.FBTest\:Stack-size=1024
+eclipse.preferences.version=1
+com.xilinx.sdk.linkgen.prefs.FBTest\:.sbss=mcb_ddr2_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.FBTest\:Heap=mcb_ddr2_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.FBTest\:.sdata2=mcb_ddr2_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.FBTest\:.data=mcb_ddr2_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.FBTest\:Stack=mcb_ddr2_MPMC_BASEADDR

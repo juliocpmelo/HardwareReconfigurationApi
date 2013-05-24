@@ -1,0 +1,25 @@
+/*
+ * ArchitectureManager.c
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+#include "ArchitectureManager.h"
+
+
+void setPortValue(HardwareInterfaceModule_t* self,const char componentName, const char* portName, int value){
+
+	/*translate component name and port name into the register address*/
+	Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_xAccess, value);
+}
+
+int getPortValue(HardwareInterfaceModule_t* self,const char componentName, const char* portName){
+
+
+}
+
+ArcthiectureManager* createArchitectureManager(){
+
+
+}

@@ -1,0 +1,35 @@
+/*
+ * HardwareComponent.c
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+
+#include "HardwareComponent.h"
+#include <stdio.h>
+
+
+
+int getPort(void *self, const char* portName, int* portId){
+
+	HardwareComponent* selfInstance = (HardwareComponent*) self;
+
+	PortSetNode* actPortIt = selfInstance->portSet->first;
+
+	while (actPortIt != NULL) {
+		if(strcmp(actPortIt->port->portName,portName) == 0)
+			return actPortIt->port;
+		else
+			actPortIt = actPortIt->next;
+	}
+
+}
+
+HardwareComponent* createHardwareComponent(){
+
+	HardwareComponent *comp = malloc(sizeof(HardwareComponent));
+
+	return comp;
+
+}

@@ -1,0 +1,26 @@
+Release 14.4 Map P.49d (nt64)
+Xilinx Map Application Log File for Design 'hdmi_out'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc6slx45-csg324-2 -w -logic_opt off -ol
+high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off
+-pr off -lc off -power off -o hdmi_out_map.ncd hdmi_out.ngd hdmi_out.pcf 
+Target Device  : xc6slx45
+Target Package : csg324
+Target Speed   : -2
+Mapper Version : spartan6 -- $Revision: 1.55 $
+Mapped Date    : Mon May 13 17:32:05 2013
+
+Mapping design into LUTs...
+ERROR:LIT:560 - BUFPLL symbol
+   "USER_LOGIC_I/hdmi_out_inst/Inst_dvi_out_native/ioclk_buf" (output
+   signal=USER_LOGIC_I/hdmi_out_inst/Inst_dvi_out_native/pclkx10) must have
+   PLLIN and LOCKED pins driven by the same PLL given that ENABLE_SYNC attribute
+   is set to TRUE. 
+Errors found during logical drc. 
+
+Design Summary
+--------------
+Number of errors   :   1
+Number of warnings :   0

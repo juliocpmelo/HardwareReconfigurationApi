@@ -1,0 +1,12 @@
+/*
+ * HardwareReconfiguration.c
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+#include "HardwareReconfigurationModule.h"
+
+HardwareReconfigurationModule* createHardwareReconfigurationModule(){
+	HardwareReconfigurationModule* hardReconfgModule = malloc(sizeof(HardwareReconfigurationModule));
+	return hardReconfgModule;
+}

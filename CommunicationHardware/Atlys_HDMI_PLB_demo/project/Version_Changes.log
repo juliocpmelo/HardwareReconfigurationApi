@@ -1,0 +1,9 @@
+ The following files will be modified:
+  system.mhs
+--------------------------------------
+ The following changes will be made:
+ Core microblaze 8.20.a will be replaced by 8.40.b
+ Core mpmc 6.04.a will be replaced by 6.06.a
+ Core lmb_bram_if_cntlr 3.00.b will be replaced by 3.10.c
+ Core clock_generator 4.02.a will be replaced by 4.03.a
+ Core mdm 2.00.b will be replaced by 2.10.a

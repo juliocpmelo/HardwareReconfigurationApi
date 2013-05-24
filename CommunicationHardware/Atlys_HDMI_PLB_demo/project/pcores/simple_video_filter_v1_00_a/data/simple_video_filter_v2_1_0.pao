@@ -1,0 +1,18 @@
+##############################################################################
+## Filename:          D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/data/simple_video_filter_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Fri Apr 26 16:21:56 2013 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib plbv46_slave_single_v1_01_a  all 
+lib simple_video_filter_v1_00_a user_logic vhdl
+lib simple_video_filter_v1_00_a simple_video_filter vhdl
+
+lib simple_video_filter_v1_00_a SobelFilter/SobelWrapper vhdl
+lib simple_video_filter_v1_00_a SobelFilter/sobel_filterXConstants verilog
+lib simple_video_filter_v1_00_a SobelFilter/sobel_filterYConstants verilog
+lib simple_video_filter_v1_00_a SobelFilter/sobel_mul_3s_8s_13_2 verilog
+lib simple_video_filter_v1_00_a SobelFilter/sobel_pixelLine verilog
+lib simple_video_filter_v1_00_a SobelFilter/sobel verilog
+

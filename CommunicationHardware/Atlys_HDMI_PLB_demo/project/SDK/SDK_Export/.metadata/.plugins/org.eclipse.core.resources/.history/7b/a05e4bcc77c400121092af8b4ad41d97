@@ -1,0 +1,46 @@
+/*
+ * ArchitectureManager.h
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+#ifndef ARCHITECTUREMANAGER_H_
+#define ARCHITECTUREMANAGER_H_
+
+#include "HardwareInterface.h"
+#include "ComponentRepresentation/HardwareComponent.h"
+
+typedef struct ComponentSetNode_t {
+	struct ComponentSetNode_t *next;
+	HardwareComponent *comp;
+}ComponentSetNode;
+
+typedef struct ComponentSet_t{
+	ComponentSetNode *first;
+}ComponentSet;
+
+typedef void (*SetPortValueFunction_t) (void* self,const char* componentName, const char* portName, int value);
+typedef int (*GetPortValueFunction_t) (void* self,const char* componentName, const char* portName);
+typedef void* (*GetComponentRepresentation_t) (void* self,const char* componentName);
+
+typedef struct ArchitectureManager_t {
+
+	HardwareInterface *hardwareInterface;
+
+	ComponentSet *components;
+
+	/*sets the value from a port in a instance of the component*/
+	SetPortValueFunction_t setPortValue;
+
+	/*gets the value from a port in a instance of the component*/
+	GetPortValueFunction_t getPortValue;
+
+} ArchitectureManager;
+
+
+
+/*creates a new instance of the ArchitectureManager*/
+ArchitectureManager* createArchitectureManager();
+
+#endif /* ARCHITECTUREMANAGER_H_ */

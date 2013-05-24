@@ -1,0 +1,14 @@
+/*
+ * HardwareInterface.h
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+#ifndef HARDWAREINTERFACE_H_
+#define HARDWAREINTERFACE_H_
+
+typedef void (*SetPortValueFunction) (HardwareInterfaceModule_t* self,const char* portName, int value);
+typedef int (*GetPortValueFunction) (HardwareInterfaceModule_t* self,const char* portName);
+
+#endif /* HARDWAREINTERFACE_H_ */

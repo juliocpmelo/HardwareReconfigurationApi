@@ -1,0 +1,16 @@
+/*
+ * HardwareComponent.c
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+
+#include "HardwareComponent.h"
+
+typedef int (*GetPort_t)(const char* portName, int* portId);
+
+int getPort(const char* portName, int* portId){
+
+
+}

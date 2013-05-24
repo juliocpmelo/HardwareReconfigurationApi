@@ -1,0 +1,1896 @@
+Release 14.4 - xst P.49d (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\synthesis\xst_temp_dir\
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
+ 
+--> 
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input Format                       : MIXED
+Input File Name                    : "system_simple_video_filter_0_wrapper_xst.prj"
+Verilog Include Directory          : {"D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+
+---- Target Parameters
+Target Device                      : xc6slx45csg324-2
+Output File Name                   : "../implementation/system_simple_video_filter_0_wrapper.ngc"
+
+---- Source Options
+Top Module Name                    : system_simple_video_filter_0_wrapper
+
+---- Target Options
+Add IO Buffers                     : NO
+
+---- General Options
+Optimization Goal                  : speed
+Netlist Hierarchy                  : as_optimized
+Optimization Effort                : 1
+Hierarchy Separator                : /
+
+---- Other Options
+Cores Search Directories           : {../implementation}
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_filterXConstants.v" into library simple_video_filter_v1_00_a
+Parsing module <sobel_filterXConstants_rom>.
+Parsing module <sobel_filterXConstants>.
+Analyzing Verilog file "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_filterYConstants.v" into library simple_video_filter_v1_00_a
+Parsing module <sobel_filterYConstants_rom>.
+Parsing module <sobel_filterYConstants>.
+Analyzing Verilog file "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_mul_3s_8s_13_2.v" into library simple_video_filter_v1_00_a
+Parsing module <sobel_mul_3s_8s_13_2_MulnS_0>.
+Parsing module <sobel_mul_3s_8s_13_2>.
+Analyzing Verilog file "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_pixelLine.v" into library simple_video_filter_v1_00_a
+Parsing module <sobel_pixelLine_ram>.
+Parsing module <sobel_pixelLine>.
+Analyzing Verilog file "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" into library simple_video_filter_v1_00_a
+Parsing module <sobel>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/family.vhd" into library proc_common_v3_00_a
+Parsing package <family>.
+Parsing package body <family>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/family_support.vhd" into library proc_common_v3_00_a
+Parsing package <family_support>.
+Parsing package body <family_support>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/coregen_comp_defs.vhd" into library proc_common_v3_00_a
+Parsing package <coregen_comp_defs>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/common_types_pkg.vhd" into library proc_common_v3_00_a
+Parsing package <Common_Types>.
+Parsing package body <Common_Types>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/proc_common_pkg.vhd" into library proc_common_v3_00_a
+Parsing package <proc_common_pkg>.
+Parsing package body <proc_common_pkg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/conv_funs_pkg.vhd" into library proc_common_v3_00_a
+Parsing package <conv_funs_pkg>.
+Parsing package body <conv_funs_pkg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_pkg.vhd" into library proc_common_v3_00_a
+Parsing package <ipif_pkg>.
+Parsing package body <ipif_pkg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/async_fifo_fg.vhd" into library proc_common_v3_00_a
+Parsing entity <async_fifo_fg>.
+Parsing architecture <implementation> of entity <async_fifo_fg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/sync_fifo_fg.vhd" into library proc_common_v3_00_a
+Parsing entity <sync_fifo_fg>.
+Parsing architecture <implementation> of entity <sync_fifo_fg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/basic_sfifo_fg.vhd" into library proc_common_v3_00_a
+Parsing entity <basic_sfifo_fg>.
+Parsing architecture <implementation> of entity <basic_sfifo_fg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/blk_mem_gen_wrapper.vhd" into library proc_common_v3_00_a
+Parsing entity <blk_mem_gen_wrapper>.
+Parsing architecture <implementation> of entity <blk_mem_gen_wrapper>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/addsub.vhd" into library proc_common_v3_00_a
+Parsing entity <addsub>.
+Parsing architecture <imp> of entity <addsub>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter_bit.vhd" into library proc_common_v3_00_a
+Parsing entity <counter_bit>.
+Parsing architecture <imp> of entity <counter_bit>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter.vhd" into library proc_common_v3_00_a
+Parsing entity <Counter>.
+Parsing architecture <imp> of entity <counter>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/direct_path_cntr.vhd" into library proc_common_v3_00_a
+Parsing entity <direct_path_cntr>.
+Parsing architecture <imp> of entity <direct_path_cntr>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/direct_path_cntr_ai.vhd" into library proc_common_v3_00_a
+Parsing entity <direct_path_cntr_ai>.
+Parsing architecture <imp> of entity <direct_path_cntr_ai>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/down_counter.vhd" into library proc_common_v3_00_a
+Parsing entity <down_counter>.
+Parsing architecture <simulation> of entity <down_counter>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/eval_timer.vhd" into library proc_common_v3_00_a
+Parsing entity <eval_timer>.
+Parsing architecture <imp> of entity <eval_timer>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/inferred_lut4.vhd" into library proc_common_v3_00_a
+Parsing entity <inferred_lut4>.
+Parsing architecture <implementation> of entity <inferred_lut4>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_steer.vhd" into library proc_common_v3_00_a
+Parsing entity <IPIF_Steer>.
+Parsing architecture <IMP> of entity <ipif_steer>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_steer128.vhd" into library proc_common_v3_00_a
+Parsing entity <ipif_steer128>.
+Parsing architecture <IMP> of entity <ipif_steer128>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_mirror128.vhd" into library proc_common_v3_00_a
+Parsing entity <ipif_mirror128>.
+Parsing architecture <IMP> of entity <ipif_mirror128>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ld_arith_reg.vhd" into library proc_common_v3_00_a
+Parsing entity <ld_arith_reg>.
+Parsing architecture <imp> of entity <ld_arith_reg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ld_arith_reg2.vhd" into library proc_common_v3_00_a
+Parsing entity <ld_arith_reg2>.
+Parsing architecture <imp> of entity <ld_arith_reg2>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/mux_onehot.vhd" into library proc_common_v3_00_a
+Parsing entity <mux_onehot>.
+Parsing architecture <imp> of entity <mux_onehot>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_bits.vhd" into library proc_common_v3_00_a
+Parsing entity <or_bits>.
+Parsing architecture <implementation> of entity <or_bits>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_muxcy.vhd" into library proc_common_v3_00_a
+Parsing entity <or_muxcy>.
+Parsing architecture <implementation> of entity <or_muxcy>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_gate.vhd" into library proc_common_v3_00_a
+Parsing entity <or_gate>.
+Parsing architecture <imp> of entity <or_gate>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_gate128.vhd" into library proc_common_v3_00_a
+Parsing entity <or_gate128>.
+Parsing architecture <imp> of entity <or_gate128>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_adder_bit.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_adder_bit>.
+Parsing architecture <implementation> of entity <pf_adder_bit>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_adder.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_adder>.
+Parsing architecture <implementation> of entity <pf_adder>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_counter_bit.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_counter_bit>.
+Parsing architecture <implementation> of entity <pf_counter_bit>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_counter.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_counter>.
+Parsing architecture <implementation> of entity <pf_counter>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_counter_top.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_counter_top>.
+Parsing architecture <implementation> of entity <pf_counter_top>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_occ_counter.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_occ_counter>.
+Parsing architecture <implementation> of entity <pf_occ_counter>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_occ_counter_top.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_occ_counter_top>.
+Parsing architecture <implementation> of entity <pf_occ_counter_top>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_dpram_select.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_dpram_select>.
+Parsing architecture <implementation> of entity <pf_dpram_select>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect.vhd" into library proc_common_v3_00_a
+Parsing entity <pselect>.
+Parsing architecture <imp> of entity <pselect>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_mask.vhd" into library proc_common_v3_00_a
+Parsing entity <pselect_mask>.
+Parsing architecture <imp> of entity <pselect_mask>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl16_fifo.vhd" into library proc_common_v3_00_a
+Parsing entity <srl16_fifo>.
+Parsing architecture <implementation> of entity <srl16_fifo>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo.vhd" into library proc_common_v3_00_a
+Parsing entity <SRL_FIFO>.
+Parsing architecture <IMP> of entity <srl_fifo>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo2.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo2>.
+Parsing architecture <imp> of entity <srl_fifo2>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo3.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo3>.
+Parsing architecture <imp> of entity <srl_fifo3>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo_rbu.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo_rbu>.
+Parsing architecture <imp> of entity <srl_fifo_rbu>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/valid_be.vhd" into library proc_common_v3_00_a
+Parsing entity <valid_be>.
+Parsing architecture <implementation> of entity <valid_be>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_with_enable_f.vhd" into library proc_common_v3_00_a
+Parsing entity <or_with_enable_f>.
+Parsing architecture <implementation> of entity <or_with_enable_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/muxf_struct_f.vhd" into library proc_common_v3_00_a
+Parsing entity <muxf_struct>.
+Parsing architecture <imp> of entity <muxf_struct>.
+Parsing entity <muxf_struct_f>.
+Parsing architecture <imp> of entity <muxf_struct_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" into library proc_common_v3_00_a
+Parsing entity <cntr_incr_decr_addn_f>.
+Parsing architecture <imp> of entity <cntr_incr_decr_addn_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/dynshreg_f.vhd" into library proc_common_v3_00_a
+Parsing entity <dynshreg_f>.
+Parsing architecture <behavioral> of entity <dynshreg_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/dynshreg_i_f.vhd" into library proc_common_v3_00_a
+Parsing entity <dynshreg_i_f>.
+Parsing architecture <behavioral> of entity <dynshreg_i_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/mux_onehot_f.vhd" into library proc_common_v3_00_a
+Parsing entity <mux_onehot_f>.
+Parsing architecture <imp> of entity <mux_onehot_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo_rbu_f.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo_rbu_f>.
+Parsing architecture <imp> of entity <srl_fifo_rbu_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo_f.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo_f>.
+Parsing architecture <imp> of entity <srl_fifo_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/compare_vectors_f.vhd" into library proc_common_v3_00_a
+Parsing entity <compare_vectors_f>.
+Parsing architecture <imp> of entity <compare_vectors_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd" into library proc_common_v3_00_a
+Parsing entity <pselect_f>.
+Parsing architecture <imp> of entity <pselect_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter_f.vhd" into library proc_common_v3_00_a
+Parsing entity <counter_f>.
+Parsing architecture <imp> of entity <counter_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_muxcy_f.vhd" into library proc_common_v3_00_a
+Parsing entity <or_muxcy_f>.
+Parsing architecture <implementation> of entity <or_muxcy_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_gate_f.vhd" into library proc_common_v3_00_a
+Parsing entity <or_gate_f>.
+Parsing architecture <imp> of entity <or_gate_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd" into library proc_common_v3_00_a
+Parsing entity <soft_reset>.
+Parsing architecture <implementation> of entity <soft_reset>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/family.vhd" into library proc_common_v3_00_a
+Parsing package <family>.
+Parsing package body <family>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/family_support.vhd" into library proc_common_v3_00_a
+Parsing package <family_support>.
+Parsing package body <family_support>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/coregen_comp_defs.vhd" into library proc_common_v3_00_a
+Parsing package <coregen_comp_defs>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/common_types_pkg.vhd" into library proc_common_v3_00_a
+Parsing package <Common_Types>.
+Parsing package body <Common_Types>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/proc_common_pkg.vhd" into library proc_common_v3_00_a
+Parsing package <proc_common_pkg>.
+Parsing package body <proc_common_pkg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/conv_funs_pkg.vhd" into library proc_common_v3_00_a
+Parsing package <conv_funs_pkg>.
+Parsing package body <conv_funs_pkg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_pkg.vhd" into library proc_common_v3_00_a
+Parsing package <ipif_pkg>.
+Parsing package body <ipif_pkg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/async_fifo_fg.vhd" into library proc_common_v3_00_a
+Parsing entity <async_fifo_fg>.
+Parsing architecture <implementation> of entity <async_fifo_fg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/sync_fifo_fg.vhd" into library proc_common_v3_00_a
+Parsing entity <sync_fifo_fg>.
+Parsing architecture <implementation> of entity <sync_fifo_fg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/basic_sfifo_fg.vhd" into library proc_common_v3_00_a
+Parsing entity <basic_sfifo_fg>.
+Parsing architecture <implementation> of entity <basic_sfifo_fg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/blk_mem_gen_wrapper.vhd" into library proc_common_v3_00_a
+Parsing entity <blk_mem_gen_wrapper>.
+Parsing architecture <implementation> of entity <blk_mem_gen_wrapper>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/addsub.vhd" into library proc_common_v3_00_a
+Parsing entity <addsub>.
+Parsing architecture <imp> of entity <addsub>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter_bit.vhd" into library proc_common_v3_00_a
+Parsing entity <counter_bit>.
+Parsing architecture <imp> of entity <counter_bit>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter.vhd" into library proc_common_v3_00_a
+Parsing entity <Counter>.
+Parsing architecture <imp> of entity <counter>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/direct_path_cntr.vhd" into library proc_common_v3_00_a
+Parsing entity <direct_path_cntr>.
+Parsing architecture <imp> of entity <direct_path_cntr>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/direct_path_cntr_ai.vhd" into library proc_common_v3_00_a
+Parsing entity <direct_path_cntr_ai>.
+Parsing architecture <imp> of entity <direct_path_cntr_ai>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/down_counter.vhd" into library proc_common_v3_00_a
+Parsing entity <down_counter>.
+Parsing architecture <simulation> of entity <down_counter>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/eval_timer.vhd" into library proc_common_v3_00_a
+Parsing entity <eval_timer>.
+Parsing architecture <imp> of entity <eval_timer>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/inferred_lut4.vhd" into library proc_common_v3_00_a
+Parsing entity <inferred_lut4>.
+Parsing architecture <implementation> of entity <inferred_lut4>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_steer.vhd" into library proc_common_v3_00_a
+Parsing entity <IPIF_Steer>.
+Parsing architecture <IMP> of entity <ipif_steer>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_steer128.vhd" into library proc_common_v3_00_a
+Parsing entity <ipif_steer128>.
+Parsing architecture <IMP> of entity <ipif_steer128>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_mirror128.vhd" into library proc_common_v3_00_a
+Parsing entity <ipif_mirror128>.
+Parsing architecture <IMP> of entity <ipif_mirror128>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ld_arith_reg.vhd" into library proc_common_v3_00_a
+Parsing entity <ld_arith_reg>.
+Parsing architecture <imp> of entity <ld_arith_reg>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ld_arith_reg2.vhd" into library proc_common_v3_00_a
+Parsing entity <ld_arith_reg2>.
+Parsing architecture <imp> of entity <ld_arith_reg2>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/mux_onehot.vhd" into library proc_common_v3_00_a
+Parsing entity <mux_onehot>.
+Parsing architecture <imp> of entity <mux_onehot>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_bits.vhd" into library proc_common_v3_00_a
+Parsing entity <or_bits>.
+Parsing architecture <implementation> of entity <or_bits>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_muxcy.vhd" into library proc_common_v3_00_a
+Parsing entity <or_muxcy>.
+Parsing architecture <implementation> of entity <or_muxcy>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_gate.vhd" into library proc_common_v3_00_a
+Parsing entity <or_gate>.
+Parsing architecture <imp> of entity <or_gate>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_gate128.vhd" into library proc_common_v3_00_a
+Parsing entity <or_gate128>.
+Parsing architecture <imp> of entity <or_gate128>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_adder_bit.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_adder_bit>.
+Parsing architecture <implementation> of entity <pf_adder_bit>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_adder.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_adder>.
+Parsing architecture <implementation> of entity <pf_adder>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_counter_bit.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_counter_bit>.
+Parsing architecture <implementation> of entity <pf_counter_bit>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_counter.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_counter>.
+Parsing architecture <implementation> of entity <pf_counter>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_counter_top.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_counter_top>.
+Parsing architecture <implementation> of entity <pf_counter_top>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_occ_counter.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_occ_counter>.
+Parsing architecture <implementation> of entity <pf_occ_counter>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_occ_counter_top.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_occ_counter_top>.
+Parsing architecture <implementation> of entity <pf_occ_counter_top>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pf_dpram_select.vhd" into library proc_common_v3_00_a
+Parsing entity <pf_dpram_select>.
+Parsing architecture <implementation> of entity <pf_dpram_select>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect.vhd" into library proc_common_v3_00_a
+Parsing entity <pselect>.
+Parsing architecture <imp> of entity <pselect>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_mask.vhd" into library proc_common_v3_00_a
+Parsing entity <pselect_mask>.
+Parsing architecture <imp> of entity <pselect_mask>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl16_fifo.vhd" into library proc_common_v3_00_a
+Parsing entity <srl16_fifo>.
+Parsing architecture <implementation> of entity <srl16_fifo>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo.vhd" into library proc_common_v3_00_a
+Parsing entity <SRL_FIFO>.
+Parsing architecture <IMP> of entity <srl_fifo>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo2.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo2>.
+Parsing architecture <imp> of entity <srl_fifo2>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo3.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo3>.
+Parsing architecture <imp> of entity <srl_fifo3>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo_rbu.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo_rbu>.
+Parsing architecture <imp> of entity <srl_fifo_rbu>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/valid_be.vhd" into library proc_common_v3_00_a
+Parsing entity <valid_be>.
+Parsing architecture <implementation> of entity <valid_be>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_with_enable_f.vhd" into library proc_common_v3_00_a
+Parsing entity <or_with_enable_f>.
+Parsing architecture <implementation> of entity <or_with_enable_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/muxf_struct_f.vhd" into library proc_common_v3_00_a
+Parsing entity <muxf_struct>.
+Parsing architecture <imp> of entity <muxf_struct>.
+Parsing entity <muxf_struct_f>.
+Parsing architecture <imp> of entity <muxf_struct_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/cntr_incr_decr_addn_f.vhd" into library proc_common_v3_00_a
+Parsing entity <cntr_incr_decr_addn_f>.
+Parsing architecture <imp> of entity <cntr_incr_decr_addn_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/dynshreg_f.vhd" into library proc_common_v3_00_a
+Parsing entity <dynshreg_f>.
+Parsing architecture <behavioral> of entity <dynshreg_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/dynshreg_i_f.vhd" into library proc_common_v3_00_a
+Parsing entity <dynshreg_i_f>.
+Parsing architecture <behavioral> of entity <dynshreg_i_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/mux_onehot_f.vhd" into library proc_common_v3_00_a
+Parsing entity <mux_onehot_f>.
+Parsing architecture <imp> of entity <mux_onehot_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo_rbu_f.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo_rbu_f>.
+Parsing architecture <imp> of entity <srl_fifo_rbu_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/srl_fifo_f.vhd" into library proc_common_v3_00_a
+Parsing entity <srl_fifo_f>.
+Parsing architecture <imp> of entity <srl_fifo_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/compare_vectors_f.vhd" into library proc_common_v3_00_a
+Parsing entity <compare_vectors_f>.
+Parsing architecture <imp> of entity <compare_vectors_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd" into library proc_common_v3_00_a
+Parsing entity <pselect_f>.
+Parsing architecture <imp> of entity <pselect_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter_f.vhd" into library proc_common_v3_00_a
+Parsing entity <counter_f>.
+Parsing architecture <imp> of entity <counter_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_muxcy_f.vhd" into library proc_common_v3_00_a
+Parsing entity <or_muxcy_f>.
+Parsing architecture <implementation> of entity <or_muxcy_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_gate_f.vhd" into library proc_common_v3_00_a
+Parsing entity <or_gate_f>.
+Parsing architecture <imp> of entity <or_gate_f>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/soft_reset.vhd" into library proc_common_v3_00_a
+Parsing entity <soft_reset>.
+Parsing architecture <implementation> of entity <soft_reset>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_address_decoder.vhd" into library plbv46_slave_single_v1_01_a
+Parsing entity <plb_address_decoder>.
+Parsing architecture <IMP> of entity <plb_address_decoder>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd" into library plbv46_slave_single_v1_01_a
+Parsing entity <plb_slave_attachment>.
+Parsing architecture <implementation> of entity <plb_slave_attachment>.
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plbv46_slave_single.vhd" into library plbv46_slave_single_v1_01_a
+Parsing entity <plbv46_slave_single>.
+Parsing architecture <implementation> of entity <plbv46_slave_single>.
+Parsing VHDL file "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/SobelFilter/SobelWrapper.vhd" into library simple_video_filter_v1_00_a
+Parsing entity <SobelWrapper>.
+Parsing architecture <Behavioral> of entity <sobelwrapper>.
+WARNING:HDLCompiler:946 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/SobelFilter/SobelWrapper.vhd" Line 78: Actual for formal port mode is neither a static name nor a globally static expression
+Parsing VHDL file "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/user_logic.vhd" into library simple_video_filter_v1_00_a
+Parsing entity <user_logic>.
+Parsing architecture <IMP> of entity <user_logic>.
+Parsing VHDL file "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/simple_video_filter.vhd" into library simple_video_filter_v1_00_a
+Parsing entity <simple_video_filter>.
+Parsing architecture <IMP> of entity <simple_video_filter>.
+Parsing VHDL file "D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\hdl\system_simple_video_filter_0_wrapper.vhd" into library work
+Parsing entity <system_simple_video_filter_0_wrapper>.
+Parsing architecture <STRUCTURE> of entity <system_simple_video_filter_0_wrapper>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating entity <system_simple_video_filter_0_wrapper> (architecture <STRUCTURE>) from library <work>.
+
+Elaborating entity <simple_video_filter> (architecture <IMP>) with generics from library <simple_video_filter_v1_00_a>.
+
+Elaborating entity <plbv46_slave_single> (architecture <implementation>) with generics from library <plbv46_slave_single_v1_01_a>.
+
+Elaborating entity <plb_slave_attachment> (architecture <implementation>) with generics from library <plbv46_slave_single_v1_01_a>.
+
+Elaborating entity <plb_address_decoder> (architecture <IMP>) with generics from library <plbv46_slave_single_v1_01_a>.
+WARNING:HDLCompiler:1127 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_address_decoder.vhd" Line 319: Assignment to cs_s_h_clr ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_address_decoder.vhd" Line 323: Assignment to addr_match_clr ignored, since the identifier is never used
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <or_gate128> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <or_muxcy> (architecture <implementation>) with generics from library <proc_common_v3_00_a>.
+INFO:HDLCompiler:679 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd" Line 711. Case statement is complete. others clause is never selected
+WARNING:HDLCompiler:1127 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd" Line 1025: Assignment to start_data_phase ignored, since the identifier is never used
+
+Elaborating entity <counter_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
+
+Elaborating entity <user_logic> (architecture <IMP>) with generics from library <simple_video_filter_v1_00_a>.
+
+Elaborating entity <SobelWrapper> (architecture <Behavioral>) from library <simple_video_filter_v1_00_a>.
+Going to verilog side to elaborate module sobel
+
+Elaborating module <sobel(ap_const_logic_1=1,ap_const_logic_0=0,ap_ST_st1_fsm_0=0,ap_ST_st2_fsm_1=1,ap_ST_st3_fsm_2=2,ap_ST_st4_fsm_3=3,ap_ST_st5_fsm_4=4,ap_ST_st6_fsm_5=5,ap_ST_st7_fsm_6=6,ap_const_lv24_0=0,ap_const_lv1_0=0,ap_const_lv2_0=0,ap_const_lv16_0=0,ap_const_lv16_1=1,ap_const_lv16_2=2,ap_const_lv11_7FF=2047,ap_const_lv12_9=9,ap_const_lv12_7=7,ap_const_lv24_3=3,ap_const_lv32_8=8,ap_const_lv32_17=23,ap_const_lv1_1=1,ap_const_lv24_8=8,ap_const_lv32_10=16,ap_const_lv2_3=3,ap_const_lv2_1=1,ap_const_lv4_2=2,ap_const_lv24_1=1,ap_const_lv32_F=15,ap_true=1)>.
+
+Elaborating module <sobel_pixelLine(DataWidth=24,AddressRange=1920,AddressWidth=11)>.
+
+Elaborating module <sobel_pixelLine_ram>.
+Reading initialization file \":\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\simple_video_filter_v1_00_a\hdl\verilog\SobelFilter\/./sobel_pixelLine_ram.dat\".
+
+Elaborating module <sobel_filterYConstants(DataWidth=3,AddressRange=9,AddressWidth=4)>.
+
+Elaborating module <sobel_filterYConstants_rom>.
+Reading initialization file \":\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\simple_video_filter_v1_00_a\hdl\verilog\SobelFilter\/./sobel_filterYConstants_rom.dat\".
+
+Elaborating module <sobel_filterXConstants(DataWidth=3,AddressRange=9,AddressWidth=4)>.
+
+Elaborating module <sobel_filterXConstants_rom>.
+Reading initialization file \":\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\pcores\simple_video_filter_v1_00_a\hdl\verilog\SobelFilter\/./sobel_filterXConstants_rom.dat\".
+
+Elaborating module <sobel_mul_3s_8s_13_2(ID=1,NUM_STAGE=2,din0_WIDTH=3,din1_WIDTH=8,dout_WIDTH=13)>.
+
+Elaborating module <sobel_mul_3s_8s_13_2_MulnS_0>.
+
+Elaborating module <sobel_mul_3s_8s_13_2(ID=2,NUM_STAGE=2,din0_WIDTH=3,din1_WIDTH=8,dout_WIDTH=13)>.
+
+Elaborating module <sobel_mul_3s_8s_13_2(ID=3,NUM_STAGE=2,din0_WIDTH=3,din1_WIDTH=8,dout_WIDTH=13)>.
+
+Elaborating module <sobel_mul_3s_8s_13_2(ID=4,NUM_STAGE=2,din0_WIDTH=3,din1_WIDTH=8,dout_WIDTH=13)>.
+
+Elaborating module <sobel_mul_3s_8s_13_2(ID=5,NUM_STAGE=2,din0_WIDTH=3,din1_WIDTH=8,dout_WIDTH=13)>.
+
+Elaborating module <sobel_mul_3s_8s_13_2(ID=6,NUM_STAGE=2,din0_WIDTH=3,din1_WIDTH=8,dout_WIDTH=13)>.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 624: Result of 32-bit expression is truncated to fit in 11-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 626: Result of 32-bit expression is truncated to fit in 11-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 628: Result of 32-bit expression is truncated to fit in 11-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 630: Result of 32-bit expression is truncated to fit in 11-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 654: Result of 32-bit expression is truncated to fit in 4-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 659: Result of 32-bit expression is truncated to fit in 4-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 662: Result of 13-bit expression is truncated to fit in 3-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 663: Result of 13-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 665: Result of 13-bit expression is truncated to fit in 3-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 666: Result of 13-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 668: Result of 13-bit expression is truncated to fit in 3-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 669: Result of 13-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 671: Result of 13-bit expression is truncated to fit in 3-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 672: Result of 13-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 674: Result of 13-bit expression is truncated to fit in 3-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 675: Result of 13-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 677: Result of 13-bit expression is truncated to fit in 3-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 678: Result of 13-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 698: Result of 32-bit expression is truncated to fit in 1-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 699: Result of 32-bit expression is truncated to fit in 1-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 700: Result of 32-bit expression is truncated to fit in 1-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 701: Result of 32-bit expression is truncated to fit in 1-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 702: Result of 32-bit expression is truncated to fit in 1-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 703: Result of 32-bit expression is truncated to fit in 1-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 769: Result of 3-bit expression is truncated to fit in 2-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 770: Result of 25-bit expression is truncated to fit in 24-bit target.
+WARNING:HDLCompiler:413 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v" Line 789: Result of 12-bit expression is truncated to fit in 11-bit target.
+Back to vhdl to continue elaboration
+WARNING:HDLCompiler:92 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/user_logic.vhd" Line 429: user_controlouts should be on the sensitivity list of the process
+WARNING:HDLCompiler:634 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/user_logic.vhd" Line 241: Net <slv_reg4[0]> does not have a driver.
+WARNING:HDLCompiler:634 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/user_logic.vhd" Line 242: Net <slv_reg5[0]> does not have a driver.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <system_simple_video_filter_0_wrapper>.
+    Related source file is "D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\hdl\system_simple_video_filter_0_wrapper.vhd".
+    Summary:
+	no macro.
+Unit <system_simple_video_filter_0_wrapper> synthesized.
+
+Synthesizing Unit <simple_video_filter>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/simple_video_filter.vhd".
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+        RESOLUTION_SELECT = 1
+        FRAME_BASE_ADDR = "00000000000000000000000000000000"
+        LINE_STRIDE = "000000000000000000000000"
+        C_BASEADDR = "11000111000000000000000000000000"
+        C_HIGHADDR = "11000111000000001111111111111111"
+        C_SPLB_AWIDTH = 32
+        C_SPLB_DWIDTH = 32
+        C_SPLB_NUM_MASTERS = 2
+        C_SPLB_MID_WIDTH = 1
+        C_SPLB_NATIVE_DWIDTH = 32
+        C_SPLB_P2P = 0
+        C_SPLB_SUPPORT_BURSTS = 0
+        C_SPLB_SMALLEST_MASTER = 32
+        C_SPLB_CLK_PERIOD_PS = 13333
+        C_INCLUDE_DPHASE_TIMER = 1
+        C_FAMILY = "spartan6"
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+INFO:Xst:3210 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/simple_video_filter.vhd" line 341: Output port <Bus2IP_Addr> of the instance <PLBV46_SLAVE_SINGLE_I> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/simple_video_filter.vhd" line 341: Output port <Bus2IP_CS> of the instance <PLBV46_SLAVE_SINGLE_I> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/simple_video_filter.vhd" line 341: Output port <Bus2IP_RNW> of the instance <PLBV46_SLAVE_SINGLE_I> is unconnected or connected to loadless signal.
+    Summary:
+	no macro.
+Unit <simple_video_filter> synthesized.
+
+Synthesizing Unit <plbv46_slave_single>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plbv46_slave_single.vhd".
+        C_ARD_ADDR_RANGE_ARRAY = ("0000000000000000000000000000000011000111000000000000000000000000","0000000000000000000000000000000011000111000000001111111111111111")
+        C_ARD_NUM_CE_ARRAY = (16)
+        C_SPLB_P2P = 0
+        C_BUS2CORE_CLK_RATIO = 1
+        C_INCLUDE_DPHASE_TIMER = 1
+        C_SPLB_MID_WIDTH = 1
+        C_SPLB_NUM_MASTERS = 2
+        C_SPLB_AWIDTH = 32
+        C_SPLB_DWIDTH = 32
+        C_SIPIF_DWIDTH = 32
+        C_FAMILY = "spartan6"
+WARNING:Xst:647 - Input <PLB_MSize> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_wrPendPri> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_rdPendPri> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_reqPri> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_TAttribute> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_SAValid> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_rdPrim> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_wrPrim> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_abort> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_busLock> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_lockErr> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_wrBurst> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_rdBurst> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_wrPendReq> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PLB_rdPendReq> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <plbv46_slave_single> synthesized.
+
+Synthesizing Unit <plb_slave_attachment>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd".
+        C_ARD_ADDR_RANGE_ARRAY = ("0000000000000000000000000000000011000111000000000000000000000000","0000000000000000000000000000000011000111000000001111111111111111")
+        C_ARD_NUM_CE_ARRAY = (16)
+        C_PLB_NUM_MASTERS = 2
+        C_PLB_MID_WIDTH = 1
+        C_SPLB_P2P = 0
+        C_BUS2CORE_CLK_RATIO = 1
+        C_IPIF_ABUS_WIDTH = 32
+        C_IPIF_DBUS_WIDTH = 32
+        C_DPHASE_TIMEOUT = 128
+        C_INCLUDE_DPHASE_TIMER = 1
+        C_FAMILY = "spartan6"
+WARNING:Xst:647 - Input <PLB_UABus> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+INFO:Xst:3210 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd" line 1201: Output port <Count_Out> of the instance <INCLUDE_DATA_PHASE_WDT.I_DPTO_COUNTER> is unconnected or connected to loadless signal.
+    Register <sl_rdcomp_i> equivalent to <rd_clear_sl_busy> has been removed
+    Register <sl_rddack_i> equivalent to <rd_clear_sl_busy> has been removed
+    Register <wr_clear_sl_busy> equivalent to <sl_wrdack_i> has been removed
+    Register <sl_wrcomp_i> equivalent to <sl_wrdack_i> has been removed
+    Register <set_sl_busy> equivalent to <sl_addrack_i> has been removed
+    Found 32-bit register for signal <plb_wrdbus_reg>.
+    Found 1-bit register for signal <plb_masterid_reg>.
+    Found 1-bit register for signal <plb_rnw_reg>.
+    Found 4-bit register for signal <plb_size_reg>.
+    Found 3-bit register for signal <plb_type_reg>.
+    Found 1-bit register for signal <plb_pavalid_reg>.
+    Found 32-bit register for signal <plb_abus_reg>.
+    Found 1-bit register for signal <GEN_FOR_SHARED.addr_cntl_cs>.
+    Found 1-bit register for signal <sl_addrack_i>.
+    Found 1-bit register for signal <sl_rearbitrate_i>.
+    Found 1-bit register for signal <addr_cycle_flush>.
+    Found 32-bit register for signal <master_id>.
+    Found 1-bit register for signal <sl_busy>.
+    Found 2-bit register for signal <sl_mbusy_i>.
+    Found 2-bit register for signal <sl_mrderr_i>.
+    Found 2-bit register for signal <sl_mwrerr_i>.
+    Found 1-bit register for signal <sl_wrdack_i>.
+    Found 1-bit register for signal <rd_clear_sl_busy>.
+    Found 32-bit register for signal <sl_rddbus_i>.
+    Found 1-bit register for signal <bus2ip_rnw_i>.
+    Found 4-bit register for signal <bus2ip_be_i>.
+    Found 32-bit register for signal <bus2ip_addr_i>.
+    Found 1-bit register for signal <data_timeout>.
+    Found 4-bit register for signal <plb_be_reg>.
+    Summary:
+	inferred 193 D-type flip-flop(s).
+	inferred  12 Multiplexer(s).
+Unit <plb_slave_attachment> synthesized.
+
+Synthesizing Unit <plb_address_decoder>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_address_decoder.vhd".
+        C_BUS_AWIDTH = 32
+        C_ARD_ADDR_RANGE_ARRAY = ("0000000000000000000000000000000011000111000000000000000000000000","0000000000000000000000000000000011000111000000001111111111111111")
+        C_ARD_NUM_CE_ARRAY = (16)
+        C_SPLB_P2P = 0
+        C_FAMILY = "nofamily"
+WARNING:Xst:647 - Input <Address_In_Erly> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Address_Valid_Erly> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Bus_RNW_Erly> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 6-bit register for signal <addr_out_s_h>.
+    Found 1-bit register for signal <MEM_DECODE_GEN[0].GEN_PLB_SHARED.cs_out_s_h>.
+    Found 1-bit register for signal <cs_out_i>.
+    Found 1-bit register for signal <decode_hit_reg>.
+    Found 1-bit register for signal <rdce_out_i<0>>.
+    Found 1-bit register for signal <wrce_out_i<0>>.
+    Found 1-bit register for signal <rdce_out_i<1>>.
+    Found 1-bit register for signal <wrce_out_i<1>>.
+    Found 1-bit register for signal <rdce_out_i<2>>.
+    Found 1-bit register for signal <wrce_out_i<2>>.
+    Found 1-bit register for signal <rdce_out_i<3>>.
+    Found 1-bit register for signal <wrce_out_i<3>>.
+    Found 1-bit register for signal <rdce_out_i<4>>.
+    Found 1-bit register for signal <wrce_out_i<4>>.
+    Found 1-bit register for signal <rdce_out_i<5>>.
+    Found 1-bit register for signal <wrce_out_i<5>>.
+    Found 1-bit register for signal <rdce_out_i<6>>.
+    Found 1-bit register for signal <wrce_out_i<6>>.
+    Found 1-bit register for signal <rdce_out_i<7>>.
+    Found 1-bit register for signal <wrce_out_i<7>>.
+    Found 1-bit register for signal <rdce_out_i<8>>.
+    Found 1-bit register for signal <wrce_out_i<8>>.
+    Found 1-bit register for signal <rdce_out_i<9>>.
+    Found 1-bit register for signal <wrce_out_i<9>>.
+    Found 1-bit register for signal <rdce_out_i<10>>.
+    Found 1-bit register for signal <wrce_out_i<10>>.
+    Found 1-bit register for signal <rdce_out_i<11>>.
+    Found 1-bit register for signal <wrce_out_i<11>>.
+    Found 1-bit register for signal <rdce_out_i<12>>.
+    Found 1-bit register for signal <wrce_out_i<12>>.
+    Found 1-bit register for signal <rdce_out_i<13>>.
+    Found 1-bit register for signal <wrce_out_i<13>>.
+    Found 1-bit register for signal <rdce_out_i<14>>.
+    Found 1-bit register for signal <wrce_out_i<14>>.
+    Found 1-bit register for signal <rdce_out_i<15>>.
+    Found 1-bit register for signal <wrce_out_i<15>>.
+    Found 1-bit register for signal <rnw_s_h>.
+    Summary:
+	inferred  42 D-type flip-flop(s).
+Unit <plb_address_decoder> synthesized.
+
+Synthesizing Unit <pselect_f_1>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 16
+        C_AW = 32
+        C_BAR = "11000111000000000000000000000000"
+        C_FAMILY = "nofamily"
+WARNING:Xst:647 - Input <A<16:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_1> synthesized.
+
+Synthesizing Unit <pselect_f_2>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "0000"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_2> synthesized.
+
+Synthesizing Unit <pselect_f_3>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "0001"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_3> synthesized.
+
+Synthesizing Unit <pselect_f_4>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "0010"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_4> synthesized.
+
+Synthesizing Unit <pselect_f_5>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "0011"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_5> synthesized.
+
+Synthesizing Unit <pselect_f_6>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "0100"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_6> synthesized.
+
+Synthesizing Unit <pselect_f_7>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "0101"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_7> synthesized.
+
+Synthesizing Unit <pselect_f_8>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "0110"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_8> synthesized.
+
+Synthesizing Unit <pselect_f_9>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "0111"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_9> synthesized.
+
+Synthesizing Unit <pselect_f_10>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "1000"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_10> synthesized.
+
+Synthesizing Unit <pselect_f_11>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "1001"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_11> synthesized.
+
+Synthesizing Unit <pselect_f_12>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "1010"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_12> synthesized.
+
+Synthesizing Unit <pselect_f_13>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "1011"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_13> synthesized.
+
+Synthesizing Unit <pselect_f_14>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "1100"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_14> synthesized.
+
+Synthesizing Unit <pselect_f_15>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "1101"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_15> synthesized.
+
+Synthesizing Unit <pselect_f_16>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "1110"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_16> synthesized.
+
+Synthesizing Unit <pselect_f_17>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
+        C_AB = 4
+        C_AW = 4
+        C_BAR = "1111"
+        C_FAMILY = "nofamily"
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <pselect_f_17> synthesized.
+
+Synthesizing Unit <or_gate128>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_gate128.vhd".
+        C_OR_WIDTH = 1
+        C_BUS_WIDTH = 1
+        C_USE_LUT_OR = false
+    Summary:
+	no macro.
+Unit <or_gate128> synthesized.
+
+Synthesizing Unit <or_muxcy>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/or_muxcy.vhd".
+        C_NUM_BITS = 1
+    Summary:
+	no macro.
+Unit <or_muxcy> synthesized.
+
+Synthesizing Unit <counter_f>.
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter_f.vhd".
+        C_NUM_BITS = 8
+        C_FAMILY = "nofamily"
+    Found 9-bit register for signal <INFERRED_GEN.icount_out>.
+    Found 9-bit subtractor for signal <INFERRED_GEN.icount_out[8]_GND_35_o_mux_5_OUT> created at line 292.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   9 D-type flip-flop(s).
+Unit <counter_f> synthesized.
+
+Synthesizing Unit <user_logic>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/user_logic.vhd".
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+        RESOLUTION_SELECT = 1
+        FRAME_BASE_ADDR = "00000000000000000000000000000000"
+        LINE_STRIDE = "000000000000000000000000"
+        C_SLV_DWIDTH = 32
+        C_NUM_REG = 10
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
+WARNING:Xst:647 - Input <PXLCLK_I> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <PXLCLK_10X_I> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <LOCKED_I> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:653 - Signal <slv_reg4<0:7>> is used but never assigned. This sourceless signal will be automatically connected to value GND.
+WARNING:Xst:653 - Signal <slv_reg5<0:7>> is used but never assigned. This sourceless signal will be automatically connected to value GND.
+    Found 32-bit register for signal <slv_reg1>.
+    Found 32-bit register for signal <slv_reg2>.
+    Found 32-bit register for signal <slv_reg3>.
+    Found 32-bit register for signal <slv_reg6>.
+    Found 32-bit register for signal <slv_reg7>.
+    Found 32-bit register for signal <slv_reg8>.
+    Found 32-bit register for signal <slv_reg9>.
+    Found 32-bit register for signal <slv_reg0>.
+    Summary:
+	inferred 256 D-type flip-flop(s).
+	inferred 137 Multiplexer(s).
+Unit <user_logic> synthesized.
+
+Synthesizing Unit <SobelWrapper>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/vhdl/SobelFilter/SobelWrapper.vhd".
+    Found 24-bit register for signal <filteredPixelY>.
+    Found 24-bit register for signal <x_Sig>.
+    Found 24-bit register for signal <y_Sig>.
+    Found 2-bit register for signal <mode_Sig>.
+    Found 24-bit register for signal <pixel_Sig>.
+    Found 24-bit register for signal <filteredPixelX>.
+    Summary:
+	inferred 122 D-type flip-flop(s).
+Unit <SobelWrapper> synthesized.
+
+Synthesizing Unit <sobel>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel.v".
+        ap_const_logic_1 = 1
+        ap_const_logic_0 = 0
+        ap_ST_st1_fsm_0 = 0
+        ap_ST_st2_fsm_1 = 1
+        ap_ST_st3_fsm_2 = 2
+        ap_ST_st4_fsm_3 = 3
+        ap_ST_st5_fsm_4 = 4
+        ap_ST_st6_fsm_5 = 5
+        ap_ST_st7_fsm_6 = 6
+        ap_const_lv24_0 = 0
+        ap_const_lv1_0 = 0
+        ap_const_lv2_0 = 0
+        ap_const_lv16_0 = 0
+        ap_const_lv16_1 = 1
+        ap_const_lv16_2 = 2
+        ap_const_lv11_7FF = 2047
+        ap_const_lv12_9 = 9
+        ap_const_lv12_7 = 7
+        ap_const_lv24_3 = 3
+        ap_const_lv32_8 = 8
+        ap_const_lv32_17 = 23
+        ap_const_lv1_1 = 1
+        ap_const_lv24_8 = 8
+        ap_const_lv32_10 = 16
+        ap_const_lv2_3 = 3
+        ap_const_lv2_1 = 1
+        ap_const_lv4_2 = 2
+        ap_const_lv24_1 = 1
+        ap_const_lv32_F = 15
+        ap_true = 1
+WARNING:Xst:647 - Input <pixelColumnCount<23:11>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <pixelLineCount<23:12>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 24-bit register for signal <countY>.
+    Found 3-bit register for signal <filterXConstants_load_cast_fu_960_p1<2:0>>.
+    Found 3-bit register for signal <filterYConstants_load_cast_fu_930_p1<2:0>>.
+    Found 24-bit register for signal <pixelOutXB>.
+    Found 24-bit register for signal <pixelOutXG>.
+    Found 24-bit register for signal <pixelOutXR>.
+    Found 24-bit register for signal <pixelOutYB>.
+    Found 24-bit register for signal <pixelOutYG>.
+    Found 24-bit register for signal <pixelOutYR>.
+    Found 24-bit register for signal <storemerge_reg_258>.
+    Found 2-bit register for signal <tmp_11_reg_270>.
+    Found 8-bit register for signal <tmp_31_cast_fu_951_p1<7:0>>.
+    Found 13-bit register for signal <tmp_26_reg_1151>.
+    Found 13-bit register for signal <tmp_29_reg_1156>.
+    Found 13-bit register for signal <tmp_32_reg_1161>.
+    Found 13-bit register for signal <tmp_34_reg_1166>.
+    Found 13-bit register for signal <tmp_36_reg_1171>.
+    Found 13-bit register for signal <tmp_38_reg_1176>.
+    Found 1-bit register for signal <tmp_3_reg_1045>.
+    Found 2-bit register for signal <tmp_40_reg_1069>.
+    Found 8-bit register for signal <tmp_25_cast_fu_933_p1<7:0>>.
+    Found 8-bit register for signal <tmp_28_cast_fu_942_p1<7:0>>.
+    Found 1-bit register for signal <tmp_6_reg_1049>.
+    Found 11-bit register for signal <tmp_8_cast_reg_1053>.
+    Found 1-bit register for signal <tmp_reg_1041>.
+    Found 3-bit register for signal <ap_CS_fsm>.
+    Found finite state machine <FSM_0> for signal <ap_CS_fsm>.
+    -----------------------------------------------------------------------
+    | States             | 7                                              |
+    | Transitions        | 16                                             |
+    | Inputs             | 4                                              |
+    | Outputs            | 6                                              |
+    | Clock              | ap_clk (rising_edge)                           |
+    | Power Up State     | 000                                            |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 12-bit adder for signal <pixelLine_addr5_fu_847_p2> created at line 713.
+    Found 11-bit adder for signal <pixelLine_addr6_cast_fu_863_p1<10:0>> created at line 715.
+    Found 12-bit adder for signal <pixelLine_addr7_fu_330_p2> created at line 717.
+    Found 11-bit adder for signal <pixelLine_addr8_cast_fu_346_p1<10:0>> created at line 719.
+    Found 11-bit adder for signal <tmp_18_fu_830_p2> created at line 739.
+    Found 24-bit adder for signal <tmp_27_fu_984_p2> created at line 751.
+    Found 24-bit adder for signal <tmp_30_fu_994_p2> created at line 757.
+    Found 24-bit adder for signal <tmp_33_fu_1004_p2> created at line 761.
+    Found 24-bit adder for signal <tmp_35_fu_1014_p2> created at line 763.
+    Found 24-bit adder for signal <tmp_37_fu_1024_p2> created at line 765.
+    Found 24-bit adder for signal <tmp_39_fu_1034_p2> created at line 767.
+    Found 2-bit adder for signal <tmp_40_fu_812_p2> created at line 769.
+    Found 24-bit adder for signal <tmp_41_fu_900_p2> created at line 770.
+    Found 11-bit adder for signal <tmp_8_cast_fu_304_p2> created at line 789.
+    Found 4-bit adder for signal <_n0805> created at line 111.
+    Found 4-bit subtractor for signal <filterYConstants_addr4_cast_fu_894_p1<3:0>> created at line 111.
+    Found 16-bit comparator greater for signal <icmp1_fu_514_p2> created at line 679
+    Found 16-bit comparator greater for signal <icmp2_fu_567_p2> created at line 680
+    Found 16-bit comparator greater for signal <icmp3_fu_620_p2> created at line 681
+    Found 16-bit comparator greater for signal <icmp4_fu_673_p2> created at line 682
+    Found 16-bit comparator greater for signal <icmp8_fu_461_p2> created at line 683
+    Found 16-bit comparator greater for signal <icmp_fu_408_p2> created at line 684
+    Found 24-bit comparator greater for signal <tmp_9_fu_392_p2> created at line 791
+    Summary:
+	inferred  16 Adder/Subtractor(s).
+	inferred 318 D-type flip-flop(s).
+	inferred   7 Comparator(s).
+	inferred  20 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <sobel> synthesized.
+
+Synthesizing Unit <sobel_pixelLine>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_pixelLine.v".
+        DataWidth = 24
+        AddressRange = 1920
+        AddressWidth = 11
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <sobel_pixelLine> synthesized.
+
+Synthesizing Unit <sobel_pixelLine_ram>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_pixelLine.v".
+        DWIDTH = 24
+        AWIDTH = 11
+        MEM_SIZE = 1920
+    Set property "ram_style = block" for signal <ram>.
+WARNING:Xst:3035 - Index value(s) does not match array range for signal <ram>, simulation mismatch.
+    Found 1920x24-bit single-port RAM <Mram_ram> for signal <ram>.
+    Found 24-bit register for signal <q0>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  24 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <sobel_pixelLine_ram> synthesized.
+
+Synthesizing Unit <sobel_filterYConstants>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_filterYConstants.v".
+        DataWidth = 3
+        AddressRange = 9
+        AddressWidth = 4
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <sobel_filterYConstants> synthesized.
+
+Synthesizing Unit <sobel_filterYConstants_rom>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_filterYConstants.v".
+        DWIDTH = 3
+        AWIDTH = 4
+        MEM_SIZE = 9
+WARNING:Xst:2999 - Signal 'ram', unconnected in block 'sobel_filterYConstants_rom', is tied to its initial value.
+WARNING:Xst:3035 - Index value(s) does not match array range for signal <ram>, simulation mismatch.
+    Found 9x3-bit single-port Read Only RAM <Mram_ram> for signal <ram>.
+    Found 3-bit register for signal <q0>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred   3 D-type flip-flop(s).
+Unit <sobel_filterYConstants_rom> synthesized.
+
+Synthesizing Unit <sobel_filterXConstants>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_filterXConstants.v".
+        DataWidth = 3
+        AddressRange = 9
+        AddressWidth = 4
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <sobel_filterXConstants> synthesized.
+
+Synthesizing Unit <sobel_filterXConstants_rom>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_filterXConstants.v".
+        DWIDTH = 3
+        AWIDTH = 4
+        MEM_SIZE = 9
+WARNING:Xst:2999 - Signal 'ram', unconnected in block 'sobel_filterXConstants_rom', is tied to its initial value.
+WARNING:Xst:3035 - Index value(s) does not match array range for signal <ram>, simulation mismatch.
+    Found 9x3-bit single-port Read Only RAM <Mram_ram> for signal <ram>.
+    Found 3-bit register for signal <q0>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred   3 D-type flip-flop(s).
+Unit <sobel_filterXConstants_rom> synthesized.
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_1>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_mul_3s_8s_13_2.v".
+        ID = 1
+        NUM_STAGE = 2
+        din0_WIDTH = 3
+        din1_WIDTH = 8
+        dout_WIDTH = 13
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <sobel_mul_3s_8s_13_2_1> synthesized.
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_MulnS_0>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_mul_3s_8s_13_2.v".
+    Set property "KEEP = TRUE" for signal <a>.
+    Set property "KEEP = TRUE" for signal <b>.
+    Found 13-bit register for signal <p>.
+    Found 3x8-bit multiplier for signal <n0006[10:0]> created at line 20.
+    Summary:
+	inferred   1 Multiplier(s).
+	inferred  13 D-type flip-flop(s).
+Unit <sobel_mul_3s_8s_13_2_MulnS_0> synthesized.
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_2>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_mul_3s_8s_13_2.v".
+        ID = 2
+        NUM_STAGE = 2
+        din0_WIDTH = 3
+        din1_WIDTH = 8
+        dout_WIDTH = 13
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <sobel_mul_3s_8s_13_2_2> synthesized.
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_3>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_mul_3s_8s_13_2.v".
+        ID = 3
+        NUM_STAGE = 2
+        din0_WIDTH = 3
+        din1_WIDTH = 8
+        dout_WIDTH = 13
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <sobel_mul_3s_8s_13_2_3> synthesized.
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_4>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_mul_3s_8s_13_2.v".
+        ID = 4
+        NUM_STAGE = 2
+        din0_WIDTH = 3
+        din1_WIDTH = 8
+        dout_WIDTH = 13
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <sobel_mul_3s_8s_13_2_4> synthesized.
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_5>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_mul_3s_8s_13_2.v".
+        ID = 5
+        NUM_STAGE = 2
+        din0_WIDTH = 3
+        din1_WIDTH = 8
+        dout_WIDTH = 13
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <sobel_mul_3s_8s_13_2_5> synthesized.
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_6>.
+    Related source file is "D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/simple_video_filter_v1_00_a/hdl/verilog/SobelFilter/sobel_mul_3s_8s_13_2.v".
+        ID = 6
+        NUM_STAGE = 2
+        din0_WIDTH = 3
+        din1_WIDTH = 8
+        dout_WIDTH = 13
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <sobel_mul_3s_8s_13_2_6> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 3
+ 1920x24-bit single-port RAM                           : 1
+ 9x3-bit single-port Read Only RAM                     : 2
+# Multipliers                                          : 6
+ 8x3-bit multiplier                                    : 6
+# Adders/Subtractors                                   : 17
+ 11-bit adder                                          : 4
+ 12-bit adder                                          : 2
+ 2-bit adder                                           : 1
+ 24-bit adder                                          : 7
+ 4-bit adder                                           : 1
+ 4-bit subtractor                                      : 1
+ 9-bit subtractor                                      : 1
+# Registers                                            : 80
+ 1-bit register                                        : 19
+ 11-bit register                                       : 1
+ 13-bit register                                       : 12
+ 16-bit register                                       : 2
+ 2-bit register                                        : 6
+ 24-bit register                                       : 14
+ 3-bit register                                        : 5
+ 32-bit register                                       : 13
+ 4-bit register                                        : 3
+ 6-bit register                                        : 1
+ 8-bit register                                        : 3
+ 9-bit register                                        : 1
+# Comparators                                          : 7
+ 16-bit comparator greater                             : 6
+ 24-bit comparator greater                             : 1
+# Multiplexers                                         : 187
+ 1-bit 2-to-1 multiplexer                              : 164
+ 11-bit 2-to-1 multiplexer                             : 2
+ 2-bit 2-to-1 multiplexer                              : 1
+ 24-bit 2-to-1 multiplexer                             : 19
+ 32-bit 2-to-1 multiplexer                             : 1
+# FSMs                                                 : 1
+# Xors                                                 : 6
+ 32-bit xor2                                           : 6
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+WARNING:Xst:2404 -  FFs/Latches <slv_reg6<0:3>> (without init value) have a constant value of 0 in block <user_logic>.
+
+Synthesizing (advanced) Unit <sobel>.
+The following registers are absorbed into accumulator <pixelOutXB>: 1 register on signal <pixelOutXB>.
+The following registers are absorbed into accumulator <pixelOutXR>: 1 register on signal <pixelOutXR>.
+The following registers are absorbed into accumulator <pixelOutXG>: 1 register on signal <pixelOutXG>.
+The following registers are absorbed into accumulator <pixelOutYB>: 1 register on signal <pixelOutYB>.
+The following registers are absorbed into accumulator <pixelOutYG>: 1 register on signal <pixelOutYG>.
+The following registers are absorbed into accumulator <pixelOutYR>: 1 register on signal <pixelOutYR>.
+	The following adders/subtractors are grouped into adder tree <Madd_pixelLine_addr6_cast_fu_863_p1<10:0>1> :
+ 	<Madd_pixelLine_addr5_fu_847_p2_Madd> in block <sobel>, 	<Madd_tmp_18_fu_830_p2> in block <sobel>.
+Unit <sobel> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sobel_filterXConstants_rom>.
+INFO:Xst:3231 - The small RAM <Mram_ram> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 9-word x 3-bit                      |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <addr0>         |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <sobel_filterXConstants_rom> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sobel_filterYConstants_rom>.
+INFO:Xst:3231 - The small RAM <Mram_ram> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 9-word x 3-bit                      |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <addr0>         |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <sobel_filterYConstants_rom> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sobel_mul_3s_8s_13_2_MulnS_0>.
+	Found pipelined multiplier on signal <n0006[10:0]>:
+		- 1 pipeline level(s) found in a register connected to the multiplier macro output.
+		Pushing register(s) into the multiplier macro.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal b may hinder XST clustering optimizations.
+Unit <sobel_mul_3s_8s_13_2_MulnS_0> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sobel_pixelLine_ram>.
+INFO:Xst:3226 - The RAM <Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <q0>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 1920-word x 24-bit                  |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clk>           | rise     |
+    |     enA            | connected to signal <ce0>           | high     |
+    |     weA            | connected to signal <we0>           | high     |
+    |     addrA          | connected to signal <addr0>         |          |
+    |     diA            | connected to signal <d0>            |          |
+    |     doA            | connected to signal <q0>            |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <sobel_pixelLine_ram> synthesized (advanced).
+WARNING:Xst:2677 - Node <addr_out_s_h_5> of sequential type is unconnected in block <plb_address_decoder>.
+WARNING:Xst:2677 - Node <addr_out_s_h_4> of sequential type is unconnected in block <plb_address_decoder>.
+WARNING:Xst:2677 - Node <slv_reg3_28> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_27> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_26> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_25> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_24> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_23> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_22> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_21> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_20> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_19> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_18> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_17> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_16> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_15> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_14> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_13> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_12> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_11> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_10> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_9> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_8> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_7> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_6> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_5> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_4> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_3> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_2> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_1> of sequential type is unconnected in block <user_logic>.
+WARNING:Xst:2677 - Node <slv_reg3_0> of sequential type is unconnected in block <user_logic>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 3
+ 1920x24-bit single-port block RAM                     : 1
+ 9x3-bit single-port distributed Read Only RAM         : 2
+# Multipliers                                          : 6
+ 8x3-bit registered multiplier                         : 6
+# Adders/Subtractors                                   : 8
+ 11-bit adder                                          : 3
+ 2-bit adder                                           : 1
+ 24-bit adder                                          : 1
+ 4-bit adder                                           : 1
+ 4-bit subtractor                                      : 1
+ 9-bit subtractor                                      : 1
+# Adder Trees                                          : 1
+ 11-bit / 4-inputs adder tree                          : 1
+# Accumulators                                         : 6
+ 24-bit up loadable accumulator                        : 6
+# Registers                                            : 743
+ Flip-Flops                                            : 743
+# Comparators                                          : 7
+ 16-bit comparator greater                             : 6
+ 24-bit comparator greater                             : 1
+# Multiplexers                                         : 163
+ 1-bit 2-to-1 multiplexer                              : 147
+ 11-bit 2-to-1 multiplexer                             : 2
+ 2-bit 2-to-1 multiplexer                              : 1
+ 24-bit 2-to-1 multiplexer                             : 12
+ 32-bit 2-to-1 multiplexer                             : 1
+# FSMs                                                 : 1
+# Xors                                                 : 6
+ 32-bit xor2                                           : 6
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1426 - The value init of the FF/Latch master_id_31 hinder the constant cleaning in the block plb_slave_attachment.
+   You should achieve better results by setting this init to 0.
+WARNING:Xst:1293 - FF/Latch <master_id_30> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_29> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_28> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_27> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_26> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_25> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_24> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_23> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_22> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_21> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_20> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_19> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_18> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_17> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_16> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_15> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_14> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_13> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_12> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_11> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_10> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_9> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_8> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_7> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_6> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_5> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_4> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_3> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_2> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <master_id_1> has a constant value of 0 in block <plb_slave_attachment>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <GEN_FOR_SHARED.addr_cntl_cs> in Unit <plb_slave_attachment> is equivalent to the following FF/Latch, which will be removed : <addr_cycle_flush> 
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U2, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U2, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U2, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U3, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U3, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U3, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> will be lost.
+INFO:Xst:2261 - The FF/Latch <tmp_32_reg_1161_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_32_reg_1161_11> <tmp_32_reg_1161_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_34_reg_1166_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_34_reg_1166_11> <tmp_34_reg_1166_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_26_reg_1151_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_26_reg_1151_11> <tmp_26_reg_1151_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_38_reg_1176_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_38_reg_1176_11> <tmp_38_reg_1176_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_29_reg_1156_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_29_reg_1156_11> <tmp_29_reg_1156_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_36_reg_1171_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_36_reg_1171_11> <tmp_36_reg_1171_12> 
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/FSM_0> on signal <ap_CS_fsm[1:7]> with one-hot encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 0000001
+ 010   | 0000010
+ 001   | 0000100
+ 011   | 0001000
+ 100   | 0010000
+ 101   | 0100000
+ 110   | 1000000
+-------------------
+INFO:Xst:2261 - The FF/Latch <filterYConstants_U/sobel_filterYConstants_rom_U/q0_0> in Unit <sobel> is equivalent to the following FF/Latch, which will be removed : <filterXConstants_U/sobel_filterXConstants_rom_U/q0_0> 
+
+Optimizing unit <system_simple_video_filter_0_wrapper> ...
+
+Optimizing unit <plb_slave_attachment> ...
+
+Optimizing unit <plb_address_decoder> ...
+
+Optimizing unit <counter_f> ...
+
+Optimizing unit <user_logic> ...
+
+Optimizing unit <SobelWrapper> ...
+
+Optimizing unit <sobel> ...
+WARNING:Xst:1710 - FF/Latch <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_mwrerr_i_0> (without init value) has a constant value of 0 in block <system_simple_video_filter_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_mwrerr_i_1> (without init value) has a constant value of 0 in block <system_simple_video_filter_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_mrderr_i_0> (without init value) has a constant value of 0 in block <system_simple_video_filter_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_mrderr_i_1> (without init value) has a constant value of 0 in block <system_simple_video_filter_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_0> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_1> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_2> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_3> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_4> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_5> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_6> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_7> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_8> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_9> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_10> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_11> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_12> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_13> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_14> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_15> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_16> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_17> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_18> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_19> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_20> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_21> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_22> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_23> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_24> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_25> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_26> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_27> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_28> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_29> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_30> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_31> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_16> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_17> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_18> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_19> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_20> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_21> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_22> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_23> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_24> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_25> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_30> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/plb_abus_reg_31> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/wrce_out_i_10> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/wrce_out_i_11> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/wrce_out_i_12> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/wrce_out_i_13> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/wrce_out_i_14> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/wrce_out_i_15> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_10> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_11> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_12> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_13> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_14> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_15> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_out_i_0> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/MEM_DECODE_GEN<0>.GEN_PLB_SHARED.cs_out_s_h_0> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_23> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_22> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_21> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_20> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_19> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_18> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_17> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_16> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_15> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_14> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_13> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_12> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_11> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_10> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_9> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_8> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_7> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_6> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_5> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/y_Sig_4> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_23> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_22> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_21> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_20> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_19> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_18> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_17> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_16> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_15> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_14> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_13> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_12> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+WARNING:Xst:2677 - Node <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/x_Sig_11> of sequential type is unconnected in block <system_simple_video_filter_0_wrapper>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 0) on block system_simple_video_filter_0_wrapper, actual ratio is 4.
+FlipFlop simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_0 has been replicated 1 time(s)
+FlipFlop simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_1 has been replicated 1 time(s)
+FlipFlop simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_2 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+Processing Unit <system_simple_video_filter_0_wrapper> :
+	Found 2-bit shift register for signal <simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/ap_CS_fsm_FSM_FFd2>.
+Unit <system_simple_video_filter_0_wrapper> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 822
+ Flip-Flops                                            : 822
+# Shift Registers                                      : 1
+ 2-bit shift register                                  : 1
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : system_simple_video_filter_0_wrapper.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 1597
+#      GND                         : 1
+#      INV                         : 4
+#      LUT1                        : 30
+#      LUT2                        : 225
+#      LUT3                        : 223
+#      LUT4                        : 193
+#      LUT5                        : 179
+#      LUT6                        : 168
+#      MUXCY                       : 280
+#      VCC                         : 1
+#      XORCY                       : 293
+# FlipFlops/Latches                : 823
+#      FD                          : 18
+#      FDE                         : 397
+#      FDR                         : 148
+#      FDRE                        : 254
+#      FDS                         : 6
+# RAMS                             : 3
+#      RAMB16BWER                  : 3
+# Shift Registers                  : 1
+#      SRLC16E                     : 1
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx45csg324-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             823  out of  54576     1%  
+ Number of Slice LUTs:                 1023  out of  27288     3%  
+    Number used as Logic:              1022  out of  27288     3%  
+    Number used as Memory:                1  out of   6408     0%  
+       Number used as SRL:                1
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:   1341
+   Number with an unused Flip Flop:     518  out of   1341    38%  
+   Number with an unused LUT:           318  out of   1341    23%  
+   Number of fully used LUT-FF pairs:   505  out of   1341    37%  
+   Number of unique control sets:        30
+
+IO Utilization: 
+ Number of IOs:                         205
+ Number of bonded IOBs:                   0  out of    218     0%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:                3  out of    116     2%  
+    Number using Block RAM only:          3
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+----------------------------------------------------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                                                            | Load  |
+-----------------------------------+----------------------------------------------------------------------------------+-------+
+SPLB_Clk                           | NONE(simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/data_timeout)| 351   |
+PXLCLK_2X_I                        | NONE(simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/filteredPixelY_23)    | 476   |
+-----------------------------------+----------------------------------------------------------------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 6.886ns (Maximum Frequency: 145.222MHz)
+   Minimum input arrival time before clock: 2.302ns
+   Maximum output required time after clock: 0.525ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'SPLB_Clk'
+  Clock period: 6.538ns (frequency: 152.960MHz)
+  Total number of paths / destination ports: 6916 / 586
+-------------------------------------------------------------------------
+Delay:               6.538ns (Levels of Logic = 3)
+  Source:            simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_9 (FF)
+  Destination:       simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_0 (FF)
+  Source Clock:      SPLB_Clk rising
+  Destination Clock: SPLB_Clk rising
+
+  Data Path: simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_9 to simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q            19   0.525   1.369  simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_9 (simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_9)
+     LUT5:I3->O            2   0.250   0.726  simple_video_filter_0/USER_LOGIC_I/slv_read_ack<0>_SW0 (N10)
+     LUT6:I5->O           37   0.254   1.604  simple_video_filter_0/USER_LOGIC_I/slv_read_ack<0> (simple_video_filter_0/user_IP2Bus_RdAck)
+     LUT5:I4->O           13   0.254   1.097  simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_clr1 (simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_clr)
+     FDRE:R                    0.459          simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/I_DECODER/rdce_out_i_9
+    ----------------------------------------
+    Total                      6.538ns (1.742ns logic, 4.796ns route)
+                                       (26.6% logic, 73.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'PXLCLK_2X_I'
+  Clock period: 6.886ns (frequency: 145.222MHz)
+  Total number of paths / destination ports: 51059 / 886
+-------------------------------------------------------------------------
+Delay:               6.886ns (Levels of Logic = 4)
+  Source:            simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/mode_Sig_1 (FF)
+  Destination:       simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/pixelLine_U/sobel_pixelLine_ram_U/Mram_ram3 (RAM)
+  Source Clock:      PXLCLK_2X_I rising
+  Destination Clock: PXLCLK_2X_I rising
+
+  Data Path: simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/mode_Sig_1 to simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/pixelLine_U/sobel_pixelLine_ram_U/Mram_ram3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              7   0.525   1.138  simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/mode_Sig_1 (simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/mode_Sig_1)
+     LUT4:I1->O           25   0.235   1.403  simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/ap_CS_fsm_pixelLine_we01 (simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/pixelLine_we0)
+     LUT4:I3->O            9   0.254   0.976  simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/Mmux_pixelLine_address010111 (simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/Mmux_pixelLine_address01011)
+     LUT6:I5->O            1   0.254   0.682  simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/Mmux_pixelLine_address0121 (simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/Mmux_pixelLine_address012)
+     LUT6:I5->O            3   0.254   0.765  simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/Mmux_pixelLine_address0123 (simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/pixelLine_address0<10>)
+     RAMB16BWER:ADDRA13        0.400          simple_video_filter_0/USER_LOGIC_I/sobel_wrapper_inst/sobel_inst/pixelLine_U/sobel_pixelLine_ram_U/Mram_ram3
+    ----------------------------------------
+    Total                      6.886ns (1.922ns logic, 4.964ns route)
+                                       (27.9% logic, 72.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'SPLB_Clk'
+  Total number of paths / destination ports: 410 / 410
+-------------------------------------------------------------------------
+Offset:              2.302ns (Levels of Logic = 1)
+  Source:            SPLB_Rst (PAD)
+  Destination:       simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_rddbus_i_8 (FF)
+  Destination Clock: SPLB_Clk rising
+
+  Data Path: SPLB_Rst to simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_rddbus_i_8
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LUT3:I0->O           24   0.235   1.379  simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/ip2bus_rdack_i_data_timeout_AND_17_o_inv_01 (simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/ip2bus_rdack_i_data_timeout_AND_17_o_inv_0)
+     FDR:R                     0.459          simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_rddbus_i_31
+    ----------------------------------------
+    Total                      2.302ns (0.923ns logic, 1.379ns route)
+                                       (40.1% logic, 59.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'SPLB_Clk'
+  Total number of paths / destination ports: 40 / 40
+-------------------------------------------------------------------------
+Offset:              0.525ns (Levels of Logic = 0)
+  Source:            simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_rddbus_i_0 (FF)
+  Destination:       Sl_rdDBus<0> (PAD)
+  Source Clock:      SPLB_Clk rising
+
+  Data Path: simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_rddbus_i_0 to Sl_rdDBus<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               0   0.525   0.000  simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_rddbus_i_0 (simple_video_filter_0/PLBV46_SLAVE_SINGLE_I/I_SLAVE_ATTACHMENT/sl_rddbus_i_0)
+    ----------------------------------------
+    Total                      0.525ns (0.525ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock PXLCLK_2X_I
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+PXLCLK_2X_I    |    6.886|         |         |         |
+SPLB_Clk       |    7.112|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock SPLB_Clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+PXLCLK_2X_I    |    6.386|         |         |         |
+SPLB_Clk       |    6.538|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 12.00 secs
+Total CPU time to Xst completion: 12.04 secs
+ 
+--> 
+
+Total memory usage is 294832 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  277 (   0 filtered)
+Number of infos    :   17 (   0 filtered)
+

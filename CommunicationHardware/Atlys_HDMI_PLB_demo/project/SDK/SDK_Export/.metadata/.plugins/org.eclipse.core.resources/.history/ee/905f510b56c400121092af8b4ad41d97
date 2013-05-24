@@ -1,0 +1,23 @@
+/*
+ * DynamicHardwareManager.h
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+#ifndef DYNAMICHARDWAREMANAGER_H_
+#define DYNAMICHARDWAREMANAGER_H_
+
+
+typedef struct DynamicHardwareManager_t{
+
+	/**/
+	getHardwareComponent();
+}DynamicHardwareManager;
+
+/*returns a new instance of the dynamic hardware manager*/
+DynamicHardwareManager* CreateDynamicHardwareManager();
+
+
+
+#endif /* DYNAMICHARDWAREMANAGER_H_ */

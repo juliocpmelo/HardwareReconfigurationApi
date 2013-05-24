@@ -1,0 +1,7 @@
+INFILE=D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\implementation\system.ncd
+OUTFILE=D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\implementation\system.bit
+FAMILY=Spartan6
+PART=xc6slx45-2csg324
+WORKINGDIR=D:\Users\Julio\Downloads\Atlys_HDMI_PLB_demo\project\implementation
+LICENSE=ISE
+USER_INFO=210291076_210292114_210558850_427

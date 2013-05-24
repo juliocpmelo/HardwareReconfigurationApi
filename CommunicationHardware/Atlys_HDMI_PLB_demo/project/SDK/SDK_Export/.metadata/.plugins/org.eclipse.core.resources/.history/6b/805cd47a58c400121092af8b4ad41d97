@@ -1,0 +1,16 @@
+/*
+ * CommunicationManager.c
+ *
+ *  Created on: 24.05.2013
+ *      Author: Julio
+ */
+
+typedef int (*SetRegisterValue_t) (void* self,int registerId, int value);
+typedef int (*GetRegisterValue_t) (void* self,int registerId, int value);
+
+typedef struct HardwareInterfaceModule_t{
+
+	SetRegisterValue_t setRegisterValue;
+	GetRegisterValue_t getRegisterValue;
+
+}HardwareInterface;
