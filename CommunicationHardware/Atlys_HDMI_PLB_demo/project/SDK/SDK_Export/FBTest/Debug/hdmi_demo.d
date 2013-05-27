@@ -14,7 +14,11 @@ hdmi_demo.d: ../hdmi_demo.c ../platform.h ../platform_config.h \
  ../../standalone_bsp_0/microblaze_0/include/xintc_l.h \
  ../../standalone_bsp_0/microblaze_0/include/xil_io.h \
  ../../standalone_bsp_0/microblaze_0/include/mb_interface.h \
- ../hdmi_demo.h
+ ../hdmi_demo.h ../DynamicHardwareModules/ArchitectureManager.h \
+ ../DynamicHardwareModules/HardwareInterface.h \
+ ../DynamicHardwareModules/ComponentRepresentation/HardwareComponent.h \
+ ../DynamicHardwareModules/CommunicationManager.h \
+ ../DynamicHardwareModules/HardwareReconfigurationModule.h
 
 ../platform.h:
 
@@ -51,3 +55,13 @@ hdmi_demo.d: ../hdmi_demo.c ../platform.h ../platform_config.h \
 ../../standalone_bsp_0/microblaze_0/include/mb_interface.h:
 
 ../hdmi_demo.h:
+
+../DynamicHardwareModules/ArchitectureManager.h:
+
+../DynamicHardwareModules/HardwareInterface.h:
+
+../DynamicHardwareModules/ComponentRepresentation/HardwareComponent.h:
+
+../DynamicHardwareModules/CommunicationManager.h:
+
+../DynamicHardwareModules/HardwareReconfigurationModule.h:

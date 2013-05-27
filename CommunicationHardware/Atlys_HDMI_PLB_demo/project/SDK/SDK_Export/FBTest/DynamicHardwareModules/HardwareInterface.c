@@ -10,6 +10,10 @@
 #include <stdlib.h>
 
 #include "xil_io.h"
+#include "xparameters.h"
+
+/*definition for Xilinx interface*/
+#define HARDWARE_COMMUNICATION_BASE_ADDR XPAR_HARDWARE_COMMUNICATION_MODULE_0_BASEADDR
 
 /*
  * sets the value of a register
@@ -18,7 +22,7 @@
  * @param value the value to be set into the register
  */
 void setRegisterValue(void* self, int registerId, int value){
-	Xil_Out32(registerId, value);
+	Xil_Out32(HARDWARE_COMMUNICATION_BASE_ADDR + registerId, value);
 }
 
 /*
@@ -29,9 +33,8 @@ void setRegisterValue(void* self, int registerId, int value){
  */
 /*xilinx implementation using Xil interface*/
 int getRegisterValue(void* self, int registerId){
-	return Xil_In32(registerId);
+	return Xil_In32(HARDWARE_COMMUNICATION_BASE_ADDR + registerId);
 }
-
 
 HardwareInterface *createHardwareInterface(){
 	HardwareInterface *hardwareInt = malloc(sizeof(HardwareInterface*));

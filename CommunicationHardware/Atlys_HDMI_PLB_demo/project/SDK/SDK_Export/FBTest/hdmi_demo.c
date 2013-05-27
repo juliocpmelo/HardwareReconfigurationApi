@@ -49,6 +49,8 @@
 						  //interrupt controller with the microblaze MP
 #include "hdmi_demo.h"
 
+#include "DynamicHardwareModules/ArchitectureManager.h"
+
 /* ------------------------------------------------------------ */
 /*				XPAR Constants									*/
 /* ------------------------------------------------------------ */
@@ -93,6 +95,8 @@
 volatile u32 lBtnStateOld;
 volatile int ibEdid;
 volatile int lDeBncCnt;
+
+ArchitectureManager *architectureManager;
 
 /* ------------------------------------------------------------ */
 /*				Procedure Definitions							*/
@@ -282,6 +286,9 @@ void PushBtnHandler(void *CallBackRef)
 	u32 storedColor;
 	u8 wColorR, wColorG, wColorB;
 
+	HardwareComponent *videoProcessingHardware;
+	videoProcessingHardware = architectureManager->getHardwareComponent(architectureManager,"sobel_wrapper_inst");
+
 	lBtnStateOld = lBtnStateNew;
 
 
@@ -383,25 +390,43 @@ void PushBtnHandler(void *CallBackRef)
 					wColor = wColor | ((wColorG & 0x1C) << 3);
 					wColor = wColor | ((wColorB & 0xF8) << 8);*/
 
-					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_pixelIn, (wColorR << 16 | wColorG <<8 | wColorB));
-					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_yAccess, ycoi);
-					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_xAccess, xcoi);
+					/*without api begin*/
+//					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_pixelIn, (wColorR << 16 | wColorG <<8 | wColorB));
+//					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_yAccess, ycoi);
+//					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_xAccess, xcoi);
+//
+//					optionLB = 0x05;
+//					option = 0 | (optionLB);
+//					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_options, option);
+//
+//					while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
+//
+//
+//					optionLB = 0x04; // access - avoid data to be overwritten
+//					option = 0 | (optionLB);
+//					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_options, option);
+//					while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
+					/*without api end*/
+
+
+					/*with api beigin*/
+					videoProcessingHardware->setPortValue(videoProcessingHardware,"pixel", (wColorR << 16 | wColorG <<8 | wColorB));
+					videoProcessingHardware->setPortValue(videoProcessingHardware,"x", xcoi);
+					videoProcessingHardware->setPortValue(videoProcessingHardware,"y", ycoi);
 
 					optionLB = 0x05;
 					option = 0 | (optionLB);
-					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_options, option);
+					videoProcessingHardware->setPortValue(videoProcessingHardware,"mode", option);
 
-					//xil_printf("\n\rstatus values %d \n\r ", Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options));
-					//xil_printf("\n\rstored pixel(%d ,%d) = %d \n\r ", xcoi, ycoi, Xil_In16(pFrame + ycoi*(lLineStride*2) + xcoi*2));
-
-					while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
-
+					while (videoProcessingHardware->getPortValue(videoProcessingHardware,"ap_idle")); //wait idle
 
 					optionLB = 0x04; // access - avoid data to be overwritten
 					option = 0 | (optionLB);
-					Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_options, option);
-					//xil_printf("\n\routput val after access (%d,%d) = %d, %d\n\r", Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_yAccess), Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_xAccess), Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_pixelYOut),  Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_pixelXOut));
-					while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
+					videoProcessingHardware->setPortValue(videoProcessingHardware,"mode", option);
+					while (videoProcessingHardware->getPortValue(videoProcessingHardware,"ap_idle"));
+					/*with api end*/
+
+
 				}
 			}
 			xil_printf("\n\rTest Store Mode End\n\r");
@@ -469,29 +494,45 @@ void PushBtnHandler(void *CallBackRef)
 				//option = 0 | (optionLB << 3);
 				//Xil_Out32(HDMIOUT_BASEADDR + loadDefaultValuesReg, option); //clear start
 
+				/*without api begin*/
+//			u8 optionLB = 0x06; // access | start
+//			u32 option = 0 | (optionLB);
+//
+//			Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_options, option);
+//			xil_printf("\n\rstatus values %d \n\r ", Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options));
+//			while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
+//
+//			for(xcoi = 1; xcoi<10; xcoi++){
+//				Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_yAccess, 0);
+//				Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_xAccess, xcoi);
+//				while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
+//				//Xil_Out16((pFrame + ycoi*(lLineStride*2) + xcoi*2), Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_pixelYOut));
+//				xil_printf("\n\rAccess Stored at (%d,%d) = %d, %d\n\r", xcoi, ycoi, Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_pixelYOut), Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_pixelXOut));
+//			}
+			/*without api end*/
 
-				u8 optionLB = 0x06; // access | start
-				u32 option = 0 | (optionLB);
-				Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_options, option);
-				xil_printf("\n\rstatus values %d \n\r ", Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options));
-				while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
 
-				//for(ycoi = 0; ycoi<3; ycoi++){
-					for(xcoi = 1; xcoi<10; xcoi++){
-						Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_yAccess, 0);
-						Xil_Out32(VIDEO_FILTER_BASEADDR + videoFilter_xAccess, xcoi);
-						while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
-						//Xil_Out16((pFrame + ycoi*(lLineStride*2) + xcoi*2), Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_pixelYOut));
-						xil_printf("\n\rAccess Stored at (%d,%d) = %d, %d\n\r", xcoi, ycoi, Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_pixelYOut), Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_pixelXOut));
+			/*with api begin*/
+			u8 optionLB = 0x06; // access | start
+			u32 option = 0 | (optionLB);
 
-						//while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
-					}
-				//}
-				xil_printf("\n\rTest Access Mode End\n\r");
+			videoProcessingHardware->setPortValue(videoProcessingHardware,"mode", option);
+			//xil_printf("\n\rstatus values %d \n\r ", videoProcessingHardware->getPortValue("mode"));
+			while (videoProcessingHardware->getPortValue(videoProcessingHardware,"ap_idle")); //wait idle
+			for(xcoi = 1; xcoi<10; xcoi++){
+				videoProcessingHardware->setPortValue(videoProcessingHardware,"x", xcoi);
+				videoProcessingHardware->setPortValue(videoProcessingHardware,"y", ycoi);
+				while (videoProcessingHardware->getPortValue(videoProcessingHardware,"ap_idle")); //wait idle
+				//Xil_Out16((pFrame + ycoi*(lLineStride*2) + xcoi*2), Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_pixelYOut));
+				xil_printf("\n\rAccess Stored at (%d,%d) = %d, %d\n\r", xcoi, ycoi, videoProcessingHardware->getPortValue(videoProcessingHardware,"filteredPixelX"), videoProcessingHardware->getPortValue(videoProcessingHardware,"filteredPixelY"));
+
+				//while (Xil_In32(VIDEO_FILTER_BASEADDR + videoFilter_options) & 0x10); //wait idle
+			}
+			/*with api end*/
+
+
+			xil_printf("\n\rTest Access Mode End\n\r");
 			//}
-
-
-
 		}
 		else if (count == 2){
 			xil_printf("\n\rSwitching filter off \n\r");

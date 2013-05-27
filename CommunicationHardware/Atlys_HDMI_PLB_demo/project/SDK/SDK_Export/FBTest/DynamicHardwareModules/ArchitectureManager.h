@@ -36,9 +36,9 @@ typedef struct HardwareDeviceInfo_t{
 	int partID;
 }HardwareDeviceInfo;
 
-typedef void (*SetPortValueFunction_t) (void* self,const char* componentName, const char* portName, int value);
-typedef int (*GetPortValueFunction_t) (void* self,const char* componentName, const char* portName);
-typedef void (*ImplementArchitecture_t)(void *self, const char* topComponentName);
+typedef void (*ImplementArchitecture_t)(void *self, HardwareComponent* topComponent);
+typedef HardwareComponent* (*GetHardwareComponent_t)(void* self, const char* componentInstanceName);
+typedef void (*InsertHardwareComponent_t)(void* self, HardwareComponent* comp);
 
 typedef struct ArchitectureManager_t {
 
@@ -48,12 +48,13 @@ typedef struct ArchitectureManager_t {
 	ComponentSet *components;
 	CommunicationManager *communicationManager;
 	HardwareReconfigurationModule *hardawareReconfigurationModule;
+	HardwareInterface *hardwareInterfaceModule;
 
 
 	/*member functions*/
-	SetPortValueFunction_t setPortValue;
-	GetPortValueFunction_t getPortValue;
 	ImplementArchitecture_t implementArchitecture;
+	GetHardwareComponent_t getHardwareComponent;
+	InsertHardwareComponent_t insertHardwareComponent;
 
 
 } ArchitectureManager;

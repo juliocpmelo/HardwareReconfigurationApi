@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>FBTest</name>
-	<comment>standalone_bsp_0 - microblaze_0</comment>
+	<comment></comment>
 	<projects>
 		<project>standalone_bsp_0</project>
 	</projects>

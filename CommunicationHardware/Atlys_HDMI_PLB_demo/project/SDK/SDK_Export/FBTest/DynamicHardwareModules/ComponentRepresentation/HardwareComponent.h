@@ -8,7 +8,9 @@
 #ifndef HARDWARECOMPONENT_H_
 #define HARDWARECOMPONENT_H_
 
-typedef int (*GetPort_t)(const char* portName, int* portId);
+typedef int (*GetPortId_t)(void* self, const char* portName, int* portId);
+typedef void (*SetPortValue_t) (void* self, const char* portName, int value);
+typedef int (*GetPortValue_t) (void* self, const char* portName);
 
 typedef struct HardwareComponentPort_t{
 	char* portName;
@@ -31,9 +33,14 @@ typedef struct PortSet_t{
 typedef struct HardwareComponent_t{
 	PortSet *ports;
 	char* instanceName;
-	GetPort_t getPortId;
+	GetPortId_t getPortId;
+
+	void* hardwareInterface;
+
+	SetPortValue_t setPortValue;
+	GetPortValue_t getPortValue;
 } HardwareComponent;
 
-HardwareComponent* createHardwareComponent(char *componentName);
+HardwareComponent* createHardwareComponent(char *componentName, void* hardwareInterface);
 
 #endif /* HARDWARECOMPONENT_H_ */
