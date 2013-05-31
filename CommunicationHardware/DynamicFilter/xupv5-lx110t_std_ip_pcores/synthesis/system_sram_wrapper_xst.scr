@@ -1,0 +1,14 @@
+set -tmpdir D:\DynamicFilter\xupv5-lx110t_std_ip_pcores\synthesis\xst_temp_dir\
+run
+-opt_mode speed
+-netlist_hierarchy as_optimized
+-opt_level 1
+-p xc5vlx110tff1136-1
+-top system_sram_wrapper
+-ifmt MIXED
+-ifn system_sram_wrapper_xst.prj
+-ofn ../implementation/system_sram_wrapper.ngc
+-hierarchy_separator /
+-iobuf NO
+-sd {../implementation}
+-vlgincdir {"D:\DynamicFilter\xupv5-lx110t_std_ip_pcores\pcores\" "D:\Users\Julio\Downloads\xupv5-lx110t_std_ip_pcores\xupv5-lx110t_std_ip_pcores\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }

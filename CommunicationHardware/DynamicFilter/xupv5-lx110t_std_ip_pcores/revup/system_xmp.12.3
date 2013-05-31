@@ -1,0 +1,713 @@
+#Please do not modify this file by hand
+XmpVersion: 12.3
+VerMgmt: 12.2
+IntStyle: default
+ModuleSearchPath: C:/EDK-XUPV5-LX110T-Pack/lib
+MHS File: system.mhs
+MSS File: system.mss
+Architecture: virtex5
+Device: xc5vlx110t
+Package: ff1136
+SpeedGrade: -1
+UserCmd1: 
+UserCmd1Type: 0
+UserCmd2: 
+UserCmd2Type: 0
+GenSimTB: 0
+SdkExportBmmBit: 1
+SdkExportDir: SDK/SDK_Export
+InsertNoPads: 0
+WarnForEAArch: 1
+HdlLang: VHDL
+SimModel: BEHAVIORAL
+UcfFile: data/system.ucf
+EnableParTimingError: 1
+ShowLicenseDialog: 1
+LockAddr: dlmb_cntlr,C_BASEADDR
+LockAddr: ilmb_cntlr,C_BASEADDR
+LockAddr: IIC_EEPROM,C_BASEADDR
+LockAddr: xps_intc_0,C_BASEADDR
+LockAddr: SysACE_CompactFlash,C_BASEADDR
+LockAddr: xps_timer_0,C_BASEADDR
+LockAddr: RS232_Uart_2,C_BASEADDR
+LockAddr: RS232_Uart_1,C_BASEADDR
+LockAddr: mdm_0,C_BASEADDR
+LockAddr: DDR2_SDRAM,C_SDMA_CTRL_BASEADDR
+LockAddr: Hard_Ethernet_MAC,C_BASEADDR
+LockAddr: SRAM,C_MEM0_BASEADDR
+LockAddr: DDR2_SDRAM,C_MPMC_BASEADDR
+LockAddr: xps_gpio_4,C_BASEADDR
+LockAddr: xps_gpio_3,C_BASEADDR
+LockAddr: xps_gpio_2,C_BASEADDR
+LockAddr: xps_gpio_1,C_BASEADDR
+LockAddr: xps_gpio_0,C_BASEADDR
+LockAddr: Push_Buttons_5Bit,C_BASEADDR
+LockAddr: LEDs_Positions,C_BASEADDR
+LockAddr: LEDs_8Bit,C_BASEADDR
+LockAddr: DIP_Switches_8Bit,C_BASEADDR
+LockAddr: xps_iic_1,C_BASEADDR
+LockAddr: xps_iic_2,C_BASEADDR
+LockAddr: xps_iic_0,C_BASEADDR
+LockAddr: plbv46_plbv46_bridge_0,C_BRIDGE_BASEADDR
+LockAddr: SRAM,C_MEM1_BASEADDR
+LockAddr: plbv46_dvi_cntlr_0,C_DCR_BASEADDR
+LockAddr: plbv46_dvi_cntlr_0,C_BASEADDR
+Processor: microblaze_0
+BootLoop: 1
+XmdStub: 0
+SwProj: TestApp_Memory_microblaze_0
+Processor: microblaze_0
+Executable: TestApp_Memory_microblaze_0/executable.elf
+Source: TestApp_Memory_microblaze_0/src/TestApp_Memory.c
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: TestApp_Memory_microblaze_0/src/TestApp_Memory_LinkScr.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: TestApp_Peripheral_microblaze_0
+Processor: microblaze_0
+Executable: TestApp_Peripheral_microblaze_0/executable.elf
+Source: TestApp_Peripheral_microblaze_0/src/TestApp_Peripheral.c
+Source: TestApp_Peripheral_microblaze_0/src/xintc_tapp_example.c
+Source: TestApp_Peripheral_microblaze_0/src/xgpio_tapp_example.c
+Source: TestApp_Peripheral_microblaze_0/src/xiic_selftest_example.c
+Source: TestApp_Peripheral_microblaze_0/src/xlltemac_example_polled.c
+Source: TestApp_Peripheral_microblaze_0/src/xlltemac_example_util.c
+Source: TestApp_Peripheral_microblaze_0/src/xlltemac_example_intr_sgdma.c
+Source: TestApp_Peripheral_microblaze_0/src/xsysace_selftest_example.c
+Source: TestApp_Peripheral_microblaze_0/src/xuartns550_selftest_example.c
+Source: TestApp_Peripheral_microblaze_0/src/xuartns550_intr_example.c
+Source: TestApp_Peripheral_microblaze_0/src/xtmrctr_selftest_example.c
+Source: TestApp_Peripheral_microblaze_0/src/xtmrctr_intr_example.c
+Source: TestApp_Peripheral_microblaze_0/src/xuartlite_selftest_example.c
+Header: TestApp_Peripheral_microblaze_0/src/intc_header.h
+Header: TestApp_Peripheral_microblaze_0/src/gpio_header.h
+Header: TestApp_Peripheral_microblaze_0/src/iic_header.h
+Header: TestApp_Peripheral_microblaze_0/src/xlltemac_example.h
+Header: TestApp_Peripheral_microblaze_0/src/lltemac_header.h
+Header: TestApp_Peripheral_microblaze_0/src/lltemac_intr_header.h
+Header: TestApp_Peripheral_microblaze_0/src/sysace_header.h
+Header: TestApp_Peripheral_microblaze_0/src/uartns550_header.h
+Header: TestApp_Peripheral_microblaze_0/src/uartns550_intr_header.h
+Header: TestApp_Peripheral_microblaze_0/src/tmrctr_header.h
+Header: TestApp_Peripheral_microblaze_0/src/tmrctr_intr_header.h
+Header: TestApp_Peripheral_microblaze_0/src/uartlite_header.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: TestApp_Peripheral_microblaze_0/src/TestApp_Peripheral_LinkScr.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: bootload_lcd
+Processor: microblaze_0
+Executable: microblaze_0/code/bootload_lcd_elf.elf
+Source: sw/standalone/bootload_lcd/src/bootload_lcd.c
+Source: sw/standalone/lib/src/lcd_char/lcd.c
+Source: sw/standalone/lib/src/sleep/sleep.c
+Header: sw/standalone/lib/src/lcd_char/lcd.h
+Header: sw/standalone/lib/src/sleep/sleep.h
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: -DBOARDNUM=509
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: button_led_test
+Processor: microblaze_0
+Executable: microblaze_0/code/button_led_test_elf.elf
+Source: sw/standalone/button_led_test/src/button_led_test.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: hello
+Processor: microblaze_0
+Executable: microblaze_0/code/hello_elf.elf
+Source: sw/standalone/hello/src/hello.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 2048
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: hello_uart
+Processor: microblaze_0
+Executable: microblaze_0/code/hello_uart_elf.elf
+Source: sw/standalone/hello_uart/src/hello_uart.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: hello_uart_1
+Processor: microblaze_0
+Executable: microblaze_0/code/hello_uart_1_elf.elf
+Source: sw/standalone/hello_uart_1/src/hello_uart_1.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: iic_clock
+Processor: microblaze_0
+Executable: microblaze_0/code/iic_clock_elf.elf
+Source: sw/standalone/iic_clock/src/iic_clock.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: iic_ddr2
+Processor: microblaze_0
+Executable: microblaze_0/code/iic_ddr2_elf.elf
+Source: sw/standalone/iic_ddr2/src/iic_ddr2.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: iic_eeprom
+Processor: microblaze_0
+Executable: microblaze_0/code/iic_eeprom_elf.elf
+Source: sw/standalone/iic_eeprom/src/iic_eeprom.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: iic_fan
+Processor: microblaze_0
+Executable: microblaze_0/code/iic_fan_elf.elf
+Source: sw/standalone/iic_fan/src/iic_fan.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: iic_sfp
+Processor: microblaze_0
+Executable: microblaze_0/code/iic_sfp_elf.elf
+Source: sw/standalone/iic_sfp/src/iic_sfp.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: piezo
+Processor: microblaze_0
+Executable: microblaze_0/code/piezo_elf.elf
+Source: sw/standalone/piezo/src/piezo.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 8192
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: testfatfs
+Processor: microblaze_0
+Executable: microblaze_0/code/testfatfs_elf.elf
+Source: sw/standalone/testfatfs/src/testfatfs.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 4096
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: sysace_rebooter
+Processor: microblaze_0
+Executable: microblaze_0/code/sysace_rebooter_elf.elf
+Source: sw/standalone/sysace_rebooter/src/sysace_rebooter.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 1
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: xflash
+Processor: microblaze_0
+Executable: microblaze_0/code/xflash_elf.elf
+Source: sw/standalone/xflash/src/xflash.c
+Source: sw/standalone/xflash/src/get_input.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+SearchIncl: microblaze_0/libsrc/xilflash_v2_01_a/src/include
+LFlags: -lxilflash
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: bootload_video
+Processor: microblaze_0
+Executable: microblaze_0/code/bootload_video_elf.elf
+Source: sw/standalone/bootload_video/src/bootload_video.c
+Source: sw/standalone/lib/src/video_graphics/basicgraphics.c
+Source: sw/standalone/lib/src/video_graphics/graphics.c
+Source: sw/standalone/lib/src/sleep/sleep.c
+Source: sw/standalone/lib/src/lcd_char/lcd.c
+Header: sw/standalone/include/memory_map.h
+Header: sw/standalone/lib/src/video_graphics/basicgraphics.h
+Header: sw/standalone/lib/src/video_graphics/boot_boxdef.h
+Header: sw/standalone/lib/src/video_graphics/graphics.h
+Header: sw/standalone/lib/src/lcd_char/lcd.h
+Header: sw/standalone/lib/src/sleep/sleep.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: colorbar
+Processor: microblaze_0
+Executable: microblaze_0/code/colorbar_elf.elf
+Source: sw/standalone/colorbar/src/colorbar.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: xrom
+Processor: microblaze_0
+Executable: microblaze_0/code/xrom_elf.elf
+Source: sw/standalone/xrom/src/gpio.c
+Source: sw/standalone/xrom/src/gpio_iic.c
+Source: sw/standalone/xrom/src/gpio_iic_low_level.c
+Source: sw/standalone/xrom/src/manu_test_iic_rom.c
+Source: sw/standalone/xrom/src/MC24LC04B.c
+Source: sw/standalone/xrom/src/template.c
+Source: sw/standalone/xrom/src/xrom_ddr_test.c
+Source: sw/standalone/xrom/src/xrom_dip_switch.c
+Source: sw/standalone/xrom/src/xrom_input.c
+Source: sw/standalone/xrom/src/xrom_lcd.c
+Source: sw/standalone/xrom/src/xrom_led.c
+Source: sw/standalone/xrom/src/xrom_main.c
+Source: sw/standalone/xrom/src/xrom_piezo_test.c
+Source: sw/standalone/xrom/src/xrom_push_button.c
+Source: sw/standalone/xrom/src/xrom_sma.c
+Source: sw/standalone/xrom/src/xrom_tests.c
+Source: sw/standalone/xrom/src/xrom_vga.c
+Source: sw/standalone/xrom/src/xrom_zbt_test.c
+Source: sw/standalone/lib/src/sleep/sleep.c
+Header: sw/standalone/include/memory_map.h
+Header: sw/standalone/lib/src/sleep/sleep.h
+Header: sw/standalone/xrom/src/globaltypes.h
+Header: sw/standalone/xrom/src/gpio.h
+Header: sw/standalone/xrom/src/gpio_iic.h
+Header: sw/standalone/xrom/src/gpio_iic_low_level.h
+Header: sw/standalone/xrom/src/manu_test_iic_rom.h
+Header: sw/standalone/xrom/src/MC24LC04B.h
+Header: sw/standalone/xrom/src/xrom_ddr_test.h
+Header: sw/standalone/xrom/src/xrom_dip_switch.h
+Header: sw/standalone/xrom/src/xrom_input.h
+Header: sw/standalone/xrom/src/xrom_lcd.h
+Header: sw/standalone/xrom/src/xrom_led.h
+Header: sw/standalone/xrom/src/xrom_main.h
+Header: sw/standalone/xrom/src/xrom_piezo_test.h
+Header: sw/standalone/xrom/src/xrom_ps2.h
+Header: sw/standalone/xrom/src/xrom_push_button.h
+Header: sw/standalone/xrom/src/xrom_sma.h
+Header: sw/standalone/xrom/src/xrom_tests.h
+Header: sw/standalone/xrom/src/xrom_version.h
+Header: sw/standalone/xrom/src/xrom_vga.h
+Header: sw/standalone/xrom/src/xrom_zbt_test.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 0
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 512
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: -Wall -DBOARDNUM=509
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: my_ace
+Processor: microblaze_0
+Executable: microblaze_0/code/my_ace_elf.elf
+Source: sw/standalone/my_ace/src/my_ace.c
+Source: sw/standalone/lib/src/video_graphics/basicgraphics.c
+Source: sw/standalone/lib/src/video_graphics/graphics.c
+Source: sw/standalone/lib/src/sleep/sleep.c
+Source: sw/standalone/lib/src/lcd_char/lcd.c
+Header: sw/standalone/include/memory_map.h
+Header: sw/standalone/lib/src/video_graphics/graphics.h
+Header: sw/standalone/lib/src/video_graphics/basicgraphics.h
+Header: sw/standalone/lib/src/sleep/sleep.h
+Header: sw/standalone/lib/src/lcd_char/lcd.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 4096
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: slideshow
+Processor: microblaze_0
+Executable: microblaze_0/code/slideshow_elf.elf
+Source: sw/standalone/slideshow/src/slideshow.c
+Source: sw/standalone/lib/src/sleep/sleep.c
+Source: sw/standalone/lib/src/lcd_char/lcd.c
+Header: sw/standalone/include/memory_map.h
+Header: sw/standalone/lib/src/lcd_char/lcd.h
+Header: sw/standalone/lib/src/sleep/sleep.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 4096
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: -Wall
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: flash_hello
+Processor: microblaze_0
+Executable: microblaze_0/code/flash_hello_elf.elf
+Source: sw/standalone/flash_hello/src/flash_hello.c
+Source: sw/standalone/lib/src/video_graphics/basicgraphics.c
+Source: sw/standalone/lib/src/video_graphics/graphics.c
+Source: sw/standalone/lib/src/sleep/sleep.c
+Source: sw/standalone/lib/src/lcd_char/lcd.c
+Header: sw/standalone/include/memory_map.h
+Header: sw/standalone/lib/src/lcd_char/lcd.h
+Header: sw/standalone/lib/src/sleep/sleep.h
+Header: sw/standalone/lib/src/video_graphics/basicgraphics.h
+Header: sw/standalone/lib/src/video_graphics/graphics.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: -Wall -DBOARDNUM=509 -DCONFIGURATION=0
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: spi_hello
+Processor: microblaze_0
+Executable: microblaze_0/code/spi_hello_elf.elf
+Source: sw/standalone/spi_hello/src/spi_hello.c
+Source: sw/standalone/lib/src/video_graphics/basicgraphics.c
+Source: sw/standalone/lib/src/video_graphics/graphics.c
+Source: sw/standalone/lib/src/sleep/sleep.c
+Source: sw/standalone/lib/src/lcd_char/lcd.c
+Header: sw/standalone/include/memory_map.h
+Header: sw/standalone/lib/src/lcd_char/lcd.h
+Header: sw/standalone/lib/src/sleep/sleep.h
+Header: sw/standalone/lib/src/video_graphics/basicgraphics.h
+Header: sw/standalone/lib/src/video_graphics/graphics.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: -Wall -DBOARDNUM=509 -DCONFIGURATION=0
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: simon
+Processor: microblaze_0
+Executable: microblaze_0/code/simon_elf.elf
+Source: sw/standalone/simon/src/simon.c
+Source: sw/standalone/lib/src/sleep/sleep.c
+Source: sw/standalone/lib/src/lcd_char/lcd.c
+Source: sw/standalone/lib/src/video_graphics/basicgraphics.c
+Source: sw/standalone/lib/src/video_graphics/graphics.c
+Header: sw/standalone/include/memory_map.h
+Header: sw/standalone/lib/src/sleep/sleep.h
+Header: sw/standalone/lib/src/lcd_char/lcd.h
+Header: sw/standalone/lib/src/video_graphics/basicgraphics.h
+Header: sw/standalone/lib/src/video_graphics/boot_boxdef.h
+Header: sw/standalone/lib/src/video_graphics/graphics.h
+DefaultInit: executable
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 4096
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: -Wall -DBOARDNUM=509
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: my_plat_flash
+Processor: microblaze_0
+Executable: microblaze_0/code/my_plat_flash_elf.elf
+Source: sw/standalone/my_plat_flash/src/my_plat_flash.c
+Source: sw/standalone/lib/src/video_graphics/basicgraphics.c
+Source: sw/standalone/lib/src/video_graphics/graphics.c
+Source: sw/standalone/lib/src/sleep/sleep.c
+Source: sw/standalone/lib/src/lcd_char/lcd.c
+Header: sw/standalone/include/memory_map.h
+Header: sw/standalone/lib/src/lcd_char/lcd.h
+Header: sw/standalone/lib/src/video_graphics/basicgraphics.h
+Header: sw/standalone/lib/src/video_graphics/graphics.h
+Header: sw/standalone/lib/src/sleep/sleep.h
+DefaultInit: executable
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x50
+StackSize: 4096
+HeapSize: 
+LinkerScript: 
+ProgCCFlags: -Wall -DBOARDNUM=509
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: lwipdemo
+Processor: microblaze_0
+Executable: microblaze_0/code/lwipdemo_elf.elf
+Source: sw/standalone/lwipdemo/src/sock/http_response.c
+Source: sw/standalone/lwipdemo/src/sock/main.c
+Source: sw/standalone/lwipdemo/src/sock/echo.c
+Source: sw/standalone/lwipdemo/src/sock/platform.c
+Source: sw/standalone/lwipdemo/src/sock/platform_gpio.c
+Source: sw/standalone/lwipdemo/src/sock/web_utils.c
+Source: sw/standalone/lwipdemo/src/sock/webserver.c
+Source: sw/standalone/lwipdemo/src/sock/tftpserver.c
+Source: sw/standalone/lwipdemo/src/sock/tftputils.c
+Source: sw/standalone/lwipdemo/src/sock/prot_malloc.c
+Header: sw/standalone/lwipdemo/src/sock/platform_gpio.h
+Header: sw/standalone/lwipdemo/src/sock/prot_malloc.h
+Header: sw/standalone/lwipdemo/src/sock/tftpserver.h
+Header: sw/standalone/lwipdemo/src/sock/tftputils.h
+Header: sw/standalone/lwipdemo/src/sock/webserver.h
+Header: sw/standalone/include/memory_map.h
+DefaultInit: executable
+InitBram: 0
+Active: 1
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+LFlags: -llwip4 -lxilkernel
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: sw/standalone/lwipdemo/lscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+SwProj: webserver
+Processor: microblaze_0
+Executable: microblaze_0/code/webserver_elf.elf
+Source: sw/standalone/lwipdemo/src/raw/http_response.c
+Source: sw/standalone/lwipdemo/src/raw/main.c
+Source: sw/standalone/lwipdemo/src/raw/platform.c
+Source: sw/standalone/lwipdemo/src/raw/platform_gpio.c
+Source: sw/standalone/lwipdemo/src/raw/web_utils.c
+Source: sw/standalone/lwipdemo/src/raw/webserver.c
+Header: sw/standalone/include/memory_map.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 0
+CompilerOptLevel: 0
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+LFlags: -llwip4
+ProgStart: 
+StackSize: 
+HeapSize: 
+LinkerScript: sw/standalone/lwipdemo/lscript.ld
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0

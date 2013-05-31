@@ -1,0 +1,4 @@
+VHDL dcr_v29_v1_00_b D:\DynamicFilter\xupv5-lx110t_std_ip_pcores\pcores\dcr_v29_v1_00_b/hdl/vhdl/or_muxcy.vhd
+VHDL dcr_v29_v1_00_b D:\DynamicFilter\xupv5-lx110t_std_ip_pcores\pcores\dcr_v29_v1_00_b/hdl/vhdl/or_gate.vhd
+VHDL dcr_v29_v1_00_b D:\DynamicFilter\xupv5-lx110t_std_ip_pcores\pcores\dcr_v29_v1_00_b/hdl/vhdl/dcr_v29.vhd
+vhdl work ../hdl/system_dcr_v29_0_wrapper.vhd

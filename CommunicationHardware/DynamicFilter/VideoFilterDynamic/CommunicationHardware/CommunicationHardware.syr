@@ -1,0 +1,1126 @@
+Release 14.4 - xst P.49d (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
+ 
+--> Reading design: CommunicationHardware.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "CommunicationHardware.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "CommunicationHardware"
+Output Format                      : NGC
+Target Device                      : xc5vlx50t-1-ff1136
+
+---- Source Options
+Top Module Name                    : CommunicationHardware
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : NO
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 0
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : False
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "sobel_pixelLine.v" in library work
+Module <sobel_pixelLine_ram> compiled
+Compiling verilog file "sobel_mul_3s_8s_13_2.v" in library work
+Module <sobel_pixelLine> compiled
+Module <sobel_mul_3s_8s_13_2_MulnS_0> compiled
+Compiling verilog file "sobel_filterYConstants.v" in library work
+Module <sobel_mul_3s_8s_13_2> compiled
+Module <sobel_filterYConstants_rom> compiled
+Compiling verilog file "sobel_filterXConstants.v" in library work
+Module <sobel_filterYConstants> compiled
+Module <sobel_filterXConstants_rom> compiled
+Compiling verilog file "sobel.v" in library work
+Module <sobel_filterXConstants> compiled
+Module <sobel> compiled
+No errors in compilation
+Analysis of file <"CommunicationHardware.prj"> succeeded.
+ 
+Compiling vhdl file "D:/DynamicFilter/VideoFilterDynamic/CommunicationHardware/SobelWrapper.vhd" in Library work.
+Architecture behavioral of Entity sobelwrapper is up to date.
+Compiling vhdl file "D:/DynamicFilter/VideoFilterDynamic/CommunicationHardware/CommunicationHardware.vhd" in Library work.
+Architecture behavioral of Entity communicationhardware is up to date.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <CommunicationHardware> in library <work> (architecture <behavioral>) with generics.
+	communicationAddress_width = 32
+	communicationBussInput_width = 32
+	communicationBussOutput_width = 32
+
+Analyzing hierarchy for entity <SobelWrapper> in library <work> (architecture <Behavioral>).
+
+Analyzing hierarchy for module <sobel> in library <work> with parameters.
+	ap_ST_st1_fsm_0 = "000"
+	ap_ST_st2_fsm_1 = "001"
+	ap_ST_st3_fsm_2 = "010"
+	ap_ST_st4_fsm_3 = "011"
+	ap_ST_st5_fsm_4 = "100"
+	ap_ST_st6_fsm_5 = "101"
+	ap_ST_st7_fsm_6 = "110"
+	ap_const_logic_0 = "0"
+	ap_const_logic_1 = "1"
+	ap_const_lv11_7FF = "11111111111"
+	ap_const_lv12_7 = "000000000111"
+	ap_const_lv12_9 = "000000001001"
+	ap_const_lv16_0 = "0000000000000000"
+	ap_const_lv16_1 = "0000000000000001"
+	ap_const_lv16_2 = "0000000000000010"
+	ap_const_lv1_0 = "0"
+	ap_const_lv1_1 = "1"
+	ap_const_lv24_0 = "000000000000000000000000"
+	ap_const_lv24_1 = "000000000000000000000001"
+	ap_const_lv24_3 = "000000000000000000000011"
+	ap_const_lv24_8 = "000000000000000000001000"
+	ap_const_lv2_0 = "00"
+	ap_const_lv2_1 = "01"
+	ap_const_lv2_3 = "11"
+	ap_const_lv32_10 = "00000000000000000000000000010000"
+	ap_const_lv32_17 = "00000000000000000000000000010111"
+	ap_const_lv32_8 = "00000000000000000000000000001000"
+	ap_const_lv32_F = "00000000000000000000000000001111"
+	ap_const_lv4_2 = "0010"
+	ap_true = "1"
+
+Analyzing hierarchy for module <sobel_pixelLine> in library <work> with parameters.
+	AddressRange = "00000000000000000000011110000000"
+	AddressWidth = "00000000000000000000000000001011"
+	DataWidth = "00000000000000000000000000011000"
+
+Analyzing hierarchy for module <sobel_filterYConstants> in library <work> with parameters.
+	AddressRange = "00000000000000000000000000001001"
+	AddressWidth = "00000000000000000000000000000100"
+	DataWidth = "00000000000000000000000000000011"
+
+Analyzing hierarchy for module <sobel_filterXConstants> in library <work> with parameters.
+	AddressRange = "00000000000000000000000000001001"
+	AddressWidth = "00000000000000000000000000000100"
+	DataWidth = "00000000000000000000000000000011"
+
+Analyzing hierarchy for module <sobel_mul_3s_8s_13_2> in library <work> with parameters.
+	ID = "00000000000000000000000000000001"
+	NUM_STAGE = "00000000000000000000000000000010"
+	din0_WIDTH = "00000000000000000000000000000011"
+	din1_WIDTH = "00000000000000000000000000001000"
+	dout_WIDTH = "00000000000000000000000000001101"
+
+Analyzing hierarchy for module <sobel_mul_3s_8s_13_2> in library <work> with parameters.
+	ID = "00000000000000000000000000000010"
+	NUM_STAGE = "00000000000000000000000000000010"
+	din0_WIDTH = "00000000000000000000000000000011"
+	din1_WIDTH = "00000000000000000000000000001000"
+	dout_WIDTH = "00000000000000000000000000001101"
+
+Analyzing hierarchy for module <sobel_mul_3s_8s_13_2> in library <work> with parameters.
+	ID = "00000000000000000000000000000011"
+	NUM_STAGE = "00000000000000000000000000000010"
+	din0_WIDTH = "00000000000000000000000000000011"
+	din1_WIDTH = "00000000000000000000000000001000"
+	dout_WIDTH = "00000000000000000000000000001101"
+
+Analyzing hierarchy for module <sobel_mul_3s_8s_13_2> in library <work> with parameters.
+	ID = "00000000000000000000000000000100"
+	NUM_STAGE = "00000000000000000000000000000010"
+	din0_WIDTH = "00000000000000000000000000000011"
+	din1_WIDTH = "00000000000000000000000000001000"
+	dout_WIDTH = "00000000000000000000000000001101"
+
+Analyzing hierarchy for module <sobel_mul_3s_8s_13_2> in library <work> with parameters.
+	ID = "00000000000000000000000000000101"
+	NUM_STAGE = "00000000000000000000000000000010"
+	din0_WIDTH = "00000000000000000000000000000011"
+	din1_WIDTH = "00000000000000000000000000001000"
+	dout_WIDTH = "00000000000000000000000000001101"
+
+Analyzing hierarchy for module <sobel_mul_3s_8s_13_2> in library <work> with parameters.
+	ID = "00000000000000000000000000000110"
+	NUM_STAGE = "00000000000000000000000000000010"
+	din0_WIDTH = "00000000000000000000000000000011"
+	din1_WIDTH = "00000000000000000000000000001000"
+	dout_WIDTH = "00000000000000000000000000001101"
+
+Analyzing hierarchy for module <sobel_pixelLine_ram> in library <work> with parameters.
+	AWIDTH = "00000000000000000000000000001011"
+	DWIDTH = "00000000000000000000000000011000"
+	MEM_SIZE = "00000000000000000000011110000000"
+
+Analyzing hierarchy for module <sobel_filterYConstants_rom> in library <work> with parameters.
+	AWIDTH = "00000000000000000000000000000100"
+	DWIDTH = "00000000000000000000000000000011"
+	MEM_SIZE = "00000000000000000000000000001001"
+
+Analyzing hierarchy for module <sobel_filterXConstants_rom> in library <work> with parameters.
+	AWIDTH = "00000000000000000000000000000100"
+	DWIDTH = "00000000000000000000000000000011"
+	MEM_SIZE = "00000000000000000000000000001001"
+
+Analyzing hierarchy for module <sobel_mul_3s_8s_13_2_MulnS_0> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing generic Entity <CommunicationHardware> in library <work> (Architecture <behavioral>).
+	communicationAddress_width = 32
+	communicationBussInput_width = 32
+	communicationBussOutput_width = 32
+Entity <CommunicationHardware> analyzed. Unit <CommunicationHardware> generated.
+
+Analyzing Entity <SobelWrapper> in library <work> (Architecture <Behavioral>).
+Entity <SobelWrapper> analyzed. Unit <SobelWrapper> generated.
+
+Analyzing module <sobel> in library <work>.
+	ap_ST_st1_fsm_0 = 3'b000
+	ap_ST_st2_fsm_1 = 3'b001
+	ap_ST_st3_fsm_2 = 3'b010
+	ap_ST_st4_fsm_3 = 3'b011
+	ap_ST_st5_fsm_4 = 3'b100
+	ap_ST_st6_fsm_5 = 3'b101
+	ap_ST_st7_fsm_6 = 3'b110
+	ap_const_logic_0 = 1'b0
+	ap_const_logic_1 = 1'b1
+	ap_const_lv11_7FF = 11'b11111111111
+	ap_const_lv12_7 = 12'b000000000111
+	ap_const_lv12_9 = 12'b000000001001
+	ap_const_lv16_0 = 16'b0000000000000000
+	ap_const_lv16_1 = 16'b0000000000000001
+	ap_const_lv16_2 = 16'b0000000000000010
+	ap_const_lv1_0 = 1'b0
+	ap_const_lv1_1 = 1'b1
+	ap_const_lv24_0 = 24'b000000000000000000000000
+	ap_const_lv24_1 = 24'b000000000000000000000001
+	ap_const_lv24_3 = 24'b000000000000000000000011
+	ap_const_lv24_8 = 24'b000000000000000000001000
+	ap_const_lv2_0 = 2'b00
+	ap_const_lv2_1 = 2'b01
+	ap_const_lv2_3 = 2'b11
+	ap_const_lv32_10 = 32'b00000000000000000000000000010000
+	ap_const_lv32_17 = 32'b00000000000000000000000000010111
+	ap_const_lv32_8 = 32'b00000000000000000000000000001000
+	ap_const_lv32_F = 32'b00000000000000000000000000001111
+	ap_const_lv4_2 = 4'b0010
+	ap_true = 1'b1
+Module <sobel> is correct for synthesis.
+ 
+Analyzing module <sobel_pixelLine> in library <work>.
+	AddressRange = 32'sb00000000000000000000011110000000
+	AddressWidth = 32'sb00000000000000000000000000001011
+	DataWidth = 32'sb00000000000000000000000000011000
+Module <sobel_pixelLine> is correct for synthesis.
+ 
+Analyzing module <sobel_pixelLine_ram> in library <work>.
+	AWIDTH = 32'sb00000000000000000000000000001011
+	DWIDTH = 32'sb00000000000000000000000000011000
+	MEM_SIZE = 32'sb00000000000000000000011110000000
+INFO:Xst:2546 - "sobel_pixelLine.v" line 25: reading initialization file "./sobel_pixelLine_ram.dat".
+Module <sobel_pixelLine_ram> is correct for synthesis.
+ 
+    Set property "ram_style = block" for signal <ram>.
+Analyzing module <sobel_filterYConstants> in library <work>.
+	AddressRange = 32'sb00000000000000000000000000001001
+	AddressWidth = 32'sb00000000000000000000000000000100
+	DataWidth = 32'sb00000000000000000000000000000011
+Module <sobel_filterYConstants> is correct for synthesis.
+ 
+Analyzing module <sobel_filterYConstants_rom> in library <work>.
+	AWIDTH = 32'sb00000000000000000000000000000100
+	DWIDTH = 32'sb00000000000000000000000000000011
+	MEM_SIZE = 32'sb00000000000000000000000000001001
+INFO:Xst:2546 - "sobel_filterYConstants.v" line 24: reading initialization file "./sobel_filterYConstants_rom.dat".
+Module <sobel_filterYConstants_rom> is correct for synthesis.
+ 
+Analyzing module <sobel_filterXConstants> in library <work>.
+	AddressRange = 32'sb00000000000000000000000000001001
+	AddressWidth = 32'sb00000000000000000000000000000100
+	DataWidth = 32'sb00000000000000000000000000000011
+Module <sobel_filterXConstants> is correct for synthesis.
+ 
+Analyzing module <sobel_filterXConstants_rom> in library <work>.
+	AWIDTH = 32'sb00000000000000000000000000000100
+	DWIDTH = 32'sb00000000000000000000000000000011
+	MEM_SIZE = 32'sb00000000000000000000000000001001
+INFO:Xst:2546 - "sobel_filterXConstants.v" line 24: reading initialization file "./sobel_filterXConstants_rom.dat".
+Module <sobel_filterXConstants_rom> is correct for synthesis.
+ 
+Analyzing module <sobel_mul_3s_8s_13_2.1> in library <work>.
+	ID = 32'sb00000000000000000000000000000001
+	NUM_STAGE = 32'sb00000000000000000000000000000010
+	din0_WIDTH = 32'sb00000000000000000000000000000011
+	din1_WIDTH = 32'sb00000000000000000000000000001000
+	dout_WIDTH = 32'sb00000000000000000000000000001101
+Module <sobel_mul_3s_8s_13_2.1> is correct for synthesis.
+ 
+Analyzing module <sobel_mul_3s_8s_13_2_MulnS_0> in library <work>.
+Module <sobel_mul_3s_8s_13_2_MulnS_0> is correct for synthesis.
+ 
+    Set user-defined property "KEEP =  true" for signal <a> in unit <sobel_mul_3s_8s_13_2_MulnS_0>.
+    Set user-defined property "KEEP =  true" for signal <b> in unit <sobel_mul_3s_8s_13_2_MulnS_0>.
+Analyzing module <sobel_mul_3s_8s_13_2.2> in library <work>.
+	ID = 32'sb00000000000000000000000000000010
+	NUM_STAGE = 32'sb00000000000000000000000000000010
+	din0_WIDTH = 32'sb00000000000000000000000000000011
+	din1_WIDTH = 32'sb00000000000000000000000000001000
+	dout_WIDTH = 32'sb00000000000000000000000000001101
+Module <sobel_mul_3s_8s_13_2.2> is correct for synthesis.
+ 
+Analyzing module <sobel_mul_3s_8s_13_2.3> in library <work>.
+	ID = 32'sb00000000000000000000000000000011
+	NUM_STAGE = 32'sb00000000000000000000000000000010
+	din0_WIDTH = 32'sb00000000000000000000000000000011
+	din1_WIDTH = 32'sb00000000000000000000000000001000
+	dout_WIDTH = 32'sb00000000000000000000000000001101
+Module <sobel_mul_3s_8s_13_2.3> is correct for synthesis.
+ 
+Analyzing module <sobel_mul_3s_8s_13_2.4> in library <work>.
+	ID = 32'sb00000000000000000000000000000100
+	NUM_STAGE = 32'sb00000000000000000000000000000010
+	din0_WIDTH = 32'sb00000000000000000000000000000011
+	din1_WIDTH = 32'sb00000000000000000000000000001000
+	dout_WIDTH = 32'sb00000000000000000000000000001101
+Module <sobel_mul_3s_8s_13_2.4> is correct for synthesis.
+ 
+Analyzing module <sobel_mul_3s_8s_13_2.5> in library <work>.
+	ID = 32'sb00000000000000000000000000000101
+	NUM_STAGE = 32'sb00000000000000000000000000000010
+	din0_WIDTH = 32'sb00000000000000000000000000000011
+	din1_WIDTH = 32'sb00000000000000000000000000001000
+	dout_WIDTH = 32'sb00000000000000000000000000001101
+Module <sobel_mul_3s_8s_13_2.5> is correct for synthesis.
+ 
+Analyzing module <sobel_mul_3s_8s_13_2.6> in library <work>.
+	ID = 32'sb00000000000000000000000000000110
+	NUM_STAGE = 32'sb00000000000000000000000000000010
+	din0_WIDTH = 32'sb00000000000000000000000000000011
+	din1_WIDTH = 32'sb00000000000000000000000000001000
+	dout_WIDTH = 32'sb00000000000000000000000000001101
+Module <sobel_mul_3s_8s_13_2.6> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <sobel_pixelLine_ram>.
+    Related source file is "sobel_pixelLine.v".
+    Found 1920x24-bit single-port RAM <Mram_ram> for signal <ram>.
+    Found 24-bit register for signal <q0>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  24 D-type flip-flop(s).
+Unit <sobel_pixelLine_ram> synthesized.
+
+
+Synthesizing Unit <sobel_filterYConstants_rom>.
+    Related source file is "sobel_filterYConstants.v".
+WARNING:Xst:1781 - Signal <ram> is used but never assigned. Tied to default value.
+    Found 9x3-bit ROM for signal <$varindex0000> created at line 33.
+    Found 3-bit register for signal <q0>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   3 D-type flip-flop(s).
+Unit <sobel_filterYConstants_rom> synthesized.
+
+
+Synthesizing Unit <sobel_filterXConstants_rom>.
+    Related source file is "sobel_filterXConstants.v".
+WARNING:Xst:1781 - Signal <ram> is used but never assigned. Tied to default value.
+    Found 9x3-bit ROM for signal <$varindex0000> created at line 33.
+    Found 3-bit register for signal <q0>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   3 D-type flip-flop(s).
+Unit <sobel_filterXConstants_rom> synthesized.
+
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_MulnS_0>.
+    Related source file is "sobel_mul_3s_8s_13_2.v".
+    Found 13-bit register for signal <p>.
+    Found 8x3-bit multiplier for signal <tmp_product$mult0000> created at line 20.
+    Summary:
+	inferred  13 D-type flip-flop(s).
+	inferred   1 Multiplier(s).
+Unit <sobel_mul_3s_8s_13_2_MulnS_0> synthesized.
+
+
+Synthesizing Unit <sobel_pixelLine>.
+    Related source file is "sobel_pixelLine.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sobel_pixelLine> synthesized.
+
+
+Synthesizing Unit <sobel_filterYConstants>.
+    Related source file is "sobel_filterYConstants.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sobel_filterYConstants> synthesized.
+
+
+Synthesizing Unit <sobel_filterXConstants>.
+    Related source file is "sobel_filterXConstants.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sobel_filterXConstants> synthesized.
+
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_1>.
+    Related source file is "sobel_mul_3s_8s_13_2.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sobel_mul_3s_8s_13_2_1> synthesized.
+
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_2>.
+    Related source file is "sobel_mul_3s_8s_13_2.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sobel_mul_3s_8s_13_2_2> synthesized.
+
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_3>.
+    Related source file is "sobel_mul_3s_8s_13_2.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sobel_mul_3s_8s_13_2_3> synthesized.
+
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_4>.
+    Related source file is "sobel_mul_3s_8s_13_2.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sobel_mul_3s_8s_13_2_4> synthesized.
+
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_5>.
+    Related source file is "sobel_mul_3s_8s_13_2.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sobel_mul_3s_8s_13_2_5> synthesized.
+
+
+Synthesizing Unit <sobel_mul_3s_8s_13_2_6>.
+    Related source file is "sobel_mul_3s_8s_13_2.v".
+WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <sobel_mul_3s_8s_13_2_6> synthesized.
+
+
+Synthesizing Unit <sobel>.
+    Related source file is "sobel.v".
+WARNING:Xst:647 - Input <pixelColumnCount<23:11>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <pixelLineCount<23:12>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <tmp_53_fu_868_p1<3:2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <tmp_4_cast_fu_310_p1<11:5>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <tmp_31_cast_fu_951_p1<12:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <tmp_28_cast_fu_942_p1<12:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <tmp_25_cast_fu_933_p1<12:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <tmp_1_cast_fu_351_p1<11:5>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <tmp_16_cast_fu_818_p1<11:5>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pixelLine_addr9_fu_371_p2<11>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pixelLine_addr8_cast_fu_346_p1<31:11>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pixelLine_addr7_fu_330_p2<11>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pixelLine_addr6_cast_fu_863_p1<31:11>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pixelLine_addr5_fu_847_p2<11>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pixelLine_addr1_cast_fu_387_p1<31:11>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <filterYConstants_load_cast_fu_930_p1<12:3>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <filterYConstants_addr4_cast_fu_894_p1<31:4>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <filterXConstants_load_cast_fu_960_p1<12:3>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_0> for signal <ap_CS_fsm>.
+    -----------------------------------------------------------------------
+    | States             | 7                                              |
+    | Transitions        | 19                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 7                                              |
+    | Clock              | ap_clk                    (rising_edge)        |
+    | Power Up State     | 000                                            |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 24-bit register for signal <countY>.
+    Found 3-bit register for signal <filterXConstants_load_reg_1114>.
+    Found 4-bit subtractor for signal <filterYConstants_addr3_cast_fu_882_p2>.
+    Found 4-bit adder for signal <filterYConstants_addr4_fu_888_p2>.
+    Found 3-bit register for signal <filterYConstants_load_reg_1109>.
+    Found 17-bit comparator greater for signal <icmp1_fu_514_p2_0$cmp_gt0000> created at line 679.
+    Found 17-bit comparator greater for signal <icmp2_fu_567_p2_0$cmp_gt0000> created at line 680.
+    Found 17-bit comparator greater for signal <icmp3_fu_620_p2_0$cmp_gt0000> created at line 681.
+    Found 17-bit comparator greater for signal <icmp4_fu_673_p2_0$cmp_gt0000> created at line 682.
+    Found 17-bit comparator greater for signal <icmp8_fu_461_p2_0$cmp_gt0000> created at line 683.
+    Found 17-bit comparator greater for signal <icmp_fu_408_p2_0$cmp_gt0000> created at line 684.
+    Found 11-bit adder for signal <pixelLine_addr1_fu_381_p2>.
+    Found 12-bit adder for signal <pixelLine_addr5_fu_847_p2>.
+    Found 11-bit adder for signal <pixelLine_addr6_fu_857_p2>.
+    Found 12-bit adder for signal <pixelLine_addr7_fu_330_p2>.
+    Found 11-bit adder for signal <pixelLine_addr8_fu_340_p2>.
+    Found 12-bit adder for signal <pixelLine_addr9_fu_371_p2>.
+    Found 24-bit register for signal <pixelOutXB>.
+    Found 24-bit adder for signal <pixelOutXB$addsub0000> created at line 767.
+    Found 24-bit register for signal <pixelOutXG>.
+    Found 24-bit adder for signal <pixelOutXG$addsub0000> created at line 765.
+    Found 24-bit register for signal <pixelOutXR>.
+    Found 24-bit adder for signal <pixelOutXR$addsub0000> created at line 763.
+    Found 24-bit register for signal <pixelOutYB>.
+    Found 24-bit adder for signal <pixelOutYB$addsub0000> created at line 761.
+    Found 24-bit register for signal <pixelOutYG>.
+    Found 24-bit adder for signal <pixelOutYG$addsub0000> created at line 757.
+    Found 24-bit register for signal <pixelOutYR>.
+    Found 24-bit adder for signal <pixelOutYR$addsub0000> created at line 751.
+    Found 24-bit register for signal <storemerge_reg_258>.
+    Found 2-bit register for signal <tmp_11_reg_270>.
+    Found 11-bit adder for signal <tmp_18_fu_830_p2>.
+    Found 8-bit register for signal <tmp_24_reg_1104>.
+    Found 13-bit register for signal <tmp_26_reg_1151>.
+    Found 13-bit register for signal <tmp_29_reg_1156>.
+    Found 13-bit register for signal <tmp_32_reg_1161>.
+    Found 13-bit register for signal <tmp_34_reg_1166>.
+    Found 13-bit register for signal <tmp_36_reg_1171>.
+    Found 13-bit register for signal <tmp_38_reg_1176>.
+    Found 1-bit register for signal <tmp_3_reg_1045<0>>.
+    Found 2-bit adder for signal <tmp_40_fu_812_p2>.
+    Found 2-bit register for signal <tmp_40_reg_1069>.
+    Found 24-bit adder for signal <tmp_41_fu_900_p2>.
+    Found 8-bit register for signal <tmp_51_reg_1094>.
+    Found 8-bit register for signal <tmp_52_reg_1099>.
+    Found 1-bit register for signal <tmp_6_reg_1049<0>>.
+    Found 11-bit adder for signal <tmp_8_cast_fu_304_p2>.
+    Found 11-bit register for signal <tmp_8_cast_reg_1053>.
+    Found 25-bit comparator less for signal <tmp_9_fu_392_p2_0$cmp_lt0000> created at line 791.
+    Found 1-bit register for signal <tmp_reg_1041<0>>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred 318 D-type flip-flop(s).
+	inferred  18 Adder/Subtractor(s).
+	inferred   7 Comparator(s).
+Unit <sobel> synthesized.
+
+
+Synthesizing Unit <SobelWrapper>.
+    Related source file is "D:/DynamicFilter/VideoFilterDynamic/CommunicationHardware/SobelWrapper.vhd".
+    Found 24-bit register for signal <filteredPixelX>.
+    Found 24-bit register for signal <filteredPixelY>.
+    Found 16-bit register for signal <mode_Sig>.
+    Found 24-bit register for signal <pixel_Sig>.
+    Found 24-bit register for signal <x_Sig>.
+    Found 24-bit register for signal <y_Sig>.
+    Summary:
+	inferred 136 D-type flip-flop(s).
+Unit <SobelWrapper> synthesized.
+
+
+Synthesizing Unit <CommunicationHardware>.
+    Related source file is "D:/DynamicFilter/VideoFilterDynamic/CommunicationHardware/CommunicationHardware.vhd".
+WARNING:Xst:647 - Input <registerInValue<31:24>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 32-bit register for signal <registerOutValue>.
+    Found 24-bit register for signal <reg0>.
+    Found 24-bit register for signal <reg1>.
+    Found 24-bit register for signal <reg2>.
+    Found 2-bit register for signal <reg3>.
+    Found 1-bit register for signal <reg4>.
+    Summary:
+	inferred 107 D-type flip-flop(s).
+Unit <CommunicationHardware> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 1
+ 1920x24-bit single-port RAM                           : 1
+# ROMs                                                 : 2
+ 9x3-bit ROM                                           : 2
+# Multipliers                                          : 6
+ 8x3-bit multiplier                                    : 6
+# Adders/Subtractors                                   : 18
+ 11-bit adder                                          : 5
+ 12-bit adder                                          : 3
+ 2-bit adder                                           : 1
+ 24-bit adder                                          : 7
+ 4-bit adder                                           : 1
+ 4-bit subtractor                                      : 1
+# Registers                                            : 46
+ 1-bit register                                        : 4
+ 11-bit register                                       : 1
+ 13-bit register                                       : 12
+ 16-bit register                                       : 1
+ 2-bit register                                        : 3
+ 24-bit register                                       : 17
+ 3-bit register                                        : 4
+ 32-bit register                                       : 1
+ 8-bit register                                        : 3
+# Comparators                                          : 7
+ 17-bit comparator greater                             : 6
+ 25-bit comparator less                                : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <sobel_wrapper_inst/sobel_inst/ap_CS_fsm/FSM> on signal <ap_CS_fsm[1:7]> with one-hot encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 0000001
+ 001   | 1000000
+ 010   | 0100000
+ 011   | 0010000
+ 100   | 0001000
+ 101   | 0000100
+ 110   | 0000010
+-------------------
+INFO:Xst:2261 - The FF/Latch <p_10> in Unit <sobel_mul_3s_8s_13_2_MulnS_0_U> is equivalent to the following 2 FFs/Latches, which will be removed : <p_11> <p_12> 
+INFO:Xst:2261 - The FF/Latch <p_10> in Unit <sobel_mul_3s_8s_13_2_MulnS_0_U> is equivalent to the following 2 FFs/Latches, which will be removed : <p_11> <p_12> 
+INFO:Xst:2261 - The FF/Latch <p_10> in Unit <sobel_mul_3s_8s_13_2_MulnS_0_U> is equivalent to the following 2 FFs/Latches, which will be removed : <p_11> <p_12> 
+INFO:Xst:2261 - The FF/Latch <p_10> in Unit <sobel_mul_3s_8s_13_2_MulnS_0_U> is equivalent to the following 2 FFs/Latches, which will be removed : <p_11> <p_12> 
+INFO:Xst:2261 - The FF/Latch <p_10> in Unit <sobel_mul_3s_8s_13_2_MulnS_0_U> is equivalent to the following 2 FFs/Latches, which will be removed : <p_11> <p_12> 
+INFO:Xst:2261 - The FF/Latch <p_10> in Unit <sobel_mul_3s_8s_13_2_MulnS_0_U> is equivalent to the following 2 FFs/Latches, which will be removed : <p_11> <p_12> 
+INFO:Xst:2261 - The FF/Latch <mode_Sig_2> in Unit <sobel_wrapper_inst> is equivalent to the following 13 FFs/Latches, which will be removed : <mode_Sig_3> <mode_Sig_4> <mode_Sig_5> <mode_Sig_6> <mode_Sig_7> <mode_Sig_8> <mode_Sig_9> <mode_Sig_10> <mode_Sig_11> <mode_Sig_12> <mode_Sig_13> <mode_Sig_14> <mode_Sig_15> 
+WARNING:Xst:1710 - FF/Latch <mode_Sig_2> (without init value) has a constant value of 0 in block <sobel_wrapper_inst>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_24> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_25> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_26> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_27> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_28> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_29> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_30> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_31> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <x_Sig_11> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_12> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_13> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_14> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_15> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_16> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_17> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_18> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_19> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_20> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_21> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_22> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <x_Sig_23> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_5> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_6> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_7> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_8> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_9> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_10> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_11> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_12> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_13> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_14> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_15> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_16> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_17> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_18> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_19> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_20> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_21> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_22> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2677 - Node <y_Sig_23> of sequential type is unconnected in block <sobel_wrapper_inst>.
+WARNING:Xst:2404 -  FFs/Latches <mode_Sig<15:2>> (without init value) have a constant value of 0 in block <SobelWrapper>.
+
+Synthesizing (advanced) Unit <sobel>.
+The following registers are absorbed into accumulator <pixelOutXB>: 1 register on signal <pixelOutXB>.
+The following registers are absorbed into accumulator <pixelOutXG>: 1 register on signal <pixelOutXG>.
+The following registers are absorbed into accumulator <pixelOutXR>: 1 register on signal <pixelOutXR>.
+The following registers are absorbed into accumulator <pixelOutYB>: 1 register on signal <pixelOutYB>.
+The following registers are absorbed into accumulator <pixelOutYG>: 1 register on signal <pixelOutYG>.
+The following registers are absorbed into accumulator <pixelOutYR>: 1 register on signal <pixelOutYR>.
+Unit <sobel> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sobel_filterXConstants_rom>.
+INFO:Xst:3034 - In order to maximize performance and save block RAM resources, the small ROM <Mrom__varindex0000> will be implemented on LUT. If you want to force its implementation on block, use option/constraint rom_style.
+Unit <sobel_filterXConstants_rom> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sobel_filterYConstants_rom>.
+INFO:Xst:3034 - In order to maximize performance and save block RAM resources, the small ROM <Mrom__varindex0000> will be implemented on LUT. If you want to force its implementation on block, use option/constraint rom_style.
+Unit <sobel_filterYConstants_rom> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sobel_mul_3s_8s_13_2_MulnS_0>.
+	Found pipelined multiplier on signal <tmp_product>:
+		- 1 pipeline level(s) found in a register connected to the multiplier macro output.
+		Pushing register(s) into the multiplier macro.
+INFO:Xst:2774 - HDL ADVISOR - KEEP property attached to signal b may hinder XST clustering optimizations.
+Unit <sobel_mul_3s_8s_13_2_MulnS_0> synthesized (advanced).
+
+Synthesizing (advanced) Unit <sobel_pixelLine_ram>.
+INFO:Xst:3226 - The RAM <Mram_ram> will be implemented as a BLOCK RAM, absorbing the following register(s): <q0>
+    -----------------------------------------------------------------------
+    | ram_type           | Block                               |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 1920-word x 24-bit                  |          |
+    |     mode           | write-first                         |          |
+    |     clkA           | connected to signal <clk>           | rise     |
+    |     enA            | connected to signal <ce0>           | high     |
+    |     weA            | connected to signal <we0>           | high     |
+    |     addrA          | connected to signal <addr0>         |          |
+    |     diA            | connected to signal <d0>            |          |
+    |     doA            | connected to signal <q0>            |          |
+    -----------------------------------------------------------------------
+    | optimization       | speed                               |          |
+    -----------------------------------------------------------------------
+Unit <sobel_pixelLine_ram> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 1
+# RAMs                                                 : 1
+ 1920x24-bit single-port block RAM                     : 1
+# ROMs                                                 : 2
+ 9x3-bit ROM                                           : 2
+# Multipliers                                          : 6
+ 8x3-bit registered multiplier                         : 6
+# Adders/Subtractors                                   : 12
+ 11-bit adder                                          : 8
+ 2-bit adder                                           : 1
+ 24-bit adder                                          : 1
+ 4-bit adder                                           : 1
+ 4-bit subtractor                                      : 1
+# Accumulators                                         : 6
+ 24-bit up loadable accumulator                        : 6
+# Registers                                            : 409
+ Flip-Flops                                            : 409
+# Comparators                                          : 7
+ 17-bit comparator greater                             : 6
+ 25-bit comparator less                                : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <registerOutValue_24> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_25> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_26> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_27> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_28> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_29> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_30> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registerOutValue_31> (without init value) has a constant value of 0 in block <CommunicationHardware>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U2, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U2, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U2, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U3, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U3, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U3, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U4, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U5, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> and sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> and sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<7> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<6> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<5> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<4> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<3> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<2> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<1> will be lost.
+WARNING:Xst:1303 - From in and out of unit sobel_mul_3s_8s_13_2_U6, both signals sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> and sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> have a KEEP attribute, signal sobel_mul_3s_8s_13_2_MulnS_0_U/b<0> will be lost.
+INFO:Xst:2261 - The FF/Latch <tmp_29_reg_1156_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_29_reg_1156_11> <tmp_29_reg_1156_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_36_reg_1171_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_36_reg_1171_11> <tmp_36_reg_1171_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_32_reg_1161_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_32_reg_1161_11> <tmp_32_reg_1161_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_34_reg_1166_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_34_reg_1166_11> <tmp_34_reg_1166_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_26_reg_1151_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_26_reg_1151_11> <tmp_26_reg_1151_12> 
+INFO:Xst:2261 - The FF/Latch <tmp_38_reg_1176_10> in Unit <sobel> is equivalent to the following 2 FFs/Latches, which will be removed : <tmp_38_reg_1176_11> <tmp_38_reg_1176_12> 
+INFO:Xst:2261 - The FF/Latch <filterYConstants_U/sobel_filterYConstants_rom_U/q0_0> in Unit <sobel> is equivalent to the following FF/Latch, which will be removed : <filterXConstants_U/sobel_filterXConstants_rom_U/q0_0> 
+INFO:Xst:2261 - The FF/Latch <filterXConstants_load_reg_1114_0> in Unit <sobel> is equivalent to the following FF/Latch, which will be removed : <filterYConstants_load_reg_1109_0> 
+WARNING:Xst:638 - in unit sobel Conflict on KEEP property on signal sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> and sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/a<0> signal will be lost.
+
+Optimizing unit <CommunicationHardware> ...
+
+Optimizing unit <sobel> ...
+INFO:Xst:2261 - The FF/Latch <sobel_mul_3s_8s_13_2_U3/sobel_mul_3s_8s_13_2_MulnS_0_U/Mmult_tmp_product_mult0000_10> in Unit <sobel> is equivalent to the following FF/Latch, which will be removed : <sobel_mul_3s_8s_13_2_U6/sobel_mul_3s_8s_13_2_MulnS_0_U/Mmult_tmp_product_mult0000_10> 
+INFO:Xst:2261 - The FF/Latch <sobel_mul_3s_8s_13_2_U2/sobel_mul_3s_8s_13_2_MulnS_0_U/Mmult_tmp_product_mult0000_10> in Unit <sobel> is equivalent to the following FF/Latch, which will be removed : <sobel_mul_3s_8s_13_2_U5/sobel_mul_3s_8s_13_2_MulnS_0_U/Mmult_tmp_product_mult0000_10> 
+INFO:Xst:2261 - The FF/Latch <sobel_mul_3s_8s_13_2_U1/sobel_mul_3s_8s_13_2_MulnS_0_U/Mmult_tmp_product_mult0000_10> in Unit <sobel> is equivalent to the following FF/Latch, which will be removed : <sobel_mul_3s_8s_13_2_U4/sobel_mul_3s_8s_13_2_MulnS_0_U/Mmult_tmp_product_mult0000_10> 
+INFO:Xst:2261 - The FF/Latch <tmp_32_reg_1161_0> in Unit <sobel> is equivalent to the following FF/Latch, which will be removed : <tmp_38_reg_1176_0> 
+INFO:Xst:2261 - The FF/Latch <tmp_29_reg_1156_0> in Unit <sobel> is equivalent to the following FF/Latch, which will be removed : <tmp_36_reg_1171_0> 
+INFO:Xst:2261 - The FF/Latch <tmp_26_reg_1151_0> in Unit <sobel> is equivalent to the following FF/Latch, which will be removed : <tmp_34_reg_1166_0> 
+
+Optimizing unit <SobelWrapper> ...
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_23> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_22> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_21> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_20> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_19> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_18> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_17> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_16> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_15> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_14> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_13> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_12> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_11> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_10> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_9> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_8> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_7> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_6> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_5> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/y_Sig_4> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_23> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_22> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_21> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_20> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_19> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_18> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_17> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_16> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_15> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_14> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_13> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_12> of sequential type is unconnected in block <CommunicationHardware>.
+WARNING:Xst:2677 - Node <sobel_wrapper_inst/x_Sig_11> of sequential type is unconnected in block <CommunicationHardware>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block CommunicationHardware, actual ratio is 4.
+
+Final Macro Processing ...
+
+Processing Unit <CommunicationHardware> :
+	Found 2-bit shift register for signal <sobel_wrapper_inst/sobel_inst/ap_CS_fsm_FSM_FFd5>.
+Unit <CommunicationHardware> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 563
+ Flip-Flops                                            : 563
+# Shift Registers                                      : 1
+ 2-bit shift register                                  : 1
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : CommunicationHardware.ngr
+Top Level Output File Name         : CommunicationHardware
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 98
+
+Cell Usage :
+# BELS                             : 1321
+#      GND                         : 1
+#      INV                         : 4
+#      LUT1                        : 26
+#      LUT2                        : 64
+#      LUT3                        : 43
+#      LUT4                        : 78
+#      LUT5                        : 96
+#      LUT6                        : 416
+#      MUXCY                       : 276
+#      MUXF7                       : 23
+#      VCC                         : 1
+#      XORCY                       : 293
+# FlipFlops/Latches                : 564
+#      FD                          : 9
+#      FDE                         : 488
+#      FDR                         : 41
+#      FDRE                        : 26
+# RAMS                             : 2
+#      RAMB18                      : 1
+#      RAMB36_EXP                  : 1
+# Shift Registers                  : 1
+#      SRLC16E                     : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vlx50tff1136-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             564  out of  28800     1%  
+ Number of Slice LUTs:                  728  out of  28800     2%  
+    Number used as Logic:               727  out of  28800     2%  
+    Number used as Memory:                1  out of   7680     0%  
+       Number used as SRL:                1
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    963
+   Number with an unused Flip Flop:     399  out of    963    41%  
+   Number with an unused LUT:           235  out of    963    24%  
+   Number of fully used LUT-FF pairs:   329  out of    963    34%  
+   Number of unique control sets:        18
+
+IO Utilization: 
+ Number of IOs:                          98
+ Number of bonded IOBs:                   0  out of    480     0%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:                2  out of     60     3%  
+    Number using Block RAM only:          2
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+--------------------------------------------------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                                                          | Load  |
+-----------------------------------+--------------------------------------------------------------------------------+-------+
+clk                                | NONE(registerOutValue_0)                                                       | 567   |
+registerOutValue<24>               | NONE(sobel_wrapper_inst/sobel_inst/pixelLine_U/sobel_pixelLine_ram_U/Mram_ram1)| 1     |
+-----------------------------------+--------------------------------------------------------------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 4.915ns (Maximum Frequency: 203.470MHz)
+   Minimum input arrival time before clock: 4.461ns
+   Maximum output required time after clock: 0.471ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 4.915ns (frequency: 203.470MHz)
+  Total number of paths / destination ports: 233164 / 980
+-------------------------------------------------------------------------
+Delay:               4.915ns (Levels of Logic = 30)
+  Source:            sobel_wrapper_inst/sobel_inst/storemerge_reg_258_0 (FF)
+  Destination:       sobel_wrapper_inst/sobel_inst/pixelOutXG_23 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: sobel_wrapper_inst/sobel_inst/storemerge_reg_258_0 to sobel_wrapper_inst/sobel_inst/pixelOutXG_23
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             2   0.471   0.978  sobel_wrapper_inst/sobel_inst/storemerge_reg_258_0 (sobel_wrapper_inst/sobel_inst/storemerge_reg_258_0)
+     LUT5:I0->O            1   0.094   0.000  sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_lut<0> (sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_lut<0>)
+     MUXCY:S->O            1   0.372   0.000  sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_cy<0> (sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_cy<0>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_cy<1> (sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_cy<1>)
+     MUXCY:CI->O           1   0.254   0.480  sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_cy<2> (sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_cy<2>)
+     LUT5:I4->O          288   0.094   0.751  sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_cy<4>1 (sobel_wrapper_inst/sobel_inst/Mcompar_tmp_9_fu_392_p2_0_cmp_lt0000_cy<4>)
+     LUT6:I4->O            1   0.094   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_lut<0> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_lut<0>)
+     MUXCY:S->O            1   0.372   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<0> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<0>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<1> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<1>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<2> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<2>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<3> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<3>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<4> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<4>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<5> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<5>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<6> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<6>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<7> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<7>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<8> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<8>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<9> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<9>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<10> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<10>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<11> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<11>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<12> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<12>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<13> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<13>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<14> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<14>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<15> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<15>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<16> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<16>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<17> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<17>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<18> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<18>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<19> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<19>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<20> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<20>)
+     MUXCY:CI->O           1   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<21> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<21>)
+     MUXCY:CI->O           0   0.026   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<22> (sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_cy<22>)
+     XORCY:CI->O           1   0.357   0.000  sobel_wrapper_inst/sobel_inst/Maccum_pixelOutXG_xor<23> (sobel_wrapper_inst/sobel_inst/Result<23>)
+     FDE:D                    -0.018          sobel_wrapper_inst/sobel_inst/pixelOutXG_23
+    ----------------------------------------
+    Total                      4.915ns (2.706ns logic, 2.209ns route)
+                                       (55.1% logic, 44.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 5489 / 197
+-------------------------------------------------------------------------
+Offset:              4.461ns (Levels of Logic = 5)
+  Source:            registerAddress<10> (PAD)
+  Destination:       registerOutValue_0 (FF)
+  Destination Clock: clk rising
+
+  Data Path: registerAddress<10> to registerOutValue_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LUT6:I0->O            1   0.094   0.973  reg0_not0001135 (reg0_not0001135)
+     LUT5:I0->O           54   0.094   0.707  reg0_not00011221 (registerOutValue_and0000)
+     LUT4:I2->O            1   0.094   0.789  registerOutValue_mux0000<0>31_SW0 (N129)
+     LUT6:I2->O            1   0.094   0.789  registerOutValue_mux0000<0>31 (registerOutValue_mux0000<0>31)
+     LUT6:I2->O            1   0.094   0.000  registerOutValue_mux0000<0>186 (registerOutValue_mux0000<0>)
+     FDE:D                    -0.018          registerOutValue_0
+    ----------------------------------------
+    Total                      4.461ns (1.203ns logic, 3.258ns route)
+                                       (27.0% logic, 73.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 24 / 24
+-------------------------------------------------------------------------
+Offset:              0.471ns (Levels of Logic = 0)
+  Source:            registerOutValue_23 (FF)
+  Destination:       registerOutValue<23> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: registerOutValue_23 to registerOutValue<23>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              1   0.471   0.000  registerOutValue_23 (registerOutValue_23)
+    ----------------------------------------
+    Total                      0.471ns (0.471ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 11.00 secs
+Total CPU time to Xst completion: 11.45 secs
+ 
+--> 
+
+Total memory usage is 374668 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  150 (   0 filtered)
+Number of infos    :   29 (   0 filtered)
+

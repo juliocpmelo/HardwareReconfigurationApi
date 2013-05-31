@@ -1,0 +1,7 @@
+INFILE=D:\Users\Julio\Downloads\xupv5-lx110t_std_ip_pcores\xupv5-lx110t_std_ip_pcores\implementation\system.ncd
+OUTFILE=D:\Users\Julio\Downloads\xupv5-lx110t_std_ip_pcores\xupv5-lx110t_std_ip_pcores\implementation\system.bit
+FAMILY=Virtex5
+PART=xc5vlx110t-1ff1136
+WORKINGDIR=D:\Users\Julio\Downloads\xupv5-lx110t_std_ip_pcores\xupv5-lx110t_std_ip_pcores\implementation
+LICENSE=ISE
+USER_INFO=210291076_210292114_210558850_427

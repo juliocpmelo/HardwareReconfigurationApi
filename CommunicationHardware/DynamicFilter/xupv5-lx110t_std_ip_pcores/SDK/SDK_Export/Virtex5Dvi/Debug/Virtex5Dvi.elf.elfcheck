@@ -1,0 +1,10 @@
+elfcheck
+Xilinx EDK 14.4 Build EDK_P.49d
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw
+../../xupv5-lx110t_std_ip_pcores_hw_platform/system.xml -pe microblaze_0
+Virtex5Dvi.elf 
+
+ELF file	: Virtex5Dvi.elf
+elfcheck passed.

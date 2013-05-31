@@ -1,0 +1,14 @@
+#Tue May 28 19:43:32 CEST 2013
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:.sdata=ddr2_sdram_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:.sdata2=ddr2_sdram_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:.sbss=ddr2_sdram_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:Heap=ddr2_sdram_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:.data=ddr2_sdram_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:.rodata=ddr2_sdram_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:Stack=ddr2_sdram_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:Heap-size=4096
+eclipse.preferences.version=1
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:.text=ilmb_cntlr_dlmb_cntlr
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:.sbss2=ddr2_sdram_MPMC_BASEADDR
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:Stack-size=4096
+com.xilinx.sdk.linkgen.prefs.Virtex5Dvi\:.bss=ddr2_sdram_MPMC_BASEADDR

@@ -1,0 +1,47 @@
+make -k all 
+libgen -hw ../xupv5-lx110t_std_ip_pcores_hw_platform/system.xml\
+	       \
+	       -pe microblaze_0 \
+	       -log libgen.log \
+	       system.mss
+libgen
+Xilinx EDK 14.4 Build EDK_P.49d
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: libgen -hw ../xupv5-lx110t_std_ip_pcores_hw_platform/system.xml
+-pe microblaze_0 -log libgen.log system.mss 
+
+
+Staging source files.
+Running DRCs.
+Running generate.
+Running post_generate.
+Running include - 'make -s include "COMPILER=mb-gcc" "ARCHIVER=mb-ar"
+"COMPILER_FLAGS=-mno-xl-soft-mul -mxl-pattern-compare -mcpu=v7.30.b  -O2 -c"
+"EXTRA_COMPILER_FLAGS=-g"'.
+
+Running libs - 'make -s libs "COMPILER=mb-gcc" "ARCHIVER=mb-ar"
+"COMPILER_FLAGS=-mno-xl-soft-mul -mxl-pattern-compare -mcpu=v7.30.b  -O2 -c"
+"EXTRA_COMPILER_FLAGS=-g"'.
+"Compiling common"
+"Compiling lldma"
+"Compiling standalone";
+src/xilfatfs_directory.c: In function 'dir_name_compare':
+src/xilfatfs_directory.c:36:5: warning: array subscript has type 'char' [-Wchar-subscripts]
+src/xilfatfs_directory.c:37:5: warning: array subscript has type 'char' [-Wchar-subscripts]
+src/xilfatfs_filespec.c: In function 'find_device':
+src/xilfatfs_filespec.c:127:3: warning: array subscript has type 'char' [-Wchar-subscripts]
+src/xilfatfs_wd.c: In function '_build_working_directory_stack':
+src/xilfatfs_wd.c:76:7: warning: array subscript has type 'char' [-Wchar-subscripts]
+"Compiling xilfatfs";
+"Compiling mpmc"
+"Compiling gpio"
+"Compiling bram"
+"Compiling iic"
+"Compiling uartlite"
+"Compiling sysace"
+"Compiling intc"
+"Compiling tmrctr"
+"Compiling cpu"
+Running execs_generate.
+'Finished building libraries'

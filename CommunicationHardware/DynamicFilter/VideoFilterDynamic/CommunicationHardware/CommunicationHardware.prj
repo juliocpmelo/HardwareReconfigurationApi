@@ -1,0 +1,7 @@
+verilog work "sobel_pixelLine.v"
+verilog work "sobel_mul_3s_8s_13_2.v"
+verilog work "sobel_filterYConstants.v"
+verilog work "sobel_filterXConstants.v"
+verilog work "sobel.v"
+vhdl work "SobelWrapper.vhd"
+vhdl work "CommunicationHardware.vhd"

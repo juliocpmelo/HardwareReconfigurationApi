@@ -1,0 +1,10 @@
+##############################################################################
+## Filename:          D:/Users/Julio/Downloads/Atlys_HDMI_PLB_demo/project/pcores/hardware_communication_module_v1_00_a/data/hardware_communication_module_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Mon May 27 13:34:50 2013 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib plbv46_slave_single_v1_01_a  all 
+lib hardware_communication_module_v1_00_a user_logic vhdl
+lib hardware_communication_module_v1_00_a hardware_communication_module vhdl

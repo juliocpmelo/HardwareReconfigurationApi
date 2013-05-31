@@ -1,0 +1,1 @@
+xmd -tcl ../data/genace.tcl -hw ../implementation/download.bit -data ../sw/standalone/lwipdemo/image.mfs 0x8a400000 -elf ../microblaze_0/code/lwipdemo_elf.elf -ace lwipdemo.ace -board xupv5 -target mdm

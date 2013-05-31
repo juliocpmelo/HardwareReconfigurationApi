@@ -1,0 +1,2700 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<document OS="nt64" product="ISE" version="14.4">
+
+  <!--The data in this file is primarily intended for consumption by Xilinx tools.
+    The structure and the elements are likely to change over the next few releases.
+    This means code written to parse this file will need to be revisited each subsequent release.-->
+
+  <application stringID="Map" timeStamp="Fri May 31 18:17:30 2013">
+    <section stringID="User_Env">
+      <table stringID="User_EnvVar">
+        <column stringID="variable"/>
+        <column stringID="value"/>
+        <row stringID="row" value="0">
+          <item stringID="variable" value="Path"/>
+          <item stringID="value" value="C:\Xilinx\14.4\ISE_DS\ISE\\lib\nt64;C:\Xilinx\14.4\ISE_DS\ISE\\bin\nt64;C:/Xilinx/14.4/ISE_DS/EDK/bin/nt64;C:/Xilinx/14.4/ISE_DS/EDK/lib/nt64;C:/Xilinx/14.4/ISE_DS/ISE/bin/nt64;C:/Xilinx/14.4/ISE_DS/ISE/lib/nt64;C:/Xilinx/14.4/ISE_DS/common/bin/nt64;C:/Xilinx/14.4/ISE_DS/common/lib/nt64;C:/Xilinx/14.4/ISE_DS/PlanAhead/bin;C:/Xilinx/14.4/ISE_DS/PlanAhead/lib/win64.o;C:/Xilinx/14.4/ISE_DS/PlanAhead/tps/win64/jre/bin/server;C:/Xilinx/14.4/ISE_DS/PlanAhead/tps/win64/jre/bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\GNU\GnuPG\pub;C:\Users\Julio\AppData\Local\Smartbar\Application\"/>
+        </row>
+        <row stringID="row" value="1">
+          <item stringID="variable" value="PATHEXT"/>
+          <item stringID="value" value=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC"/>
+        </row>
+        <row stringID="row" value="2">
+          <item stringID="variable" value="XILINX"/>
+          <item stringID="value" value="C:\Xilinx\14.4\ISE_DS\ISE\"/>
+        </row>
+        <row stringID="row" value="3">
+          <item stringID="variable" value="XILINXD_LICENSE_FILE"/>
+          <item stringID="value" value="2100@sibenik.id.rub.de"/>
+        </row>
+        <row stringID="row" value="4">
+          <item stringID="variable" value="XILINX_COMMON_TOOLS"/>
+          <item stringID="value" value="C:/Xilinx/14.4/ISE_DS/common"/>
+        </row>
+        <row stringID="row" value="5">
+          <item stringID="variable" value="XILINX_DSP"/>
+          <item stringID="value" value="C:/Xilinx/14.4/ISE_DS/ISE"/>
+        </row>
+        <row stringID="row" value="6">
+          <item stringID="variable" value="XILINX_EDK"/>
+          <item stringID="value" value="C:/Xilinx/14.4/ISE_DS/EDK"/>
+        </row>
+        <row stringID="row" value="7">
+          <item stringID="variable" value="XILINX_PLANAHEAD"/>
+          <item stringID="value" value="C:/Xilinx/14.4/ISE_DS/PlanAhead"/>
+        </row>
+      </table>
+      <item stringID="User_EnvOs" value="OS Information">
+        <item stringID="User_EnvOsname" value="Microsoft Windows 7 , 64-bit"/>
+        <item stringID="User_EnvOsrelease" value="Service Pack 1  (build 7601)"/>
+      </item>
+      <item stringID="User_EnvHost" value="ESIT029"/>
+      <table stringID="User_EnvCpu">
+        <column stringID="arch"/>
+        <column stringID="speed"/>
+        <row stringID="row" value="0">
+          <item stringID="arch" value="Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz"/>
+          <item stringID="speed" value="3392 MHz"/>
+        </row>
+      </table>
+    </section>
+    <section stringID="MAP_OPTION_SUMMARY">
+      <item DEFAULT="high" label="-ol" stringID="MAP_EFFORTLEVEL" value="high"/>
+      <item DEFAULT="FALSE" stringID="MAP_REPLICATELUTS" value="TRUE"/>
+      <item DEFAULT="None" label="-intstyle" stringID="MAP_INTSTYLE" value="pa"/>
+      <item DEFAULT="false" label="-w" stringID="MAP_OVERWRITE_OUTPUT" value="true"/>
+      <item DEFAULT="off" label="-pr" stringID="MAP_PACK_INTERNAL" value="b"/>
+    </section>
+    <task stringID="MAP_PACK_REPORT">
+      <item AVAILABLE="69120" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="10678">
+        <item dataType="int" label="Number of Slice Flip Flops" stringID="MAP_NUM_SLICE_FF" value="10656"/>
+        <item dataType="int" stringID="MAP_NUM_SLICE_LATCH" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_SLICE_LATCHTHRU" value="22"/>
+      </item>
+      <item AVAILABLE="69120" dataType="int" label="Number of Slice LUTs" stringID="MAP_SLICE_LUTS" value="9892">
+        <item dataType="int" label="Number using O5 output only" stringID="MAP_NUM_LOGIC_O5ONLY" value="327"/>
+        <item dataType="int" label="Number using O6 output only" stringID="MAP_NUM_LOGIC_O6ONLY" value="8442"/>
+        <item dataType="int" label="Number using O5 and O6" stringID="MAP_NUM_LOGIC_O5ANDO6" value="677"/>
+        <item dataType="int" stringID="MAP_NUM_ROM_O5ONLY" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_ROM_O6ONLY" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_ROM_O5ANDO6" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_DPRAM_O5ONLY" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_DPRAM_O6ONLY" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_DPRAM_O5ANDO6" value="64"/>
+        <item dataType="int" stringID="MAP_NUM_SPRAM_O5ONLY" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_SPRAM_O6ONLY" value="32"/>
+        <item dataType="int" stringID="MAP_NUM_SPRAM_O5ANDO6" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_SRL_O5ONLY" value="1"/>
+        <item dataType="int" stringID="MAP_NUM_SRL_O6ONLY" value="280"/>
+        <item dataType="int" stringID="MAP_NUM_SRL_O5ANDO6" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_LUT_RT_EXO6" value="57"/>
+        <item dataType="int" stringID="MAP_NUM_LUT_RT_EXO5" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_LUT_RT_O6" value="325"/>
+        <item dataType="int" stringID="MAP_NUM_LUT_RT_O5" value="13"/>
+        <item dataType="int" stringID="MAP_NUM_LUT_RT_O5ANDO6" value="12"/>
+      </item>
+      <item AVAILABLE="640" dataType="int" stringID="MAP_AGG_BONDED_IO" value="270"/>
+      <item AVAILABLE="160" dataType="int" stringID="MAP_AGG_UNBONDED_IO" value="0"/>
+      <item AVAILABLE="0" dataType="int" label="IOB Flip Flops" stringID="MAP_NUM_IOB_FF" value="506"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_IOB_LATCH" value="0"/>
+      <item AVAILABLE="80" dataType="int" stringID="MAP_NUM_IOBM" value="0"/>
+      <item AVAILABLE="320" dataType="int" stringID="MAP_NUM_BONDED_IOBM" value="0"/>
+      <item AVAILABLE="80" dataType="int" stringID="MAP_NUM_IOBS" value="0"/>
+      <item AVAILABLE="320" dataType="int" stringID="MAP_NUM_BONDED_IOBS" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_IPAD" value="0"/>
+      <item AVAILABLE="50" dataType="int" stringID="MAP_NUM_BONDED_IPAD" value="0"/>
+      <item AVAILABLE="32" dataType="int" stringID="MAP_NUM_BONDED_OPAD" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_OPAD" value="0"/>
+      <section stringID="MAP_DESIGN_INFORMATION">
+        <item stringID="MAP_PART" value="5vlx110tff1136-1"/>
+        <item stringID="MAP_DEVICE" value="xc5vlx110t"/>
+        <item stringID="MAP_ARCHITECTURE" value="virtex5"/>
+        <item stringID="MAP_PACKAGE" value="ff1136"/>
+        <item stringID="MAP_SPEED" value="-1"/>
+      </section>
+      <section stringID="MAP_DESIGN_SUMMARY">
+        <item dataType="int" stringID="MAP_NUM_ERRORS" value="0"/>
+        <item dataType="int" stringID="MAP_FILTERED_WARNINGS" value="0"/>
+        <item dataType="int" stringID="MAP_NUM_WARNINGS" value="3"/>
+        <item UNITS="KB" dataType="int" stringID="MAP_PEAK_MEMORY" value="1056404"/>
+        <item stringID="MAP_TOTAL_REAL_TIME" value="2 mins 40 secs "/>
+        <item stringID="MAP_TOTAL_CPU_TIME" value="2 mins 39 secs "/>
+      </section>
+      <section stringID="MAP_SLICE_REPORTING">
+        <item AVAILABLE="69120" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="10678">
+          <item dataType="int" label="Number of Slice Flip Flops" stringID="MAP_NUM_SLICE_FF" value="10656"/>
+          <item dataType="int" stringID="MAP_NUM_SLICE_LATCH" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_SLICE_LATCHTHRU" value="22"/>
+        </item>
+        <item AVAILABLE="69120" dataType="int" label="Number of Slice LUTs" stringID="MAP_SLICE_LUTS" value="9892">
+          <item dataType="int" label="Number using O5 output only" stringID="MAP_NUM_LOGIC_O5ONLY" value="327"/>
+          <item dataType="int" label="Number using O6 output only" stringID="MAP_NUM_LOGIC_O6ONLY" value="8442"/>
+          <item dataType="int" label="Number using O5 and O6" stringID="MAP_NUM_LOGIC_O5ANDO6" value="677"/>
+          <item dataType="int" stringID="MAP_NUM_ROM_O5ONLY" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_ROM_O6ONLY" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_ROM_O5ANDO6" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_DPRAM_O5ONLY" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_DPRAM_O6ONLY" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_DPRAM_O5ANDO6" value="64"/>
+          <item dataType="int" stringID="MAP_NUM_SPRAM_O5ONLY" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_SPRAM_O6ONLY" value="32"/>
+          <item dataType="int" stringID="MAP_NUM_SPRAM_O5ANDO6" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_SRL_O5ONLY" value="1"/>
+          <item dataType="int" stringID="MAP_NUM_SRL_O6ONLY" value="280"/>
+          <item dataType="int" stringID="MAP_NUM_SRL_O5ANDO6" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_LUT_RT_EXO6" value="57"/>
+          <item dataType="int" stringID="MAP_NUM_LUT_RT_EXO5" value="0"/>
+          <item dataType="int" stringID="MAP_NUM_LUT_RT_O6" value="325"/>
+          <item dataType="int" stringID="MAP_NUM_LUT_RT_O5" value="13"/>
+          <item dataType="int" stringID="MAP_NUM_LUT_RT_O5ANDO6" value="12"/>
+        </item>
+        <item AVAILABLE="17280" dataType="int" label="Number of occupied Slices" stringID="MAP_OCCUPIED_SLICES" value="5584">
+          <item AVAILABLE="12800" dataType="int" stringID="MAP_NUM_SLICEL" value="5358"/>
+          <item AVAILABLE="4480" dataType="int" stringID="MAP_NUM_SLICEM" value="226"/>
+        </item>
+        <item dataType="int" label="Number of LUT Flip Flop pairs used" stringID="MAP_OCCUPIED_LUT_AND_FF" value="14567">
+          <item dataType="int" stringID="MAP_OCCUPIED_LUT_ONLY" value="3889"/>
+          <item dataType="int" label="Number with an unused LUT" stringID="MAP_OCCUPIED_FF_ONLY" value="4675"/>
+          <item dataType="int" label="Number of fully used LUT-FF pairs" stringID="MAP_OCCUPIED_FF_AND_LUT" value="6003"/>
+        </item>
+      </section>
+      <section stringID="MAP_IOB_REPORTING">
+        <item AVAILABLE="640" dataType="int" stringID="MAP_AGG_BONDED_IO" value="270"/>
+        <item AVAILABLE="160" dataType="int" stringID="MAP_AGG_UNBONDED_IO" value="0"/>
+        <item AVAILABLE="0" dataType="int" label="IOB Flip Flops" stringID="MAP_NUM_IOB_FF" value="506"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_IOB_LATCH" value="0"/>
+        <item AVAILABLE="80" dataType="int" stringID="MAP_NUM_IOBM" value="0"/>
+        <item AVAILABLE="320" dataType="int" stringID="MAP_NUM_BONDED_IOBM" value="0"/>
+        <item AVAILABLE="80" dataType="int" stringID="MAP_NUM_IOBS" value="0"/>
+        <item AVAILABLE="320" dataType="int" stringID="MAP_NUM_BONDED_IOBS" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_IPAD" value="0"/>
+        <item AVAILABLE="50" dataType="int" stringID="MAP_NUM_BONDED_IPAD" value="0"/>
+        <item AVAILABLE="32" dataType="int" stringID="MAP_NUM_BONDED_OPAD" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_OPAD" value="0"/>
+      </section>
+      <section stringID="MAP_HARD_IP_REPORTING"/>
+      <section stringID="MAP_RAM_FIFO_DATA">
+        <item AVAILABLE="148" dataType="int" label="Number of Block RAM/FIFO" stringID="MAP_NUM_RAMBFIFO36" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB36_EXP" value="35"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB36SDP_EXP" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_FIFO36_EXPNUM_FIFO36_72_EXP" value="0"/>
+        <item AVAILABLE="0" dataType="int" label="Number of 18k BlockRAM used" stringID="MAP_NUM_RAMB18X2" value="1"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB18X2SDP" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18NUM_RAMBFIFO18_36" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB18X2_UPPER" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB18X2_LOWER" value="1"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18_UPPER" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18_LOWER" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB18X2SDP_UPPERNUM_RAMB18X2SDP_LOWER" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18_36_UPPER" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18_36_LOWER" value="0"/>
+      </section>
+      <section stringID="MAP_IP_DATA">
+        <item AVAILABLE="4" dataType="int" stringID="MAP_NUM_BSCAN" value="1"/>
+        <item AVAILABLE="8" dataType="int" stringID="MAP_NUM_BUFDS" value="0"/>
+        <item AVAILABLE="80" dataType="int" stringID="MAP_NUM_BUFIO" value="8"/>
+        <item AVAILABLE="32" dataType="int" stringID="MAP_NUM_BUFR" value="0"/>
+        <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_CAPTURE" value="0"/>
+        <item AVAILABLE="32" dataType="int" stringID="MAP_NUM_CRC32" value="0"/>
+        <item AVAILABLE="16" dataType="int" stringID="MAP_NUM_CRC64" value="0"/>
+        <item AVAILABLE="12" dataType="int" label="Number of DCM_ADVs" stringID="MAP_NUM_DCM_ADV" value="1"/>
+        <item AVAILABLE="64" dataType="int" stringID="MAP_NUM_DSP48E" value="3"/>
+        <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_EFUSE_USR" value="0"/>
+        <item AVAILABLE="8" dataType="int" stringID="MAP_NUM_GTP_DUAL" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_GTX_DUAL" value="0"/>
+        <item AVAILABLE="2" dataType="int" stringID="MAP_NUM_ICAP" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_ISERDES" value="0"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_OSERDES" value="0"/>
+        <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_PCIE" value="0"/>
+        <item AVAILABLE="6" dataType="int" stringID="MAP_NUM_PLL_ADV" value="1"/>
+        <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_PPC440" value="0"/>
+        <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_STARTUP" value="0"/>
+        <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_SYSMON" value="0"/>
+        <item AVAILABLE="2" dataType="int" stringID="MAP_NUM_TEMAC" value="0"/>
+      </section>
+      <section stringID="MAP_BUFG_DATA">
+        <item dataType="int" label="Number used as BUFGs" stringID="MAP_NUM_BUFG" value="9"/>
+        <item dataType="int" stringID="MAP_NUM_BUFGCTR" value="0"/>
+        <item dataType="int" stringID="MAP_AVAILABLE" value="32"/>
+      </section>
+      <section stringID="MAP_MACRO_RPM_REPORTING">
+        <item dataType="int" stringID="MAP_HARD_MACROS" value="0"/>
+        <item dataType="int" stringID="MAP_RPMS" value="0"/>
+      </section>
+      <section stringID="MAP_IOB_PROPERTIES">
+        <table stringID="MAP_IOB_TABLE">
+          <column label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME"/>
+          <column stringID="Type"/>
+          <column stringID="Direction"/>
+          <column label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD"/>
+          <column label="Diff&#xA;Term" stringID="DIFF_TERM"/>
+          <column label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH"/>
+          <column label="Slew&#xA;Rate" stringID="SLEW_RATE"/>
+          <column label="Reg&#xA;(s)" stringID="REGS"/>
+          <column stringID="Resistor"/>
+          <column label="IOB&#xA;Delay" stringID="IOB_DELAY"/>
+          <row stringID="row" value="1">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="SRAM_Mem_LBON_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+          </row>
+          <row stringID="row" value="2">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="3">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="4">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="5">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="6">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="7">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="8">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="9">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="10">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[8]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="11">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[9]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="12">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[10]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="13">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[11]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="14">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Addr_pin[12]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="15">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_BankAddr_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="16">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_BankAddr_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="17">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_CAS_n_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="18">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_CE_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="19">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_CE_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="20">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_CS_n_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="21">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_CS_n_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="22">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Clk_n_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="23">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Clk_n_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="24">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Clk_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="25">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_Clk_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="26">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DM_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="27">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DM_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="28">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DM_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="29">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DM_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="30">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DM_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="31">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DM_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="32">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DM_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="33">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DM_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="34">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+          </row>
+          <row stringID="row" value="35">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+          </row>
+          <row stringID="row" value="36">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+          </row>
+          <row stringID="row" value="37">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+          </row>
+          <row stringID="row" value="38">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+          </row>
+          <row stringID="row" value="39">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+          </row>
+          <row stringID="row" value="40">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+          </row>
+          <row stringID="row" value="41">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+          </row>
+          <row stringID="row" value="42">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="43">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="44">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="45">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="46">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="47">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="48">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="49">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQS_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="DIFF_SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR TFF"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="50">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="51">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="52">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="53">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="54">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="55">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="56">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="57">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="58">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[8]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="59">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[9]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="60">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[10]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="61">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[11]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="62">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[12]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="63">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[13]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="64">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[14]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="65">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[15]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="66">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[16]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="67">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[17]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="68">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[18]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="69">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[19]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="70">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[20]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="71">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[21]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="72">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[22]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="73">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[23]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="74">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[24]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="75">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[25]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="76">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[26]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="77">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[27]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="78">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[28]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="79">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[29]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="80">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[30]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="81">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[31]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="82">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[32]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="83">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[33]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="84">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[34]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="85">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[35]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="86">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[36]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="87">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[37]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="88">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[38]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="89">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[39]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="90">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[40]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="91">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[41]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="92">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[42]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="93">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[43]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="94">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[44]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="95">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[45]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="96">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[46]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="97">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[47]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="98">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[48]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="99">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[49]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="100">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[50]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="101">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[51]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="102">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[52]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="103">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[53]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="104">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[54]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="105">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[55]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="106">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[56]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="107">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[57]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="108">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[58]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="109">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[59]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="110">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[60]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="111">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[61]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="112">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[62]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="113">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_DQ_pin[63]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IDDR ODDR TDDR"/>
+            <item label="IOB&#xA;Delay" stringID="IOB_DELAY" value="VARIABLE"/>
+          </row>
+          <row stringID="row" value="114">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_ODT_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="115">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_ODT_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="116">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_RAS_n_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="117">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DDR2_SDRAM_DDR2_WE_n_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="SSTL18_II"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="118">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DIP_Switches_8Bit_GPIO_IO_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="119">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DIP_Switches_8Bit_GPIO_IO_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="120">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DIP_Switches_8Bit_GPIO_IO_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="121">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DIP_Switches_8Bit_GPIO_IO_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="122">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DIP_Switches_8Bit_GPIO_IO_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="123">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DIP_Switches_8Bit_GPIO_IO_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="124">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DIP_Switches_8Bit_GPIO_IO_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="125">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_DIP_Switches_8Bit_GPIO_IO_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="126">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_Hard_Ethernet_MAC_PHY_MII_INT_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="INPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS25"/>
+          </row>
+          <row stringID="row" value="127">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_IIC_EEPROM_Scl_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="6"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF"/>
+          </row>
+          <row stringID="row" value="128">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_IIC_EEPROM_Sda_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="6"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF"/>
+          </row>
+          <row stringID="row" value="129">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_8Bit_GPIO_IO_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="130">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_8Bit_GPIO_IO_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="131">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_8Bit_GPIO_IO_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="132">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_8Bit_GPIO_IO_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS25"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="133">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_8Bit_GPIO_IO_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="134">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_8Bit_GPIO_IO_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS25"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="135">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_8Bit_GPIO_IO_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS25"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="136">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_8Bit_GPIO_IO_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS25"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="137">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_Positions_GPIO_IO_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="138">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_Positions_GPIO_IO_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="139">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_Positions_GPIO_IO_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="140">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_Positions_GPIO_IO_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="141">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_LEDs_Positions_GPIO_IO_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="142">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_Push_Buttons_5Bit_GPIO_IO_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="143">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_Push_Buttons_5Bit_GPIO_IO_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="144">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_Push_Buttons_5Bit_GPIO_IO_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="145">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_Push_Buttons_5Bit_GPIO_IO_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="146">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_Push_Buttons_5Bit_GPIO_IO_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="2"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="147">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_ADV_LDN_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+          </row>
+          <row stringID="row" value="148">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="149">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[8]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="150">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[9]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="151">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[10]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="152">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[11]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="153">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[12]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="154">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[13]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="155">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[14]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="156">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[15]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="157">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[16]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="158">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[17]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="159">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[18]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="160">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[19]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="161">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[20]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="162">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[21]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="163">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[22]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="164">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[23]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="165">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[24]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="166">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[25]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="167">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[26]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="168">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[27]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="169">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[28]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="170">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[29]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="171">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_A_pin[30]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="8"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="172">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_BEN_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="173">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_BEN_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="174">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_BEN_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="175">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_BEN_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="176">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_CEN_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="177">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_CEN_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="178">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="179">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="180">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="181">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="182">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="183">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="184">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="185">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="186">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[8]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="187">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[9]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="188">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[10]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="189">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[11]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="190">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[12]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="191">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[13]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="192">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[14]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="193">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[15]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="194">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[16]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="195">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[17]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="196">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[18]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="197">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[19]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="198">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[20]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="199">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[21]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="200">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[22]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="201">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[23]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="202">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[24]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="203">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[25]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="204">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[26]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="205">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[27]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="206">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[28]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="207">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[29]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="208">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[30]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="209">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_DQ_pin[31]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+            <item stringID="Resistor" value="PULLDOWN"/>
+          </row>
+          <row stringID="row" value="210">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_OEN_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="211">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_OEN_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="212">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_Mem_WEN_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+          </row>
+          <row stringID="row" value="213">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_ZBT_CLK_FB_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="INPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+          </row>
+          <row stringID="row" value="214">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SRAM_ZBT_CLK_OUT_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+          </row>
+          <row stringID="row" value="215">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_CEN_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="216">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_CLK_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="INPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+          </row>
+          <row stringID="row" value="217">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPA_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="218">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPA_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="219">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPA_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="220">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPA_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="221">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPA_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="222">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPA_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="223">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPA_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="224">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="225">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="226">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="227">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="228">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="229">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="230">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="231">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="232">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[8]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="233">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[9]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="234">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[10]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="235">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[11]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="236">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[12]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="237">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[13]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="238">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[14]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="239">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPD_pin[15]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF OFF TFF"/>
+          </row>
+          <row stringID="row" value="240">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_MPIRQ_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="INPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+          </row>
+          <row stringID="row" value="241">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_OEN_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="242">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_SysACE_CompactFlash_SysACE_WEN_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="243">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_clk_1_sys_clk_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="INPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+          </row>
+          <row stringID="row" value="244">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="fpga_0_rst_1_sys_rst_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="INPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF"/>
+            <item stringID="Resistor" value="PULLUP"/>
+          </row>
+          <row stringID="row" value="245">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_CLK_N_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="24"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="246">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_CLK_P_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="24"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="247">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[0]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="248">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[1]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="249">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[2]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="250">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[3]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="251">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[4]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="252">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[5]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="253">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[6]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="254">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[7]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="255">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[8]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="256">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[9]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="257">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[10]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="258">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DATA_pin[11]"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="ODDR"/>
+          </row>
+          <row stringID="row" value="259">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_DE_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="260">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_HSYNC_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="261">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_TFT_LCD_VSYNC_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVDCI_33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+          <row stringID="row" value="262">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_tft_iic_scl_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item stringID="Resistor" value="PULLUP"/>
+          </row>
+          <row stringID="row" value="263">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="plbv46_dvi_cntlr_0_tft_iic_sda_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="FAST"/>
+            <item stringID="Resistor" value="PULLUP"/>
+          </row>
+          <row stringID="row" value="264">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="vga_reset_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+          </row>
+          <row stringID="row" value="265">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="xps_iic_1_Scl"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="6"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF"/>
+          </row>
+          <row stringID="row" value="266">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="xps_iic_1_Sda"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="6"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF"/>
+          </row>
+          <row stringID="row" value="267">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="xps_iic_2_Scl"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="6"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF"/>
+            <item stringID="Resistor" value="PULLUP"/>
+          </row>
+          <row stringID="row" value="268">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="xps_iic_2_Sda"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="BIDIR"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS18"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="6"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF"/>
+            <item stringID="Resistor" value="PULLUP"/>
+          </row>
+          <row stringID="row" value="269">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="xps_uartlite_0_RX_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="INPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="IFF"/>
+          </row>
+          <row stringID="row" value="270">
+            <item label="IOB&#xA;Name" sort="smart" stringID="IOB_NAME" value="xps_uartlite_0_TX_pin"/>
+            <item stringID="Type" value="IOB"/>
+            <item stringID="Direction" value="OUTPUT"/>
+            <item label="IO&#xA;Standard" sort="smart" stringID="IO_STANDARD" value="LVCMOS33"/>
+            <item label="Drive&#xA;Strength" stringID="DRIVE_STRENGTH" value="12"/>
+            <item label="Slew&#xA;Rate" stringID="SLEW_RATE" value="SLOW"/>
+            <item label="Reg&#xA;(s)" stringID="REGS" value="OFF"/>
+          </row>
+        </table>
+      </section>
+      <section stringID="MAP_RPM_MACROS">
+        <section stringID="MAP_SHAPE_SECTION">
+          <item dataType="int" stringID="MAP_NUM_SHAPE" value="177"/>
+        </section>
+      </section>
+      <section stringID="MAP_GUIDE_REPORT"/>
+      <section stringID="MAP_AREA_GROUPS_PARTITIONS">
+        <item stringID="MAP_PRESERVED_PARTITION" value="/system"/>
+      </section>
+      <section stringID="MAP_PARTITION_GUIDE_INFO">
+        <item stringID="MAP_PARTITION_GUIDE_PROPERTY" value="inherit">
+          <item stringID="MAP_PARTITION_INHERITED_GUIDE_PROPERTY" value="no"/>
+          <item stringID="MAP_PARTITION_INHERITED_FROM" value="/system"/>
+        </item>
+      </section>
+      <section stringID="MAP_PARTITION_SMARTGUIDE_INFO">
+        <item stringID="MAP_PARTITION_SMARTGUIDE_TRAIT" value="inherit">
+          <item stringID="MAP_PARTITION_INHERITED_SMARTGUIDE_TRAIT" value="no"/>
+          <item stringID="MAP_PARTITION_INHERITED_FROM" value="/system"/>
+        </item>
+        <item stringID="MAP_IMPLEMENTED_PARTITION" value="/system/hardware_communication_module_0/hardware_communication_module_0/USER_LOGIC_I/communicationHardware_inst"/>
+      </section>
+      <section stringID="MAP_PARTITION_SUMMARY">
+        <scope label="Partition" stringID="MAP_PARTITION" value="Partition1">
+          <item stringID="MAP_MODULE_NAME" value="/system"/>
+          <item stringID="MAP_IMPORT_TAG" value=""/>
+          <item stringID="MAP_IMPORT_LOCATION" value="../../DynamicFilterPlanAhead.promote/Xconfig_1"/>
+          <item stringID="MAP_ISOLATED" value="false"/>
+          <item stringID="MAP_RECONFIGURABLE" value="false"/>
+          <item stringID="MAP_PRESERVATION_LEVEL" value="routing"/>
+          <item stringID="MAP_STATE" value="import"/>
+          <item stringID="MAP_BOUNDARY_OPT" value="NONE"/>
+          <item AVAILABLE="5584" dataType="int" label="Number of occupied Slices" stringID="MAP_AGG_SLICE" value="5262"/>
+          <item AVAILABLE="10656" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="10092"/>
+          <item AVAILABLE="10104" dataType="int" label="Number of Slice LUTs" stringID="MAP_SLICE_LUTS" value="9317"/>
+          <item AVAILABLE="270" dataType="int" label="Number of bonded IOBs" stringID="MAP_AGG_BONDED_IOB" value="270"/>
+          <item AVAILABLE="0" dataType="int" stringID="MAP_AGG_UNBONDED_IOB" value="0"/>
+          <item AVAILABLE="36" dataType="int" stringID="MAP_BLOCK_RAM_FIFO" value="34"/>
+        </scope>
+        <scope label="Partition" stringID="MAP_PARTITION" value="Partition2">
+          <item stringID="MAP_MODULE_NAME" value="/system/hardware_communication_module_0/hardware_communication_module_0/USER_LOGIC_I/communicationHardware_inst"/>
+          <item stringID="MAP_IMPORT_TAG" value="not used"/>
+          <item stringID="MAP_ISOLATED" value="false"/>
+          <item stringID="MAP_RECONFIGURABLE" value="true"/>
+          <item stringID="MAP_PRESERVATION_LEVEL" value="routing"/>
+          <item stringID="MAP_STATE" value="implement"/>
+          <item stringID="MAP_BOUNDARY_OPT" value="NONE"/>
+          <item AVAILABLE="322" dataType="int" label="Number of occupied Slices" stringID="MAP_AGG_SLICE" value="322"/>
+          <item AVAILABLE="564" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="564"/>
+          <item AVAILABLE="787" dataType="int" label="Number of Slice LUTs" stringID="MAP_SLICE_LUTS" value="787"/>
+          <item AVAILABLE="0" dataType="int" label="Number of bonded IOBs" stringID="MAP_AGG_BONDED_IOB" value="0"/>
+          <item AVAILABLE="0" dataType="int" stringID="MAP_AGG_UNBONDED_IOB" value="0"/>
+          <item AVAILABLE="2" dataType="int" stringID="MAP_BLOCK_RAM_FIFO" value="2"/>
+        </scope>
+      </section>
+      <section stringID="MAP_AREA_GROUP_SUMMARY">
+        <scope stringID="MAP_AREA_GROUP" value="pblock_hardware_communication_module_0_USER_LOGIC_I_communicationHardware_inst">
+          <item dataType="int" stringID="MAP_AREA_GROUP_COMPRESSION" value="-1"/>
+          <item stringID="MAP_AREA_GROUP_RANGE" value="SLICE_X0Y60:SLICE_X47Y99"/>
+          <item AVAILABLE="0" dataType="int" label="Number of occupied Slices" stringID="MAP_AGG_SLICE" value="322"/>
+          <item AVAILABLE="0" dataType="int" label="Number of Slice Registers" stringID="MAP_SLICE_REGISTERS" value="564"/>
+          <item AVAILABLE="0" dataType="int" label="Number of Slice LUTs" stringID="MAP_SLICE_LUTS" value="787"/>
+          <item AVAILABLE="0" dataType="int" label="Number of bonded IOBs" stringID="MAP_AGG_BONDED_IOB" value="0"/>
+          <item AVAILABLE="0" dataType="int" stringID="MAP_AGG_UNBONDED_IOB" value="0"/>
+          <item AVAILABLE="0" dataType="int" stringID="MAP_BLOCK_RAM_FIFO" value="2"/>
+        </scope>
+      </section>
+      <section stringID="MAP_TIMING_REPORT"/>
+      <section stringID="MAP_CONFIGURATION_STRING_DETAILS"/>
+      <section stringID="MAP_GENERAL_CONFIG_DATA">
+        <item stringID="MAP_CLKDV_DIVIDE" value="2.0"/>
+        <item stringID="MAP_CLKFX_DIVIDE" value="1"/>
+        <item stringID="MAP_CLKFX_MULTIPLY" value="4"/>
+        <item stringID="MAP_CLKIN_DIVIDE_BY_2" value="FALSE"/>
+        <item stringID="MAP_CLKOUT_PHASE_SHIFT" value="NONE"/>
+        <item stringID="MAP_CLK_FEEDBACK" value="1X"/>
+        <item stringID="MAP_DCM_CLKDV_CLKFX_ALIGNMENT" value="TRUE"/>
+        <item stringID="MAP_DCM_EXT_FB_EN" value="FALSE"/>
+        <item stringID="MAP_DCM_PERFORMANCE_MODE" value="MAX_SPEED"/>
+        <item stringID="MAP_DCM_UNUSED_TAPS_POWERDOWN" value="TRUE"/>
+        <item stringID="MAP_DCM_VREF_SOURCE" value="VBG_DLL"/>
+        <item stringID="MAP_DCM_VREG_ENABLE" value="TRUE"/>
+        <item stringID="MAP_DESKEW_ADJUST" value="17"/>
+        <item stringID="MAP_DFS_AVE_FREQ_GAIN" value="2.0"/>
+        <item stringID="MAP_DFS_AVE_FREQ_SAMPLE_INTERVAL" value="2"/>
+        <item stringID="MAP_DFS_EARLY_LOCK" value="FALSE"/>
+        <item stringID="MAP_DFS_FREQUENCY_MODE" value="LOW"/>
+        <item stringID="MAP_DFS_OSCILLATOR_MODE" value="PHASE_FREQ_LOCK"/>
+        <item stringID="MAP_DLL_DESKEW_LOCK_BY1" value="FALSE"/>
+        <item stringID="MAP_DLL_FREQUENCY_MODE" value="HIGH"/>
+        <item stringID="MAP_DLL_PERIOD_LOCK_BY1" value="FALSE"/>
+        <item stringID="MAP_DLL_PHASE_SHIFT_CALIBRATION" value="AUTO_DPS"/>
+        <item stringID="MAP_DLL_PHASE_SHIFT_LOCK_BY1" value="FALSE"/>
+        <item stringID="MAP_DUTY_CYCLE_CORRECTION" value="TRUE"/>
+        <item stringID="MAP_STARTUP_WAIT" value="FALSE"/>
+        <item stringID="MAP_CLKIN_PERIOD" value="8.000000"/>
+        <item stringID="MAP_FACTORY_JF" value="F0F0"/>
+        <item stringID="MAP_PHASE_SHIFT" value="0"/>
+        <item stringID="MAP_BANDWIDTH" value="OPTIMIZED"/>
+        <item stringID="MAP_COMPENSATION" value="INTERNAL"/>
+        <item stringID="MAP_DIVCLK_DIVIDE" value="1"/>
+        <item stringID="MAP_CLKFBOUT_PHASE" value="0.0"/>
+        <item stringID="MAP_CLKIN1_PERIOD" value="10.000000"/>
+        <item stringID="MAP_CLKIN2_PERIOD" value="10.000000"/>
+        <item stringID="MAP_CLKOUT0_DUTY_CYCLE" value="0.5"/>
+        <item stringID="MAP_CLKOUT0_PHASE" value="90.0"/>
+        <item stringID="MAP_CLKOUT1_DIVIDE" value="8"/>
+        <item stringID="MAP_CLKOUT1_DUTY_CYCLE" value="0.5"/>
+        <item stringID="MAP_CLKOUT1_PHASE" value="0.0"/>
+        <item stringID="MAP_CLKOUT2_DIVIDE" value="5"/>
+        <item stringID="MAP_CLKOUT2_DUTY_CYCLE" value="0.5"/>
+        <item stringID="MAP_CLKOUT2_PHASE" value="0.0"/>
+        <item stringID="MAP_CLKOUT3_DIVIDE" value="16"/>
+        <item stringID="MAP_CLKOUT3_DUTY_CYCLE" value="0.5"/>
+        <item stringID="MAP_CLKOUT3_PHASE" value="0.0"/>
+        <item stringID="MAP_CLKOUT4_DIVIDE" value="40"/>
+        <item stringID="MAP_CLKOUT4_DUTY_CYCLE" value="0.5"/>
+        <item stringID="MAP_CLKOUT4_PHASE" value="0.0"/>
+        <item stringID="MAP_CLKOUT5_DIVIDE" value="10"/>
+        <item stringID="MAP_CLKOUT5_DUTY_CYCLE" value="0.5"/>
+        <item stringID="MAP_CLKOUT5_PHASE" value="0.0"/>
+      </section>
+      <section stringID="MAP_CONTROL_SET_INFORMATION">
+        <item dataType="int" label="Number of unique control sets" stringID="MAP_NUM_CONTROL_SETS" value="1477"/>
+        <tree stringID="MAP_CONTROL_SET_HIERARCHY">
+          <property stringID="MAP_CLOCK_SIGNAL"/>
+          <property stringID="MAP_RESET_SIGNAL"/>
+          <property stringID="MAP_SET_SIGNAL"/>
+          <property stringID="MAP_ENABLE_SIGNAL"/>
+          <property label="Slice&#xA;Load Count" stringID="MAP_SLICE_LOAD_COUNT"/>
+          <property label="Bel&#xA;Load Count" stringID="MAP_BEL_LOAD_COUNT"/>
+        </tree>
+      </section>
+    </task>
+    <section stringID="MAP_RAM_FIFO_DATA">
+      <item AVAILABLE="148" dataType="int" label="Number of Block RAM/FIFO" stringID="MAP_NUM_RAMBFIFO36" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB36_EXP" value="35"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB36SDP_EXP" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_FIFO36_EXPNUM_FIFO36_72_EXP" value="0"/>
+      <item AVAILABLE="0" dataType="int" label="Number of 18k BlockRAM used" stringID="MAP_NUM_RAMB18X2" value="1"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB18X2SDP" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18NUM_RAMBFIFO18_36" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB18X2_UPPER" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB18X2_LOWER" value="1"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18_UPPER" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18_LOWER" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMB18X2SDP_UPPERNUM_RAMB18X2SDP_LOWER" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18_36_UPPER" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_RAMBFIFO18_36_LOWER" value="0"/>
+    </section>
+    <section stringID="MAP_IP_DATA">
+      <item AVAILABLE="4" dataType="int" stringID="MAP_NUM_BSCAN" value="1"/>
+      <item AVAILABLE="8" dataType="int" stringID="MAP_NUM_BUFDS" value="0"/>
+      <item AVAILABLE="80" dataType="int" stringID="MAP_NUM_BUFIO" value="8"/>
+      <item AVAILABLE="32" dataType="int" stringID="MAP_NUM_BUFR" value="0"/>
+      <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_CAPTURE" value="0"/>
+      <item AVAILABLE="32" dataType="int" stringID="MAP_NUM_CRC32" value="0"/>
+      <item AVAILABLE="16" dataType="int" stringID="MAP_NUM_CRC64" value="0"/>
+      <item AVAILABLE="12" dataType="int" label="Number of DCM_ADVs" stringID="MAP_NUM_DCM_ADV" value="1"/>
+      <item AVAILABLE="64" dataType="int" stringID="MAP_NUM_DSP48E" value="3"/>
+      <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_EFUSE_USR" value="0"/>
+      <item AVAILABLE="8" dataType="int" stringID="MAP_NUM_GTP_DUAL" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_GTX_DUAL" value="0"/>
+      <item AVAILABLE="2" dataType="int" stringID="MAP_NUM_ICAP" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_ISERDES" value="0"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_OSERDES" value="0"/>
+      <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_PCIE" value="0"/>
+      <item AVAILABLE="6" dataType="int" stringID="MAP_NUM_PLL_ADV" value="1"/>
+      <item AVAILABLE="0" dataType="int" stringID="MAP_NUM_PPC440" value="0"/>
+      <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_STARTUP" value="0"/>
+      <item AVAILABLE="1" dataType="int" stringID="MAP_NUM_SYSMON" value="0"/>
+      <item AVAILABLE="2" dataType="int" stringID="MAP_NUM_TEMAC" value="0"/>
+    </section>
+    <section stringID="MAP_BUFG_DATA">
+      <item dataType="int" label="Number used as BUFGs" stringID="MAP_NUM_BUFG" value="9"/>
+      <item dataType="int" stringID="MAP_NUM_BUFGCTR" value="0"/>
+      <item dataType="int" stringID="MAP_AVAILABLE" value="32"/>
+      <item dataType="int" stringID="MAP_HARD_MACROS" value="0"/>
+      <item dataType="int" stringID="MAP_RPMS" value="0"/>
+      <item stringID="MAP_CLKDV_DIVIDE" value="2.0"/>
+      <item stringID="MAP_CLKFX_DIVIDE" value="1"/>
+      <item stringID="MAP_CLKFX_MULTIPLY" value="4"/>
+      <item stringID="MAP_CLKIN_DIVIDE_BY_2" value="FALSE"/>
+      <item stringID="MAP_CLKOUT_PHASE_SHIFT" value="NONE"/>
+      <item stringID="MAP_CLK_FEEDBACK" value="1X"/>
+      <item stringID="MAP_DCM_CLKDV_CLKFX_ALIGNMENT" value="TRUE"/>
+      <item stringID="MAP_DCM_EXT_FB_EN" value="FALSE"/>
+      <item stringID="MAP_DCM_PERFORMANCE_MODE" value="MAX_SPEED"/>
+      <item stringID="MAP_DCM_UNUSED_TAPS_POWERDOWN" value="TRUE"/>
+      <item stringID="MAP_DCM_VREF_SOURCE" value="VBG_DLL"/>
+      <item stringID="MAP_DCM_VREG_ENABLE" value="TRUE"/>
+      <item stringID="MAP_DESKEW_ADJUST" value="17"/>
+      <item stringID="MAP_DFS_AVE_FREQ_GAIN" value="2.0"/>
+      <item stringID="MAP_DFS_AVE_FREQ_SAMPLE_INTERVAL" value="2"/>
+      <item stringID="MAP_DFS_EARLY_LOCK" value="FALSE"/>
+      <item stringID="MAP_DFS_FREQUENCY_MODE" value="LOW"/>
+      <item stringID="MAP_DFS_OSCILLATOR_MODE" value="PHASE_FREQ_LOCK"/>
+      <item stringID="MAP_DLL_DESKEW_LOCK_BY1" value="FALSE"/>
+      <item stringID="MAP_DLL_FREQUENCY_MODE" value="HIGH"/>
+      <item stringID="MAP_DLL_PERIOD_LOCK_BY1" value="FALSE"/>
+      <item stringID="MAP_DLL_PHASE_SHIFT_CALIBRATION" value="AUTO_DPS"/>
+      <item stringID="MAP_DLL_PHASE_SHIFT_LOCK_BY1" value="FALSE"/>
+      <item stringID="MAP_DUTY_CYCLE_CORRECTION" value="TRUE"/>
+      <item stringID="MAP_STARTUP_WAIT" value="FALSE"/>
+      <item stringID="MAP_CLKIN_PERIOD" value="8.000000"/>
+      <item stringID="MAP_FACTORY_JF" value="F0F0"/>
+      <item stringID="MAP_PHASE_SHIFT" value="0"/>
+      <item stringID="MAP_BANDWIDTH" value="OPTIMIZED"/>
+      <item stringID="MAP_COMPENSATION" value="INTERNAL"/>
+      <item stringID="MAP_DIVCLK_DIVIDE" value="1"/>
+      <item stringID="MAP_CLKFBOUT_PHASE" value="0.0"/>
+      <item stringID="MAP_CLKIN1_PERIOD" value="10.000000"/>
+      <item stringID="MAP_CLKIN2_PERIOD" value="10.000000"/>
+      <item stringID="MAP_CLKOUT0_DUTY_CYCLE" value="0.5"/>
+      <item stringID="MAP_CLKOUT0_PHASE" value="90.0"/>
+      <item stringID="MAP_CLKOUT1_DIVIDE" value="8"/>
+      <item stringID="MAP_CLKOUT1_DUTY_CYCLE" value="0.5"/>
+      <item stringID="MAP_CLKOUT1_PHASE" value="0.0"/>
+      <item stringID="MAP_CLKOUT2_DIVIDE" value="5"/>
+      <item stringID="MAP_CLKOUT2_DUTY_CYCLE" value="0.5"/>
+      <item stringID="MAP_CLKOUT2_PHASE" value="0.0"/>
+      <item stringID="MAP_CLKOUT3_DIVIDE" value="16"/>
+      <item stringID="MAP_CLKOUT3_DUTY_CYCLE" value="0.5"/>
+      <item stringID="MAP_CLKOUT3_PHASE" value="0.0"/>
+      <item stringID="MAP_CLKOUT4_DIVIDE" value="40"/>
+      <item stringID="MAP_CLKOUT4_DUTY_CYCLE" value="0.5"/>
+      <item stringID="MAP_CLKOUT4_PHASE" value="0.0"/>
+      <item stringID="MAP_CLKOUT5_DIVIDE" value="10"/>
+      <item stringID="MAP_CLKOUT5_DUTY_CYCLE" value="0.5"/>
+      <item stringID="MAP_CLKOUT5_PHASE" value="0.0"/>
+    </section>
+  </application>
+
+</document>
