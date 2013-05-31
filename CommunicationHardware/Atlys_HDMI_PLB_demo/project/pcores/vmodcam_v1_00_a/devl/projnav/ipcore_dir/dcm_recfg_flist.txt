@@ -1,3 +1,0 @@
-# Output products list for <dcm_recfg>
-dcm_recfg.xco
-dcm_recfg_flist.txt

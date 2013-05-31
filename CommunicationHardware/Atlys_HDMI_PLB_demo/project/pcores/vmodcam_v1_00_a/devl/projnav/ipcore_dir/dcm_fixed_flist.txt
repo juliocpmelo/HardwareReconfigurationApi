@@ -1,3 +1,0 @@
-# Output products list for <dcm_fixed>
-dcm_fixed.xco
-dcm_fixed_flist.txt
