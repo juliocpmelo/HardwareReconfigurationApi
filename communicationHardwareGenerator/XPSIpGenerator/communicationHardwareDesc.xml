@@ -1,0 +1,23 @@
+<!-- 
+		 This descripion is necessary to provide information about
+		extra input/output required to the communication hardware.
+		 The id attribute is used to differ between different communication
+		hardware implementations in a bigger execution environment.
+-->
+<communicationHardware id="test1">
+
+	<!--
+			 These params define the size of the data and address 
+			registers connected	the communication hardware.
+	-->
+	<param dataWidth="32">
+	<param addressWidth="32">
+
+	<!--
+			 Aditional inputs/outputs
+	-->
+	<input type="bit" name="extPort1"/>
+	<output type="vector" size="10" name="extPort2"/>
+
+	
+</communicationHardware>
