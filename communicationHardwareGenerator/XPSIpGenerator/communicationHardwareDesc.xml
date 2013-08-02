@@ -17,7 +17,7 @@
 			 Aditional inputs/outputs
 	-->
 	<input type="bit" name="extPort1"/>
-	<output type="vector" size="10" name="extPort2"/>
+	<output type="vector" size="10" firstIndex="0" name="extPort2"/>
 
 	
 </communicationHardware>
