@@ -10,8 +10,8 @@
 			 These params define the size of the data and address 
 			registers connected	the communication hardware.
 	-->
-	<param dataWidth="32">
-	<param addressWidth="32">
+	<param name="dataWidth" type="integer" defaultValue="32"/>
+	<param name="addressWidth" type="integer" defaultValue="32"/>
 
 	<!--
 			 Aditional inputs/outputs
