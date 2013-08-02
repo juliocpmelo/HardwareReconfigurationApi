@@ -8,6 +8,78 @@ HardwareComponentXmlParser::HardwareComponentXmlParser(){
 //    this->xmlProjectFile = xmlProjectFile;
 }
 
+HardwareComponent::PortInfo HardwareComponentXmlParser::parsePort(xmlNode * portNode){
+	xmlChar *portName = xmlGetProp(portNode, (const xmlChar *)"name");
+	string portNameStr((const char*)portName);
+
+	xmlChar *portTypeChar = xmlGetProp(portNode, (const xmlChar *)"type");
+	HardwareComponent::DataType portType;
+	if(xmlStrcmp(portTypeChar,(const xmlChar*) "bit") == 0)
+		portType = HardwareComponent::DataType_bit;
+	else if(xmlStrcmp(portTypeChar,(const xmlChar*) "vector") == 0)
+		portType = HardwareComponent::DataType_vector;
+	else if(xmlStrcmp(portTypeChar,(const xmlChar*) "integer") == 0)
+		portType = HardwareComponent::DataType_integer;
+	else
+		portType = HardwareComponent::DataType_bit;
+
+	xmlChar *portSizeChar = xmlGetProp(portNode, (const xmlChar *)"size");
+	int portSize;
+	if(portSizeChar != NULL)
+		portSize = atoi((const char*)portSizeChar);
+	else
+		portSize = 1;
+
+	HardwareComponent::PortInfo info = {portNameStr, portType, portSize};
+	
+	return info;
+}
+
+
+HardwareComponent::ParamInfo HardwareComponentXmlParser::parseParam(xmlNode * paramNode){
+
+	xmlChar *paramName = xmlGetProp(paramNode, (const xmlChar *)"name");
+	string paramNameStr((const char*)paramName);
+	cout<<"param tag name "<<paramNameStr<<endl;
+
+	xmlChar *paramTypeChar = xmlGetProp(paramNode, (const xmlChar *)"type");
+	HardwareComponent::DataType paramType;
+	/*check possible generic/attribute types*/
+	if(xmlStrcmp(paramTypeChar,(const xmlChar*) "bit") == 0)
+		paramType = HardwareComponent::DataType_bit;
+	else if(xmlStrcmp(paramTypeChar,(const xmlChar*) "vector") == 0)
+		paramType = HardwareComponent::DataType_vector;
+	else if(xmlStrcmp(paramTypeChar,(const xmlChar*) "integer") == 0)
+		paramType = HardwareComponent::DataType_integer;
+	else if(xmlStrcmp(paramTypeChar,(const xmlChar*) "string") == 0)
+		paramType = HardwareComponent::DataType_string;
+	else
+		paramType = HardwareComponent::DataType_integer;
+
+
+	xmlChar *paramDefaultValue = xmlGetProp(paramNode, (const xmlChar *)"defaultValue");
+	string paramDefaultValueStr = "";
+	if(paramDefaultValue != NULL){
+		paramDefaultValueStr = string((const char*)paramDefaultValue);
+	}
+
+	xmlChar *paramSizeChar = xmlGetProp(paramNode, (const xmlChar *)"size");
+	int paramSize;
+	if(paramSizeChar != NULL)
+		paramSize = atoi((const char*)paramSizeChar);
+	else
+		paramSize = 1;
+
+
+	
+	HardwareComponent::ParamInfo info = {paramNameStr, paramType, paramSize, paramDefaultValueStr};
+
+	return info;
+
+}
+
+
+
 /*obs : not using xmlFree as it results in a compilation bug because of the libxml2 compiled for windows*/
 std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode){
     xmlNode *componentNode = NULL;
@@ -17,7 +89,7 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 			HardwareComponent::HardwareComponentInfo *componentInfo = NULL;
 			if (componentNode->type == XML_ELEMENT_NODE &&
 					xmlStrcmp(componentNode->name, (const xmlChar*)"component") == 0) {
-
+				
 				componentInfo = new HardwareComponent::HardwareComponentInfo();
 				xmlChar *name = xmlGetProp(componentNode, (const xmlChar *)"name");
 				string nameStr((const char*)name);
@@ -36,80 +108,21 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 				xmlNode *currentNode = NULL;
 				for (currentNode = componentNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
 					if (currentNode->type == XML_ELEMENT_NODE) {
-						if(xmlStrcmp(currentNode->name, (const xmlChar *)"generic") == 0){
-							xmlChar *genericName = xmlGetProp(currentNode, (const xmlChar *)"name");
-							string genericNameStr((const char*)genericName);
-							cout<<"generic tag name "<<genericNameStr<<endl;
+						if(xmlStrcmp(currentNode->name, (const xmlChar *)"param") == 0){
 
-							xmlChar *type = xmlGetProp(currentNode, (const xmlChar *)"type");
-							string typeStr = "";
-							if(type != NULL){
-								typeStr = string((const char*)type);
-							}
-							else
-								typeStr = "integer";
-
-
-							xmlChar *defaultValue = xmlGetProp(currentNode, (const xmlChar *)"defaultValue");
-							string defaultValueStr = "";
-							if(defaultValue != NULL){
-								defaultValueStr = string((const char*)defaultValue);
-							}
-							pair<string,string> v(typeStr,defaultValueStr);
-							componentInfo->componentParameters[genericNameStr] = v;
+							HardwareComponent::ParamInfo paramInfo = parseParam(currentNode);
+							componentInfo->componentParameters[paramInfo.name] = paramInfo;
 
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){
-							cout<<"input tag"<<endl;
-							xmlChar *inputName = xmlGetProp(currentNode, (const xmlChar *)"name");
-							string inputNameStr((const char*)inputName);
 
-							xmlChar *inputTypeChar = xmlGetProp(currentNode, (const xmlChar *)"type");
-							HardwareComponent::DataType inputType;
-							if(xmlStrcmp(inputTypeChar,(const xmlChar*) "bit") == 0)
-								inputType = HardwareComponent::DataType_bit;
-							else if(xmlStrcmp(inputTypeChar,(const xmlChar*) "vector") == 0)
-								inputType = HardwareComponent::DataType_vector;
-							else if(xmlStrcmp(inputTypeChar,(const xmlChar*) "integer") == 0)
-								inputType = HardwareComponent::DataType_integer;
-							else
-								inputType = HardwareComponent::DataType_bit;
-
-							xmlChar *inputSizeChar = xmlGetProp(currentNode, (const xmlChar *)"size");
-							int inputSize;
-							if(inputSizeChar != NULL)
-								inputSize = atoi((const char*)inputSizeChar);
-							else
-								inputSize = 1;
-
-							HardwareComponent::PortInfo info = {inputNameStr,inputType, inputSize};
-							componentInfo->inputs[inputNameStr] = info;
+							HardwareComponent::PortInfo info = parsePort(currentNode);
+							componentInfo->inputs[info.name] = info;
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"output") == 0){
-							cout<<"output tag"<<endl;
-							xmlChar *outputName = xmlGetProp(currentNode, (const xmlChar *)"name");
-							string outputNameStr((const char*)outputName);
 
-							xmlChar *outputTypeChar = xmlGetProp(currentNode, (const xmlChar *)"type");
-							HardwareComponent::DataType outputType;
-							if(xmlStrcmp(outputTypeChar,(const xmlChar*)"bit")==0)
-								outputType = HardwareComponent::DataType_bit;
-							else if(xmlStrcmp(outputTypeChar,(const xmlChar*)"vector")==0)
-								outputType = HardwareComponent::DataType_vector;
-							else if(xmlStrcmp(outputTypeChar,(const xmlChar*)"integer")==0)
-								outputType = HardwareComponent::DataType_integer;
-							else
-								outputType = HardwareComponent::DataType_bit;
-
-							xmlChar *outputSizeChar = xmlGetProp(currentNode, (const xmlChar *)"size");
-							int outputSize;
-							if(outputSizeChar != NULL)
-								outputSize = atoi((const char*)outputSizeChar);
-							else
-								outputSize = 1;
-
-							HardwareComponent::PortInfo info = {outputNameStr,outputType, outputSize};
-							componentInfo->outputs[outputNameStr] = info;
+							HardwareComponent::PortInfo info = parsePort(currentNode);
+							componentInfo->outputs[info.name] = info;
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"dependency") == 0){
 							xmlChar *file = xmlGetProp(currentNode, (const xmlChar *)"file");
@@ -137,15 +150,6 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 									}
 								}
 							}
-						}
-						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"declaration") == 0){
-							xmlChar *file = xmlGetProp(currentNode, (const xmlChar *)"file");
-							fileStr = "";
-							if(file!=NULL){
-								fileStr = string((const char*)file);
-								dependencyFiles.insert(fileStr);
-							}
-							componentInfo->dependencyFiles.insert(fileStr);
 						}
 					}
 				}
@@ -358,7 +362,6 @@ void HardwareComponentXmlParser::parseHardwareTopEntity(xmlNode * rootNode){
 std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseXmlComponentFile(std::string xmlFile){
 	xmlDoc         *doc = NULL;
 	xmlNode        *root_element = NULL;
-	char workingDir[256];
 	cout<<"parsing description file "<<xmlFile<<endl;
 	doc = xmlReadFile(xmlFile.c_str(), NULL, 0);
 
@@ -395,7 +398,6 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 HardwareComponent* HardwareComponentXmlParser::parseMainEntityXmlFile(std::string xmlFile){
 	xmlDoc         *doc = NULL;
 	xmlNode        *root_element = NULL;
-	char workingDir[256];
 
 	doc = xmlReadFile(xmlFile.c_str(), NULL, 0);
 

@@ -73,6 +73,8 @@ class HardwareComponentXmlParser{
 		std::string getValidComponentInstanceName(std::string componentType);
 		std::map<std::string, HardwareComponent::HardwareComponentInfo*> parseXmlComponentFile(std::string xmlFile);
 		HardwareComponent* parseMainEntityXmlFile(std::string xmlFile);
+		virtual HardwareComponent::PortInfo parsePort(xmlNode * portNode);
+		virtual HardwareComponent::ParamInfo parseParam(xmlNode * portNode);
 
 	private:
 		
