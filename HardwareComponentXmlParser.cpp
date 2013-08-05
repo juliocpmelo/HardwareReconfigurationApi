@@ -23,14 +23,45 @@ HardwareComponent::PortInfo HardwareComponentXmlParser::parsePort(xmlNode * port
 	else
 		portType = HardwareComponent::DataType_bit;
 
+	/*deprecated in current version*/
 	xmlChar *portSizeChar = xmlGetProp(portNode, (const xmlChar *)"size");
 	int portSize;
 	if(portSizeChar != NULL)
 		portSize = atoi((const char*)portSizeChar);
 	else
 		portSize = 1;
+	/*deprecated in current version end*/
+	
 
-	HardwareComponent::PortInfo info = {portNameStr, portType, portSize};
+	/*start and end values are strings, thus the description is able to use the params*/
+	xmlChar *portSizeChar = xmlGetProp(portNode, (const xmlChar *)"start");
+	sting portStartIndex;
+	if(portStartIndexChar != NULL)
+		portStartIndex = atoi((const char*)portStartIndexChar);
+	else
+		portStartIndex = "1";
+
+	/*operator could be downto, upto or to*/
+	xmlChar *portVectorIndexOperationChar = xmlGetProp(portNode, (const xmlChar *)"op");
+	string portVectorIndexOperation;
+	if(portVectorIndexOperationChar != NULL)
+		portVectorIndexOperation = atoi((const char*)portVectorIndexOperationChar);
+	else
+		portVectorIndexOperation = "downto";
+
+
+	xmlChar *portEndIndexChar = xmlGetProp(portNode, (const xmlChar *)"end");
+	string portEndIndex;
+	if(portEndIndexChar != NULL)
+		portEndIndex = atoi((const char*)portEndIndexChar);
+	else
+		portEndIndex = "0";
+
+
+
+
+
+	HardwareComponent::PortInfo info = {portNameStr, portType, portSize, portStartIndex, portEndIndex, portVectorIndexOperation, NULL};
 	
 	return info;
 }

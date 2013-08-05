@@ -18,6 +18,9 @@ SC_MODULE(HardwareComponent) {
 		std::string name;
 		DataType type;
 		int size;
+		std::string portStartIndex;
+		std::string portEndIndex;
+		std::string portVectorIndexOperation;
 		sc_port_base * scPort;
 	}PortInfo;
 

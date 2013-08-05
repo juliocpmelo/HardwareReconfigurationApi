@@ -13,8 +13,9 @@ class HardwareComponentConverterVHDL{
 	public:
 		HardwareComponentConverterVHDL();
 
-		std::string translateType(HardwareComponent::DataType type, int size);
+		std::string translateType(HardwareComponent::DataType type, string startIndex, string operation, string endIndex);
 		std::string translatePort(HardwareComponent::PortInfo* port);
+		std::string translateParam(HardwareComponent::ParamInfo* paramInfo);
 		std::string translateSignal(sc_signal_resolved *signal);
 
 		void buildTopComponentFile(std::string projectPath, HardwareComponent *topComponent);

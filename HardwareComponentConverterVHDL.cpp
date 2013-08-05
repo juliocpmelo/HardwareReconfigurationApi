@@ -10,11 +10,11 @@ HardwareComponentConverterVHDL::HardwareComponentConverterVHDL(){
 
 }
 
-std::string HardwareComponentConverterVHDL::translateType(HardwareComponent::DataType type, int size){
+std::string HardwareComponentConverterVHDL::translateType(HardwareComponent::DataType type, string startIndex, string operation, string endIndex){
 	stringstream convertedType;
 	switch (type){
 		case HardwareComponent::DataType_vector:{
-			convertedType<<"std_logic_vector("<<size-1<<" downto 0)";
+			convertedType<<"std_logic_vector("<<startIndex<<" "<<operation<<" "<<endIndex<<")";
 			break;
 		}
 		case HardwareComponent::DataType_bit:{
@@ -23,7 +23,7 @@ std::string HardwareComponentConverterVHDL::translateType(HardwareComponent::Dat
 		}
 		case HardwareComponent::DataType_integer:{
 			/*TODO think about integer range*/
-			convertedType<<"integer : range (0 to "<<size<<")";
+			convertedType<<"integer : range (0 to "<<startIndex<<")";
 			break;
 		}
 	}
@@ -52,12 +52,41 @@ std::string HardwareComponentConverterVHDL::translatePort(HardwareComponent::Por
 		convertedPort<<typeStr;
 	}
 
-
 	cout<<" converted to "<<convertedPort.str()<<endl;
 
 	return convertedPort.str();
+}
+
+std::string HardwareComponentConverterVHDL::translateParam(HardwareComponent::ParamInfo* paramInfo){
+	
+	stringstream convertedParam;
+	cout<<" processing to "<<paramInfo->name()<<endl;
+	
+	convertedParam<<paramInfo->name<<" ";
+	switch (paramInfo->type){
+		case HardwareComponent::DataType_integer:{
+			 /*TODO think about integer range*/
+			 convertedParam<<": integer";
+			 break;
+		}
+		case HardwareComponent::DataType_string:{
+			 /*TODO think about integer range*/
+			 convertedParam<<": string";
+			 break;
+		}
+		default:
+			 convertedParam<<": integer";
+	}
+	if(paramInfo->defaultValue != ""){
+		convertedParam<<" := "<<paramInfo->defaultValue;
+	}
+	cout<<" converted to "<<convertedParam.str()<<endl;
+
+	return convertedParam.str();
 
 }
+
+s
 
 std::string HardwareComponentConverterVHDL::translateSignal(sc_signal_resolved* signal){
 	
@@ -200,10 +229,10 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 
     designFile <<"-- Component Declaration"<<endl<<endl;
 		set<HardwareComponent::HardwareComponentInfo*> usedComponentsInfo = getUsedComponents(topComponent);
-    /*generate the component declaration in the architecture file*/
+
+		/*generate the component declaration in the architecture file*/
     for(set<HardwareComponent::HardwareComponentInfo*>::iterator it = usedComponentsInfo.begin(); it!= usedComponentsInfo.end(); it ++){
-    	designFile<<(*it)->componentDeclaration<<endl;
-			
+    	designFile<<(*it)->componentDeclaration<<endl;			
     }
     
     designFile <<"-- Signal Declaration"<<endl<<endl;
@@ -221,7 +250,7 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 		vector<HardwareComponent*> childModules = getChildModules(topComponent);
 
 
-    
+   
 		for (vector<HardwareComponent*>::iterator it = childModules.begin(); it != childModules.end(); it++){
 			std::vector<sc_object*> children = (*it)->get_child_objects();
 			for (std::vector<sc_object*>::iterator it2 = children.begin(); it2 != children.end(); it2++) {
