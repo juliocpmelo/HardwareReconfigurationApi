@@ -8,60 +8,75 @@ HardwareComponentXmlParser::HardwareComponentXmlParser(){
 //    this->xmlProjectFile = xmlProjectFile;
 }
 
+
 HardwareComponent::PortInfo HardwareComponentXmlParser::parsePort(xmlNode * portNode){
 	xmlChar *portName = xmlGetProp(portNode, (const xmlChar *)"name");
 	string portNameStr((const char*)portName);
 
 	xmlChar *portTypeChar = xmlGetProp(portNode, (const xmlChar *)"type");
-	HardwareComponent::DataType portType;
+	HardwareComponent::DataType *portType  = NULL;
+
 	if(xmlStrcmp(portTypeChar,(const xmlChar*) "bit") == 0)
-		portType = HardwareComponent::DataType_bit;
-	else if(xmlStrcmp(portTypeChar,(const xmlChar*) "vector") == 0)
-		portType = HardwareComponent::DataType_vector;
-	else if(xmlStrcmp(portTypeChar,(const xmlChar*) "integer") == 0)
-		portType = HardwareComponent::DataType_integer;
+		portType = new HardwareComponent::DataType(HardwareComponent::DataTypeId_bit);
+	else if(xmlStrcmp(portTypeChar,(const xmlChar*) "vector") == 0){
+		
+		/*start and end values are strings, thus the description is able to use the params*/
+		xmlChar *portStartIndexChar = xmlGetProp(portNode, (const xmlChar *)"startIndex");
+		string portStartIndex;
+		if(portStartIndexChar != NULL)
+			portStartIndex = string((const char*)portStartIndexChar);
+		else
+			portStartIndex = "1";
+
+		/*operator could be downto, upto or to*/
+		xmlChar *portVectorIndexOperationChar = xmlGetProp(portNode, (const xmlChar *)"op");
+		string portVectorIndexOperation;
+		if(portVectorIndexOperationChar != NULL)
+			portVectorIndexOperation = string((const char*)portVectorIndexOperationChar);
+		else
+			portVectorIndexOperation = "downto";
+
+		xmlChar *portEndIndexChar = xmlGetProp(portNode, (const xmlChar *)"endIndex");
+		string portEndIndex;
+		if(portEndIndexChar != NULL)
+			portEndIndex = string((const char*)portEndIndexChar);
+		else
+			portEndIndex = "0";
+
+		cout<<"creating vector type "<<portStartIndex<<" "<<portEndIndex<<" "<<portVectorIndexOperation<<endl;
+		portType = new HardwareComponent::VectorType(portStartIndex,portEndIndex,portVectorIndexOperation);
+
+	}
+	else if(xmlStrcmp(portTypeChar,(const xmlChar*) "integer") == 0){
+		/*start and end values are strings, thus the description is able to use the params*/
+		xmlChar *rangeStartChar = xmlGetProp(portNode, (const xmlChar *)"rangeStart");
+		string rangeStart;
+		if(rangeStartChar != NULL)
+			rangeStart = atoi((const char*)rangeStartChar);
+		else
+			rangeStart = "1";
+
+		/*operator could be downto, upto or to*/
+		xmlChar *rangeOperationChar = xmlGetProp(portNode, (const xmlChar *)"rangeOp");
+		string rangeOperation;
+		if(rangeOperationChar != NULL)
+			rangeOperation = atoi((const char*)rangeOperationChar);
+		else
+			rangeOperation = "downto";
+
+		xmlChar *rangeEndChar = xmlGetProp(portNode, (const xmlChar *)"rangeEnd");
+		string rangeEnd;
+		if(rangeEndChar != NULL)
+			rangeEnd = atoi((const char*)rangeEndChar);
+		else
+			rangeEnd = "0";
+
+		portType = new HardwareComponent::IntegerType(rangeStart,rangeEnd,rangeOperation);
+	}
 	else
-		portType = HardwareComponent::DataType_bit;
+		portType = new HardwareComponent::DataType(HardwareComponent::DataTypeId_bit);
 
-	/*deprecated in current version*/
-	xmlChar *portSizeChar = xmlGetProp(portNode, (const xmlChar *)"size");
-	int portSize;
-	if(portSizeChar != NULL)
-		portSize = atoi((const char*)portSizeChar);
-	else
-		portSize = 1;
-	/*deprecated in current version end*/
-	
-
-	/*start and end values are strings, thus the description is able to use the params*/
-	xmlChar *portSizeChar = xmlGetProp(portNode, (const xmlChar *)"start");
-	sting portStartIndex;
-	if(portStartIndexChar != NULL)
-		portStartIndex = atoi((const char*)portStartIndexChar);
-	else
-		portStartIndex = "1";
-
-	/*operator could be downto, upto or to*/
-	xmlChar *portVectorIndexOperationChar = xmlGetProp(portNode, (const xmlChar *)"op");
-	string portVectorIndexOperation;
-	if(portVectorIndexOperationChar != NULL)
-		portVectorIndexOperation = atoi((const char*)portVectorIndexOperationChar);
-	else
-		portVectorIndexOperation = "downto";
-
-
-	xmlChar *portEndIndexChar = xmlGetProp(portNode, (const xmlChar *)"end");
-	string portEndIndex;
-	if(portEndIndexChar != NULL)
-		portEndIndex = atoi((const char*)portEndIndexChar);
-	else
-		portEndIndex = "0";
-
-
-
-
-
-	HardwareComponent::PortInfo info = {portNameStr, portType, portSize, portStartIndex, portEndIndex, portVectorIndexOperation, NULL};
+	HardwareComponent::PortInfo info = {portNameStr, portType, NULL};
 	
 	return info;
 }
@@ -74,18 +89,15 @@ HardwareComponent::ParamInfo HardwareComponentXmlParser::parseParam(xmlNode * pa
 	cout<<"param tag name "<<paramNameStr<<endl;
 
 	xmlChar *paramTypeChar = xmlGetProp(paramNode, (const xmlChar *)"type");
-	HardwareComponent::DataType paramType;
-	/*check possible generic/attribute types*/
-	if(xmlStrcmp(paramTypeChar,(const xmlChar*) "bit") == 0)
-		paramType = HardwareComponent::DataType_bit;
-	else if(xmlStrcmp(paramTypeChar,(const xmlChar*) "vector") == 0)
-		paramType = HardwareComponent::DataType_vector;
-	else if(xmlStrcmp(paramTypeChar,(const xmlChar*) "integer") == 0)
-		paramType = HardwareComponent::DataType_integer;
+	HardwareComponent::DataType *paramType  = NULL;
+
+	
+	if(xmlStrcmp(paramTypeChar,(const xmlChar*) "integer") == 0)
+		paramType = new HardwareComponent::IntegerType("","","");
 	else if(xmlStrcmp(paramTypeChar,(const xmlChar*) "string") == 0)
-		paramType = HardwareComponent::DataType_string;
+		paramType = new HardwareComponent::DataType(HardwareComponent::DataTypeId_string);
 	else
-		paramType = HardwareComponent::DataType_integer;
+		paramType = new HardwareComponent::IntegerType("","","");
 
 
 	xmlChar *paramDefaultValue = xmlGetProp(paramNode, (const xmlChar *)"defaultValue");
@@ -93,17 +105,8 @@ HardwareComponent::ParamInfo HardwareComponentXmlParser::parseParam(xmlNode * pa
 	if(paramDefaultValue != NULL){
 		paramDefaultValueStr = string((const char*)paramDefaultValue);
 	}
-
-	xmlChar *paramSizeChar = xmlGetProp(paramNode, (const xmlChar *)"size");
-	int paramSize;
-	if(paramSizeChar != NULL)
-		paramSize = atoi((const char*)paramSizeChar);
-	else
-		paramSize = 1;
-
-
 	
-	HardwareComponent::ParamInfo info = {paramNameStr, paramType, paramSize, paramDefaultValueStr};
+	HardwareComponent::ParamInfo info = {paramNameStr, paramType, paramDefaultValueStr};
 
 	return info;
 
