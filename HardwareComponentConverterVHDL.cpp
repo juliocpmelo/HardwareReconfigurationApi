@@ -10,22 +10,35 @@ HardwareComponentConverterVHDL::HardwareComponentConverterVHDL(){
 
 }
 
-std::string HardwareComponentConverterVHDL::translateType(HardwareComponent::DataType type, string startIndex, string operation, string endIndex){
+std::string HardwareComponentConverterVHDL::translateType(HardwareComponent::DataType *type){
 	stringstream convertedType;
-	switch (type){
-		case HardwareComponent::DataType_vector:{
+	switch (type->id){
+		case HardwareComponent::DataTypeId_vector:{
+			string startIndex = ((HardwareComponent::VectorType*) type)->startIndex;
+			string endIndex = ((HardwareComponent::VectorType*) type)->endIndex;
+			string operation = ((HardwareComponent::VectorType*) type)->indexOperator;
 			convertedType<<"std_logic_vector("<<startIndex<<" "<<operation<<" "<<endIndex<<")";
 			break;
 		}
-		case HardwareComponent::DataType_bit:{
+		case HardwareComponent::DataTypeId_bit:{
 			convertedType<<"std_logic";
 			break;
 		}
-		case HardwareComponent::DataType_integer:{
+		case HardwareComponent::DataTypeId_integer:{
+			string rangeStart = ((HardwareComponent::IntegerType*) type)->rangeStart;
+			string rangeEnd = ((HardwareComponent::IntegerType*) type)->rangeEnd;
+			string rangeOperation = ((HardwareComponent::IntegerType*) type)->rangeOperator;
 			/*TODO think about integer range*/
-			convertedType<<"integer : range (0 to "<<startIndex<<")";
+			if(rangeStart != "")
+				convertedType<<"integer : range ("<<rangeStart<<" "<<rangeOperation<<" "<<rangeEnd<<")";
+			else
+				convertedType<<"integer";
 			break;
+
 		}
+		default:
+			cout<<"type not handled"<<endl;
+
 	}
 	return convertedType.str();
 }
@@ -37,18 +50,18 @@ std::string HardwareComponentConverterVHDL::translatePort(HardwareComponent::Por
 	cout<<" processing to "<<port->name()<<endl;
 	
 	if(strcmp(port->kind(),"sc_in") == 0){
-		convertedPort<<"\t"<<port->basename()<<": in ";
-		string typeStr = translateType(portInfo->type,portInfo->size);
+		convertedPort<<port->basename()<<": in ";
+		string typeStr = translateType(portInfo->type);
 		convertedPort<<typeStr;
 	}
 	else if(strcmp(port->kind(),"sc_out") == 0){
-		convertedPort<<"\t"<<port->basename()<<": out ";
-		string typeStr = translateType(portInfo->type,portInfo->size);
+		convertedPort<<port->basename()<<": out ";
+		string typeStr = translateType(portInfo->type);
 		convertedPort<<typeStr;
 	}
 	else if(strcmp(port->kind(),"sc_inout") == 0){
-		convertedPort<<"\t"<<port->basename()<<": in ";
-		string typeStr = translateType(portInfo->type,portInfo->size);
+		convertedPort<<port->basename()<<": in ";
+		string typeStr = translateType(portInfo->type);
 		convertedPort<<typeStr;
 	}
 
@@ -60,16 +73,16 @@ std::string HardwareComponentConverterVHDL::translatePort(HardwareComponent::Por
 std::string HardwareComponentConverterVHDL::translateParam(HardwareComponent::ParamInfo* paramInfo){
 	
 	stringstream convertedParam;
-	cout<<" processing to "<<paramInfo->name()<<endl;
+	cout<<" processing to "<<paramInfo->name<<endl;
 	
 	convertedParam<<paramInfo->name<<" ";
-	switch (paramInfo->type){
-		case HardwareComponent::DataType_integer:{
+	switch (paramInfo->type->id){
+		case HardwareComponent::DataTypeId_integer:{
 			 /*TODO think about integer range*/
 			 convertedParam<<": integer";
 			 break;
 		}
-		case HardwareComponent::DataType_string:{
+		case HardwareComponent::DataTypeId_string:{
 			 /*TODO think about integer range*/
 			 convertedParam<<": string";
 			 break;
@@ -86,17 +99,15 @@ std::string HardwareComponentConverterVHDL::translateParam(HardwareComponent::Pa
 
 }
 
-s
 
 std::string HardwareComponentConverterVHDL::translateSignal(sc_signal_resolved* signal){
 	
 	stringstream convertedSignal;
 	
 	cout<<"proecessing signal "<<signal->name()<<endl;
-	sc_attribute<int> *size = dynamic_cast<sc_attribute<int>*>(signal->get_attribute("SignalSize"));
-	sc_attribute<HardwareComponent::DataType> *type = dynamic_cast<sc_attribute<HardwareComponent::DataType>*>(signal->get_attribute("DataType"));
+	sc_attribute<HardwareComponent::DataType*> *type = dynamic_cast<sc_attribute<HardwareComponent::DataType*>*>(signal->get_attribute("DataType"));
 
-	convertedSignal<<"signal "<<signal->name()<<" : "<<translateType(type->value, size->value);
+	convertedSignal<<"signal "<<signal->name()<<" : "<<translateType(type->value);
 	return convertedSignal.str();
 }
 
