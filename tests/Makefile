@@ -1,5 +1,5 @@
 
-#includes do system-c
+#includes required 
 INCLUDES=-I../ \
 				 -I./../libxml2-2.7.8.win32/include \
 				 -I./../systemc-2.3.0/include \
@@ -8,7 +8,7 @@ INCLUDES=-I../ \
 
 COMPONENT_NAME=HardwareReconfTests
 
-#libs do system-c
+#libs required
 LDFLAGS=-L../systemc-2.3.0/lib-cygwin -lsystemc \
 				-L../iconv-1.9.2.win32/lib -liconv \
 				-L../libxml2-2.7.8.win32/bin/ -lxml2 \
