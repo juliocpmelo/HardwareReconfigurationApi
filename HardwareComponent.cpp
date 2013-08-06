@@ -15,10 +15,10 @@ HardwareComponent::HardwareComponent(sc_module_name name, HardwareComponentInfo 
 
 void HardwareComponent::buildComponentPorts(){
 	for (std::map< string, PortInfo >::iterator it= componentInfo->inputs.begin(); it!=componentInfo->inputs.end(); it++){
-		addInput(it->second.name,it->second.type,it->second.size);
+		addInput(it->second.name,it->second.type);
 	}
 	for (std::map< string, PortInfo >::iterator it= componentInfo->outputs.begin(); it!=componentInfo->outputs.end(); it++){
-		addOutput(it->second.name,it->second.type,it->second.size);
+		addOutput(it->second.name,it->second.type);
 	}
 }
 
@@ -26,47 +26,46 @@ void HardwareComponent::buildComponentPorts(){
  * using declaration file attribute of HardwareComponentInfo there is no need to 
  * put the port datatypes and sizes as attributes for the ports.
  */
-void HardwareComponent::addPortAttributes(std::string name, DataType type, int size){
+void HardwareComponent::addPortAttributes(std::string name, DataType* type){
 	if(ports.count(name)!=0){
 //		sc_attribute< int > portSize("PortSize",size);
 //		sc_attribute< DataType > portType("DataType",type);
 		/*check data sizes if possible*/
 		ports[name]->name = name;
-		ports[name]->size = size;
 		ports[name]->type = type;
 
 	}
 }
 
-void HardwareComponent::addInput(std::string name, DataType type, int size){
+void HardwareComponent::addInput(std::string name, DataType* type){
 	if(isDynamic){
 		this->sc_get_curr_simcontext()->hierarchy_push (this);
 		ports[name]	= new PortInfo();
 		ports[name]->scPort = new sc_in< sc_logic >(name.c_str());
-		addPortAttributes(name, type, size);
+		addPortAttributes(name, type);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
 
 		//this->getSimulationContext()->hierarchy_pop();
 	}
 }
 
-void HardwareComponent::addOutput(std::string name, DataType type, int size){
+void HardwareComponent::addOutput(std::string name, DataType* type){
 	if(isDynamic){
 		this->sc_get_curr_simcontext()->hierarchy_push (this);
 		ports[name]	= new PortInfo();
 		ports[name]->scPort = new sc_out< sc_logic >(name.c_str());
-		addPortAttributes(name, type, size);
+		addPortAttributes(name, type);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
 
 	}
 }
 
-void HardwareComponent::addInout(std::string name, DataType type, int size){
+void HardwareComponent::addInout(std::string name, DataType* type){
 	if(isDynamic){
 		this->sc_get_curr_simcontext()->hierarchy_push (this);
 		ports[name]	= new PortInfo();
 		ports[name]->scPort = new sc_inout< sc_logic >(name.c_str());
-		addPortAttributes(name, type, size);
+		addPortAttributes(name, type);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
 	}
 }

@@ -6,28 +6,85 @@
 #include <map>
 #include <set>
 
+#define VECTOR_TYPE(indexBegin, indexOp, indexEnd) new HardwareComponent::VectorType(indexBegin, indexEnd, indexOp)
+
+#define BIT_TYPE new HardwareComponent::DataType(HardwareComponent::DataTypeId_bit)
+
+#define INTEGER_TYPE(rangeBegin, rangeOp, rangeEnd)	new HardwareComponent::IntegerType(rangeBegin, rangeEnd, rangeOp)
+
 SC_MODULE(HardwareComponent) {
-	typedef enum DataType_t{
-		DataType_vector,
-		DataType_bit,
-		DataType_integer,
-		DataType_string
-	}DataType;
+
+	typedef enum DataTypeId_t{
+		DataTypeId_vector,
+		DataTypeId_bit,
+		DataTypeId_integer,
+		DataTypeId_string
+	}DataTypeId;
+
+	class DataType{
+		public:
+			DataTypeId id;
+		public:
+			DataType(DataTypeId id){
+				this->id = id;
+			}
+	};
+
+	class VectorType : public DataType{
+		public:
+			/*
+			 * start and end indexes allow vectors
+			 * start and end at any index regardness of size
+			 * those parameters are required in either vhdl
+			 * or verilog
+			 */
+			std::string startIndex;
+			std::string endIndex;
+
+			/*
+			 * for vhdl it could be downto and to
+			 * for verilog it is not relevant
+			 */
+			std::string indexOperator;
+		public:
+			VectorType( std::string startIndex, std::string endIndex, std::string indexOperator) : DataType(DataTypeId_vector){
+				this->startIndex = startIndex;
+				this->endIndex = endIndex;
+				this->indexOperator = indexOperator;
+			}
+	};
+
+	class IntegerType : public DataType{
+		public:
+			/*
+			 * start and end ranges are required to languages
+			 * in order to limiit the ammount of bytes used
+			 * in the representation
+			 */
+			std::string rangeStart;
+			std::string rangeEnd;
+
+			/*
+			 * it could be downto and to
+			 */
+			std::string rangeOperator;
+		public:
+			IntegerType(std::string rangeStart, std::string rangeEnd, std::string rangeOperator) : DataType(DataTypeId_integer){
+				this->rangeStart = rangeStart;
+				this->rangeEnd = rangeEnd;
+				this->rangeOperator = rangeOperator;
+			}
+	};
 
 	typedef struct PortInfo_t{
 		std::string name;
-		DataType type;
-		int size;
-		std::string portStartIndex;
-		std::string portEndIndex;
-		std::string portVectorIndexOperation;
+		DataType* type;
 		sc_port_base * scPort;
 	}PortInfo;
 
 	typedef struct ParamInfo_t{
 		std::string name;
-		DataType type;
-		int size;
+		DataType* type;
 		std::string defaultValue;
 	}ParamInfo;
 
@@ -71,16 +128,16 @@ SC_MODULE(HardwareComponent) {
 		HardwareComponent(sc_module_name name, HardwareComponentInfo *infoTable);
 
 		/*functions used in dynamic creation*/
-		void addInput(std::string name, DataType type, int size = 1);
-		void addOutput(std::string name, DataType type, int size = 1);
-		void addInout(std::string name, DataType type, int size = 1);
+		void addInput(std::string name, DataType *type);
+		void addOutput(std::string name, DataType *type);
+		void addInout(std::string name, DataType *type);
 		sc_port_base* getPort(std::string name);
 		void portMap(std::string selfPortName, sc_port_base* port);
 		void portMap(std::string selfPortName, sc_signal_resolved* signal);
 		void addChildObject(sc_object *child);
 
 	private:
-		void addPortAttributes(std::string name, DataType type, int size);
+		void addPortAttributes(std::string name, DataType *type);
 
 };
 
