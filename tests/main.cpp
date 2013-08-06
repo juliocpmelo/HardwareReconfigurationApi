@@ -69,25 +69,25 @@ int main(int argc, char *argv[]){
             	*/
 								//new API with system C
 								cout << __FILE__ << "::" << __LINE__ <<endl; 
-                topComponent->addInput("clk",HardwareComponent::DataType_bit);
-                topComponent->addInput("rst",HardwareComponent::DataType_bit);
-                topComponent->addInput("wr0",HardwareComponent::DataType_bit);
-                topComponent->addInput("wr1",HardwareComponent::DataType_bit);
-                topComponent->addInput("wr2",HardwareComponent::DataType_bit);
+                topComponent->addInput("clk",BIT_TYPE);
+                topComponent->addInput("rst",BIT_TYPE);
+                topComponent->addInput("wr0",BIT_TYPE);
+                topComponent->addInput("wr1",BIT_TYPE);
+                topComponent->addInput("wr2",BIT_TYPE);
 
-                topComponent->addInput("in_x0",HardwareComponent::DataType_vector, 16);
-                topComponent->addInput("in_x1",HardwareComponent::DataType_vector, 16);
+                topComponent->addInput("in_x0",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addInput("in_x1",VECTOR_TYPE( "16", "downto", "0"));
 
-                topComponent->addInput("w0_i",HardwareComponent::DataType_vector, 16);
-                topComponent->addInput("w1_i",HardwareComponent::DataType_vector, 16);
-                topComponent->addInput("w2_i",HardwareComponent::DataType_vector, 16);
-                topComponent->addInput("w3_i",HardwareComponent::DataType_vector, 16);
-                topComponent->addInput("w4_i",HardwareComponent::DataType_vector, 16);
-                topComponent->addInput("w5_i",HardwareComponent::DataType_vector, 16);
+                topComponent->addInput("w0_i", VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addInput("w1_i",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addInput("w2_i",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addInput("w3_i",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addInput("w4_i",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addInput("w5_i",VECTOR_TYPE( "16", "downto", "0"));
 
-                topComponent->addInput("bias0",HardwareComponent::DataType_vector, 16);
-                topComponent->addInput("bias1",HardwareComponent::DataType_vector, 16);
-                topComponent->addInput("bias2",HardwareComponent::DataType_vector, 16);
+                topComponent->addInput("bias0",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addInput("bias1",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addInput("bias2",VECTOR_TYPE( "16", "downto", "0"));
 
                 /*
             	<output name="addr0" type="std_logic_vector(addr_length-1 downto 0)"/>
@@ -116,29 +116,29 @@ int main(int argc, char *argv[]){
                 */
 
 	
-                topComponent->addOutput("addr0",HardwareComponent::DataType_vector, 5);
-                topComponent->addOutput("addr1",HardwareComponent::DataType_vector, 5);
-                topComponent->addOutput("addr2",HardwareComponent::DataType_vector, 5);
+                topComponent->addOutput("addr0",VECTOR_TYPE( "5", "downto", "0"));
+                topComponent->addOutput("addr1",VECTOR_TYPE( "5", "downto", "0"));
+                topComponent->addOutput("addr2",VECTOR_TYPE( "5", "downto", "0"));
 
-                topComponent->addOutput("a0",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("b0",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("a1",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("b1",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("a2",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("b2",HardwareComponent::DataType_vector, 16);
+                topComponent->addOutput("a0",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("b0",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("a1",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("b1",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("a2",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("b2",VECTOR_TYPE( "16", "downto", "0"));
 
-                topComponent->addOutput("regx0",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("regx1",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("regx2",HardwareComponent::DataType_vector, 16);
+                topComponent->addOutput("regx0",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("regx1",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("regx2",VECTOR_TYPE( "16", "downto", "0"));
 
-                topComponent->addOutput("net0",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("net1",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("net2",HardwareComponent::DataType_vector, 16);
+                topComponent->addOutput("net0",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("net1",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("net2",VECTOR_TYPE( "16", "downto", "0"));
 
-                topComponent->addOutput("neuron_x0",HardwareComponent::DataType_vector, 16);
-                topComponent->addOutput("neuron_x1",HardwareComponent::DataType_vector, 16);
+                topComponent->addOutput("neuron_x0",VECTOR_TYPE( "16", "downto", "0"));
+                topComponent->addOutput("neuron_x1",VECTOR_TYPE( "16", "downto", "0"));
 
-                topComponent->addOutput("result",HardwareComponent::DataType_vector, 16);
+                topComponent->addOutput("result",VECTOR_TYPE( "16", "downto", "0"));
 								
 							/*
 							 	<signalBase>
@@ -147,9 +147,9 @@ int main(int argc, char *argv[]){
             	</signalBase>
             	*/
 
-								sc_signal_resolved *signaly0 = database->createSignal("y0", HardwareComponent::DataType_vector, 8);
+								sc_signal_resolved *signaly0 = database->createSignal("y0", VECTOR_TYPE( "8", "donwto", "0"));
 								topComponent->addChildObject(signaly0);
-								sc_signal_resolved *signaly1 = database->createSignal("y1", HardwareComponent::DataType_vector, 8);
+								sc_signal_resolved *signaly1 = database->createSignal("y1", VECTOR_TYPE( "8", "downto", "0"));
 								topComponent->addChildObject(signaly1);
 
 								/*
