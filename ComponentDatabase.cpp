@@ -32,12 +32,10 @@ HardwareComponent* ComponentDatabase::getHardwareComponent(std::string instanceN
 }
 
 
-sc_signal_resolved* ComponentDatabase::createSignal(std::string name, HardwareComponent::DataType type, int size){
+sc_signal_resolved* ComponentDatabase::createSignal(std::string name, HardwareComponent::DataType *type){
 
 	sc_signal_resolved *signal = new sc_signal_resolved(name.c_str());
-	sc_attribute<int> *signalSize = new sc_attribute<int>("SignalSize",size);
-	sc_attribute<HardwareComponent::DataType> *signalType = new sc_attribute<HardwareComponent::DataType>( "DataType",type);
+	sc_attribute<HardwareComponent::DataType*> *signalType = new sc_attribute<HardwareComponent::DataType*>( "DataType",type);
 	signal->add_attribute(*signalType);
-	signal->add_attribute(*signalSize);
 	return signal;
 }

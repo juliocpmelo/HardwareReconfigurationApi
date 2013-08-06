@@ -18,7 +18,7 @@ class ComponentDatabase{
 		//looks up for a component with given locator and instantiate it with the given name
 		//TODO: check uri format
 		HardwareComponent *getHardwareComponent(std::string instanceName, std::string componentURI);
-		sc_signal_resolved *createSignal(std::string name, HardwareComponent::DataType type, int size=1);
+		sc_signal_resolved *createSignal(std::string name, HardwareComponent::DataType *type);
 		HardwareComponent::HardwareComponentInfo* getHardwareComponentInfo(std::string componentURI);
 		ComponentDatabase();
 
