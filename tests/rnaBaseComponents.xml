@@ -10,26 +10,27 @@
 		<dependency file="C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/Carlos RNA/teste_RNA/somador_gen.vhd"/>
 		<!--generic values are only bound to vhdl definition-->
 
-		<generic name="data_length" type="integer" defaultValue="16"/>
-		<generic name="addr_length" type="integer" defaultValue="5"/>
+		<param name="data_length" type="integer" defaultValue="16"/>
+		<param name="addr_length" type="integer" defaultValue="5"/>
 
 		<input name="clk" type="bit"/>
 		<input name="rst" type="bit"/>
 		<input name="wr_result" type="bit"/>
 
-		<input name="x0" type="vector" size="#data_length"/>
-		<input name="x1" type="vector" size="#data_length"/>
-		<input name="w0" type="vector" size="#data_length"/>
-		<input name="w1" type="vector" size="#data_length"/>
-		<input name="bias" type="vector" size="#data_length"/>
+		<output type="vector" startIndex="0" op="to" endIndex="dataWidth" name="extPort2"/>
+		<input name="x0" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
+		<input name="x1" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
+		<input name="w0" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
+		<input name="w1" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
+		<input name="bias" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
 
-		<output name="addr" type="vector" size="#addr_length"/>
+		<output name="addr" type="vector" startIndex="addr_length" op="downto" endIndex="0"/>
 
-		<output name="a" type="vector" size="#data_length"/>
-		<output name="b" type="vector" size="#data_length"/>
-		<output name="regx" type="vector" size="#data_length"/>
-		<output name="x" type="vector" size="#data_length"/>
-		<output name="y" type="vector" size="#data_length"/>
+		<output name="a" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
+		<output name="b" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
+		<output name="regx" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
+		<output name="x" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
+		<output name="y" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
 
 		<declaration>
 			component teste_neuronio
