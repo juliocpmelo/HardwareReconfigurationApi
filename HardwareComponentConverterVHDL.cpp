@@ -170,7 +170,8 @@ sc_port_base* HardwareComponentConverterVHDL::getConnectedPort(sc_object* channe
 			if(port->get_interface() != NULL){
 				sc_object * connectedChannel = dynamic_cast<sc_object*>(port->get_interface());
 				std::cout<<"testing port "<<port->name()<<" that uses channel "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
-				if(channel->name() == connectedChannel->name())
+				if(channel->name() == connectedChannel->name() //connected through the same channel
+					 and port->get_attribute("PortConnection") != NULL)
 					return port;
 			}
 		}
@@ -263,27 +264,55 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 
    
 		for (vector<HardwareComponent*>::iterator it = childModules.begin(); it != childModules.end(); it++){
-			std::vector<sc_object*> children = (*it)->get_child_objects();
-			for (std::vector<sc_object*>::iterator it2 = children.begin(); it2 != children.end(); it2++) {
-				if (std::string((*it2)->kind()) =="sc_in" || 
-						std::string((*it2)->kind()) =="sc_out" ||
-						std::string((*it2)->kind()) =="sc_inout") {
-					std::cout<<"processing port "<<(*it2)->name()<<std::endl;
-					sc_port_base * port = dynamic_cast<sc_port_base*>(*it2);
+			if(std::string((*it)->kind()) == "sc_module"){
+				cout<<__FILE__<<"::"<<__LINE__<<endl;
 
-					if(port->get_interface() != NULL){
-						sc_object * channel = dynamic_cast<sc_object*>(port->get_interface());
+				HardwareComponent *module = (HardwareComponent*) (*it);
+				designFile << module->name() << ":" << module->componentInfo->name << " port map ("<<endl;
+				
+				std::vector<sc_object*> children = module->get_child_objects();
 
-						sc_port_base *connectedPort = getConnectedPort(channel, topComponent);
 
-						if( connectedPort != NULL){ //if any of the component's a port is connected to the current channel it is a direct connection
-							cout<<"port "<<connectedPort->name() << " directly connected to "<<port->name()<<endl;
-						}
-						else{ //else it should be connected through a signal
-							cout<<"port "<<port->name()<<" connectet through signal "<<channel->name()<<endl;
+
+				string portMap = "";
+				for (std::vector<sc_object*>::iterator it2 = children.begin(); it2 != children.end(); it2++) {
+					if (std::string((*it2)->kind()) =="sc_in" || 
+							std::string((*it2)->kind()) =="sc_out" ||
+							std::string((*it2)->kind()) =="sc_inout") {
+						std::cout<<"processing port "<<(*it2)->name()<<std::endl;
+						sc_port_base * port = dynamic_cast<sc_port_base*>(*it2);
+
+						if(port->get_interface() != NULL){
+							sc_object * channel = dynamic_cast<sc_object*>(port->get_interface());
+
+							sc_port_base *connectedPort = getConnectedPort(channel, topComponent);
+
+							if( connectedPort != NULL){ //if any of the component's a port is connected to the current channel it is a direct connection
+								cout<<"port "<<connectedPort->name() << " directly connected to "<<port->name()<<endl;
+								portMap += port->basename();
+							 	portMap += "->";
+							  portMap += connectedPort->basename();
+							  portMap += ",\n";
+
+							}
+							else{ //else it should be connected through a signal
+								cout<<"port "<<port->name()<<" conneted through signal "<<channel->name()<<endl;
+
+								portMap += port->basename();
+							 	portMap += "->";
+							  portMap += channel->basename();
+							  portMap += ",\n";
+							}
 						}
 					}
 				}
+				portMap = portMap.substr(0,portMap.size()-2);
+				cout<<__FILE__<<"::"<<__LINE__<<endl;
+
+				designFile << portMap<< endl;
+				
+				designFile << "); --"<<module->name()<<endl;
+
 			}
 		}
 

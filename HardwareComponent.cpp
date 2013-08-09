@@ -80,90 +80,99 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 	if(ports.count(selfPortName) != 0 && port!= NULL){
 		if(string(ports[selfPortName]->scPort->kind()) == "sc_in"
 			 && string(port->kind()) == "sc_in"){
-			cout<<"binding port (in) "<<this->name()<<":"<<selfPortName<<" to (in) "<<port->name()<<endl;
+			//cout<<"binding port (in) "<<this->name()<<":"<<selfPortName<<" to (in) "<<port->name()<<endl;
 			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName]->scPort );
 			sc_in<sc_logic> * bindedPort = dynamic_cast<sc_in<sc_logic>* >( port );
 
-
-			if ( selfPort->get_attribute("PortBound") != NULL){ // binds an already binded port
-				cout<<"get signal"<<endl;
-				sc_attribute< sc_signal_resolved* > *portBoundAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortBound"));
-				(*bindedPort)(*(portBoundAttr->value)) ;
+			sc_attribute< sc_signal_resolved* > *portConnectionAttr; 
+			if ( portConnectionAttr = dynamic_cast< sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortConnection"))){
+				(*bindedPort)(*(portConnectionAttr->value));
 			}
-			else{ //binds both ports through a signal
+			else if ( portConnectionAttr = dynamic_cast< sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"))){
+				(*selfPort)(*(portConnectionAttr->value));
+			}
+			else{
 				sc_signal_resolved *sig = new sc_signal_resolved();
-				sc_attribute< sc_signal_resolved* > *portBoundAttr = new sc_attribute< sc_signal_resolved* >("PortBound",sig);
+				sc_attribute< sc_signal_resolved* > *portConnectionAttr = new sc_attribute< sc_signal_resolved* >("PortConnection",sig);
 
 				(*bindedPort)(*sig);
 				(*selfPort)(*sig);
-				selfPort->add_attribute(*portBoundAttr);
+				selfPort->add_attribute(*portConnectionAttr);
+				bindedPort->add_attribute(*portConnectionAttr);
+				
 			}
 
-			//(*selfPort)(*bindedPort);
 		}
 		else if(string(ports[selfPortName]->scPort->kind()) == "sc_in"
 			 && string(port->kind()) == "sc_out"){
-		cout<<"binding port"<<this->name()<<":"<<selfPortName<<" to "<<port->name()<<endl;
+			//cout<<"binding port"<<this->name()<<":"<<selfPortName<<" to "<<port->name()<<endl;
 			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName]->scPort );
 			sc_out<sc_logic> * bindedPort = dynamic_cast<sc_out<sc_logic>* >( port );
 
-			if ( selfPort->get_attribute("PortBound") != NULL){ // binds an already binded port
-				cout<<"get signal"<<endl;
-				sc_attribute< sc_signal_resolved* > *portBoundAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortBound"));
-				(*bindedPort)(*(portBoundAttr->value)) ;
+			sc_attribute< sc_signal_resolved* > *portConnectionAttr; 
+			if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortConnection")) ){ //tests for a already binded port
+				(*bindedPort)(*(portConnectionAttr->value)) ;
+			}
+			else if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"))){
+				(*selfPort)(*(portConnectionAttr->value)) ;
 			}
 			else{ //binds both ports through a signal
 				sc_signal_resolved *sig = new sc_signal_resolved();
-				sc_attribute< sc_signal_resolved* > *portBoundAttr = new sc_attribute< sc_signal_resolved* >("PortBound",sig);
+				sc_attribute< sc_signal_resolved* > *portConnectionAttr = new sc_attribute< sc_signal_resolved* >("PortConnection",sig);
 
 				(*bindedPort)(*sig);
 				(*selfPort)(*sig);
-				selfPort->add_attribute(*portBoundAttr);
+				selfPort->add_attribute(*portConnectionAttr);
+				bindedPort->add_attribute(*portConnectionAttr);
 			}
 
 		}
 		else if(string(ports[selfPortName]->scPort->kind()) == "sc_out"
 			 && string(port->kind()) == "sc_out"){
-			cout<<"binding port (out) "<<this->name()<<":"<<selfPortName<<" to (out) "<<port->name()<<endl;
+			//cout<<"binding port (out) "<<this->name()<<":"<<selfPortName<<" to (out) "<<port->name()<<endl;
 			sc_out<sc_logic> * selfPort = dynamic_cast<sc_out<sc_logic>* >( ports[selfPortName]->scPort );
 			sc_out<sc_logic> * bindedPort = dynamic_cast<sc_out<sc_logic>* >( port );
 			/*binding should be done through signals for some strange reason*/
-			if ( selfPort->get_attribute("PortBound") != NULL){ // binds an already binded port
-				cout<<"get signal"<<endl;
-				sc_attribute< sc_signal_resolved* > *portBoundAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortBound"));
-				(*bindedPort)(*(portBoundAttr->value)) ;
+			sc_attribute< sc_signal_resolved* > *portConnectionAttr; 
+			if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortConnection")) ){ //tests for a already binded port
+				(*bindedPort)(*(portConnectionAttr->value)) ;
+			}
+			else if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"))){
+				(*selfPort)(*(portConnectionAttr->value)) ;
 			}
 			else{ //binds both ports through a signal
 				sc_signal_resolved *sig = new sc_signal_resolved();
-				sc_attribute< sc_signal_resolved* > *portBoundAttr = new sc_attribute< sc_signal_resolved* >("PortBound",sig);
+				sc_attribute< sc_signal_resolved* > *portConnectionAttr = new sc_attribute< sc_signal_resolved* >("PortConnection",sig);
 
 				(*bindedPort)(*sig);
 				(*selfPort)(*sig);
-				selfPort->add_attribute(*portBoundAttr);
+				selfPort->add_attribute(*portConnectionAttr);
+				bindedPort->add_attribute(*portConnectionAttr);
 			}
 
-//			selfPort->bind(*bindedPort);
 		}
-		if(string(ports[selfPortName]->scPort->kind()) == "sc_inout"
+		else if(string(ports[selfPortName]->scPort->kind()) == "sc_inout"
 			 && string(port->kind()) == "sc_inout"){
-			cout<<"binding port"<<this->name()<<":"<<selfPortName<<" to "<<port->name()<<endl;
+			//cout<<"binding port"<<this->name()<<":"<<selfPortName<<" to "<<port->name()<<endl;
 			sc_inout<sc_logic> * selfPort = dynamic_cast<sc_inout<sc_logic>* >( ports[selfPortName]->scPort );
 			sc_inout<sc_logic> * bindedPort = dynamic_cast<sc_inout<sc_logic>* >( port );
-			if ( selfPort->get_attribute("PortBound") != NULL){ // binds an already binded port
-				cout<<"get signal"<<endl;
-				sc_attribute< sc_signal_resolved* > *portBoundAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortBound"));
-				(*bindedPort)(*(portBoundAttr->value)) ;
+			sc_attribute< sc_signal_resolved* > *portConnectionAttr; 
+			if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortConnection")) ){ //tests for a already binded port
+				(*bindedPort)(*(portConnectionAttr->value)) ;
+			}
+			else if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"))){
+				(*selfPort)(*(portConnectionAttr->value)) ;
 			}
 			else{ //binds both ports through a signal
 				sc_signal_resolved *sig = new sc_signal_resolved();
-				sc_attribute< sc_signal_resolved* > *portBoundAttr = new sc_attribute< sc_signal_resolved* >("PortBound",sig);
+				sc_attribute< sc_signal_resolved* > *portConnectionAttr = new sc_attribute< sc_signal_resolved* >("PortConnection",sig);
 
 				(*bindedPort)(*sig);
 				(*selfPort)(*sig);
-				selfPort->add_attribute(*portBoundAttr);
+				selfPort->add_attribute(*portConnectionAttr);
+				bindedPort->add_attribute(*portConnectionAttr);
 			}
 
-			//(*selfPort)(*bindedPort);
 		}
 	}
 }
