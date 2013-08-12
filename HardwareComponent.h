@@ -76,9 +76,17 @@ SC_MODULE(HardwareComponent) {
 			}
 	};
 
+	typedef enum PortType_t{
+		PortType_in,
+		PortType_out,
+		PortType_inout
+	}PortType;
+
+
 	typedef struct PortInfo_t{
 		std::string name;
 		DataType* type;
+		PortType portType;
 		sc_port_base * scPort;
 	}PortInfo;
 

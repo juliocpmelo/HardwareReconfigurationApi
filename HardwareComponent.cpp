@@ -42,6 +42,7 @@ void HardwareComponent::addInput(std::string name, DataType* type){
 		this->sc_get_curr_simcontext()->hierarchy_push (this);
 		ports[name]	= new PortInfo();
 		ports[name]->scPort = new sc_in< sc_logic >(name.c_str());
+		ports[name]->portType = PortType_in;
 		addPortAttributes(name, type);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
 
@@ -54,6 +55,7 @@ void HardwareComponent::addOutput(std::string name, DataType* type){
 		this->sc_get_curr_simcontext()->hierarchy_push (this);
 		ports[name]	= new PortInfo();
 		ports[name]->scPort = new sc_out< sc_logic >(name.c_str());
+		ports[name]->portType = PortType_out;
 		addPortAttributes(name, type);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
 
@@ -65,6 +67,7 @@ void HardwareComponent::addInout(std::string name, DataType* type){
 		this->sc_get_curr_simcontext()->hierarchy_push (this);
 		ports[name]	= new PortInfo();
 		ports[name]->scPort = new sc_inout< sc_logic >(name.c_str());
+		ports[name]->portType = PortType_inout;
 		addPortAttributes(name, type);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
 	}
