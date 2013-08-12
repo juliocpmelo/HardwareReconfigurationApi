@@ -76,7 +76,7 @@ HardwareComponent::PortInfo HardwareComponentXmlParser::parsePort(xmlNode * port
 	else
 		portType = new HardwareComponent::DataType(HardwareComponent::DataTypeId_bit);
 
-	HardwareComponent::PortInfo info = {portNameStr, portType, NULL};
+	HardwareComponent::PortInfo info = {portNameStr, portType,  HardwareComponent::PortType_in, NULL};
 	
 	return info;
 }
@@ -111,6 +111,8 @@ HardwareComponent::ParamInfo HardwareComponentXmlParser::parseParam(xmlNode * pa
 	return info;
 
 }
+
+
 
 
 
@@ -151,11 +153,13 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){
 
 							HardwareComponent::PortInfo info = parsePort(currentNode);
+							info.portType = HardwareComponent::PortType_in;
 							componentInfo->inputs[info.name] = info;
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"output") == 0){
 
 							HardwareComponent::PortInfo info = parsePort(currentNode);
+							info.portType = HardwareComponent::PortType_out;
 							componentInfo->outputs[info.name] = info;
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"dependency") == 0){

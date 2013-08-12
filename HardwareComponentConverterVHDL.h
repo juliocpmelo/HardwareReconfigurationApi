@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <systemc>
+#include <utility>
 #include <set>
 
 class HardwareComponentConverterVHDL{
@@ -17,6 +18,7 @@ class HardwareComponentConverterVHDL{
 		std::string translatePort(HardwareComponent::PortInfo *port);
 		std::string translateParam(HardwareComponent::ParamInfo* paramInfo);
 		std::string translateSignal(sc_signal_resolved *signal);
+		std::string translateDeclaration(HardwareComponent::HardwareComponentInfo* compInfo);
 
 		void buildTopComponentFile(std::string projectPath, HardwareComponent *topComponent);
 

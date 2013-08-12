@@ -46,25 +46,22 @@ std::string HardwareComponentConverterVHDL::translateType(HardwareComponent::Dat
 std::string HardwareComponentConverterVHDL::translatePort(HardwareComponent::PortInfo* portInfo){
 	
 	stringstream convertedPort;
-	sc_port_base * port = portInfo->scPort;
-	cout<<" processing to "<<port->name()<<endl;
-	
-	if(strcmp(port->kind(),"sc_in") == 0){
-		convertedPort<<port->basename()<<": in ";
-		string typeStr = translateType(portInfo->type);
-		convertedPort<<typeStr;
-	}
-	else if(strcmp(port->kind(),"sc_out") == 0){
-		convertedPort<<port->basename()<<": out ";
-		string typeStr = translateType(portInfo->type);
-		convertedPort<<typeStr;
-	}
-	else if(strcmp(port->kind(),"sc_inout") == 0){
-		convertedPort<<port->basename()<<": in ";
-		string typeStr = translateType(portInfo->type);
-		convertedPort<<typeStr;
-	}
 
+	if(portInfo->portType == HardwareComponent::PortType_in){
+		convertedPort<<portInfo->name<<": in ";
+		string typeStr = translateType(portInfo->type);
+		convertedPort<<typeStr;
+	}
+	else if(portInfo->portType == HardwareComponent::PortType_out){
+		convertedPort<<portInfo->name<<": out ";
+		string typeStr = translateType(portInfo->type);
+		convertedPort<<typeStr;
+	}
+	else if(portInfo->portType == HardwareComponent::PortType_inout){
+		convertedPort<<portInfo->name<<": inout ";
+		string typeStr = translateType(portInfo->type);
+		convertedPort<<typeStr;
+	}
 	cout<<" converted to "<<convertedPort.str()<<endl;
 
 	return convertedPort.str();
@@ -180,6 +177,57 @@ sc_port_base* HardwareComponentConverterVHDL::getConnectedPort(sc_object* channe
 }
 
 
+std::string HardwareComponentConverterVHDL::translateDeclaration(HardwareComponent::HardwareComponentInfo* componentInfo){
+
+	cout<<"generating declaration"<<endl;
+	if(!componentInfo->componentDeclaration.empty())
+		return componentInfo->componentDeclaration;
+
+
+	stringstream componentDeclaration;
+	componentDeclaration<<"generic ("<<endl;
+	std::map<std::string, HardwareComponent::ParamInfo> paramTable = componentInfo->componentParameters;
+
+	map<string, HardwareComponent::ParamInfo>::iterator lastParam = paramTable.end();
+	lastParam --;
+	for(map<string, HardwareComponent::ParamInfo>::iterator it = paramTable.begin(); it != paramTable.end(); it++){
+		if (it == lastParam)
+			componentDeclaration<<"\t"<<translateParam(&(it->second))<<endl;
+		else
+			componentDeclaration<<"\t"<<translateParam(&(it->second))<<";"<<endl;
+
+	}
+	componentDeclaration <<");"<<endl;
+
+	componentDeclaration <<"port ("<<endl;
+
+	std::vector< HardwareComponent::PortInfo > portsVector;
+	for(map<string, HardwareComponent::PortInfo>::iterator it = componentInfo->inputs.begin(); it != componentInfo->inputs.end(); it++)
+		portsVector.push_back(it->second);
+
+	for(map<string, HardwareComponent::PortInfo>::iterator it = componentInfo->outputs.begin(); it != componentInfo->outputs.end(); it++)
+		portsVector.push_back(it->second);
+
+
+	vector< HardwareComponent::PortInfo>::iterator lastElement = portsVector.end();
+	lastElement --;
+	for(vector< HardwareComponent::PortInfo>::iterator it = portsVector.begin(); it != portsVector.end(); it++){
+		if (it == lastElement)
+			componentDeclaration<<"\t"<<translatePort(&(*it))<<endl;
+		else
+			componentDeclaration<<"\t"<<translatePort(&(*it))<<";"<<endl;
+
+	}
+	componentDeclaration <<");"<<endl;
+
+	componentDeclaration <<"end "<<componentInfo->name<<";"<<endl<<endl;
+
+	componentInfo->componentDeclaration = componentDeclaration.str();
+	cout<<"generating declaration end"<<endl;
+
+	return componentInfo->componentDeclaration;
+
+}
 
 
 
@@ -244,7 +292,7 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 
 		/*generate the component declaration in the architecture file*/
     for(set<HardwareComponent::HardwareComponentInfo*>::iterator it = usedComponentsInfo.begin(); it!= usedComponentsInfo.end(); it ++){
-    	designFile<<(*it)->componentDeclaration<<endl;			
+    	designFile<<translateDeclaration(*it)<<endl;			
     }
     
     designFile <<"-- Signal Declaration"<<endl<<endl;
