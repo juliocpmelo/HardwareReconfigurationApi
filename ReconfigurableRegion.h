@@ -13,19 +13,25 @@ class ReconfigurableRegion {
 		 * in this reconfigurable region
 		 */
 		HardwareComponent *communicationHardware;
+
+		/*
+		 * name is used to distinguish the reconfigurable regions in a
+		 * hardware project.
+		 */
+		std::string name;
 	public:
 			
 
-		ReconfigurableRegion();
+		ReconfigurableRegion(std::string name, HardwareComponent *communicationHardware);
 		/*
 		 * !param the name of a port contained in this reconfigurable region
 		 * interface
 		 * returns a reference to a port contained in the communication
 		 * hardware instance from this region
 		 */
-		sc_port_base* getPort(std::string portName){
-			return communicationHardware->getPort(portName);
-		}
+		sc_port_base* getPort(std::string portName);
+
+		
 
 };
 
