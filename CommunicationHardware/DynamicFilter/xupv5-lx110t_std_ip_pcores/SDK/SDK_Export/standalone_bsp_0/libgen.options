@@ -1,3 +1,0 @@
-PROCESSOR=microblaze_0
-REPOSITORIES=
-HWSPEC=../xupv5-lx110t_std_ip_pcores_hw_platform/system.xml

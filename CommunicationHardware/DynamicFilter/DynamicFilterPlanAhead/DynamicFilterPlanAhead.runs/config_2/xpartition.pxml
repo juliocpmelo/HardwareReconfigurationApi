@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<Project Name="config_2" FileVersion="1.2" ProjectVersion="2.0">
-	<Partition Name="/system" State="import" ImportLocation="../../DynamicFilterPlanAhead.promote/Xconfig_1" Preserve="routing">
-		<Partition Name="/system/hardware_communication_module_0/hardware_communication_module_0/USER_LOGIC_I/communicationHardware_inst" State="implement" ImportLocation="NONE" Reconfigurable="true" ReconfigModuleName="sobel">
-		</Partition>
-	</Partition>
-</Project>
-

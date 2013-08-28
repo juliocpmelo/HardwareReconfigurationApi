@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<section name="Workbench">
-	<item value="bootloop" key="xupv5-lx110t_std_ip_pcores_hw_platform-microblaze_0-initElf"/>
-	<item value="D:\Users\Julio\Downloads\xupv5-lx110t_std_ip_pcores\xupv5-lx110t_std_ip_pcores\SDK\SDK_Export\xupv5-lx110t_std_ip_pcores_hw_platform\system_bd.bmm" key="xupv5-lx110t_std_ip_pcores_hw_platform-bmmFile"/>
-	<item value="D:\Users\Julio\Downloads\xupv5-lx110t_std_ip_pcores\xupv5-lx110t_std_ip_pcores\SDK\SDK_Export\xupv5-lx110t_std_ip_pcores_hw_platform\system.bit" key="xupv5-lx110t_std_ip_pcores_hw_platform-bitFile"/>
-</section>
