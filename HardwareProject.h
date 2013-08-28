@@ -3,7 +3,9 @@
 #define HardwareProject_h 
 
 #include "HardwareComponentXmlParser.h"
+#include "HardwareProjectXmlParser.h"
 #include "HardwareComponent.h"
+#include "ReconfigurableRegion.h"
 #include <iostream>
 #include <map>
 #include <vector>
@@ -18,7 +20,12 @@ class HardwareProject{
 
 		std::map<std::string, std::string> assigments;
 		std::vector<std::string> projectFiles;
+
+		std::map<std::string, ReconfigurableRegion*> managedReconfRegions;
+		std::string projectXmlDescriptionUri;
+
 		HardwareComponentXmlParser *hardwareComponentXmlParser;
+		HardwareProjectXmlParser *hardwareProjectXmlParser;
 
 		HardwareComponent *topLevelComponent;
 	public:
@@ -27,6 +34,7 @@ class HardwareProject{
 		*\param projectPath project path location
 		*/
 		HardwareProject(std::string projectName, std::string projectPath);
+		HardwareProject(std::string projectXmlDescriptionUri);
 
 		/**
 		 *\param topLevelComponent the top level component to this hardware project

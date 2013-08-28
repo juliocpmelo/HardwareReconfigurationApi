@@ -1,4 +1,4 @@
-#include "HardwareReconfiguration.h"
+#include "HardwareProject.h"
 #include "HardwareComponentConverterVHDL.h"
 #include <stdio.h>
 #include <unistd.h>
@@ -8,7 +8,21 @@
 
 using namespace std;
 
+HardwareProject::HardwareProject(std::string projectXmlDescriptionUri){
+	this->projectXmlDescriptionUri = projectXmlDescriptionUri;
+
+	hardwareProjectXmlParser = new HardwareProjectXmlParser();
+	hardwareProjectXmlParser->parseProjectXmlDescription(this->projectXmlDescriptionUri);
+
+	this->managedReconfRegions = hardwareProjectXmlParser->getReconfigurableRegions();
+
+	this->projectName = hardwareProjectXmlParser->getProjectName();
+	this->projectPath = hardwareProjectXmlParser->getProjectPath();
+
+}
+
 HardwareProject::HardwareProject(std::string projectName, std::string projectPath){
+	
 	this->projectName = projectName;
 	this->projectPath = projectPath;
 }
@@ -65,10 +79,8 @@ void HardwareProject::generateConfigFile(){
 }
 
 void HardwareProject::generateHDLFiles(HardwareComponent *comp){
-    //
 		HardwareComponentConverterVHDL *converter = new HardwareComponentConverterVHDL();
     converter->buildTopComponentFile(projectPath, topLevelComponent);
-    
 }
 
 static void copyAllFilesToWorkingDir(vector<string> files, string path){

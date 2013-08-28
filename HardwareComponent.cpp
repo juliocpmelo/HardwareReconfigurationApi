@@ -13,6 +13,16 @@ HardwareComponent::HardwareComponent(sc_module_name name, HardwareComponentInfo 
 	}
 }
 
+
+void HardwareComponent::createSoftwareAccess(std::string portName){
+	if(ports.count(portName) != 0){
+		softwareAccessiblePorts.insert(portName);
+	}
+	else{
+		//port not found
+	}
+}
+
 void HardwareComponent::buildComponentPorts(){
 	for (std::map< string, PortInfo >::iterator it= componentInfo->inputs.begin(); it!=componentInfo->inputs.end(); it++){
 		addInput(it->second.name,it->second.type);

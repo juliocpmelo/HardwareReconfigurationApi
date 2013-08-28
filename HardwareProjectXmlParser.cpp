@@ -1,10 +1,10 @@
 #include "HardwareProjectXmlParser.h"
 
+using namespace std;
+
 
 HardwareProjectXmlParser::HardwareProjectXmlParser(){
-
 	communicationHardwareXmlParser = new CommunicationHardwareXmlParser();
-
 }
 
 void HardwareProjectXmlParser::parseHardwareProject(xmlNode *hardwareProjectNode){
@@ -16,7 +16,7 @@ void HardwareProjectXmlParser::parseHardwareProject(xmlNode *hardwareProjectNode
 		if (currentNode->type == XML_ELEMENT_NODE) {
 			if(xmlStrcmp(currentNode->name, (const xmlChar *)"reconfigurableRegion") == 0){
 				xmlChar *regionNameChar = xmlGetProp(currentNode, (const xmlChar *)"name");
-				regionName = "";
+				string regionName = "";
 				if(regionNameChar!=NULL){
 					regionName = string((const char*)regionNameChar);
 				}
@@ -25,19 +25,19 @@ void HardwareProjectXmlParser::parseHardwareProject(xmlNode *hardwareProjectNode
 
 					/*search for the communicationHardware tag*/
 					for (communicationHardwareNode = currentNode->xmlChildrenNode; communicationHardwareNode; communicationHardwareNode = communicationHardwareNode->next){
-						if (xmlStrcmp(currentNode->name, (const xmlChar *)"communicationHardware") == 0) break;
+						if (xmlStrcmp(communicationHardwareNode->name, (const xmlChar *)"communicationHardware") == 0) break;
 					}
 
-					HardwareComponent *communicationHardware = communicationHardwareXmlParser->parseCommunicationHardware(communicationHardwareNode);
-					ReconfigurableRegion *region = new ReconfigurableRegion(name, communicationHardware);
+					HardwareComponent *communicationHardware = communicationHardwareXmlParser->parseCommunicationHardwareNode(communicationHardwareNode);
+					ReconfigurableRegion *region = new ReconfigurableRegion(regionName, communicationHardware);
 					loadedReconfigurableRegions[regionName] = region;
 				}
 
 			}
 		}
 	}
-
 }
+
 
 void HardwareProjectXmlParser::parseProjectXmlDescription(std::string xmlUri){
 	xmlDoc         *doc = NULL;

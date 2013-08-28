@@ -127,6 +127,7 @@ SC_MODULE(HardwareComponent) {
 
 	public:
 		std::map<std::string, PortInfo*> ports;
+		std::set<std::string> softwareAccessiblePorts;
 		bool isDynamic;
 		HardwareComponentInfo *componentInfo;
 		//table containing information about the component
@@ -134,6 +135,7 @@ SC_MODULE(HardwareComponent) {
 	public:
 		SC_HAS_PROCESS(HardwareComponent);
 		HardwareComponent(sc_module_name name, HardwareComponentInfo *infoTable);
+		void createSoftwareAccess(std::string portName);
 
 		/*functions used in dynamic creation*/
 		void addInput(std::string name, DataType *type);
