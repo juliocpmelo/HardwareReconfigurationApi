@@ -1,6 +1,7 @@
 
 #includes do system-c
-INCLUDES=-I./libxml2-2.7.8.win32/include \
+INCLUDES=-I./ \
+				 -I./libxml2-2.7.8.win32/include \
 				 -I./systemc-2.3.0/include \
 				 -I./iconv-1.9.2.win32/include/ \
 				 -I./zlib-1.2.5/include/
@@ -16,6 +17,8 @@ LDFLAGS=-L./iconv-1.9.2.win32/lib -liconv \
 CPPFLAGS=-Wall -fPIC $(INCLUDES)
 
 SRCS=$(shell find ./ -maxdepth 1 -name '*.cpp')
+SRCS+=$(shell find ./CommunicationHardware -maxdepth 1 -name '*.cpp')
+
 OBJS=$(SRCS:.cpp=.o)
 
 all: $(OBJS) executable
