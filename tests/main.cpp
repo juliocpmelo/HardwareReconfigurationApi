@@ -30,19 +30,17 @@ int main(int argc, char *argv[]){
             case 'a':
             {
                 cout<<"generating through software"<<endl;
-                HardwareProject *project = new HardwareProject("neuronio_test", 
-                                                               "./TestRNABuilding");
+                HardwareProject *project = new HardwareProject("./CommunicationHardware/communicationHardwareDesc.xml");
 
 
 								/*each reconfigurable region should have a corresponding communicationHardware description*/
-								ReconfigurableRegion *region = project->getReconfigurableRegion("RegionA");
+								//ReconfigurableRegion *region = project->getReconfigurableRegion("RegionA");
+								ReconfigurableRegion *region = new ReconfigurableRegion("RegionA", NULL);
 
 								ComponentDatabase *database = new ComponentDatabase();
-								
+
 								/*generic component declaration, without fixed port number*/
 								HardwareComponent *topComponent = new HardwareComponent("neuronio_test", NULL);
-
-								communicationHardware
 
 								//new API with system C
 								cout << __FILE__ << "::" << __LINE__ <<endl; 
@@ -95,8 +93,8 @@ int main(int argc, char *argv[]){
                 topComponent->addOutput("result", VECTOR_TYPE( "16", "downto", "0"));
 
 
-								/*external acessible ports should contain the names defined into the communicationHardware*/
-								topComponent->createExternalAcess("clk");
+								/*external ports are defined in the reconfigurable region xml description*/
+								topComponent->portMap("clk", region->getPort("clk"));
 
 
 								/*software acessible inputs will be able to be acessed using the communication hardware API*/
@@ -169,7 +167,7 @@ int main(int argc, char *argv[]){
 
 
 
-                region->setTopLevelComponent(topComponent);
+                region->assignTopComponent(topComponent);
                 project->generateHDLFiles(topComponent);
                 //project->generateConfigFile();
                 //project->compileProject();
@@ -179,8 +177,7 @@ int main(int argc, char *argv[]){
             case 'b':
             {
             	HardwareProject *p1 = new HardwareProject("adder8Bits", 
-                                                          "C:/Documents and Settings/schneider/Meus Documentos/julio/doutorado/fpgaProjects/TestHardwareBuilding/", 
-                                                          "C:/Documents and Settings/schneider/Meus documentos/julio/doutorado/HardwareReconfigurationApi/testeRnaModeling.xml");
+                                                          "C:/Documents and Settings/schneider/Meus Documentos/julio/doutorado/fpgaProjects/TestHardwareBuilding/");
                 p1->generateHDLFiles(NULL);
                 p1->generateConfigFile();
                 p1->compileProject();

@@ -10,7 +10,7 @@ sc_port_base* ReconfigurableRegion::getPort(std::string portName){
 	return communicationHardware->getPort(portName);
 }
 
-void ReconfigurableRegion::assignComponent(HardwareComponent* component){
+void ReconfigurableRegion::assignTopComponent(HardwareComponent* component){
 
 	this->assignedTopComponent = component;
 }

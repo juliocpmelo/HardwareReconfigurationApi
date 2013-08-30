@@ -43,7 +43,7 @@ class ReconfigurableRegion {
 		 * ammount of other components in its implementation
 		 * !param component the component to be assigned
 		 */
-		void assignComponent(HardwareComponent* component);
+		void assignTopComponent(HardwareComponent* component);
 		
 
 };
