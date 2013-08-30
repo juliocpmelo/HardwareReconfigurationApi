@@ -32,8 +32,9 @@
 		<output name="x" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
 		<output name="y" type="vector" startIndex="data_length" op="downto" endIndex="0"/>
 
+		<!--
 		<declaration>
-			component teste_neuronio
+			component teste_neuroniio
 				generic (
 					addr_length : integer := 5;
 					data_length : integer := 16
@@ -56,6 +57,7 @@
 				);
 			end component;
 		</declaration>
+		-->
 
 	</component>
 </componentBase>
