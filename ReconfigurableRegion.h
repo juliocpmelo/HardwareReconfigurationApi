@@ -12,7 +12,13 @@ class ReconfigurableRegion {
 		 * external port acess to the emcapsulated componentns 
 		 * in this reconfigurable region
 		 */
+
 		HardwareComponent *communicationHardware;
+
+		/*
+		 * top component encapsulated in this reconfigurable region 
+		 */
+		HardwareComponent *assignedTopComponent;
 
 		/*
 		 * name is used to distinguish the reconfigurable regions in a
@@ -30,7 +36,14 @@ class ReconfigurableRegion {
 		 * hardware instance from this region
 		 */
 		sc_port_base* getPort(std::string portName);
-
+		
+		/*
+		 * Assign a component to the current ReconfigurableRegion only one component
+		 * can be assigned at each time, but each assigned component could reference illimited
+		 * ammount of other components in its implementation
+		 * !param component the component to be assigned
+		 */
+		void assignComponent(HardwareComponent* component);
 		
 
 };

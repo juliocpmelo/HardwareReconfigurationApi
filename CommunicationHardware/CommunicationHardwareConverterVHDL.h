@@ -5,6 +5,7 @@
 
 #include "HardwareComponent.h"
 #include "HardwareComponentConverterVHDL.h"
+#include "ReconfigurableRegion.h"
 
 class CommunicationHardwareConverterVHDL : public HardwareComponentConverterVHDL
 {
@@ -20,6 +21,13 @@ class CommunicationHardwareConverterVHDL : public HardwareComponentConverterVHDL
 		 * !param communicationHardware instance of a communication hardware
 		 */
 		void buildComponentDescription(std::string componentPath, HardwareComponent* communicationHardware);
+
+		sc_signal_resolved* getSignalToSwInterface(HardwareComponent::PortInfo *swInterface);
+			
+		void buildEntityForReconfigurableRegion(ReconfigurableRegion *reg, std::string projectPath);
+		void buildRegisterSet(HardwareComponent* topComponent);
+		void buildReadProcess();
+		void buildWriteProcess();
 };
 
 #endif
