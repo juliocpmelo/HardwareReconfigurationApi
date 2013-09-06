@@ -30,6 +30,14 @@ void HardwareComponent::buildComponentPorts(){
 	for (std::map< string, PortInfo >::iterator it= componentInfo->outputs.begin(); it!=componentInfo->outputs.end(); it++){
 		addOutput(it->second.name,it->second.type);
 	}
+
+
+	for (std::map< string, ParamInfo >::iterator it= componentInfo->componentParameters.begin(); it!=componentInfo->componentParameters.end(); it++){
+		paramValues[it->second.name] = it->second.defaultValue;
+	}
+
+
+
 }
 
 /* 
@@ -212,4 +220,16 @@ void HardwareComponent::portMap(std::string selfPortName, sc_signal_resolved *si
 
 void HardwareComponent::addChildObject(sc_object * child){
 	this->add_child_object(child);
+}
+
+string HardwareComponent::getParamValue(std::string paramName){
+	if(paramValues.count(paramName) != 0 )
+		return paramValues[paramName];
+	else
+		return "0";
+}
+
+void HardwareComponent::setParamValue(std::string paramName, std::string value){
+	if(paramValues.count(paramName) != 0 )
+		paramValues[paramName] = value;
 }

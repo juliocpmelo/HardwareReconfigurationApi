@@ -60,6 +60,18 @@ sc_signal_resolved* CommunicationHardwareConverterVHDL::getSignalToSwInterface(H
 	return retSignal;
 }
 
+
+std::string CommunicationHardwareConverterVHDL::getPadString(int size, int desiredSize){
+
+	int hexPartSize = (desiredSize - size/4)/4;
+	
+	int binPartSize = (hexPartSize - size%4);
+
+	return "";
+	
+}
+
+
 void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(ReconfigurableRegion *reg, std::string projectPath){
 
 	ofstream outFile;
@@ -114,15 +126,62 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(Reco
 		HardwareComponent::PortInfo *swAccessibleInterface = reg->assignedTopComponent->ports[*it];
 
 		sc_signal_resolved* convertedSignal = getSignalToSwInterface(swAccessibleInterface);
+
 		outFile<<translateSignal(convertedSignal)<<";"<<endl;
 		delete convertedSignal;
 	}
 
 	outFile<<"begin"<<endl;
 
-	outFile <<"-- Architectural Declaration"<<endl<<endl;
+	outFile <<"-- Main Entity Portmap"<<endl<<endl;
 
 
+	outFile <<"-- Read process from communication hardware"<<endl<<endl;
+
+
+	outFile <<"readProcess: process(clk)"<<endl<<"begin"<<endl;
+	outFile <<"if rising_edge(clk) and mode ='0' then"<<endl;
+
+//	set<string>::iterator lastElement = swAccessibleInterfaces.end();
+//	lastElement --;
+	int addrCount;
+	for(set<string>::iterator it = swAccessibleInterfaces.begin(); it!= swAccessibleInterfaces.end(); it ++){
+		HardwareComponent::PortInfo *swAccessibleInterface = reg->assignedTopComponent->ports[*it];
+
+
+		int commHardwareDataWidth = atoi((communicationHardwareComponent->getParamValue("dataWidth")).c_str());
+		int commHardwareAddressWidth = atoi((communicationHardwareComponent->getParamValue("addressWidth")).c_str());
+
+		stringstream addrHex;
+
+		addrHex<<std::hex<<addrCount<<std::dec;
+
+		string paddedAddr = getPadString(addrHex.str().length(),commHardwareAddressWidth);
+
+
+//		string paddedDataReg = getPadString(swAccessibleInterface->type.length(),commHardwareDataWidth);
+
+//		outFile<<translateSignal(convertedSignal)<<";"<<endl;
+		addrCount ++;
+	}
+	outFile <<"end if;"<<endl;
+
+
+
+
+	outFile <<"end process readProcess;"<<endl;
+
+
+	
+	outFile <<"readProcess: process(clk)"<<endl<<"begin"<<endl;
+
+
+
+
+
+
+
+	outFile<<"end arch;"<<endl;
 
 
 	outFile.close();

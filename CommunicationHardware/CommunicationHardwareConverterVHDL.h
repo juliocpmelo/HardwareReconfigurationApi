@@ -11,6 +11,16 @@ class CommunicationHardwareConverterVHDL : public HardwareComponentConverterVHDL
 {
 	public:
 		/*variables*/
+
+	private:
+		/* 
+		 * !brief generats a vhd pad string according the given parameters. The pad string should
+		 * be concatened with the actual string in order to obtain the right data size.
+		 * !param size the size of the actual valid data
+		 * !param desiredSize the desired size of the resulting string after the pading process
+		 * !returns a vhdl pad string containing 0's when the size is smaller from the desired size
+		 */
+		std::string getPadString(int size, int desiredSize);
 	public:
 		/*methods*/
 		CommunicationHardwareConverterVHDL();
@@ -28,6 +38,7 @@ class CommunicationHardwareConverterVHDL : public HardwareComponentConverterVHDL
 		void buildRegisterSet(HardwareComponent* topComponent);
 		void buildReadProcess();
 		void buildWriteProcess();
+
 };
 
 #endif

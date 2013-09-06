@@ -126,8 +126,12 @@ SC_MODULE(HardwareComponent) {
 		void buildComponentPorts();
 
 	public:
+		/*specific instance ports*/
 		std::map<std::string, PortInfo*> ports;
 		std::set<std::string> softwareAccessiblePorts;
+
+		/*specific instance param values*/
+		std::map<std::string, std::string> paramValues;
 		bool isDynamic;
 		HardwareComponentInfo *componentInfo;
 		//table containing information about the component
@@ -145,6 +149,9 @@ SC_MODULE(HardwareComponent) {
 		void portMap(std::string selfPortName, sc_port_base* port);
 		void portMap(std::string selfPortName, sc_signal_resolved* signal);
 		void addChildObject(sc_object *child);
+
+		std::string getParamValue(std::string paramName);
+		void setParamValue(std::string paramName, std::string value);
 
 	private:
 		void addPortAttributes(std::string name, DataType *type);
