@@ -1,5 +1,6 @@
 #include "HardwareProject.h"
 #include "HardwareComponentConverterVHDL.h"
+#include "CommunicationHardware/CommunicationHardwareConverterVHDL.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <windows.h>
@@ -13,6 +14,7 @@ HardwareProject::HardwareProject(std::string projectXmlDescriptionUri){
 
 	hardwareProjectXmlParser = new HardwareProjectXmlParser();
 	hardwareProjectXmlParser->parseProjectXmlDescription(this->projectXmlDescriptionUri);
+
 
 	this->managedReconfRegions = hardwareProjectXmlParser->getReconfigurableRegions();
 
@@ -80,7 +82,18 @@ void HardwareProject::generateConfigFile(){
 
 void HardwareProject::generateHDLFiles(HardwareComponent *comp){
 		HardwareComponentConverterVHDL *converter = new HardwareComponentConverterVHDL();
-    converter->buildTopComponentFile(projectPath, topLevelComponent);
+
+		CommunicationHardwareConverterVHDL *communicationHardwareConverter = new CommunicationHardwareConverterVHDL();
+
+		cout << __FILE__ << "::" << __LINE__ <<endl; 
+		for (map<string, ReconfigurableRegion*>::iterator it = managedReconfRegions.begin(); it != managedReconfRegions.end(); it++){
+			cout << "generating to region "<< it->second->name <<endl; 
+
+			if(it->second->assignedTopComponent)
+				converter->buildTopComponentFile(projectPath, it->second->assignedTopComponent);
+			communicationHardwareConverter->buildEntityForReconfigurableRegion(it->second, projectPath);
+		}
+		cout << __FILE__ << "::" << __LINE__ <<endl; 
 }
 
 static void copyAllFilesToWorkingDir(vector<string> files, string path){
@@ -132,5 +145,12 @@ void HardwareProject::compileProject(){
 
 void HardwareProject::addFile(string file){
      projectFiles.push_back(file);
+}
+
+ReconfigurableRegion* HardwareProject::getReconfigurableRegion(std::string name){
+
+	if (managedReconfRegions.count(name) > 0)
+		return managedReconfRegions[name];
+	return NULL;
 }
 

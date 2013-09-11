@@ -27,6 +27,7 @@ class HardwareProject{
 		HardwareComponentXmlParser *hardwareComponentXmlParser;
 		HardwareProjectXmlParser *hardwareProjectXmlParser;
 
+
 		HardwareComponent *topLevelComponent;
 	public:
 		/**
@@ -73,6 +74,14 @@ class HardwareProject{
 		void setAssignments(std::map<std::string, std::string> assignmentTable);
 		
 		void addFile(std::string addFile);
+
+
+		/**
+		 *\brief gets a loaded reconfigurable region
+		 *\param name name of a reconfigurable region described in the project xml description 
+		 *\return the reconfigurable region requested or null in case of not found
+		*/
+		ReconfigurableRegion* getReconfigurableRegion(std::string name);
         
 
 };
