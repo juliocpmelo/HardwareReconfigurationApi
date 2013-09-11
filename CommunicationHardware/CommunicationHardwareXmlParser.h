@@ -23,7 +23,7 @@ class CommunicationHardwareXmlParser : public HardwareComponentXmlParser
 
 		HardwareComponent* parseXml(std::string communicationHardwareXml);
 
-		HardwareComponent* parseCommunicationHardwareNode(xmlNode *communicationHardwareNode);
+		HardwareComponent* parseCommunicationHardwareNode(std::string reconfigurableRegionName, xmlNode *communicationHardwareNode);
 
 };
 

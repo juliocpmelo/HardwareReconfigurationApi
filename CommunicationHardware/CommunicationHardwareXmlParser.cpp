@@ -6,11 +6,11 @@ CommunicationHardwareXmlParser::CommunicationHardwareXmlParser(){
 }
 
 
-HardwareComponent* CommunicationHardwareXmlParser::parseCommunicationHardwareNode(xmlNode *communicationHardwareNode){
+HardwareComponent* CommunicationHardwareXmlParser::parseCommunicationHardwareNode(std::string reconfigurableRegionName, xmlNode *communicationHardwareNode){
 	xmlNode *currentNode = NULL;
 
 	HardwareComponent::HardwareComponentInfo* componentInfo = new HardwareComponent::HardwareComponentInfo();
-	componentInfo->name = "CommunicationHardware";
+	componentInfo->name = reconfigurableRegionName + "_communicationHardware";
 
 
 	for (currentNode = communicationHardwareNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
@@ -23,12 +23,13 @@ HardwareComponent* CommunicationHardwareXmlParser::parseCommunicationHardwareNod
 		}
 
 		else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){
-
 			HardwareComponent::PortInfo info = parsePort(currentNode);
-			componentInfo->outputs[info.name] = info;
+			info.portType = HardwareComponent::PortType_in;
+			componentInfo->inputs[info.name] = info;
 		}
 		else if(xmlStrcmp(currentNode->name, (const xmlChar *)"output") == 0){
 			HardwareComponent::PortInfo info = parsePort(currentNode);
+			info.portType = HardwareComponent::PortType_out;
 			componentInfo->outputs[info.name] = info;
 		}
 	}
@@ -44,16 +45,22 @@ HardwareComponent* CommunicationHardwareXmlParser::parseCommunicationHardwareNod
 	}
 
 	/*ovewrite possible user-defined inputs*/
-	HardwareComponent::PortInfo dataPort = {"commHardware_data", VECTOR_TYPE("commHardware_dataWidth", "downto", "0")};
-	componentInfo->inputs[dataPort.name] = dataPort;
-	HardwareComponent::PortInfo addressPort = {"commHardware_address", VECTOR_TYPE("commHardware_addressWidth", "downto", "0")};
+
+	HardwareComponent::PortInfo dataInPort = {"commHardware_dataIn", VECTOR_TYPE("commHardware_dataWidth", "downto", "0"), HardwareComponent::PortType_in, NULL};
+	componentInfo->inputs[dataInPort.name] = dataInPort;
+
+	HardwareComponent::PortInfo dataOutPort = {"commHardware_dataOut", VECTOR_TYPE("commHardware_dataWidth", "downto", "0"), HardwareComponent::PortType_out, NULL};
+	componentInfo->outputs[dataOutPort.name] = dataOutPort;
+
+	HardwareComponent::PortInfo addressPort = {"commHardware_address", VECTOR_TYPE("commHardware_addressWidth", "downto", "0"), HardwareComponent::PortType_in, NULL};
 	componentInfo->inputs[addressPort.name] = addressPort;
-	
+		
 	HardwareComponent::PortInfo clkPort = {"commHardware_clk", BIT_TYPE};
 	componentInfo->inputs[clkPort.name] = clkPort;
 		
 
-	return new HardwareComponent(sc_module_name("communicationHardware_inst"), componentInfo);
+	string moduleName = reconfigurableRegionName + "_communicationHardware"; 
+	return new HardwareComponent(sc_module_name(moduleName.c_str()), componentInfo);
 
 }
 
@@ -67,6 +74,7 @@ HardwareComponent* CommunicationHardwareXmlParser::parseXml(std::string communic
 
 	HardwareComponent *component;
 
+	/*TODO update to the new xml format*/
 	if (doc == NULL)
 	{
 		cout<<"error: could not parse file "<<communicationHardwareXml<<endl;
@@ -81,7 +89,7 @@ HardwareComponent* CommunicationHardwareXmlParser::parseXml(std::string communic
 		for (currentNode = root_element; currentNode; currentNode = currentNode->next) {
 			if (currentNode->type == XML_ELEMENT_NODE) {
 				if(xmlStrcmp(currentNode->name, (const xmlChar *)"communicationHardware") == 0){
-					component = parseCommunicationHardwareNode(currentNode);
+					component = parseCommunicationHardwareNode("", currentNode);
 				}
 			}
 		}
