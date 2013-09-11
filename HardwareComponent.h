@@ -28,6 +28,7 @@ SC_MODULE(HardwareComponent) {
 			DataType(DataTypeId id){
 				this->id = id;
 			}
+			virtual int size() {if (id == DataTypeId_bit) return 1; else return 0;}
 	};
 
 	class VectorType : public DataType{
@@ -52,6 +53,13 @@ SC_MODULE(HardwareComponent) {
 				this->endIndex = endIndex;
 				this->indexOperator = indexOperator;
 			}
+			/*maybe in future it could be used to evaluate expressions in startIndex and endIndex*/
+			virtual int size() { 
+				if (indexOperator == "to")
+					return atoi(endIndex.c_str()) - atoi(startIndex.c_str());
+				else
+					return atoi(startIndex.c_str()) - atoi(endIndex.c_str());
+			}
 	};
 
 	class IntegerType : public DataType{
@@ -73,6 +81,11 @@ SC_MODULE(HardwareComponent) {
 				this->rangeStart = rangeStart;
 				this->rangeEnd = rangeEnd;
 				this->rangeOperator = rangeOperator;
+			}
+
+			/*maybe in future it could be used to evaluate expressions in startRange and endRange*/
+			virtual int size() { 
+				return 32;
 			}
 	};
 
