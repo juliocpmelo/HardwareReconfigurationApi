@@ -4,6 +4,7 @@ ReconfigurableRegion::ReconfigurableRegion(std::string name, HardwareComponent *
 
 	this->name = name;
 	this->communicationHardware = communicationHardware;
+	this->assignedTopComponent  = NULL;
 }
 
 sc_port_base* ReconfigurableRegion::getPort(std::string portName){
