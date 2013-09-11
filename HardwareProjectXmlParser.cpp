@@ -28,7 +28,7 @@ void HardwareProjectXmlParser::parseHardwareProject(xmlNode *hardwareProjectNode
 						if (xmlStrcmp(communicationHardwareNode->name, (const xmlChar *)"communicationHardware") == 0) break;
 					}
 
-					HardwareComponent *communicationHardware = communicationHardwareXmlParser->parseCommunicationHardwareNode(communicationHardwareNode);
+					HardwareComponent *communicationHardware = communicationHardwareXmlParser->parseCommunicationHardwareNode(regionName,communicationHardwareNode);
 					ReconfigurableRegion *region = new ReconfigurableRegion(regionName, communicationHardware);
 					loadedReconfigurableRegions[regionName] = region;
 				}
