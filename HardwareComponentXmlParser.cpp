@@ -76,13 +76,13 @@ HardwareComponent::PortInfo HardwareComponentXmlParser::parsePort(xmlNode * port
 	else
 		portType = new HardwareComponent::DataType(HardwareComponent::DataTypeId_bit);
 
-	HardwareComponent::PortInfo info = {portNameStr, portType,  HardwareComponent::PortType_in, NULL};
+	HardwareComponent::PortInfo info = {portNameStr, portType, HardwareComponent::PortType_in, NULL};
 	
 	return info;
 }
 
 
-HardwareComponent::ParamInfo HardwareComponentXmlParser::parseParam(xmlNode * paramNode){
+HardwareComponent::Param HardwareComponentXmlParser::parseParam(xmlNode * paramNode){
 
 	xmlChar *paramName = xmlGetProp(paramNode, (const xmlChar *)"name");
 	string paramNameStr((const char*)paramName);
@@ -106,7 +106,7 @@ HardwareComponent::ParamInfo HardwareComponentXmlParser::parseParam(xmlNode * pa
 		paramDefaultValueStr = string((const char*)paramDefaultValue);
 	}
 	
-	HardwareComponent::ParamInfo info = {paramNameStr, paramType, paramDefaultValueStr};
+	HardwareComponent::Param info = {paramNameStr, paramType, paramDefaultValueStr, paramDefaultValueStr};
 
 	return info;
 
@@ -146,8 +146,8 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 					if (currentNode->type == XML_ELEMENT_NODE) {
 						if(xmlStrcmp(currentNode->name, (const xmlChar *)"param") == 0){
 
-							HardwareComponent::ParamInfo paramInfo = parseParam(currentNode);
-							componentInfo->componentParameters[paramInfo.name] = paramInfo;
+							HardwareComponent::Param param = parseParam(currentNode);
+							componentInfo->componentParameters[param.name] = param;
 
 						}
 						else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){

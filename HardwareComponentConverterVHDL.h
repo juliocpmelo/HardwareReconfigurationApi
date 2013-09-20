@@ -16,7 +16,7 @@ class HardwareComponentConverterVHDL{
 
 		std::string translateType(HardwareComponent::DataType *type);
 		std::string translatePort(HardwareComponent::PortInfo *port);
-		std::string translateParam(HardwareComponent::ParamInfo* paramInfo);
+		std::string translateParam(HardwareComponent::Param* paramInfo);
 		std::string translateSignal(sc_signal_resolved *signal);
 		std::string translateDeclaration(HardwareComponent::HardwareComponentInfo* compInfo);
 

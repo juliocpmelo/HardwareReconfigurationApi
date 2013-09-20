@@ -67,7 +67,7 @@ std::string HardwareComponentConverterVHDL::translatePort(HardwareComponent::Por
 	return convertedPort.str();
 }
 
-std::string HardwareComponentConverterVHDL::translateParam(HardwareComponent::ParamInfo* paramInfo){
+std::string HardwareComponentConverterVHDL::translateParam(HardwareComponent::Param* paramInfo){
 	
 	stringstream convertedParam;
 	cout<<" processing to "<<paramInfo->name<<endl;
@@ -160,13 +160,16 @@ std::vector<HardwareComponent* > HardwareComponentConverterVHDL::getChildModules
 /*returns the port of the given component that is connected with the given channel*/
 sc_port_base* HardwareComponentConverterVHDL::getConnectedPort(sc_object* channel, sc_module* component){
 
+
 	std::vector<sc_object*> children = component->get_child_objects();
+//	cout << "testing to component "<<component->name()<< " with " << children.size() << " children"<<endl;
 	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
 		if (std::string((*i)->kind())=="sc_in" || std::string((*i)->kind()) =="sc_out") {
 			sc_port_base * port = dynamic_cast<sc_port_base*>(*i);
+	//		cout<<" type for port "<< (*i)->name()<< " " <<std::string((*i)->kind())<<endl;
 			if(port->get_interface() != NULL){
 				sc_object * connectedChannel = dynamic_cast<sc_object*>(port->get_interface());
-				std::cout<<"testing port "<<port->name()<<" that uses channel "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
+		//		std::cout<<"testing port "<<port->name()<<" that uses channel "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
 				if(channel->name() == connectedChannel->name() //connected through the same channel
 					 and port->get_attribute("PortConnection") != NULL)
 					return port;
@@ -186,11 +189,11 @@ std::string HardwareComponentConverterVHDL::translateDeclaration(HardwareCompone
 
 	stringstream componentDeclaration;
 	componentDeclaration<<"generic ("<<endl;
-	std::map<std::string, HardwareComponent::ParamInfo> paramTable = componentInfo->componentParameters;
+	std::map<std::string, HardwareComponent::Param> paramTable = componentInfo->componentParameters;
 
-	map<string, HardwareComponent::ParamInfo>::iterator lastParam = paramTable.end();
+	map<string, HardwareComponent::Param>::iterator lastParam = paramTable.end();
 	lastParam --;
-	for(map<string, HardwareComponent::ParamInfo>::iterator it = paramTable.begin(); it != paramTable.end(); it++){
+	for(map<string, HardwareComponent::Param>::iterator it = paramTable.begin(); it != paramTable.end(); it++){
 		if (it == lastParam)
 			componentDeclaration<<"\t"<<translateParam(&(it->second))<<endl;
 		else
@@ -313,7 +316,6 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
    
 		for (vector<HardwareComponent*>::iterator it = childModules.begin(); it != childModules.end(); it++){
 			if(std::string((*it)->kind()) == "sc_module"){
-				cout<<__FILE__<<"::"<<__LINE__<<endl;
 
 				HardwareComponent *module = (HardwareComponent*) (*it);
 				designFile << module->name() << ":" << module->componentInfo->name << " port map ("<<endl;
@@ -355,7 +357,6 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 					}
 				}
 				portMap = portMap.substr(0,portMap.size()-2);
-				cout<<__FILE__<<"::"<<__LINE__<<endl;
 
 				designFile << portMap<< endl;
 				

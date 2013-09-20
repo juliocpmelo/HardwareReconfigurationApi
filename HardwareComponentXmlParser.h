@@ -74,7 +74,7 @@ class HardwareComponentXmlParser{
 		std::map<std::string, HardwareComponent::HardwareComponentInfo*> parseXmlComponentFile(std::string xmlFile);
 		HardwareComponent* parseMainEntityXmlFile(std::string xmlFile);
 		virtual HardwareComponent::PortInfo parsePort(xmlNode * portNode);
-		virtual HardwareComponent::ParamInfo parseParam(xmlNode * portNode);
+		virtual HardwareComponent::Param parseParam(xmlNode * portNode);
 
 	private:
 		
