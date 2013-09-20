@@ -18,7 +18,7 @@ HardwareComponent* CommunicationHardwareXmlParser::parseCommunicationHardwareNod
 		if(xmlStrcmp(currentNode->name, (const xmlChar *)"param") == 0){
 			
 			/*test if the name is add or data and create the corresponding constraints*/
-			HardwareComponent::ParamInfo info = parseParam(currentNode);
+			HardwareComponent::Param info = parseParam(currentNode);
 			componentInfo->componentParameters[info.name] = info;
 		}
 
@@ -36,11 +36,11 @@ HardwareComponent* CommunicationHardwareXmlParser::parseCommunicationHardwareNod
 
 	/*define dataWidth and addressWidth if the user didnt*/
 	if (componentInfo->componentParameters.count("commHardware_dataWidth") == 0){
-		HardwareComponent::ParamInfo info = {"commHardware_dataWidth", INTEGER_TYPE("","",""), "32"};
+		HardwareComponent::Param info = {"commHardware_dataWidth", INTEGER_TYPE("","",""), "32"};
 		componentInfo->componentParameters[info.name] = info;	
 	}
 	if (componentInfo->componentParameters.count("commHardware_addressWidth") == 0){
-		HardwareComponent::ParamInfo info = {"commHardware_addressWidth", INTEGER_TYPE("","",""), "32"};
+		HardwareComponent::Param info = {"commHardware_addressWidth", INTEGER_TYPE("","",""), "32"};
 		componentInfo->componentParameters[info.name] = info;
 	}
 

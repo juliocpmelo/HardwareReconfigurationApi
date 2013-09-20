@@ -15,11 +15,11 @@ void CommunicationHardwareConverterVHDL::buildComponentDescription(std::string c
 	outFile <<"-- Component Declaration"<<endl<<endl;
 	outFile <<"component "<<communicationHardwareComponent->componentInfo->name<<" is"<<endl; //TODO place the main tag name here
 	outFile <<"generic ("<<endl;
-	std::map<std::string, HardwareComponent::ParamInfo> paramTable = communicationHardwareComponent->componentInfo->componentParameters;
+	std::map<std::string, HardwareComponent::Param> paramTable = communicationHardwareComponent->componentInfo->componentParameters;
 
-	map<string, HardwareComponent::ParamInfo>::iterator lastParam = paramTable.end();
+	map<string, HardwareComponent::Param>::iterator lastParam = paramTable.end();
 	lastParam --;
-	for(map<string, HardwareComponent::ParamInfo>::iterator it = paramTable.begin(); it != paramTable.end(); it++){
+	for(map<string, HardwareComponent::Param>::iterator it = paramTable.begin(); it != paramTable.end(); it++){
 		if (it == lastParam)
 			outFile<<"\t"<<translateParam(&(it->second))<<endl;
 		else
@@ -65,16 +65,16 @@ std::string CommunicationHardwareConverterVHDL::getPadString(int size, int desir
 
 	string retString;
 
-	int hexPartSize = (desiredSize - size/4)/4;
+	int hexPartSize = (desiredSize - size)/4;
 	
-	int binPartSize = (size%4);
+	int binPartSize = (desiredSize - size)%4;
 
 	if (hexPartSize > 0) {
 		retString += "x\"";
 		for (int i=0; i<hexPartSize; i++)
 			retString += "0";
 		retString += "\"";
-		if (binPartSize > 0)
+		if (binPartSize > 0) 
 			retString += " & ";
 	}
 
@@ -105,11 +105,11 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(Reco
 	outFile <<"-- Entity Declaration"<<endl<<endl;
 	outFile <<"entity "<<communicationHardwareComponent->componentInfo->name<<" is"<<endl; //TODO place the main tag name here
 	outFile <<"generic ("<<endl;
-	std::map<std::string, HardwareComponent::ParamInfo> paramTable = communicationHardwareComponent->componentInfo->componentParameters;
+	std::map<std::string, HardwareComponent::Param> paramTable = communicationHardwareComponent->componentInfo->componentParameters;
 
-	map<string, HardwareComponent::ParamInfo>::iterator lastParam = paramTable.end();
+	map<string, HardwareComponent::Param>::iterator lastParam = paramTable.end();
 	lastParam --;
-	for(map<string, HardwareComponent::ParamInfo>::iterator it = paramTable.begin(); it != paramTable.end(); it++){
+	for(map<string, HardwareComponent::Param>::iterator it = paramTable.begin(); it != paramTable.end(); it++){
 		if (it == lastParam)
 			outFile<<"\t"<<translateParam(&(it->second))<<endl;
 		else
@@ -213,7 +213,7 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(Reco
 	
 
 
-		outFile <<"-- Read process from communication hardware"<<endl<<endl;
+		outFile <<endl<<"-- Read process from communication hardware"<<endl<<endl;
 
 
 		outFile <<"readProcess: process(clk)"<<endl<<"begin"<<endl;
@@ -264,12 +264,15 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(Reco
 		outFile <<"end process readProcess;"<<endl;
 
 
+		outFile <<endl<<"-- Write process from communication hardware"<<endl<<endl;
+
 
 		outFile <<"writeProcess: process(clk)"<<endl<<"begin"<<endl;
 		outFile <<"if rising_edge(clk) and mode ='1' then"<<endl;
 
 		addrCount = 0;
 
+		cout << __FILE__ << "::" << __LINE__ <<endl;
 		for(set<string>::iterator it = swAccessibleInterfaces.begin(); it!= swAccessibleInterfaces.end(); it ++){
 
 			HardwareComponent::PortInfo *swAccessibleInterface = reg->assignedTopComponent->ports[*it];
@@ -283,6 +286,7 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(Reco
 			paddedAddr += " & x\"" + addrHex.str() + "\"";
 
 
+			cout << " requiring size from "<<*it<<endl;
 			string paddedDataReg = getPadString(swAccessibleInterface->type->size(),commHardwareDataWidth);
 			paddedDataReg += " & " + swAccessibleInterface->name + "_reg;";
 
@@ -298,6 +302,7 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(Reco
 
 			addrCount ++;
 		}
+		cout << __FILE__ << "::" << __LINE__ <<endl;
 		outFile <<"end if;"<<endl;
 
 
