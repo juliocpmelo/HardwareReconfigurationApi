@@ -23,6 +23,9 @@ void HardwareComponent::createSoftwareAccess(std::string portName){
 	}
 }
 
+
+
+
 void HardwareComponent::buildComponentPorts(){
 	for (std::map< string, PortInfo >::iterator it= componentInfo->inputs.begin(); it!=componentInfo->inputs.end(); it++){
 		addInput(it->second.name,it->second.type);
@@ -30,13 +33,9 @@ void HardwareComponent::buildComponentPorts(){
 	for (std::map< string, PortInfo >::iterator it= componentInfo->outputs.begin(); it!=componentInfo->outputs.end(); it++){
 		addOutput(it->second.name,it->second.type);
 	}
-
-
-	for (std::map< string, ParamInfo >::iterator it= componentInfo->componentParameters.begin(); it!=componentInfo->componentParameters.end(); it++){
-		paramValues[it->second.name] = it->second.defaultValue;
+	for (std::map< string, Param >::iterator it= componentInfo->componentParameters.begin(); it!=componentInfo->componentParameters.end(); it++){
+		instanceParameters[it->second.name] = it->second;
 	}
-
-
 
 }
 
@@ -50,8 +49,22 @@ void HardwareComponent::addPortAttributes(std::string name, DataType* type){
 //		sc_attribute< DataType > portType("DataType",type);
 		/*check data sizes if possible*/
 		ports[name]->name = name;
-		ports[name]->type = type;
-
+		ports[name]->type = NULL;
+		switch(type->id){
+			case DataTypeId_bit:
+				ports[name]->type = BIT_TYPE;
+				break;
+			case DataTypeId_vector:
+				ports[name]->type = VECTOR_TYPE(((VectorType*)type)->startIndex, ((VectorType*)type)->indexOperator, ((VectorType*)type)->endIndex);
+				break;
+			case DataTypeId_integer:
+				ports[name]->type = INTEGER_TYPE(((IntegerType*)type)->rangeStart, ((IntegerType*)type)->rangeOperator, ((IntegerType*)type)->rangeEnd);
+				break;
+			default:
+				cout << "string type not supported"<<endl;
+		}
+		if (ports[name]->type)
+			ports[name]->type->instanceParameters = &(this->instanceParameters);
 	}
 }
 
@@ -92,8 +105,9 @@ void HardwareComponent::addInout(std::string name, DataType* type){
 }
 
 sc_port_base* HardwareComponent::getPort(std::string name){
-	if(ports.count(name)!=0)
+	if(ports.count(name)!=0){
 		return ports[name]->scPort;
+	}
 	return NULL;
 }
 
@@ -196,6 +210,9 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 
 		}
 	}
+	else {
+		cout << "can't portmap port "<< selfPortName << " from " << this->name() << " to " << port->name()<<endl;
+	}
 }
 
 void HardwareComponent::portMap(std::string selfPortName, sc_signal_resolved *signal){
@@ -223,13 +240,14 @@ void HardwareComponent::addChildObject(sc_object * child){
 }
 
 string HardwareComponent::getParamValue(std::string paramName){
-	if(paramValues.count(paramName) != 0 )
-		return paramValues[paramName];
+	if(instanceParameters.count(paramName) != 0 )
+		return instanceParameters[paramName].value;
 	else
 		return "0";
 }
 
 void HardwareComponent::setParamValue(std::string paramName, std::string value){
-	if(paramValues.count(paramName) != 0 )
-		paramValues[paramName] = value;
+	if(instanceParameters.count(paramName) != 0 )
+		instanceParameters[paramName].value = value;
+
 }
