@@ -46,13 +46,13 @@ HardwareComponent* CommunicationHardwareXmlParser::parseCommunicationHardwareNod
 
 	/*ovewrite possible user-defined inputs*/
 
-	HardwareComponent::PortInfo dataInPort = {"commHardware_dataIn", VECTOR_TYPE("commHardware_dataWidth", "downto", "0"), HardwareComponent::PortType_in, NULL};
+	HardwareComponent::PortInfo dataInPort = {"commHardware_dataIn", VECTOR_TYPE("commHardware_dataWidth - 1", "downto", "0"), HardwareComponent::PortType_in, NULL};
 	componentInfo->inputs[dataInPort.name] = dataInPort;
 
-	HardwareComponent::PortInfo dataOutPort = {"commHardware_dataOut", VECTOR_TYPE("commHardware_dataWidth", "downto", "0"), HardwareComponent::PortType_out, NULL};
+	HardwareComponent::PortInfo dataOutPort = {"commHardware_dataOut", VECTOR_TYPE("commHardware_dataWidth - 1", "downto", "0"), HardwareComponent::PortType_out, NULL};
 	componentInfo->outputs[dataOutPort.name] = dataOutPort;
 
-	HardwareComponent::PortInfo addressPort = {"commHardware_address", VECTOR_TYPE("commHardware_addressWidth", "downto", "0"), HardwareComponent::PortType_in, NULL};
+	HardwareComponent::PortInfo addressPort = {"commHardware_address", VECTOR_TYPE("commHardware_addressWidth - 1", "downto", "0"), HardwareComponent::PortType_in, NULL};
 	componentInfo->inputs[addressPort.name] = addressPort;
 		
 	HardwareComponent::PortInfo clkPort = {"commHardware_clk", BIT_TYPE};
