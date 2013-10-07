@@ -42,11 +42,15 @@ void HardwareProjectXmlParser::parseHardwareProject(xmlNode *hardwareProjectNode
 void HardwareProjectXmlParser::parseProjectXmlDescription(std::string xmlUri){
 	xmlDoc         *doc = NULL;
 	xmlNode        *root_element = NULL;
+
+
 	doc = xmlReadFile(xmlUri.c_str(), NULL, 0);
 
 	if (doc == NULL)
 	{
 		cout<<"error: could not parse file "<<xmlUri<<endl;
+		cout<<"Lib xml error message:"<<endl<<(xmlGetLastError())->message<<endl;
+
 	}
 	else
 	{
