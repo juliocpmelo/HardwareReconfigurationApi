@@ -159,10 +159,10 @@ SC_MODULE(HardwareComponent) {
 			virtual int size() { 
 				if (indexOperator == "to")
 					return solveSimpleExpression(endIndex, instanceParameters) - 
-						     solveSimpleExpression(startIndex, instanceParameters);
+						     solveSimpleExpression(startIndex, instanceParameters) + 1;
 				else
 					return solveSimpleExpression(startIndex, instanceParameters) - 
-								 solveSimpleExpression(endIndex, instanceParameters);
+								 solveSimpleExpression(endIndex, instanceParameters) + 1;
 			}
 	};
 
