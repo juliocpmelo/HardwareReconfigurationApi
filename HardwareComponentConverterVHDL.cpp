@@ -62,7 +62,7 @@ std::string HardwareComponentConverterVHDL::translatePort(HardwareComponent::Por
 		string typeStr = translateType(portInfo->type);
 		convertedPort<<typeStr;
 	}
-	cout<<" converted to "<<convertedPort.str()<<endl;
+//	cout<<" converted to "<<convertedPort.str()<<endl;
 
 	return convertedPort.str();
 }
@@ -70,7 +70,7 @@ std::string HardwareComponentConverterVHDL::translatePort(HardwareComponent::Por
 std::string HardwareComponentConverterVHDL::translateParam(HardwareComponent::Param* paramInfo){
 	
 	stringstream convertedParam;
-	cout<<" processing to "<<paramInfo->name<<endl;
+//	cout<<" processing to "<<paramInfo->name<<endl;
 	
 	convertedParam<<paramInfo->name<<" ";
 	switch (paramInfo->type->id){
@@ -90,7 +90,7 @@ std::string HardwareComponentConverterVHDL::translateParam(HardwareComponent::Pa
 	if(paramInfo->defaultValue != ""){
 		convertedParam<<" := "<<paramInfo->defaultValue;
 	}
-	cout<<" converted to "<<convertedParam.str()<<endl;
+//	cout<<" converted to "<<convertedParam.str()<<endl;
 
 	return convertedParam.str();
 
