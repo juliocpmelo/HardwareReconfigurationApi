@@ -96,7 +96,7 @@ SC_MODULE(HardwareComponent) {
 		operandDeque.pop_front();
 		int result = getValue(operandA, variableTable);
 
-		std::cout << "solving expression "<< expressionString <<std::endl;
+		//std::cout << "solving expression "<< expressionString <<std::endl;
 		while (!operationDeque.empty()){
 			std::string operandB = operandDeque.front();
 			operandDeque.pop_front();
@@ -110,7 +110,7 @@ SC_MODULE(HardwareComponent) {
 				result -= getValue(operandB, variableTable);
 			}
 		}
-		std::cout << "expression solved "<< std::endl << expressionString << " = "<< result <<std::endl;
+//		std::cout << "expression solved "<< std::endl << expressionString << " = "<< result <<std::endl;
 
 
 		return result;
@@ -131,6 +131,7 @@ SC_MODULE(HardwareComponent) {
 				instanceParameters = NULL;
 			}
 			virtual int size() {if (id == DataTypeId_bit) return 1; else return 0;}
+			virtual DataType* clone() {return BIT_TYPE;}
 	};
 
 	class VectorType : public DataType{
@@ -164,6 +165,9 @@ SC_MODULE(HardwareComponent) {
 					return solveSimpleExpression(startIndex, instanceParameters) - 
 								 solveSimpleExpression(endIndex, instanceParameters) + 1;
 			}
+			virtual DataType* clone(){
+				return VECTOR_TYPE(startIndex,indexOperator,endIndex);
+			}
 	};
 
 	class IntegerType : public DataType{
@@ -190,6 +194,9 @@ SC_MODULE(HardwareComponent) {
 			/*maybe in future it could be used to evaluate expressions in startRange and endRange*/
 			virtual int size() {
 				return 32;
+			}
+			virtual DataType* clone(){
+				return INTEGER_TYPE(rangeStart,rangeOperator,rangeEnd);
 			}
 	};
 

@@ -108,15 +108,47 @@ std::string HardwareComponentConverterVHDL::translateSignal(sc_signal_resolved* 
 	return convertedSignal.str();
 }
 
-std::vector<sc_signal_resolved* > HardwareComponentConverterVHDL::getSignals(HardwareComponent *comp) {
-	std::vector<sc_signal_resolved* > signals;
+/**
+ * !brief seach for each signal used in the interconnection 
+ * !param a HardwareComponent instance
+ * !return a set containing each signal used within the given component
+ */
+std::set<sc_signal_resolved* > HardwareComponentConverterVHDL::getSignals(HardwareComponent *comp) {
+	cout<<"get signals"<<endl;
+	std::set<sc_signal_resolved* > signals;
 	std::vector<sc_object*> children = comp->get_child_objects();
 	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
-		if ( std::string((*i)->kind())=="sc_signal_resolved")	{
-			sc_signal_resolved* mptr = dynamic_cast<sc_signal_resolved*>(*i);
-			signals.push_back(mptr);
+		if ( std::string((*i)->kind())=="sc_module")	{
+			HardwareComponent *comp_child = (HardwareComponent*) (*i);
+			std::vector<sc_object*> children2 = comp_child->get_child_objects();
+			for (std::vector<sc_object*>::iterator i2 = children2.begin(); i2 != children2.end(); i2++) {
+
+				if (std::string((*i2)->kind())=="sc_in" || 
+						std::string((*i2)->kind()) =="sc_out" ||
+						std::string((*i2)->kind()) =="sc_inout") {
+					sc_port_base * port = dynamic_cast<sc_port_base*>(*i2);
+
+					sc_attribute< sc_signal_resolved* > *portConnectionAttr = dynamic_cast<  sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"));
+					
+					sc_object * channel = dynamic_cast<sc_object*>(port->get_interface());
+
+					sc_port_base *connectedPort = getConnectedPort(channel, comp);
+
+
+					/*
+					 * when a connetion exists and it is not direct to the component given, means
+					 * that a signal was automatically created and must be declared in the signal
+					 * list
+					 */
+					if(connectedPort == NULL){
+						signals.insert(dynamic_cast<sc_signal_resolved*>(channel));
+					}
+					//		cout<<" type for port "<< (*i)->name()<< " " <<std::string((*i)->kind())<<endl;
+				}
+			}
 		}
 	}
+	cout<<"get signals end"<<endl;
 	return signals;
 }
 
@@ -162,16 +194,16 @@ sc_port_base* HardwareComponentConverterVHDL::getConnectedPort(sc_object* channe
 
 
 	std::vector<sc_object*> children = component->get_child_objects();
-//	cout << "testing to component "<<component->name()<< " with " << children.size() << " children"<<endl;
+	//	cout << "testing to component "<<component->name()<< " with " << children.size() << " children"<<endl;
 	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
 		if (std::string((*i)->kind())=="sc_in" || std::string((*i)->kind()) =="sc_out") {
 			sc_port_base * port = dynamic_cast<sc_port_base*>(*i);
-	//		cout<<" type for port "<< (*i)->name()<< " " <<std::string((*i)->kind())<<endl;
+			//		cout<<" type for port "<< (*i)->name()<< " " <<std::string((*i)->kind())<<endl;
 			if(port->get_interface() != NULL){
 				sc_object * connectedChannel = dynamic_cast<sc_object*>(port->get_interface());
-		//		std::cout<<"testing port "<<port->name()<<" that uses channel "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
-				if(channel->name() == connectedChannel->name() //connected through the same channel
-					 and port->get_attribute("PortConnection") != NULL)
+				//		std::cout<<"testing port "<<port->name()<<" that uses channel "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
+				if(channel->name() == connectedChannel->name() and //connected through the same channel
+					 port->get_attribute("PortConnection") != NULL)
 					return port;
 			}
 		}
@@ -192,7 +224,8 @@ std::string HardwareComponentConverterVHDL::translateDeclaration(HardwareCompone
 	std::map<std::string, HardwareComponent::Param> paramTable = componentInfo->componentParameters;
 
 	map<string, HardwareComponent::Param>::iterator lastParam = paramTable.end();
-	lastParam --;
+	if(paramTable.size() > 0)
+		lastParam --;
 	for(map<string, HardwareComponent::Param>::iterator it = paramTable.begin(); it != paramTable.end(); it++){
 		if (it == lastParam)
 			componentDeclaration<<"\t"<<translateParam(&(it->second))<<endl;
@@ -213,7 +246,8 @@ std::string HardwareComponentConverterVHDL::translateDeclaration(HardwareCompone
 
 
 	vector< HardwareComponent::PortInfo>::iterator lastElement = portsVector.end();
-	lastElement --;
+	if(portsVector.size() > 0)
+		lastElement --;
 	for(vector< HardwareComponent::PortInfo>::iterator it = portsVector.begin(); it != portsVector.end(); it++){
 		if (it == lastElement)
 			componentDeclaration<<"\t"<<translatePort(&(*it))<<endl;
@@ -247,7 +281,6 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
     designFile <<"use ieee.std_logic_1164.all;"<<endl;
     designFile <<"use ieee.std_logic_unsigned.all;"<<endl<<endl;
 
-		cout<<__FILE__<<"::"<<__LINE__<<endl;
 
 		/* by default dont generate main entity with generics
     if(genericTable.size() > 0){
@@ -276,7 +309,8 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
     std::map<std::string, HardwareComponent::PortInfo*> portsTable = topComponent->ports;
 
 		map<string, HardwareComponent::PortInfo*>::iterator lastElement = portsTable.end();
-		lastElement --;
+		if(portsTable.size() > 0)
+			lastElement --;
 		for(map<string, HardwareComponent::PortInfo*>::iterator it = portsTable.begin(); it != portsTable.end(); it++){
 			if (it == lastElement)
 				designFile<<translatePort(it->second)<<endl;
@@ -299,8 +333,8 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
     }
     
     designFile <<"-- Signal Declaration"<<endl<<endl;
-		vector<sc_signal_resolved*> signals = getSignals(topComponent);
-    for(vector<sc_signal_resolved*>::iterator it = signals.begin(); it!= signals.end(); it ++){
+		set<sc_signal_resolved*> signals = getSignals(topComponent);
+    for(set<sc_signal_resolved*>::iterator it = signals.begin(); it!= signals.end(); it ++){
 			string translation = translateSignal(*it);
 			designFile<<translateSignal(*it)<<";"<<endl;
     }

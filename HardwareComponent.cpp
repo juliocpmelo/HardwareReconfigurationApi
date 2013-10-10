@@ -132,6 +132,11 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 			}
 			else{
 				sc_signal_resolved *sig = new sc_signal_resolved();
+
+
+				sc_attribute<HardwareComponent::DataType*> *signalType = new sc_attribute<HardwareComponent::DataType*>("DataType",ports[selfPortName]->type->clone());
+				sig->add_attribute(*signalType);
+
 				sc_attribute< sc_signal_resolved* > *portConnectionAttr = new sc_attribute< sc_signal_resolved* >("PortConnection",sig);
 
 				(*bindedPort)(*sig);
@@ -224,17 +229,17 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 void HardwareComponent::portMap(std::string selfPortName, sc_signal_resolved *signal){
 	if(ports.count(selfPortName) != 0){
 		if(string(ports[selfPortName]->scPort->kind()) == "sc_in"){
-			cout<<"binding signal"<<signal->name()<<" to port "<<this->name()<<":"<<selfPortName<<endl;
+			//cout<<"binding signal"<<signal->name()<<" to port "<<this->name()<<":"<<selfPortName<<endl;
 			sc_in<sc_logic> * selfPort = dynamic_cast<sc_in<sc_logic>* >( ports[selfPortName]->scPort );
 			(*selfPort)(*signal);
 		}
 		else if(string(ports[selfPortName]->scPort->kind()) == "sc_out"){
-			cout<<"binding signal"<<signal->name()<<" to port "<<this->name()<<":"<<selfPortName<<endl;
+			//cout<<"binding signal"<<signal->name()<<" to port "<<this->name()<<":"<<selfPortName<<endl;
 			sc_out<sc_logic> * selfPort = dynamic_cast<sc_out<sc_logic>* >( ports[selfPortName]->scPort );
 			(*selfPort)(*signal);
 		}
 		else if(string(ports[selfPortName]->scPort->kind()) == "sc_inout"){
-			cout<<"binding signal"<<signal->name()<<" to port "<<this->name()<<":"<<selfPortName<<endl;
+			//cout<<"binding signal"<<signal->name()<<" to port "<<this->name()<<":"<<selfPortName<<endl;
 			sc_inout<sc_logic> * selfPort = dynamic_cast<sc_inout<sc_logic>* >( ports[selfPortName]->scPort );
 			(*selfPort)(*signal);
 		}

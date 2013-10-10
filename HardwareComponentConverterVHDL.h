@@ -22,7 +22,7 @@ class HardwareComponentConverterVHDL{
 
 		void buildTopComponentFile(std::string projectPath, HardwareComponent *topComponent);
 
-		std::vector<sc_signal_resolved* > getSignals(HardwareComponent *comp);
+		std::set<sc_signal_resolved* > getSignals(HardwareComponent *comp);
 		std::set<HardwareComponent::HardwareComponentInfo* > getUsedComponents(HardwareComponent *comp);
 		std::vector<HardwareComponent* > getChildModules(HardwareComponent *comp);
 		sc_port_base* getConnectedPort(sc_object* channel, sc_module* component);
