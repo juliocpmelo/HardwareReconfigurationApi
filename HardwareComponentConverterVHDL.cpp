@@ -128,8 +128,6 @@ std::set<sc_signal_resolved* > HardwareComponentConverterVHDL::getSignals(Hardwa
 						std::string((*i2)->kind()) =="sc_inout") {
 					sc_port_base * port = dynamic_cast<sc_port_base*>(*i2);
 
-					sc_attribute< sc_signal_resolved* > *portConnectionAttr = dynamic_cast<  sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"));
-					
 					sc_object * channel = dynamic_cast<sc_object*>(port->get_interface());
 
 					sc_port_base *connectedPort = getConnectedPort(channel, comp);
@@ -194,14 +192,15 @@ sc_port_base* HardwareComponentConverterVHDL::getConnectedPort(sc_object* channe
 
 
 	std::vector<sc_object*> children = component->get_child_objects();
-	//	cout << "testing to component "<<component->name()<< " with " << children.size() << " children"<<endl;
+	cout << "testing to component "<<component->name()<< " with " << children.size() << " children"<<endl;
 	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
 		if (std::string((*i)->kind())=="sc_in" || std::string((*i)->kind()) =="sc_out") {
 			sc_port_base * port = dynamic_cast<sc_port_base*>(*i);
-			//		cout<<" type for port "<< (*i)->name()<< " " <<std::string((*i)->kind())<<endl;
+//			cout<<" type for port "<< (*i)->name()<< " " <<std::string((*i)->kind())<<endl;
 			if(port->get_interface() != NULL){
 				sc_object * connectedChannel = dynamic_cast<sc_object*>(port->get_interface());
-				//		std::cout<<"testing port "<<port->name()<<" that uses channel "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
+				std::cout<<"testing port "<<port->name()<<" that uses channel "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
+				std::cout<<"attribute "<<port->get_attribute("PortConnection")<<endl;
 				if(channel->name() == connectedChannel->name() and //connected through the same channel
 					 port->get_attribute("PortConnection") != NULL)
 					return port;
@@ -341,13 +340,14 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 		
     designFile<<"begin"<<endl;
 
-    designFile <<"-- Architectural Declaration"<<endl<<endl;
+    designFile <<endl<<endl<<"-- Architectural Declaration --"<<endl<<endl;
 
 
 		vector<HardwareComponent*> childModules = getChildModules(topComponent);
 
 
-   
+   /*generate port maps for each used component*/
+		designFile <<endl<<endl<< "-- component's port maps "<<endl<<endl;
 		for (vector<HardwareComponent*>::iterator it = childModules.begin(); it != childModules.end(); it++){
 			if(std::string((*it)->kind()) == "sc_module"){
 
@@ -390,7 +390,7 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 						}
 					}
 				}
-				portMap = portMap.substr(0,portMap.size()-2);
+				portMap = portMap.substr(0,portMap.size()-2); //removes the ",\n" in the end of string
 
 				designFile << portMap<< endl;
 				
@@ -399,11 +399,40 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 			}
 		}
 
+		/*generate signal maps for the rest of the signals*/
 
-/*    for(vector< pair<string,string> >::iterator it = signalMaps.begin(); it!=signalMaps.end(); it++){
-        designFile<<it->first<<" <= "<<it->second<<";"<<endl;
-    }
-*/
+		
+		designFile <<endl<<endl<< "-- signal maps --"<<endl<<endl;
+		vector<sc_object*> topComponeneChildren = topComponent->get_child_objects();
+		for (vector<sc_object*>::iterator it = topComponeneChildren.begin(); it != topComponeneChildren.end(); it++){
+			if (std::string((*it)->kind()) =="sc_in" || 
+					std::string((*it)->kind()) =="sc_out" ||
+					std::string((*it)->kind()) =="sc_inout") {
+				
+				std::cout<<"processing port "<<(*it)->name()<<std::endl;
+				sc_port_base * port = dynamic_cast<sc_port_base*>(*it);
+
+				if(port->get_interface() != NULL){
+					sc_object * channel = dynamic_cast<sc_object*>(port->get_interface());
+					sc_port_base *connectedPort = NULL;
+
+					for (std::vector<HardwareComponent*>::iterator it2 = childModules.begin(); it2 != childModules.end(); it2++) {
+						connectedPort = getConnectedPort(channel,(*it2));
+						if(connectedPort != NULL)
+							break;
+					}
+					//if the top component port is not connected to any other component port, but it still has
+					//a connected interface, means that this port is connected directly to a signal
+					if (connectedPort == NULL){
+						designFile << port->basename() << " <= " << channel->name() << ";"<<endl;
+					}
+				}
+			}
+		}
+
+
+
+
     designFile<<endl;
 
 
