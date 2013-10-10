@@ -105,9 +105,13 @@ void HardwareComponent::addInout(std::string name, DataType* type){
 }
 
 sc_port_base* HardwareComponent::getPort(std::string name){
-	if(ports.count(name)!=0){
+	if(ports.count(name)!=0)
 		return ports[name]->scPort;
-	}
+	else
+		if (!isDynamic)
+			cout<<"port "<<name<<" not found, returning NULL port, please check the component "<<componentInfo->name<< " definition"<<endl;
+		else
+			cout<<"port "<<name<<" not found for dynamic component " << this->name()<< ", returning NULL port, please check component port definitions"<<endl;
 	return NULL;
 }
 
@@ -210,9 +214,11 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 
 		}
 	}
-	else {
+	else if (port != NULL){
 		cout << "can't portmap port "<< selfPortName << " from " << this->name() << " to " << port->name()<<endl;
 	}
+	else
+		cout << "can't portmap port "<< selfPortName << " from " << this->name() << " to null port"<<endl;
 }
 
 void HardwareComponent::portMap(std::string selfPortName, sc_signal_resolved *signal){
