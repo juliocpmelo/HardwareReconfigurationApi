@@ -15,7 +15,8 @@ LDFLAGS=-L../systemc-2.3.0/lib-cygwin -lsystemc \
 				-L../zlib-1.2.5/bin -lz \
 				-L../lib -lhardwarereconfigurationapi 
 
-CPPFLAGS=-Wall -fPIC $(INCLUDES)
+CFLAGS=-Wall -fPIC -ggdb $(INCLUDES)
+CPPFLAGS=$(CFLAGS)
 
 SRCS=$(shell find -name '*.cpp')
 OBJS=$(SRCS:.cpp=.o)
@@ -30,7 +31,7 @@ cleanobjs:
 	rm -f $(OBJS)
 
 clean: cleanobjs
-	  rm -f $(COMPONENT_NAME)
+	  rm -f ./bin/$(COMPONENT_NAME)
 
 distclean: clean
 	  rm -f $(COMPONENT_NAME)
