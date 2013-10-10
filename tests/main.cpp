@@ -30,147 +30,108 @@ int main(int argc, char *argv[]){
             case 'a':
             {
                 cout<<"generating through software"<<endl;
-                HardwareProject *project = new HardwareProject("./CommunicationHardware/communicationHardwareDesc.xml");
+                HardwareProject *project = new HardwareProject("D:/AutonomicSegmentationSystem/AutonomicImageProcessingDesc.xml");
 
 
 								/*each reconfigurable region should have a corresponding communicationHardware description*/
+								ReconfigurableRegion *region = project->getReconfigurableRegion("AutonomicSegmentation");
 								//ReconfigurableRegion *region = project->getReconfigurableRegion("RegionA");
-								ReconfigurableRegion *region = new ReconfigurableRegion("RegionA", NULL);
 
 								ComponentDatabase *database = new ComponentDatabase();
 
 								/*generic component declaration, without fixed port number*/
-								HardwareComponent *topComponent = new HardwareComponent("neuronio_test", NULL);
+								HardwareComponent *topComponent = new HardwareComponent("AutonomicTreshold", NULL);
 
 								//new API with system C
 								cout << __FILE__ << "::" << __LINE__ <<endl; 
+								topComponent->addInput("clk", BIT_TYPE);
 
+                topComponent->addInput("lineBuffer_in_x", VECTOR_TYPE( "23", "downto", "0"));
+                topComponent->addInput("lineBuffer_in_y", VECTOR_TYPE( "23", "downto", "0"));
+                topComponent->addInput("lineBuffer_in_pixel", VECTOR_TYPE( "23", "downto", "0"));
+                topComponent->addInput("lineBuffer_in_param", VECTOR_TYPE( "7", "downto", "0"));
 
-
-                topComponent->addInput("clk", BIT_TYPE);
-                topComponent->addInput("rst", BIT_TYPE);
-                topComponent->addInput("wr0", BIT_TYPE);
-                topComponent->addInput("wr1", BIT_TYPE);
-                topComponent->addInput("wr2", BIT_TYPE);
-
-                topComponent->addInput("in_x0", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addInput("in_x1", VECTOR_TYPE( "16", "downto", "0"));
-
-                topComponent->addInput("w0_i", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addInput("w1_i", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addInput("w2_i", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addInput("w3_i", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addInput("w4_i", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addInput("w5_i", VECTOR_TYPE( "16", "downto", "0"));
-
-                topComponent->addInput("bias0", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addInput("bias1", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addInput("bias2", VECTOR_TYPE( "16", "downto", "0"));
-
-	
-                topComponent->addOutput("addr0", VECTOR_TYPE( "5", "downto", "0"));
-                topComponent->addOutput("addr1", VECTOR_TYPE( "5", "downto", "0"));
-                topComponent->addOutput("addr2", VECTOR_TYPE( "5", "downto", "0"));
-
-                topComponent->addOutput("a0", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("b0", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("a1", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("b1", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("a2", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("b2", VECTOR_TYPE( "16", "downto", "0"));
-
-                topComponent->addOutput("regx0", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("regx1", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("regx2", VECTOR_TYPE( "16", "downto", "0"));
- 
-                topComponent->addOutput("net0", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("net1", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("net2", VECTOR_TYPE( "16", "downto", "0"));
-
-                topComponent->addOutput("neuron_x0", VECTOR_TYPE( "16", "downto", "0"));
-                topComponent->addOutput("neuron_x1", VECTOR_TYPE( "16", "downto", "0"));
-
-                topComponent->addOutput("result", VECTOR_TYPE( "16", "downto", "0"));
-
+                topComponent->addInput("lineBuffer_out_x", VECTOR_TYPE( "23", "downto", "0"));
+                topComponent->addInput("lineBuffer_out_y", VECTOR_TYPE( "23", "downto", "0"));
+                topComponent->addInput("lineBuffer_out_param", VECTOR_TYPE( "7", "downto", "0"));
+                topComponent->addOutput("lineBuffer_out_outputPixel", VECTOR_TYPE( "23", "downto", "0"));
+                
+								topComponent->addInput("systemStart", BIT_TYPE);
+								
+								topComponent->addOutput("buffersApDone", BIT_TYPE);
+								topComponent->addOutput("buffersApIdle", BIT_TYPE);
+								topComponent->addOutput("buffersApReady", BIT_TYPE);
+                
 
 								/*external ports are defined in the reconfigurable region xml description*/
-								topComponent->portMap("clk", region->getPort("clk"));
+								topComponent->portMap("clk", region->getPort("commHardware_clk"));
 
 
 								/*software acessible inputs will be able to be acessed using the communication hardware API*/
-								topComponent->createSoftwareAccess("wr0");
+								topComponent->createSoftwareAccess("lineBuffer_in_x");
+								topComponent->createSoftwareAccess("lineBuffer_in_y");
+								topComponent->createSoftwareAccess("lineBuffer_in_pixel");
+								topComponent->createSoftwareAccess("lineBuffer_in_param");
+								topComponent->createSoftwareAccess("lineBuffer_out_x");
+								topComponent->createSoftwareAccess("lineBuffer_out_y");
+								topComponent->createSoftwareAccess("lineBuffer_out_param");
+								topComponent->createSoftwareAccess("lineBuffer_out_outputPixel");
+								topComponent->createSoftwareAccess("buffersApDone");
+								topComponent->createSoftwareAccess("buffersApIdle");
+								topComponent->createSoftwareAccess("buffersApReady");
+                region->assignTopComponent(topComponent);
+
 
 								/*signal declaration*/
-								sc_signal_resolved *signaly0 = database->createSignal("y0", VECTOR_TYPE( "8", "downto", "0"));
-								topComponent->addChildObject(signaly0);
-								sc_signal_resolved *signaly1 = database->createSignal("y1", VECTOR_TYPE( "8", "downto", "0"));
-								topComponent->addChildObject(signaly1);
+								sc_signal_resolved *sig_lineBufferIn_ap_done = database->createSignal("sig_lineBufferIn_ap_done", BIT_TYPE);
+								sc_signal_resolved *sig_lineBufferIn_ap_idle = database->createSignal("sig_lineBufferIn_ap_idle", BIT_TYPE);
+								sc_signal_resolved *sig_lineBufferIn_ap_ready = database->createSignal("sig_lineBufferIn_ap_ready", BIT_TYPE);
+
+								sc_signal_resolved *sig_lineBufferOut_ap_done = database->createSignal("sig_lineBufferOut_ap_done", BIT_TYPE);
+								sc_signal_resolved *sig_lineBufferOut_ap_idle = database->createSignal("sig_lineBufferOut_ap_idle", BIT_TYPE);
+								sc_signal_resolved *sig_lineBufferOut_ap_ready = database->createSignal("sig_lineBufferOut_ap_ready", BIT_TYPE);
 
 
-
-								//ComponentDatabase loads the "teste_neuronio" component from the rnaBaseComponents.xml
-								HardwareComponent *neuronio0 = database->getHardwareComponent("neuronio0", "./rnaBaseComponents.xml:teste_neuronio");
-								topComponent->addChildObject(neuronio0);
-								neuronio0->portMap("clk",topComponent->getPort("clk"));
-                neuronio0->portMap("rst",topComponent->getPort("rst"));
-                neuronio0->portMap("wr_result",topComponent->getPort("wr0"));
-                neuronio0->portMap("x0",topComponent->getPort("in_x0"));
-                neuronio0->portMap("x1",topComponent->getPort("in_x1"));
-                neuronio0->portMap("w0",topComponent->getPort("w0_i"));
-                neuronio0->portMap("w1",topComponent->getPort("w2_i"));
-                neuronio0->portMap("bias",topComponent->getPort("bias0"));
-                neuronio0->portMap("addr",topComponent->getPort("addr0"));
-                neuronio0->portMap("a",topComponent->getPort("a0"));
-                neuronio0->portMap("b",topComponent->getPort("b0"));
-                neuronio0->portMap("regx",topComponent->getPort("regx0"));
-                neuronio0->portMap("x",topComponent->getPort("net0"));
-                neuronio0->portMap("y",signaly0);
+								HardwareComponent *lineBuffer_in = database->getHardwareComponent("lineBuffer_in", "./autonomicImageThresholdComponents.xml:LineBuffer_wrapper");
+								lineBuffer_in->portMap("clk", topComponent->getPort("clk"));
+								lineBuffer_in->portMap("pixel", topComponent->getPort("lineBuffer_in_pixel"));
+								lineBuffer_in->portMap("x", topComponent->getPort("lineBuffer_in_x"));
+								lineBuffer_in->portMap("y", topComponent->getPort("lineBuffer_in_y"));
+								lineBuffer_in->portMap("param", topComponent->getPort("lineBuffer_in_param"));
+								lineBuffer_in->portMap("ap_start", topComponent->getPort("systemStart"));
+								lineBuffer_in->portMap("ap_done", sig_lineBufferIn_ap_done);
+								lineBuffer_in->portMap("ap_idle", sig_lineBufferIn_ap_idle);
+								lineBuffer_in->portMap("ap_ready", sig_lineBufferIn_ap_ready);
 
 								
-								HardwareComponent *neuronio1 = database->getHardwareComponent("neuronio1", "./rnaBaseComponents.xml:teste_neuronio");
-								topComponent->addChildObject(neuronio1);
-                neuronio1->portMap("clk",topComponent->getPort("clk"));
-                neuronio1->portMap("rst",topComponent->getPort("rst"));
-                neuronio1->portMap("wr_result",topComponent->getPort("wr1"));
-                neuronio1->portMap("x0",topComponent->getPort("in_x0"));
-                neuronio1->portMap("x1",topComponent->getPort("in_x1"));
-                neuronio1->portMap("w0",topComponent->getPort("w1_i"));
-                neuronio1->portMap("w1",topComponent->getPort("w3_i"));
-                neuronio1->portMap("bias",topComponent->getPort("bias1"));
-                neuronio1->portMap("addr",topComponent->getPort("addr1"));
-                neuronio1->portMap("a",topComponent->getPort("a1"));
-                neuronio1->portMap("b",topComponent->getPort("b1"));
-                neuronio1->portMap("regx",topComponent->getPort("regx1"));
-                neuronio1->portMap("x",topComponent->getPort("net1"));
-                neuronio1->portMap("y",signaly1);
- 
-								HardwareComponent *neuronio2 = database->getHardwareComponent("neuronio2", "./rnaBaseComponents.xml:teste_neuronio");
-								topComponent->addChildObject(neuronio2);
-							  neuronio2->portMap("clk",topComponent->getPort("clk"));
-                neuronio2->portMap("rst",topComponent->getPort("rst"));
-                neuronio2->portMap("wr_result",topComponent->getPort("wr2"));
-                neuronio2->portMap("x0",signaly0);
-                neuronio2->portMap("x1",signaly1);
-                neuronio2->portMap("w0",topComponent->getPort("w4_i"));
-                neuronio2->portMap("w1",topComponent->getPort("w5_i"));
-                neuronio2->portMap("bias",topComponent->getPort("bias2"));
-                neuronio2->portMap("addr",topComponent->getPort("addr2"));
-                neuronio2->portMap("a",topComponent->getPort("a2"));
-                neuronio2->portMap("b",topComponent->getPort("b2"));
-                neuronio2->portMap("regx",topComponent->getPort("regx2"));
-                neuronio2->portMap("x",topComponent->getPort("net2"));
-                neuronio2->portMap("y",topComponent->getPort("result"));
+								HardwareComponent *lineBuffer_out = database->getHardwareComponent("lineBuffer_out", "./autonomicImageThresholdComponents.xml:LineBuffer_wrapper");
+								lineBuffer_out->portMap("clk", topComponent->getPort("clk"));
+								lineBuffer_out->portMap("pixel", lineBuffer_in->getPort("outputPixel"));
+								lineBuffer_out->portMap("x", topComponent->getPort("lineBuffer_out_x"));
+								lineBuffer_out->portMap("y", topComponent->getPort("lineBuffer_out_y"));
+								lineBuffer_out->portMap("param", topComponent->getPort("lineBuffer_out_param"));
+								lineBuffer_out->portMap("ap_start", topComponent->getPort("systemStart"));
+								lineBuffer_out->portMap("ap_done", sig_lineBufferOut_ap_done);
+								lineBuffer_out->portMap("ap_idle", sig_lineBufferOut_ap_idle);
+								lineBuffer_out->portMap("ap_ready", sig_lineBufferOut_ap_ready);
+								lineBuffer_out->portMap("outputPixel", topComponent->getPort("lineBuffer_out_outputPixel"));
 
 
- 								topComponent->portMap("neuron_x0",signaly0);
-                topComponent->portMap("neuron_x1",signaly1);
+                topComponent->portMap("buffersApDone", sig_lineBufferOut_ap_done); //TODO Make and between signals
+                topComponent->portMap("buffersApIdle", sig_lineBufferOut_ap_idle); //TODO Make and between signals
+                topComponent->portMap("buffersApReady", sig_lineBufferOut_ap_ready); //TODO Make and between signals
 
 
 
-                region->assignTopComponent(topComponent);
+								/*TODO find a way to remove these calls*/
+								topComponent->addChildObject(lineBuffer_in);
+								topComponent->addChildObject(lineBuffer_out);
+
                 project->generateHDLFiles(topComponent);
                 //project->generateConfigFile();
                 //project->compileProject();
+								//
+								cout<<"hardware component successfully generated"<<endl;
     
             }
             break;
