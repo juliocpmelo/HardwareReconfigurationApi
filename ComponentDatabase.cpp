@@ -27,7 +27,6 @@ HardwareComponent::HardwareComponentInfo* ComponentDatabase::getHardwareComponen
 HardwareComponent* ComponentDatabase::getHardwareComponent(std::string instanceName, std::string componentURI){
 //do component lookup
 	HardwareComponent::HardwareComponentInfo *componentInfo = getHardwareComponentInfo(componentURI);
-	cout<<__FILE__<<"::"<<__LINE__<<endl;
 	return new HardwareComponent(sc_module_name(instanceName.c_str()), componentInfo);
 }
 
