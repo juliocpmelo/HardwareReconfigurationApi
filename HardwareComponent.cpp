@@ -107,11 +107,12 @@ void HardwareComponent::addInout(std::string name, DataType* type){
 sc_port_base* HardwareComponent::getPort(std::string name){
 	if(ports.count(name)!=0)
 		return ports[name]->scPort;
-	else
+	else{
 		if (!isDynamic)
 			cout<<"port "<<name<<" not found, returning NULL port, please check the component "<<componentInfo->name<< " definition"<<endl;
 		else
 			cout<<"port "<<name<<" not found for dynamic component " << this->name()<< ", returning NULL port, please check component port definitions"<<endl;
+	}
 	return NULL;
 }
 
@@ -126,9 +127,11 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 			sc_attribute< sc_signal_resolved* > *portConnectionAttr; 
 			if ( portConnectionAttr = dynamic_cast< sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortConnection"))){
 				(*bindedPort)(*(portConnectionAttr->value));
+				bindedPort->add_attribute(*portConnectionAttr);
 			}
 			else if ( portConnectionAttr = dynamic_cast< sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"))){
 				(*selfPort)(*(portConnectionAttr->value));
+				selfPort->add_attribute(*portConnectionAttr);
 			}
 			else{
 				sc_signal_resolved *sig = new sc_signal_resolved();
@@ -141,6 +144,7 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 
 				(*bindedPort)(*sig);
 				(*selfPort)(*sig);
+				cout<<"adding PortConnection to "<< selfPort->name() << " and " << bindedPort->name()<< endl;
 				selfPort->add_attribute(*portConnectionAttr);
 				bindedPort->add_attribute(*portConnectionAttr);
 				
@@ -156,9 +160,11 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 			sc_attribute< sc_signal_resolved* > *portConnectionAttr; 
 			if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortConnection")) ){ //tests for a already binded port
 				(*bindedPort)(*(portConnectionAttr->value)) ;
+				bindedPort->add_attribute(*portConnectionAttr);
 			}
 			else if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"))){
 				(*selfPort)(*(portConnectionAttr->value)) ;
+				selfPort->add_attribute(*portConnectionAttr);
 			}
 			else{ //binds both ports through a signal
 				sc_signal_resolved *sig = new sc_signal_resolved();
@@ -180,9 +186,11 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 			sc_attribute< sc_signal_resolved* > *portConnectionAttr; 
 			if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortConnection")) ){ //tests for a already binded port
 				(*bindedPort)(*(portConnectionAttr->value)) ;
+				bindedPort->add_attribute(*portConnectionAttr);
 			}
 			else if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"))){
 				(*selfPort)(*(portConnectionAttr->value)) ;
+				selfPort->add_attribute(*portConnectionAttr);
 			}
 			else{ //binds both ports through a signal
 				sc_signal_resolved *sig = new sc_signal_resolved();
@@ -203,9 +211,11 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 			sc_attribute< sc_signal_resolved* > *portConnectionAttr; 
 			if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(selfPort->get_attribute("PortConnection")) ){ //tests for a already binded port
 				(*bindedPort)(*(portConnectionAttr->value)) ;
+				bindedPort->add_attribute(*portConnectionAttr);
 			}
 			else if ( portConnectionAttr = dynamic_cast<	sc_attribute< sc_signal_resolved* > *>(port->get_attribute("PortConnection"))){
 				(*selfPort)(*(portConnectionAttr->value)) ;
+				selfPort->add_attribute(*portConnectionAttr);
 			}
 			else{ //binds both ports through a signal
 				sc_signal_resolved *sig = new sc_signal_resolved();
