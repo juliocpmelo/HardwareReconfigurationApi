@@ -1,10 +1,13 @@
 #include "HardwareProject.h"
 #include "HardwareComponentConverterVHDL.h"
 #include "CommunicationHardware/CommunicationHardwareConverterVHDL.h"
+#include <errno.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <windows.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <fstream>
+
 
 
 using namespace std;
@@ -20,6 +23,7 @@ HardwareProject::HardwareProject(std::string projectXmlDescriptionUri){
 
 	this->projectName = hardwareProjectXmlParser->getProjectName();
 	this->projectPath = hardwareProjectXmlParser->getProjectPath();
+
 
 }
 
@@ -85,15 +89,44 @@ void HardwareProject::generateHDLFiles(HardwareComponent *comp){
 
 		CommunicationHardwareConverterVHDL *communicationHardwareConverter = new CommunicationHardwareConverterVHDL();
 
-		cout << __FILE__ << "::" << __LINE__ <<endl; 
+		if (mkdir (string(this->projectPath + "/HardwareReconfigurationAPI").c_str(), 0755) == -1) {
+			if (errno != EEXIST){
+				cout <<"Failed to create directory " << this->projectPath + "/HardwareReconfigurationAPI" << endl;
+				cout <<"System generation will be ended " << endl;
+				return;
+			}
+		}
 		for (map<string, ReconfigurableRegion*>::iterator it = managedReconfRegions.begin(); it != managedReconfRegions.end(); it++){
-			cout << "generating to region "<< it->second->name <<endl; 
+
+			if(reconfRegionsProjectHandlers[it->first] == NULL){
+				if (mkdir ((string(this->projectPath + "/HardwareReconfigurationAPI/" + it->first)).c_str(), 0755)){
+					if (errno != EEXIST){
+						cout <<"Failed to create directory " << this->projectPath + "/HardwareReconfigurationAPI/" + it->first << endl;
+						cout <<"System generation will be ended " << endl;
+						return;
+					}
+				}
+				reconfRegionsProjectHandlers[it->first] = new XilinxProjectHandler(this->projectName + "_" + it->first, this->projectPath + "/HardwareReconfigurationAPI/" + it->first);
+			}
+			if (mkdir (string(this->projectPath + "/HardwareReconfigurationAPI/" + it->second->name).c_str(), 0755) == -1) {
+				if (errno != EEXIST){
+					cout <<"Failed to create directory " << this->projectPath + "/HardwareReconfigurationAPI/" + it->second->name << endl;
+					cout <<"System generation will be ended " << endl;
+					return;
+				}	
+			}
 
 			if(it->second->assignedTopComponent)
-				converter->buildTopComponentFile(projectPath, it->second->assignedTopComponent);
-			communicationHardwareConverter->buildEntityForReconfigurableRegion(it->second, projectPath);
+				converter->buildTopComponentFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second->assignedTopComponent);
+			communicationHardwareConverter->buildEntityForReconfigurableRegion(this->projectPath + "/HardwareReconfigurationAPI/"+ it->first, it->second);
+			
+			/*adding dependent files*/
+			reconfRegionsProjectHandlers[it->first]->addFile(communicationHardwareConverter->getNameForReconfRegionFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second));
+			reconfRegionsProjectHandlers[it->first]->addFile(converter->getNameForHardwareComponentFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second->assignedTopComponent));
+			set<string> dependentFiles = it->second->assignedTopComponent->getDependentFiles();
+			for(set<string>::iterator dependentFileIt = dependentFiles.begin(); dependentFileIt != dependentFiles.end(); dependentFileIt ++)
+				reconfRegionsProjectHandlers[it->first]->addFile(*dependentFileIt);
 		}
-		cout << __FILE__ << "::" << __LINE__ <<endl; 
 }
 
 static void copyAllFilesToWorkingDir(vector<string> files, string path){
@@ -109,11 +142,21 @@ static void copyAllFilesToWorkingDir(vector<string> files, string path){
 
 /*usar quartus_map, quartus_fit e quartus_asm*/
 void HardwareProject::compileProject(){
+	for (map<string, XilinxProjectHandler*>::iterator it = reconfRegionsProjectHandlers.begin(); it != reconfRegionsProjectHandlers.end(); it++){
+
+		it->second->compileProject();
+
+	}
+
+		
+	//AlteraProjectHandler *manager = new AlteraProjectHandler(this->projectName());
+
+	/* TODO put all of this in the AlteraProjectHandler.cpp
     chdir(projectPath.c_str());
     copyAllFilesToWorkingDir(projectFiles, projectPath);
 
     copyAllFilesToWorkingDir(vector<string>(hardwareComponentXmlParser->dependencyFiles.begin(), hardwareComponentXmlParser->dependencyFiles.end()), projectPath);
-	string systemCommand = "";
+		string systemCommand = "";
     systemCommand += "C:/altera/70/quartus/bin/quartus_sh -t \"" + projectPath + "config_file.tcl\"";  //compiler executable name
     cout<<"executing system command"<<systemCommand<<endl;
     system(systemCommand.c_str());
@@ -141,6 +184,7 @@ void HardwareProject::compileProject(){
 	systemCommand += "\"" + projectPath+"/"+projectName + "\"";
     cout<<"executing system command"<<systemCommand<<endl;
 	system(systemCommand.c_str());
+	*/
 }
 
 void HardwareProject::addFile(string file){

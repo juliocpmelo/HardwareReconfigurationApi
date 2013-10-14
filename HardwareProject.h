@@ -6,6 +6,7 @@
 #include "HardwareProjectXmlParser.h"
 #include "HardwareComponent.h"
 #include "ReconfigurableRegion.h"
+#include "XilinxProjectHandler.h"
 #include <iostream>
 #include <map>
 #include <vector>
@@ -29,6 +30,11 @@ class HardwareProject{
 
 
 		HardwareComponent *topLevelComponent;
+		/**
+		 *\member reconfRegionsProjectHandlers will hold a ProjectHanlder instance to each reconfigurable
+		 *region managed
+		 */
+		std::map<std::string, XilinxProjectHandler*> reconfRegionsProjectHandlers;
 	public:
 		/**
 		*\param projectName project name
