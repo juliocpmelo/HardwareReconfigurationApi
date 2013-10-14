@@ -79,6 +79,8 @@ int main(int argc, char *argv[]){
 								topComponent->createSoftwareAccess("buffersApDone");
 								topComponent->createSoftwareAccess("buffersApIdle");
 								topComponent->createSoftwareAccess("buffersApReady");
+								topComponent->createSoftwareAccess("systemStart");
+
                 region->assignTopComponent(topComponent);
 
 
@@ -129,7 +131,7 @@ int main(int argc, char *argv[]){
 
                 project->generateHDLFiles(topComponent);
                 //project->generateConfigFile();
-                //project->compileProject();
+                project->compileProject();
 								//
 								cout<<"hardware component successfully generated"<<endl;
     
