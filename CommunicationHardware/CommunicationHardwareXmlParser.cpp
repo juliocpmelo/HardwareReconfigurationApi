@@ -36,11 +36,11 @@ HardwareComponent* CommunicationHardwareXmlParser::parseCommunicationHardwareNod
 
 	/*define dataWidth and addressWidth if the user didnt*/
 	if (componentInfo->componentParameters.count("commHardware_dataWidth") == 0){
-		HardwareComponent::Param info = {"commHardware_dataWidth", INTEGER_TYPE("","",""), "32"};
+		HardwareComponent::Param info = {"commHardware_dataWidth", INTEGER_TYPE("","",""),"32","32"};
 		componentInfo->componentParameters[info.name] = info;	
 	}
 	if (componentInfo->componentParameters.count("commHardware_addressWidth") == 0){
-		HardwareComponent::Param info = {"commHardware_addressWidth", INTEGER_TYPE("","",""), "32"};
+		HardwareComponent::Param info = {"commHardware_addressWidth", INTEGER_TYPE("","",""),"32","32"};
 		componentInfo->componentParameters[info.name] = info;
 	}
 
