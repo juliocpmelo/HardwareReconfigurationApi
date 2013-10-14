@@ -261,14 +261,38 @@ void HardwareComponent::addChildObject(sc_object * child){
 }
 
 string HardwareComponent::getParamValue(std::string paramName){
-	if(instanceParameters.count(paramName) != 0 )
+	if(instanceParameters.count(paramName) != 0 ){
+		cout<< "request parameter "<< paramName << " with value " <<instanceParameters[paramName].value<<endl;
 		return instanceParameters[paramName].value;
-	else
+	}
+	else{
+		cout<< "param "<< paramName << " not found in component " <<this->name()<<endl; 
+		cout<< "please check component definitions"<<endl; 
 		return "0";
+	}
+}
+
+std::set<std::string> HardwareComponent::getDependentFiles(){
+	set<string> dependentFiles;
+	vector<sc_object*> children = this->get_child_objects();
+	for(vector<sc_object*>::iterator it = children.begin(); it != children.end(); it++){
+		if((*it)->kind() == "sc_module") {
+			HardwareComponent *comp = dynamic_cast<HardwareComponent*>(*it);
+			if(comp->componentInfo->dependencyFiles.size() == 0){
+				set<string> dependencies = comp->getDependentFiles();
+				dependentFiles.insert(dependencies.begin(), dependencies.end());
+			}
+			else{
+				set<string> dependencies = comp->componentInfo->dependencyFiles;
+				dependentFiles.insert(dependencies.begin(), dependencies.end());
+			}
+		}
+	}
+	return dependentFiles;
+	
 }
 
 void HardwareComponent::setParamValue(std::string paramName, std::string value){
 	if(instanceParameters.count(paramName) != 0 )
 		instanceParameters[paramName].value = value;
-
 }

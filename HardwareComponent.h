@@ -255,6 +255,7 @@ SC_MODULE(HardwareComponent) {
 		void portMap(std::string selfPortName, sc_port_base* port);
 		void portMap(std::string selfPortName, sc_signal_resolved* signal);
 		void addChildObject(sc_object *child);
+		std::set<std::string> getDependentFiles();
 
 		std::string getParamValue(std::string paramName);
 		void setParamValue(std::string paramName, std::string value);
