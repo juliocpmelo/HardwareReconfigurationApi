@@ -265,6 +265,10 @@ std::string HardwareComponentConverterVHDL::translateDeclaration(HardwareCompone
 
 }
 
+std::string HardwareComponentConverterVHDL::getNameForHardwareComponentFile(std::string projectPath, HardwareComponent *topComponent){
+  string fileLocation = projectPath+"/"+topComponent->name()+".vhdl";
+	return fileLocation;
+}
 
 
 void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, HardwareComponent *topComponent){

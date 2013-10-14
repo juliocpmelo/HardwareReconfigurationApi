@@ -20,6 +20,7 @@ class HardwareComponentConverterVHDL{
 		std::string translateSignal(sc_signal_resolved *signal);
 		std::string translateDeclaration(HardwareComponent::HardwareComponentInfo* compInfo);
 
+		std::string getNameForHardwareComponentFile(std::string projectPath, HardwareComponent *topComponent);
 		void buildTopComponentFile(std::string projectPath, HardwareComponent *topComponent);
 
 		std::set<sc_signal_resolved* > getSignals(HardwareComponent *comp);
