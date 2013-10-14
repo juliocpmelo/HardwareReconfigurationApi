@@ -70,6 +70,7 @@ std::string CommunicationHardwareConverterVHDL::getPadString(int size, int desir
 	
 	int binPartSize = (desiredSize - size)%4;
 
+	cout << "running get pad string to " << size << " , " << desiredSize<< endl;
 	if (hexPartSize > 0) {
 		retString += "x\"";
 		for (int i=0; i<hexPartSize; i++)
@@ -92,8 +93,13 @@ std::string CommunicationHardwareConverterVHDL::getPadString(int size, int desir
 	
 }
 
+std::string CommunicationHardwareConverterVHDL::getNameForReconfRegionFile(std::string projectPath, ReconfigurableRegion *reg){
+	string fileLocation = projectPath + "/CommunicationHardware_" + reg->name + ".vhdl";
+	return fileLocation;
+}
 
-void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(ReconfigurableRegion *reg, std::string projectPath){
+
+void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std::string projectPath, ReconfigurableRegion *reg){
 
 	ofstream outFile;
 
@@ -221,9 +227,10 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(Reco
 		outFile <<"if rising_edge(clk) and mode ='0' then"<<endl;
 
 		int addrCount = 0;
+		cout << __FILE__ << "::" << __LINE__ <<endl;
 
-		int commHardwareDataWidth = atoi((communicationHardwareComponent->getParamValue("dataWidth")).c_str());
-		int commHardwareAddressWidth = atoi((communicationHardwareComponent->getParamValue("addressWidth")).c_str());
+		int commHardwareDataWidth = atoi((communicationHardwareComponent->getParamValue("commHardware_dataWidth")).c_str());
+		int commHardwareAddressWidth = atoi((communicationHardwareComponent->getParamValue("commHardware_addressWidth")).c_str());
 
 		set<string>::iterator lastInterface = swAccessibleInterfaces.end();
 		if( swAccessibleInterfaces.size() > 0 )

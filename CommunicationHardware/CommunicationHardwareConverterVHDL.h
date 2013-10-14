@@ -33,8 +33,9 @@ class CommunicationHardwareConverterVHDL : public HardwareComponentConverterVHDL
 		void buildComponentDescription(std::string componentPath, HardwareComponent* communicationHardware);
 
 		sc_signal_resolved* getSignalToSwInterface(HardwareComponent::PortInfo *swInterface);
-			
-		void buildEntityForReconfigurableRegion(ReconfigurableRegion *reg, std::string projectPath);
+
+		std::string getNameForReconfRegionFile(std::string projectPath, ReconfigurableRegion *reg);
+		void buildEntityForReconfigurableRegion(std::string projectPath, ReconfigurableRegion *reg);
 		void buildRegisterSet(HardwareComponent* topComponent);
 		void buildReadProcess();
 		void buildWriteProcess();
