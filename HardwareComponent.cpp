@@ -19,7 +19,7 @@ void HardwareComponent::createSoftwareAccess(std::string portName){
 		softwareAccessiblePorts.insert(portName);
 	}
 	else{
-		//port not found
+		cout << "WARNING : HardwareComponent::createSoftwareAccess failed because port " << portName << " was not found " <<endl;
 	}
 }
 
@@ -136,7 +136,6 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 			else{
 				sc_signal_resolved *sig = new sc_signal_resolved();
 
-
 				sc_attribute<HardwareComponent::DataType*> *signalType = new sc_attribute<HardwareComponent::DataType*>("DataType",ports[selfPortName]->type->clone());
 				sig->add_attribute(*signalType);
 
@@ -144,7 +143,6 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 
 				(*bindedPort)(*sig);
 				(*selfPort)(*sig);
-				cout<<"adding PortConnection to "<< selfPort->name() << " and " << bindedPort->name()<< endl;
 				selfPort->add_attribute(*portConnectionAttr);
 				bindedPort->add_attribute(*portConnectionAttr);
 				
@@ -168,6 +166,10 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 			}
 			else{ //binds both ports through a signal
 				sc_signal_resolved *sig = new sc_signal_resolved();
+
+				sc_attribute<HardwareComponent::DataType*> *signalType = new sc_attribute<HardwareComponent::DataType*>("DataType",ports[selfPortName]->type->clone());
+				sig->add_attribute(*signalType);
+
 				sc_attribute< sc_signal_resolved* > *portConnectionAttr = new sc_attribute< sc_signal_resolved* >("PortConnection",sig);
 
 				(*bindedPort)(*sig);
@@ -219,6 +221,10 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 			}
 			else{ //binds both ports through a signal
 				sc_signal_resolved *sig = new sc_signal_resolved();
+
+				sc_attribute<HardwareComponent::DataType*> *signalType = new sc_attribute<HardwareComponent::DataType*>("DataType",ports[selfPortName]->type->clone());
+				sig->add_attribute(*signalType);
+
 				sc_attribute< sc_signal_resolved* > *portConnectionAttr = new sc_attribute< sc_signal_resolved* >("PortConnection",sig);
 
 				(*bindedPort)(*sig);

@@ -104,7 +104,11 @@ std::string HardwareComponentConverterVHDL::translateSignal(sc_signal_resolved* 
 	cout<<"proecessing signal "<<signal->name()<<endl;
 	sc_attribute<HardwareComponent::DataType*> *type = dynamic_cast<sc_attribute<HardwareComponent::DataType*>*>(signal->get_attribute("DataType"));
 
-	convertedSignal<<"signal "<<signal->name()<<" : "<<translateType(type->value);
+	if (type) 
+		convertedSignal<<"signal "<<signal->name()<<" : "<<translateType(type->value);
+	else
+		convertedSignal<<"signal "<<signal->name()<<" : null type";
+
 	return convertedSignal.str();
 }
 
@@ -389,7 +393,7 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 							if( connectedPort != NULL){ //if any of the component's a port is connected to the current channel it is a direct connection
 								cout<<"port "<<connectedPort->name() << " directly connected to "<<port->name()<<endl;
 								portMap += port->basename();
-							 	portMap += "->";
+							 	portMap += "=>";
 							  portMap += connectedPort->basename();
 							  portMap += ",\n";
 
@@ -398,7 +402,7 @@ void HardwareComponentConverterVHDL::buildTopComponentFile(string projectPath, H
 								cout<<"port "<<port->name()<<" conneted through signal "<<channel->name()<<endl;
 
 								portMap += port->basename();
-							 	portMap += "->";
+							 	portMap += "=>";
 							  portMap += channel->basename();
 							  portMap += ",\n";
 							}
