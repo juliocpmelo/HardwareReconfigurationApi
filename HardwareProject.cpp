@@ -106,7 +106,7 @@ void HardwareProject::generateHDLFiles(HardwareComponent *comp){
 						return;
 					}
 				}
-				reconfRegionsProjectHandlers[it->first] = new XilinxProjectHandler("CommunicationHardware_" + it->first, this->projectPath + "/HardwareReconfigurationAPI/" + it->first);
+				reconfRegionsProjectHandlers[it->first] = new XilinxProjectHandler(it->first + "_communicationHardware", this->projectPath + "/HardwareReconfigurationAPI/" + it->first);
 			}
 
 			if(it->second->assignedTopComponent)

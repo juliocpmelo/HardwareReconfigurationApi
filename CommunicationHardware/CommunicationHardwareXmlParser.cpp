@@ -54,8 +54,12 @@ HardwareComponent* CommunicationHardwareXmlParser::parseCommunicationHardwareNod
 
 	HardwareComponent::PortInfo addressPort = {"commHardware_address", VECTOR_TYPE("commHardware_addressWidth - 1", "downto", "0"), HardwareComponent::PortType_in, NULL};
 	componentInfo->inputs[addressPort.name] = addressPort;
+
+	HardwareComponent::PortInfo modePort = {"commHardware_mode", BIT_TYPE, HardwareComponent::PortType_in, NULL};
+	componentInfo->inputs[modePort.name] = modePort;
+	
 		
-	HardwareComponent::PortInfo clkPort = {"commHardware_clk", BIT_TYPE};
+	HardwareComponent::PortInfo clkPort = {"commHardware_clk", BIT_TYPE, HardwareComponent::PortType_in, NULL};
 	componentInfo->inputs[clkPort.name] = clkPort;
 		
 
