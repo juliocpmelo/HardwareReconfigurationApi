@@ -106,14 +106,7 @@ void HardwareProject::generateHDLFiles(HardwareComponent *comp){
 						return;
 					}
 				}
-				reconfRegionsProjectHandlers[it->first] = new XilinxProjectHandler(this->projectName + "_" + it->first, this->projectPath + "/HardwareReconfigurationAPI/" + it->first);
-			}
-			if (mkdir (string(this->projectPath + "/HardwareReconfigurationAPI/" + it->second->name).c_str(), 0755) == -1) {
-				if (errno != EEXIST){
-					cout <<"Failed to create directory " << this->projectPath + "/HardwareReconfigurationAPI/" + it->second->name << endl;
-					cout <<"System generation will be ended " << endl;
-					return;
-				}	
+				reconfRegionsProjectHandlers[it->first] = new XilinxProjectHandler("CommunicationHardware_" + it->first, this->projectPath + "/HardwareReconfigurationAPI/" + it->first);
 			}
 
 			if(it->second->assignedTopComponent)
@@ -121,8 +114,8 @@ void HardwareProject::generateHDLFiles(HardwareComponent *comp){
 			communicationHardwareConverter->buildEntityForReconfigurableRegion(this->projectPath + "/HardwareReconfigurationAPI/"+ it->first, it->second);
 			
 			/*adding dependent files*/
-			reconfRegionsProjectHandlers[it->first]->addFile(communicationHardwareConverter->getNameForReconfRegionFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second));
-			reconfRegionsProjectHandlers[it->first]->addFile(converter->getNameForHardwareComponentFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second->assignedTopComponent));
+			reconfRegionsProjectHandlers[it->first]->addFile(communicationHardwareConverter->getNameForReconfRegionFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second), true);
+			reconfRegionsProjectHandlers[it->first]->addFile(converter->getNameForHardwareComponentFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second->assignedTopComponent), true);
 			set<string> dependentFiles = it->second->assignedTopComponent->getDependentFiles();
 			for(set<string>::iterator dependentFileIt = dependentFiles.begin(); dependentFileIt != dependentFiles.end(); dependentFileIt ++)
 				reconfRegionsProjectHandlers[it->first]->addFile(*dependentFileIt);
