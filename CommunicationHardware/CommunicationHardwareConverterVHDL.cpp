@@ -231,7 +231,6 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 		outFile <<"if rising_edge(commHardware_clk) and commHardware_mode ='0' then"<<endl;
 
 		int addrCount = 0;
-		cout << __FILE__ << "::" << __LINE__ <<endl;
 
 		int commHardwareDataWidth = atoi((communicationHardwareComponent->getParamValue("commHardware_dataWidth")).c_str());
 		int commHardwareAddressWidth = atoi((communicationHardwareComponent->getParamValue("commHardware_addressWidth")).c_str());
@@ -284,40 +283,45 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 
 		addrCount = 0;
 
-		cout << __FILE__ << "::" << __LINE__ <<endl;
+		bool isFirstWritePort = true;
+
 		for(set<string>::iterator it = swAccessibleInterfaces.begin(); it!= swAccessibleInterfaces.end(); it ++){
 
 			HardwareComponent::PortInfo *swAccessibleInterface = reg->assignedTopComponent->ports[*it];
 
-			stringstream addrHex;
+			if (swAccessibleInterface->portType != HardwareComponent::PortType_out) { //only create sw write interfaces to in or inout ports
+				stringstream addrHex;
 
-			addrHex<<std::hex<<addrCount<<std::dec;
+				addrHex<<std::hex<<addrCount<<std::dec;
 
-			/*the string is already in hex format so its size is multiplied by 4*/
-			string paddedAddr = getPadString(addrHex.str().length() * 4, commHardwareAddressWidth);
-			paddedAddr += " & x\"" + addrHex.str() + "\"";
+				/*the string is already in hex format so its size is multiplied by 4*/
+				string paddedAddr = getPadString(addrHex.str().length() * 4, commHardwareAddressWidth);
+				paddedAddr += " & x\"" + addrHex.str() + "\"";
 
 
-			cout << " requiring size from "<<*it<<endl;
-			string paddedDataReg = getPadString(swAccessibleInterface->type->size(),commHardwareDataWidth);
-			paddedDataReg += " & " + swAccessibleInterface->name + "_reg;";
 
-			if (it == swAccessibleInterfaces.begin())
-				outFile <<"\t"<<"if commHardware_address = "<<paddedAddr<<" then"<<endl;
-			else
-				outFile <<"\t"<<"elsif commHardware_address = "<<paddedAddr<<" then"<<endl;
+				cout << " requiring size from "<<*it<<endl;
+				string paddedDataReg = getPadString(swAccessibleInterface->type->size(),commHardwareDataWidth);
+				paddedDataReg += " & " + swAccessibleInterface->name + "_reg;";
 
-			if(swAccessibleInterface->type->size() > 1)
-				outFile <<"\t"<<"\t"<<swAccessibleInterface->name + "_reg <= commHardware_dataIn("<<swAccessibleInterface->type->size()-1<<" downto 0);"<<endl;
-			else
-				outFile <<"\t"<<"\t"<<swAccessibleInterface->name + "_reg <= commHardware_dataIn(0);"<<endl;
+				if (isFirstWritePort)
+					outFile <<"\t"<<"if commHardware_address = "<<paddedAddr<<" then"<<endl;
+				else
+					outFile <<"\t"<<"elsif commHardware_address = "<<paddedAddr<<" then"<<endl;
 
-			if (it == lastInterface)
-				outFile <<"\t"<<"end if;"<<endl;
+				if(swAccessibleInterface->type->size() > 1)
+					outFile <<"\t"<<"\t"<<swAccessibleInterface->name + "_reg <= commHardware_dataIn("<<swAccessibleInterface->type->size()-1<<" downto 0);"<<endl;
+				else
+					outFile <<"\t"<<"\t"<<swAccessibleInterface->name + "_reg <= commHardware_dataIn(0);"<<endl;
 
+				if (it == lastInterface)
+					outFile <<"\t"<<"end if;"<<endl;
+
+				isFirstWritePort = false;
+
+			}
 			addrCount ++;
 		}
-		cout << __FILE__ << "::" << __LINE__ <<endl;
 		outFile <<"end if;"<<endl;
 
 
