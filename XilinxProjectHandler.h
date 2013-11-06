@@ -7,6 +7,8 @@ class XilinxProjectHandler {
 	public:
 		std::string projectName;
 		std::string projectPath;
+		std::string reconfRegionName;
+
 		std::string prjFileName;
 		std::string optFileName;
 
@@ -18,7 +20,7 @@ class XilinxProjectHandler {
 		 * \param projectName the name of the corresponding project
 		 * \param projectPath the path where the project files should be put/generated
 		 **/
-		XilinxProjectHandler(std::string projectName, std::string projectPath);
+		XilinxProjectHandler(std::string projectName, std::string projectPath, std::string reconfRegionName);
 
 		/*
 		 * \brief adds a file into the project
@@ -36,8 +38,16 @@ class XilinxProjectHandler {
 		void copyFile(std::string file, std::string destPath);
 		void removeFile(std::string file);
 		void buildProjectFile(std::string projectFilePath);
-		void compileProject();
+
+		/**
+		 * \brief in the compilation process will run on the directory containing the PlanAhead project,
+		 * thus this function takes those parameters as arguments
+		 * \param hardwareProjectName the name of the PlanAhead project to be used in the compilation
+		 * \param hardwareProjectPath the root path that contains a PA directory with the PlanAhead related files
+		 * */
+		void compileProject(std::string hardwareProjectName, std::string hardwareProjectPath);
 		void generateConfigFiles();
+
 };
 
 #endif
