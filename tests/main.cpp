@@ -30,11 +30,12 @@ int main(int argc, char *argv[]){
             case 'a':
             {
                 cout<<"generating through software"<<endl;
-                HardwareProject *project = new HardwareProject("D:/AutonomicSegmentationSystem/AutonomicImageProcessingDesc.xml");
+                HardwareProject *project = new HardwareProject("D:/ASS/ASS.xml");
 
 
 								/*each reconfigurable region should have a corresponding communicationHardware description*/
-								ReconfigurableRegion *region = project->getReconfigurableRegion("AutonomicSegmentation");
+								ReconfigurableRegion *region = project->getReconfigurableRegion("AutonomicImageSegmentation");
+
 								//ReconfigurableRegion *region = project->getReconfigurableRegion("RegionA");
 
 								ComponentDatabase *database = new ComponentDatabase();
