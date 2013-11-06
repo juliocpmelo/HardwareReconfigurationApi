@@ -15,3 +15,10 @@ void ReconfigurableRegion::assignTopComponent(HardwareComponent* component){
 
 	this->assignedTopComponent = component;
 }
+
+void ReconfigurableRegion::setBitstreams(std::string totalBitstream, std::string partialBitstream){
+
+	this->totalBitstream = totalBitstream;
+	this->partialBitstream = partialBitstream;
+
+}

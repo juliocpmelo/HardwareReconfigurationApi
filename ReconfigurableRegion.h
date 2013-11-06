@@ -25,6 +25,10 @@ class ReconfigurableRegion {
 		 * hardware project.
 		 */
 		std::string name;
+
+		std::string totalBitstream;
+
+		std::string partialBitstream;
 	public:
 			
 
@@ -44,6 +48,8 @@ class ReconfigurableRegion {
 		 * !param component the component to be assigned
 		 */
 		void assignTopComponent(HardwareComponent* component);
+
+		void setBitstreams(std::string totalBitstream, std::string partialBitstream);
 		
 
 };
