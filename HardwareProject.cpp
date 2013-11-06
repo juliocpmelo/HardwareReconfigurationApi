@@ -106,7 +106,7 @@ void HardwareProject::generateHDLFiles(HardwareComponent *comp){
 						return;
 					}
 				}
-				reconfRegionsProjectHandlers[it->first] = new XilinxProjectHandler(it->first + "_communicationHardware", this->projectPath + "/HardwareReconfigurationAPI/" + it->first);
+				reconfRegionsProjectHandlers[it->first] = new XilinxProjectHandler(it->first + "_communicationHardware", this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->first);
 			}
 
 			if(it->second->assignedTopComponent)
@@ -133,13 +133,27 @@ static void copyAllFilesToWorkingDir(vector<string> files, string path){
     }
 }
 
-/*usar quartus_map, quartus_fit e quartus_asm*/
 void HardwareProject::compileProject(){
 	for (map<string, XilinxProjectHandler*>::iterator it = reconfRegionsProjectHandlers.begin(); it != reconfRegionsProjectHandlers.end(); it++){
+		it->second->compileProject(projectName, projectPath);
 
-		it->second->compileProject();
 
+		//$PROJECT_DIRECTORY/$PROJECT_NAME.runs/$RUN_NAME/${RUN_NAME}.bit
+		string runName ("rm1_run");
+		string totalBitstreamFile = it->second->projectPath + "/" + it->first + "_total.bit";
+		string partialBitstreamFile = it->second->projectPath + "/" + it->first + "_partial.bit";
+		cout <<"bitstream generated:"<<endl<<"total: " + totalBitstreamFile<<endl<<"partial: " + partialBitstreamFile<<endl;
+
+		managedReconfRegions[it->first]->setBitstreams(totalBitstreamFile, partialBitstreamFile);
 	}
+
+
+
+	
+
+
+
+
 
 		
 	//AlteraProjectHandler *manager = new AlteraProjectHandler(this->projectName());
@@ -188,6 +202,8 @@ ReconfigurableRegion* HardwareProject::getReconfigurableRegion(std::string name)
 
 	if (managedReconfRegions.count(name) > 0)
 		return managedReconfRegions[name];
+	else
+		cout << "WARNING: reconf region " << name << " not found, returning NULL" <<endl;
 	return NULL;
 }
 
