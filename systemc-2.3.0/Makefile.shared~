@@ -1,6 +1,6 @@
 
 #includes do system-c
-INCLUDES=./include
+INCLUDES=-I./include
 
 COMPONENT_NAME=systemc
 
@@ -15,13 +15,13 @@ OBJS=$(shell find ./systemc_installation -name '*.o')
 all: $(dummy:.cpp=.o) executable
 
 executable:
-	$(CXX) -shared -fPIC -o lib-cygwin/lib$(COMPONENT_NAME).dll $(OBJS) $(dummy:.cpp=.o) $(LDFLAGS) -lpthread -lm -ggdb
+	$(CXX) -shared -fPIC -o lib-cygwin/lib$(COMPONENT_NAME).dll $(OBJS) $(LDFLAGS) -lpthread -lm -ggdb
 
 cleanobjs:
 	rm -f $(OBJS)
 
 clean: cleanobjs
-	rm -f lib/$(COMPONENT_NAME).dll
+	rm -f lib-cygwin/$(COMPONENT_NAME).dll
 
 distclean: clean
 	rm -f $(COMPONENT_NAME)

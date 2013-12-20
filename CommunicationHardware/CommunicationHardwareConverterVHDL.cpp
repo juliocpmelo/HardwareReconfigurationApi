@@ -237,14 +237,30 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 		outFile <<"readProcess: process(commHardware_clk)"<<endl<<"begin"<<endl;
 		outFile <<"if rising_edge(commHardware_clk) and commHardware_mode ='0' then"<<endl;
 
-		int addrCount = 0;
+		int addrCount = 1;
 
 		int commHardwareDataWidth = atoi((communicationHardwareComponent->getParamValue("commHardware_dataWidth")).c_str());
 		int commHardwareAddressWidth = atoi((communicationHardwareComponent->getParamValue("commHardware_addressWidth")).c_str());
 
+		/*TODO identify each reconf region and add a unique ID for each*/
+		int deviceId = 46;
+
+
 		set<string>::iterator lastInterface = swAccessibleInterfaces.end();
 		if( swAccessibleInterfaces.size() > 0 )
 			lastInterface --;
+
+
+		string deviceIdAddr = "0";
+
+		/*the string is already in hex format so its size is multiplied by 4*/
+		string paddedAddr = getPadString(deviceIdAddr.length() * 4, commHardwareAddressWidth);
+		paddedAddr += " & x\"" + deviceIdAddr + "\"";
+		outFile <<"\t"<<"if commHardware_address = "<<paddedAddr<<" then"<<endl;
+
+
+		string padToId = getPadString(8,commHardwareDataWidth);
+		outFile <<"\t"<<"\t"<<"commHardware_dataOut	<= "<<padToId<<" & x\""<<std::hex<<deviceId<<std::dec<< "\";"<<endl;
 
 		for(set<string>::iterator it = swAccessibleInterfaces.begin(); it!= swAccessibleInterfaces.end(); it ++){
 
@@ -262,10 +278,7 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 			string paddedDataReg = getPadString(swAccessibleInterface->type->size(),commHardwareDataWidth);
 			paddedDataReg += " & " + swAccessibleInterface->name + "_reg;";
 
-			if (it == swAccessibleInterfaces.begin())
-				outFile <<"\t"<<"if commHardware_address = "<<paddedAddr<<" then"<<endl;
-			else
-				outFile <<"\t"<<"elsif commHardware_address = "<<paddedAddr<<" then"<<endl;
+			outFile <<"\t"<<"elsif commHardware_address = "<<paddedAddr<<" then"<<endl;
 
 			outFile <<"\t"<<"\t"<<"commHardware_dataOut	<= "<<paddedDataReg<<endl;
 
@@ -275,6 +288,9 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 			//		outFile<<translateSignal(convertedSignal)<<";"<<endl;
 			addrCount ++;
 		}
+		if(addrCount == 1)
+			outFile <<"\t"<<"end if;"<<endl;
+
 		outFile <<"end if;"<<endl;
 
 
@@ -288,7 +304,7 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 		outFile <<"writeProcess: process(commHardware_clk)"<<endl<<"begin"<<endl;
 		outFile <<"if rising_edge(commHardware_clk) and commHardware_mode ='1' then"<<endl;
 
-		addrCount = 0;
+		addrCount = 1;
 
 		bool isFirstWritePort = true;
 

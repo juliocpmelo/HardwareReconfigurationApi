@@ -41,7 +41,7 @@ if [ "$#" -gt 0 ]; then
 
 	start_time=`date +%s`
 
-#	$PLANAHEAD_DIRECTORY/bin/planahead -mode batch -source compilationScript.tcl -tclargs "$PROJECT_DIRECTORY/PA" $PROJECT_NAME $RUN_NAME $PR_PARTITION $RECONF_COMPONENT_NAME $RECONF_MODULE_NAME $NGC_FILE
+	$PLANAHEAD_DIRECTORY/bin/planahead -mode batch -source compilationScript.tcl -tclargs "$PROJECT_DIRECTORY/PA" $PROJECT_NAME $RUN_NAME $PR_PARTITION $RECONF_COMPONENT_NAME $RECONF_MODULE_NAME $NGC_FILE
 	
 	end_time=`date +%s`
 

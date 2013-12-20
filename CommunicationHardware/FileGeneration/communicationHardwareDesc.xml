@@ -9,7 +9,7 @@
 <hardwareProject name="" path="">
 
 
-	<reconfigurableRegion name="reg1">
+	<reconfigurableRegion name="region1">
 		<communicationHardware>
 			<!--
 					 These params define the size of the data and address 
@@ -26,7 +26,7 @@
 		</communicationHardware>
 	</reconfigurableRegion>
 
-	<reconfigurableRegion name="reg2">
+	<reconfigurableRegion name="region2">
 		<communicationHardware>
 
 			<!--
@@ -47,3 +47,5 @@
 
 
 </hardwareProject>
+
+

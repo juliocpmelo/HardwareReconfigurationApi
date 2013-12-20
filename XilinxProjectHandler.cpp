@@ -115,7 +115,7 @@ void XilinxProjectHandler::compileProject(std::string hardwareProjectName, std::
 	chdir(projectPath.c_str());
 	xflowCommand += string("/xflow.exe") + string(" -p ") + string(" xc5vlx110tff1136-1 ") + string(" -synth ") + string(projectName + ".opt ") + "./" + projectName + ".prj";
 
-//	system(xflowCommand.c_str());
+	system(xflowCommand.c_str());
 
 
 
@@ -128,7 +128,7 @@ void XilinxProjectHandler::compileProject(std::string hardwareProjectName, std::
 	planAheadScriptcommand += string("/xilinxScripts/planAheadCompileRM.sh ") + hardwareProjectName + " " + hardwareProjectPath + " " + reconfRegionName + " rm1 " + pathForNgcFile;
 	
 	cout << "COMPILING DESIGNS" << endl;
-//	system(planAheadScriptcommand.c_str());
+	system(planAheadScriptcommand.c_str());
 	
 	cout << "GENERATING BITSTREAMS" << endl;
 	bitGenScriptcommand += string("/xilinxScripts/planAheadGenerateRMBitStream.sh ") + hardwareProjectName + " " + hardwareProjectPath + " " + reconfRegionName + " rm1 " + pathForNgcFile;

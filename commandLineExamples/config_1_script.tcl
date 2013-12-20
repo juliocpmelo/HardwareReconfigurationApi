@@ -4,8 +4,9 @@
 # 1 projectName
 # 2 runName
 # 3 prPartition
-# 4 reconfModuleName
-# 5 ngcFile
+# 4 reconfComponentName
+# 5 reconfModuleName
+# 6 ngcFile
 
 
 
@@ -13,16 +14,43 @@ set projectPath [lindex $argv 0]
 set projectName [lindex $argv 1]
 set runName  [lindex $argv 2]
 set prPartition  [lindex $argv 3]
-set reconfModuleName  [lindex $argv 4]
-set ngcFile  [lindex $argv 5]
+set reconfComponentName  [lindex $argv 4]
+set reconfModuleName  [lindex $argv 5]
+set ngcFile  [lindex $argv 6]
+
+set bbModuleName [string tolower $reconfComponentName]
 
 open_project  "$projectPath/$projectName.ppr"
 
 #still dont know what this command do, however the netlist_1 should be the same in every project
 link_design -name netlist_1
 
+
+
+#check whether the run to be executed exists or not
+set runList [ get_runs $runName ]
+
+if {[llength runList]} {
+
+	#sets the active module to be the black box one
+	load_reconfig_modules -reconfig_modules "$prPartition:${bbModuleName}_bb"
+
+	puts "excluding run $runName and module $prPartition:$reconfModuleName"
+
+	delete_reconfig_module "$prPartition:$reconfModuleName"
+
+	delete_run $runName 
+}
+
+
+
+
+
+
+#delete_reconfig_module "$prPartition:$reconfModuleName"
+
 #creates a reconfigurable module in the target partition
-create_reconfig_module -name $reconfModuleName -cell $prPartition
+create_reconfig_module -force -name $reconfModuleName -cell $prPartition
 
 #imports the ngc file into the reconfigurable module
 import_files -fileset "[string map {/ ~} $prPartition]#$reconfModuleName" -force -norecurse $ngcFile

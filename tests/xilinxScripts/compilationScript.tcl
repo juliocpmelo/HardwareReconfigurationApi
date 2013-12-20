@@ -29,15 +29,24 @@ link_design -name netlist_1
 
 #check whether the run to be executed exists or not
 set runList [ get_runs $runName ]
+set nRuns [llength runList]
 
-if {[llength runList]} {
+puts "run list $runList"
+
+if {[llength $runList]} {
 
 	#sets the active module to be the black box one
 	load_reconfig_modules -reconfig_modules "$prPartition:${bbModuleName}_bb"
 
-	puts "excluding run $runName and module $prPartition:$reconfModuleName"
 
-	delete_reconfig_module "$prPartition:$reconfModuleName"
+	set rmList [ get_reconfig_modules $reconfModuleName ]
+	set nModules [llength $rmList]
+	puts "excluding run $runName and module $prPartition:$reconfModuleName $nModules"
+	if {[llength $rmList]} {
+		delete_reconfig_module "$prPartition:$reconfModuleName"
+	}
+
+
 
 	delete_run $runName 
 }

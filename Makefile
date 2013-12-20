@@ -1,32 +1,21 @@
-
 #includes do system-c
-INCLUDES=-I./ \
-				 -I./libxml2-2.7.8.win32/include \
-				 -I./systemc-2.3.0/include \
-				 -I./iconv-1.9.2.win32/include/ \
-				 -I./zlib-1.2.5/include/
+
+include Makefile.env
 
 COMPONENT_NAME=hardwarereconfigurationapi
-
-#libs do system-c
-LDFLAGS=-L./iconv-1.9.2.win32/lib -liconv \
-				-L./systemc-2.3.0/lib-cygwin -lsystemc \
-				-L./libxml2-2.7.8.win32/bin/ -lxml2 \
-				-L./zlib-1.2.5/bin -lz 
 
 CFLAGS=-Wall -fPIC -ggdb $(INCLUDES)
 CPPFLAGS=$(CFLAGS)
 
-SRCS=$(shell find ./ -maxdepth 1 -name '*.cpp')
-SRCS+=$(shell find ./CommunicationHardware -maxdepth 1 -name '*.cpp')
+FOLDERS=CommunicationModule \
+				CommunicationHardware
 
-OBJS=$(SRCS:.cpp=.o)
+all: $(OBJS)
+	$(foreach dir, $(FOLDERS), $(MAKE) -C $(dir);)
 
-all: $(OBJS) executable
-
-executable:
+lib:
 	@mkdir -p lib && echo $(SRCS)
-	  $(CXX) -shared -ggdb -o lib/lib$(COMPONENT_NAME).dll $(OBJS) $(LDFLAGS) -lpthread -lm
+	$(CXX) -shared -ggdb -o lib/lib$(COMPONENT_NAME).dll $(OBJS) $(LDFLAGS) -lpthread -lm
 
 cleanobjs:
 	rm -f $(OBJS)
@@ -36,4 +25,5 @@ clean: cleanobjs
 
 distclean: clean
 	rm -rf lib
+
 
