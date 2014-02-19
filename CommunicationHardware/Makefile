@@ -1,6 +1,4 @@
 include ../Makefile.env
 
-all: $(OBJS)
-
-
+INCLUDES += -I$(CURDIR)
 
