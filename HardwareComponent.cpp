@@ -282,7 +282,7 @@ std::set<std::string> HardwareComponent::getDependentFiles(){
 	set<string> dependentFiles;
 	vector<sc_object*> children = this->get_child_objects();
 	for(vector<sc_object*>::iterator it = children.begin(); it != children.end(); it++){
-		if((*it)->kind() == "sc_module") {
+		if((*it)->kind() == string("sc_module")) {
 			HardwareComponent *comp = dynamic_cast<HardwareComponent*>(*it);
 			if(comp->componentInfo->dependencyFiles.size() == 0){
 				set<string> dependencies = comp->getDependentFiles();
