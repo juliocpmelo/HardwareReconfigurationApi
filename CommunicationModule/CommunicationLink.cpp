@@ -4,9 +4,41 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <iostream>
+using namespace std;
 
 static uint8_t *receiveBuffer;
 static uint8_t *sendBuffer;
+
+/**
+ * \brief reads the first 4 bytes in buf and coverts then as the first
+ * for bytes of a int value, using the little endian format. Thus buf[0] is the
+ * msb and buf[3] is the lsb.
+ **/
+int readInt(unsigned char *buf){
+  int retVal = buf[3];
+  int aux = buf[2];
+  retVal = retVal | aux << 8;
+  aux = buf[1] ;
+  retVal = retVal | aux << 16;
+  aux = buf[0];
+  retVal = retVal | aux << 24;
+  return retVal;
+}
+
+/**
+ * \brief writes the bytes of value into buf using little endian format. Thus buf[0] is the
+ * msb and buf[3] is the lsb.
+ **/
+void writeInt(unsigned char *destBuf, int value){
+
+  destBuf[3] = (unsigned char) (value & 0x000000ff);
+  destBuf[2] = (unsigned char) ((value & 0x0000ff00) >> 8);
+  destBuf[1] = (unsigned char) ((value & 0x00ff0000) >> 16);
+  destBuf[0] = (unsigned char) ((value & 0xff000000) >> 24);
+}
+
+
 
 CommunicationLink::CommunicationLink(){
 	
@@ -74,24 +106,8 @@ Message* CommunicationLink::getMessage(){
 //	messageToReturn->messageType |= aux<<24;
 //	printf("Message size %d\n",(unsigned int)messageToReturn->messageSize);
 
-	if(messageToReturn->messageSize > this->maxMessageSize){
-		printf("Message size %d greater than max message size %d\n",(unsigned int) messageToReturn->messageSize, (unsigned int)this->maxMessageSize);
-		this->flushMessage(this, messageToReturn);
-		this->sendNACKMessage(this);
-		delete messageToReturn;
-		return NULL;
-	}
-
 	messageToReturn->messageContent = new unsigned char [messageToReturn->messageSize];
 
-
-	if(!messageToReturn->messageContent){
-		printf("Unable to alloc %d bytes to message \n", (unsigned int) messageToReturn->messageSize);
-		this->flushMessage(this, messageToReturn);
-		this->sendNACKMessage(this);
-		delete messageToReturn;
-		return NULL;
-	}
 
 	//bzero (messageToReturn->messageContent, messageToReturn->messageSize);
 	this->implGetMessage(messageToReturn->messageContent,messageToReturn->messageSize);
@@ -100,7 +116,8 @@ Message* CommunicationLink::getMessage(){
 	printf("message received\n[ t=%x, s=%x ]\n", messageToReturn->messageType, messageToReturn->messageSize);
 
 
-	this->sendACKMessage(this);
+	/*TODO send this to a specific implementation module*/
+//	this->sendACKMessage(this);
 
 	return messageToReturn;
 }
@@ -138,7 +155,7 @@ void CommunicationLink::sendMessage(Message* msg){
 void CommunicationLink::flushMessage(Message *msg){
 	//call receive function a number of times untill the message is totally flushed
 	int bytesToDiscart, i;
-	if (msg->messageSize > this->maxMessageSize)
+	if (msg->messageSize > (uint32_t)this->maxMessageSize)
 		bytesToDiscart = this->maxMessageSize;
 	else
 		bytesToDiscart = msg->messageSize;
@@ -159,19 +176,3 @@ void CommunicationLink::flushMessage(Message *msg){
 }
 
 
-/**
- * \brief reads the first 4 bytes in buf and coverts then as the first
- * four bytes of a int value, using the little endian format. Thus buf[0] is the
- * msb and buf[3] is the lsb.
- **/
-uint32_t readInt(uint8_t *buff){
-	uint32_t aux, retVal;
-	retVal = buff[3];
-	aux = buff[2];
-	retVal |= aux<<8;
-	aux = buff[1];
-	retVal |= aux<<16;
-	aux = buff[0];
-	retVal |= aux<<24;
-	return retVal;
-}

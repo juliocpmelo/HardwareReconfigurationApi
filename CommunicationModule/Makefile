@@ -1,8 +1,11 @@
 include ../Makefile.env
 
-INCLUDES=-I
+INCLUDES += -I$(CURDIR)
 
-all: $(OBJS)
+#include different folders for different communication links
+FOLDERS = uart
+
+
 
 
 

@@ -35,7 +35,7 @@ class CommunicationLink{
 	public:
 		CommunicationLink();
 		void sendMessage(Message * msg);
-		Message* CommunicationLink::getMessage();
+		Message* getMessage();
 		void setupCommunicationLink();
 		void sendAckMessage();
 		void sendNackMessage();

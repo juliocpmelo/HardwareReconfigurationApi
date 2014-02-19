@@ -1,7 +1,11 @@
 #include "CommunicationModule.h"
+#include <iostream>
+using namespace std;
 
 CommunicationModule::CommunicationModule(){
-	this->communicationLink = createCommunicationLink();
+	this->communicationLink = CommunicationLink::createCommunicationLink();
+
+	handlersTable = new std::map<MessageType, std::vector<MessageHandler*>* >();
 
 }
 
@@ -18,18 +22,17 @@ void CommunicationModule::communicationLoop(){
 
 		std::vector<MessageHandler*> *handlers;
 
-		if(handlersTable->count(msg->messageType) > 0){
-			handlers = handlersTable[msg->messageType];
+		if(handlersTable->count((MessageType) msg->messageType) > 0){
+			handlers = (*handlersTable)[(MessageType) msg->messageType];
 
 			for (std::vector<MessageHandler*>::iterator it = handlers->begin(); it != handlers->end(); it++){
 				(*it)->handleMessage(msg);
 			}
-
 		}
 	}
 }
 
-void CommunicationModule::addMessageHandler(MessageType messageType, MessageHandler *handler, void * handlerArgs){
+void CommunicationModule::addMessageHandler(MessageType messageType, MessageHandler *handler){
 	
 
 }

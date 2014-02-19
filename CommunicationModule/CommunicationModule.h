@@ -9,14 +9,15 @@
 
 class MessageHandler{
 	/*handles the message received*/
-	virtual void handleMessage(Message* message) = 0;
+	public:
+		virtual void handleMessage(Message* message) = 0;
 };
 
 /*TODO make it multi thread?*/
 
 class CommunicationModule{
 	public:
-		std::map<MessageType, std::vector<MessageHandler*> > handlers;
+		std::map<MessageType, std::vector<MessageHandler*>* > *handlersTable;
 
 		CommunicationLink *communicationLink;
 
