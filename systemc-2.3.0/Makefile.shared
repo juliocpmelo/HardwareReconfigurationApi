@@ -9,13 +9,18 @@ LDFLAGS=
 CPPFLAGS=-Wall -fPIC $(INCLUDES)
 
 dummy=src/sc_main_dummy.cpp
-OBJS=$(shell find ./systemc_installation -name '*.o')
+OBJS=$(shell find -wholename '*.libs/*.o')
 
+ifeq ($(ARCH),linux)
+LIB_FILE="lib-linux/lib$(COMPONENT_NAME).so"
+else
+LIB_FILE="lib-cygwin/lib$(COMPONENT_NAME).dll"
+endif
 
 all: $(dummy:.cpp=.o) executable
 
 executable:
-	$(CXX) -shared -fPIC -o lib-cygwin/lib$(COMPONENT_NAME).dll $(OBJS) $(dummy:.cpp=.o) $(LDFLAGS) -lpthread -lm -ggdb
+	$(CXX) -shared -fPIC -o $(LIB_FILE) $(OBJS) $(dummy:.cpp=.o) $(LDFLAGS) -lpthread -lm -ggdb
 
 cleanobjs:
 	rm -f $(OBJS)
