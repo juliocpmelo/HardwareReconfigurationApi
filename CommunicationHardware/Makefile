@@ -1,4 +1,4 @@
-include ../Makefile.env
+include ../environment.mk
 
 INCLUDES += -I$(CURDIR)
 
