@@ -1,10 +1,12 @@
-include ../Makefile.env
+include ../environment.mk
 #includes required 
-
-COMPONENT_NAME=HardwareReconfTests
 
 LDFLAGS+= -L../lib -lhardwarereconfigurationapi
 
-#libs required
+SRC_FOLDERS += ./ArdupilotCommLink
+
+EXECUTABLE = HardwareReconfTests
+
+clean:: clean_executable
 
 
