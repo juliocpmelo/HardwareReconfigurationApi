@@ -1,0 +1,80 @@
+<!--
+		architecture tag should point the partial bitstream that burns this architecture and 
+		the reconfigurable region name for which the architecture was generated for.
+-->
+	
+<architecture bitstream="/home/julio/Documents/ASS/HardwareReconfigurationAPI/AutonomicImageSegmentation/AutonomicImageSegmentation_partial.bit" region="APNavigationControl">
+	<hardwareTopEntity name="WP_L1_NavigationController">
+
+		
+		<!--
+				input and output declarations for the top component, all inputs declared here could be accessed via software
+				swAccss tag defines wheather the port is to be accessible by software or not
+				between region's specific inputs/outputs and the internal components
+		-->
+		<input name="clk" type="bit"/> 
+		
+		<input name="gsVectorX" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="gsVectorY" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="airUnitVectorX" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="airUnitVectorY" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="ABVectorX" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="ABVectorY" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="groundspeed" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="K_L1" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="L1_dist" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="L1_dist_min" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="sin_nu1_max" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="sin_nu1_min" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="nu_limit" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="max_nu" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="min_nu" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<input name="nav_bearing_cd_condition" type="bit" swAccess="true"/> 
+		<input name="wpa_reference" type="bit" swAccess="true"/>
+		
+		<output name="nu" type="vector" startIndex="31" op="downto" endIndex="0"  swAccess="true"/>
+		<output name="last_nu" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<output name="lateral_acceleration_dem" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<output name="bearing_error" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		<output name="nav_bearing" type="vector" startIndex="31" op="downto" endIndex="0" swAccess="true"/>
+		
+		<!--component database declaration, all components used here should be declared in any of the files contained in the component database tag-->
+		<componentDatabase file="/home/julio/Documents/ComponentDatabase/apnavigationControlComponents.xml"/>
+
+		<!--component instance declaration, components to be used in either portbind or signalbind tags should be declared here-->
+		<componentInstance name="AP_Navigation_controll_inst" type="/home/julio/Documents/ComponentDatabase/apnavigationControlComponents.xml:APWP_Controller"/>
+
+		<!--signals declaration, signals to be used in signalbind tag should be declared here-->
+		
+		<!--binds between region's specific inputs/outputs and the internal components-->
+		<regionportbind regionport="commHardware_clk" component="WP_L1_NavigationController" port="clk"/>
+		
+		<!--binds between internal components' ports-->
+		<portbind componentA="AP_Navigation_controll_inst" portA="gsVectorX" componentB="WP_L1_NavigationController" portB="gsVectorX"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="gsVectorY" componentB="WP_L1_NavigationController" portB="gsVectorY"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="airUnitVectorX" componentB="WP_L1_NavigationController" portB="airUnitVectorX"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="airUnitVectorY" componentB="WP_L1_NavigationController" portB="airUnitVectorY"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="ABVectorX" componentB="WP_L1_NavigationController" portB="ABVectorX"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="ABVectorY" componentB="WP_L1_NavigationController" portB="ABVectorY"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="groundspeed" componentB="WP_L1_NavigationController" portB="groundspeed"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="K_L1" componentB="WP_L1_NavigationController" portB="K_L1"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="L1_dist" componentB="WP_L1_NavigationController" portB="L1_dist"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="L1_dist_min" componentB="WP_L1_NavigationController" portB="L1_dist_min"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="sin_nu1_max" componentB="WP_L1_NavigationController" portB="sin_nu1_max"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="sin_nu1_min" componentB="WP_L1_NavigationController" portB="sin_nu1_min"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="nu_limit" componentB="WP_L1_NavigationController" portB="nu_limit"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="max_nu" componentB="WP_L1_NavigationController" portB="max_nu"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="min_nu" componentB="WP_L1_NavigationController" portB="min_nu"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="nav_bearing_cd_condition" componentB="WP_L1_NavigationController" portB="nav_bearing_cd_condition"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="wpa_reference" componentB="WP_L1_NavigationController" portB="wpa_reference"/>
+
+		<portbind componentA="AP_Navigation_controll_inst" portA="nu" componentB="WP_L1_NavigationController" portB="nu"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="last_nu" componentB="WP_L1_NavigationController" portB="last_nu"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="lateral_acceleration_dem" componentB="WP_L1_NavigationController" portB="lateral_acceleration_dem"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="bearing_error" componentB="WP_L1_NavigationController" portB="bearing_error"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="nav_bearing" componentB="WP_L1_NavigationController" portB="nav_bearing"/>
+		<portbind componentA="AP_Navigation_controll_inst" portA="clk" componentB="WP_L1_NavigationController" portB="clk"/>
+		<!--binds between internal signals and region's specific input/output ports-->
+
+	</hardwareTopEntity>
+</architecture>

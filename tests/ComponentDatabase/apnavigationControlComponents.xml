@@ -1,0 +1,62 @@
+
+<!--indicates a set of components inside the same document-->
+<componentBase>
+	
+	<!--Component tag defines the component name and its main file-->
+	<component name="APWP_Controller" file="/home/julio/ArdupilotAccel/L1_Controll/APWP_Controller.vhdl">
+
+
+		<!--Dependency tag defines the files needed to be in the same directory of the given component in order to compile
+				 optionally the type flag could specify if a file is an ipcore, thus the software will add it to the complition differently from an vhd file-->
+		<dependency file="/home/julio/ArdupilotAccel/L1_Controll/APWP_Controller_sm.vhd"/>
+		<dependency file="/home/julio/ArdupilotAccel/L1_Controll/operation_mux.vhd"/>
+		<dependency file="/home/julio/ArdupilotAccel/L1_Controll/fixed_adder.vhd"/>
+		<dependency file="/home/julio/ArdupilotAccel/L1_Controll/fixed_point_comparator.vhd"/>
+		<dependency file="/home/julio/ArdupilotAccel/L1_Controll/Vector2DOperations.vhd"/>
+		<dependency file="/home/julio/ArdupilotAccel/L1_Controll/results_storage.vhd"/>
+		<dependency file="/home/julio/ArdupilotAccel/L1_Controll/TypeDeclarations.vhd"/>
+		<dependency file="/home/julio/ArdupilotAccel/L1_Controll/Vector2DOperationsControl_sm.vhd"/>
+		<dependency file="/home/julio/ArdupilotAccel/L1_Controll/VectorOp_types.vhd"/>
+
+		<dependency type="xilinx-ipcore" file="/home/julio/ArdupilotAccel/L1_Controll/ipcore_dir/cordic.ngc"/>
+		<dependency type="xilinx-ipcore" file="/home/julio/ArdupilotAccel/L1_Controll/ipcore_dir/cordic_sincos.ngc"/>
+		<dependency type="xilinx-ipcore" file="/home/julio/ArdupilotAccel/L1_Controll/ipcore_dir/fixed_to_float.ngc"/>
+		<dependency type="xilinx-ipcore" file="/home/julio/ArdupilotAccel/L1_Controll/ipcore_dir/Float_add.ngc"/>
+		<dependency type="xilinx-ipcore" file="/home/julio/ArdupilotAccel/L1_Controll/ipcore_dir/float_compare.ngc"/>
+		<dependency type="xilinx-ipcore" file="/home/julio/ArdupilotAccel/L1_Controll/ipcore_dir/float_divider.ngc"/>
+		<dependency type="xilinx-ipcore" file="/home/julio/ArdupilotAccel/L1_Controll/ipcore_dir/Float_mult.ngc"/>
+		<dependency type="xilinx-ipcore" file="/home/julio/ArdupilotAccel/L1_Controll/ipcore_dir/float_sqrt.ngc"/>
+		<dependency type="xilinx-ipcore" file="/home/julio/ArdupilotAccel/L1_Controll/ipcore_dir/Float_to_Fixed.ngc"/>
+
+		<!--Component input and outputs-->
+		<!--Component input bit type (AKA std_logic for vhdl)-->
+		<input name="clk" type="bit"/>
+		<!--Component input vector type (AKA std_vector in vhdl)-->
+		<input name="gsVectorX" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="gsVectorY" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="airUnitVectorX" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="airUnitVectorY" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="ABVectorX" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="ABVectorY" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="groundspeed" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="K_L1" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="L1_dist" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="L1_dist_min" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="sin_nu1_max" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="sin_nu1_min" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="nu_limit" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="max_nu" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="min_nu" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<input name="nav_bearing_cd_condition" type="bit"/> 
+		<input name="wpa_reference" type="bit"/>
+		
+		<output name="nu" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<output name="last_nu" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<output name="lateral_acceleration_dem" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<output name="bearing_error" type="vector" startIndex="31" op="downto" endIndex="0"/>
+		<output name="nav_bearing" type="vector" startIndex="31" op="downto" endIndex="0"/>
+	</component>
+
+</componentBase>
+
+

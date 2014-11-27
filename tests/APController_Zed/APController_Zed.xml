@@ -1,0 +1,71 @@
+<!-- 
+		 This descripion is necessary to provide information about
+		extra input/output required to the communication hardware.
+		 The id attribute is used to differ between different communication
+		hardware implementations in a bigger execution environment.
+-->
+
+<hardwareProject name="APControl_Zed" path="/home/julio/Documents/APController_Zed">
+
+	<!--
+			 reconfigurable region tag
+				name attribute should be equal (however it could contain lower and upper case letters) to 
+				the bus wrapper removing the "_buswrapper" ending
+				
+	-->
+	<reconfigurableRegion name="APNavigationControl">
+		<!--
+				 communicationHardware tag
+					can specify extra inputs/outputs that are direct mapped inside of top component
+		-->
+		<communicationHardware>
+			<!--
+					 External inputs should be specified here in order to pass them to the top component,
+					access to these ports/params is done requesting the communication hardawre for the
+					reconfigurable region and doing the bind normally using portMap/signalMap
+			-->
+			<!--
+					<input name="clk" type="typeSpec"/>
+					<output name="ap_idle" type="typeSpec"/>
+					<param name="paramName" tpye="integer/string" defaultValue="0/stringValue">
+			-->
+		</communicationHardware>
+		<!--
+				 defaultArchitecture tag
+					this tag defines the default component loaded in this reconfigurable region
+		-->
+		<defaultArchitecture file="/home/julio/Documents/APController_Zed/APNavigationControlConfig1.xml"/>
+		<!--
+				 extra architecture files pre generated for this project
+			-->
+		<!--<architecture file="architectureFile.xml">-->
+	</reconfigurableRegion>
+
+	<reconfigurableRegion name="PayloadProcessor">
+		<!--
+				 communicationHardware tag
+					can specify extra inputs/outputs that are direct mapped inside of top component
+		-->
+		<communicationHardware>
+			<!--
+					 External inputs should be specified here in order to pass them to the top component,
+					access to these ports/params is done requesting the communication hardawre for the
+					reconfigurable region and doing the bind normally using portMap/signalMap
+			-->
+			<!--
+					<input name="clk" type="typeSpec"/>
+					<output name="ap_idle" type="typeSpec"/>
+					<param name="paramName" tpye="integer/string" defaultValue="0/stringValue">
+			-->
+		</communicationHardware>
+		<!--
+				 defaultArchitecture tag
+					this tag defines the default component loaded in this reconfigurable region
+		-->
+		<defaultArchitecture file="/home/julio/Documents/APController_Zed/PayloadProcessorBB.xml"/>
+		<!--
+				 extra architecture files pre generated for this project
+			-->
+		<!--<architecture file="architectureFile.xml">-->
+	</reconfigurableRegion>
+</hardwareProject>

@@ -1,0 +1,79 @@
+
+<!--indicates a set of components inside the same document-->
+<componentBase>
+	
+	<!--Component tag defines the component name and its main file-->
+	<component name="LineBuffer_wrapper" file="/home/julio/Documents/ComponentDatabase/LineBuffer/vhdl/LineBufferWrapper.vhd">
+
+		<!--Dependency tag defines the files needed to be in the same directory of the given component in order to it compile-->
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/lineBuffer_pixelLine_ram.dat"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/lineBuffer_pixelLine.v"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/lineBuffer.v"/>
+
+		<!--Component input and outputs-->
+		<!--Component input bit type (AKA std_logic for vhdl)-->
+		<input name="clk" type="bit"/>
+		<!--Component input vector type (AKA std_vector in vhdl)-->
+		<input name="x" type="vector" startIndex="23" op="downto" endIndex="0"/>
+		<input name="y" type="vector" startIndex="23" op="downto" endIndex="0"/>
+		<input name="pixel" type="vector" startIndex="23" op="downto" endIndex="0"/>
+		<input name="param" type="vector" startIndex="7" op="downto" endIndex="0"/>
+		<input name="ap_start" type="bit"/>
+		
+		<output name="ap_done" type="bit"/>
+		<output name="ap_idle" type="bit"/>
+		<output name="ap_ready" type="bit"/>
+		<output name="outputPixel" type="vector" startIndex="23" op="downto" endIndex="0"/>
+	</component>
+
+
+	<component name="SobelWrapper" file="/home/julio/Documents/ComponentDatabase/Sobel/vhdl/SobelWrapper.vhd">
+
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/sobel_filterXConstants_rom.dat"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/sobel_filterXConstants.v"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/sobel_filterYConstants_rom.dat"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/sobel_mul_3s_8s_13_2.v"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/sobel_pixelLine_ram.dat"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/sobel_pixelLine.v"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/sobel.v"/>
+
+		<input name="clk" type="bit"/>
+		<input name="x" type="vector" startIndex="23" op="downto" endIndex="0"/>
+		<input name="y" type="vector" startIndex="23" op="downto" endIndex="0"/>
+		<input name="pixel" type="vector" startIndex="23" op="downto" endIndex="0"/>
+		<input name="mode" type="vector" startIndex="1" op="downto" endIndex="0"/>
+		<input name="ap_start" type="bit"/>
+		
+		<output name="ap_done" type="bit"/>
+		<output name="ap_idle" type="bit"/>
+		<output name="ap_ready" type="bit"/>
+		<output name="filteredPixelX" type="vector" startIndex="23" op="downto" endIndex="0"/>
+		<output name="filteredPixelY" type="vector" startIndex="23" op="downto" endIndex="0"/>
+	</component>
+	
+	<component name="Threshold" file="/home/julio/Documents/ComponentDatabase/Sobel/vhdl/Threshold.vhd">
+
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/threshold_limiarTable_c1_ram.dat"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/threshold_limiarTable_c1.v"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/threshold_limiarTable_c2_ram.dat"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/threshold_limiarTable_c2.v"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/threshold_limiarTable_c3_ram.dat"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/threshold_limiarTable_c3.v"/>
+		<dependency file="/home/julio/Documents/ComponentDatabase/LineBuffer/verilog/threshold.v"/>
+
+		<input name="clk" type="bit"/>
+		<input name="pixel" type="vector" startIndex="23" op="downto" endIndex="0"/>
+		<input name="mode" type="vector" startIndex="1" op="downto" endIndex="0"/>
+		<input name="thresholdTable_pos" type="vector" startIndex="23" op="downto" endIndex="0"/>
+		<input name="ap_start" type="bit"/>
+		
+		<output name="ap_done" type="bit"/>
+		<output name="ap_idle" type="bit"/>
+		<output name="ap_ready" type="bit"/>
+		<output name="output" type="vector" startIndex="23" op="downto" endIndex="0"/>
+	</component>
+
+
+</componentBase>
+
+
