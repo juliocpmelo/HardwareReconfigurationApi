@@ -3,7 +3,8 @@ include ../environment.mk
 
 LDFLAGS+= -L../lib -lhardwarereconfigurationapi
 
-SRC_FOLDERS += ./ArdupilotCommLink
+SRC_FOLDERS = $(CURDIR) \
+						  $(CURDIR)/ArdupilotCommLink
 
 EXECUTABLE = HardwareReconfTests
 

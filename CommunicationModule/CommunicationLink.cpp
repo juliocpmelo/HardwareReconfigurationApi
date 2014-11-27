@@ -5,43 +5,20 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <iostream>
+
+#include <Util/BufferFunctions.h>
+
+using namespace Util;
+
 using namespace std;
+
 
 static uint8_t *receiveBuffer;
 static uint8_t *sendBuffer;
 
-/**
- * \brief reads the first 4 bytes in buf and coverts then as the first
- * for bytes of a int value, using the little endian format. Thus buf[0] is the
- * msb and buf[3] is the lsb.
- **/
-int readInt(unsigned char *buf){
-  int retVal = buf[3];
-  int aux = buf[2];
-  retVal = retVal | aux << 8;
-  aux = buf[1] ;
-  retVal = retVal | aux << 16;
-  aux = buf[0];
-  retVal = retVal | aux << 24;
-  return retVal;
-}
-
-/**
- * \brief writes the bytes of value into buf using little endian format. Thus buf[0] is the
- * msb and buf[3] is the lsb.
- **/
-void writeInt(unsigned char *destBuf, int value){
-
-  destBuf[3] = (unsigned char) (value & 0x000000ff);
-  destBuf[2] = (unsigned char) ((value & 0x0000ff00) >> 8);
-  destBuf[1] = (unsigned char) ((value & 0x00ff0000) >> 16);
-  destBuf[0] = (unsigned char) ((value & 0xff000000) >> 24);
-}
-
-
 
 CommunicationLink::CommunicationLink(){
-	
+	receiveBuffer = new uint8_t[1024]; //change it to max message size
 }
 
 /*sends a setup message with the maximum supporte packet size*/
@@ -52,8 +29,8 @@ void CommunicationLink::sendSetupMessage(){
 
 	msg->messageContent = new unsigned char[msg->messageSize];
 
-	uint32_t maxMessageSize = this->maxMessageSize - 8;//always subtract the header size
-	memcpy(msg->messageContent, (void*)&(maxMessageSize), 4);
+	uint32_t maxMessageSize = getMaxMessageSize();//always subtract the header size
+	writeInt(msg->messageContent, maxMessageSize);
 
 	this->sendMessage(msg);
 }
@@ -76,50 +53,50 @@ void CommunicationLink::sendNackMessage(){
 	this->sendMessage( msg);
 }
 
+
+Message* messageToReturn = new Message;
+static int actMessageSize = -1;
+static int actMessageType = -1;
+
 /**
- * \brief implementation of the API CommunicationLink's getMessage function
+ * \brief implementation of the API CommunicationLink's getMessage function, communication model
+ * is to be non blocking, however it is assumpted, that once one byte is available, the entire message
+ * will be received.
  * \param self a reference to the CommunicationLink struct
  **/
 Message* CommunicationLink::getMessage(){
 
-	Message* messageToReturn = new Message;
 
 
 	//printf("receiving message");
 
-	this->implGetMessage(receiveBuffer, 4); //receives the type first
+	if (this->available()){
+		if(actMessageType < 0 && actMessageSize < 0){
+			cout<<__FILE__<<"::"<<__LINE__<<" -> Got sizes "<<endl;
+			this->getMessage(receiveBuffer, 8); //receives the type first
+			actMessageType = readInt(receiveBuffer);
 
-	messageToReturn->messageType = readInt(receiveBuffer);
-	printf("Message type %d\n",(unsigned int)messageToReturn->messageType);
+			actMessageSize = readInt(receiveBuffer+4);
+		}
+	}
+	if (this->available()){ 
+		if(actMessageType > 0 && actMessageSize > 0){
+			messageToReturn = new Message;
+			messageToReturn->messageSize = actMessageSize;
+			messageToReturn->messageType = actMessageType;
+			messageToReturn->messageContent = new uint8_t [messageToReturn->messageSize];
 
+			this->getMessage(messageToReturn->messageContent,messageToReturn->messageSize);
 
+			cout<<__FILE__<<"::"<<__LINE__<<endl<< "Message Received [t="<<actMessageType<<", s="<<actMessageSize<<"]"<<endl;
+			actMessageSize = -1;
+			actMessageType = -1;
+			//printf("message received\n[ t=%x, s=%x ]\n", messageToReturn->messageType, messageToReturn->messageSize);
+			return messageToReturn;	
+		}
+	}	
+	return NULL;
 
-	this->implGetMessage(receiveBuffer, 4); //receives the size
-
-	messageToReturn->messageSize = readInt(receiveBuffer);
-	printf("Message size %d\n",(unsigned int)messageToReturn->messageSize);
-//	aux = receiveBuffer[1];
-//	messageToReturn->messageType |= aux<<8;
-//	aux = receiveBuffer[2];
-//	messageToReturn->messageType |= aux<<16;
-//	aux = receiveBuffer[3];
-//	messageToReturn->messageType |= aux<<24;
-//	printf("Message size %d\n",(unsigned int)messageToReturn->messageSize);
-
-	messageToReturn->messageContent = new unsigned char [messageToReturn->messageSize];
-
-
-	//bzero (messageToReturn->messageContent, messageToReturn->messageSize);
-	this->implGetMessage(messageToReturn->messageContent,messageToReturn->messageSize);
-
-//
-	printf("message received\n[ t=%x, s=%x ]\n", messageToReturn->messageType, messageToReturn->messageSize);
-
-
-	/*TODO send this to a specific implementation module*/
-//	this->sendACKMessage(this);
-
-	return messageToReturn;
 }
 
 /**
@@ -129,20 +106,102 @@ Message* CommunicationLink::getMessage(){
  **/
 void CommunicationLink::sendMessage(Message* msg){
 
+	this->messagePool.push_back(msg);
 
 	//bzero(sendBuffer,this->maxMessageSize);
+}
 
-	sendBuffer = new uint8_t [msg->messageSize];
+void CommunicationLink::sendChunkMessages(Message *msg){
 
-	unsigned char* tmpBuffePtr = sendBuffer;
-	memcpy(tmpBuffePtr, (uint8_t*)&(msg->messageType), 4);
-	memcpy(tmpBuffePtr+4, (uint8_t*)&(msg->messageSize), 4);
-	memcpy(tmpBuffePtr+8, (uint8_t*)(msg->messageContent), msg->messageSize);
+	int numChunks = getNumChunkMessages(msg->messageSize);
 
-	this->implSendMessage(sendBuffer, msg->messageSize + 8);
+	int bytesCopied = 0;
 
-	delete sendBuffer;
+	cout << "creating chunk messages for message size "<< msg->messageSize << endl; 
+	for (int i=0; i < numChunks; i++){
+		
+		int actSize = getMaxChunkMessageSize(); //max message size reduced by the chunk header size
+		
+		cout<<__FILE__<<"::"<<__LINE__<<endl;
+		int maxChunkMessageSize = getMaxChunkMessageSize();
+		
+		if(msg->messageSize % maxChunkMessageSize != 0){
+			if(i == numChunks - 1)
+				actSize = msg->messageSize % maxChunkMessageSize;
+		}
 
+		Message *dataChunk = new Message;
+
+		dataChunk->messageType = MessageType_DataChunk;
+		dataChunk->messageSize = actSize + 12; //size plus header size
+		dataChunk->messageContent = new uint8_t [actSize + 12]; //size plus header size
+
+		writeInt(dataChunk->messageContent,msg->messageType); //subtype
+		writeInt(dataChunk->messageContent + 4,actSize); //internal content size
+		writeInt(dataChunk->messageContent + 8,i); //chunk index
+
+		memcpy(dataChunk->messageContent + 12, msg->messageContent + bytesCopied, actSize);
+
+		bytesCopied += actSize;
+		send(dataChunk);
+		cout<<"sent message chunk [t="<<msg->messageType<<", s="<<actSize<<", i="<<i<<"]"<<endl;
+
+		delete dataChunk;
+/*send message*/
+
+	}
+}
+
+void CommunicationLink::send(Message *message){
+
+	sendBuffer = new uint8_t [message->messageSize + 8]; //messageSize + headerSize
+	writeInt(sendBuffer, message->messageType);
+	writeInt(sendBuffer+4, message->messageSize);
+	memcpy(sendBuffer+8, message->messageContent, message->messageSize);
+	this->sendMessage(sendBuffer, message->messageSize + 8);
+	delete[] sendBuffer;
+}
+
+void CommunicationLink::sendMessages(){
+
+	for	(std::vector<Message*>::iterator it = messagePool.begin(); it != messagePool.end(); it++){
+		Message* msg = *it;
+		if(msg->messageSize > getMaxMessageSize()){ //check this value
+			sendChunkMessages(msg);
+		}
+		else{
+			send(msg);
+			cout<<"sent message [t="<<msg->messageType<<", s="<<msg->messageSize<<"]"<<endl;
+		}
+		delete msg;
+	}
+	messagePool.clear();
+}
+
+/**
+ * \brief gets the number of chunk messages required to send the ammount of bytes given
+ * \param bytes the amount of bytes that are going to be sent
+ * \return the number of chunk messages required
+ **/
+int CommunicationLink::getNumChunkMessages(int bytes){
+	//subtract the maxMessageSize from the number of bytes required for a chunkMessage
+	//4 type
+	//4 messageContentSize
+	//4 index of the current chunk
+	uint32_t maxChunkMessageSize = getMaxChunkMessageSize();//always subtract the header size
+	if(bytes % maxChunkMessageSize == 0)
+		return bytes / maxChunkMessageSize;
+	else
+		return bytes / maxChunkMessageSize + 1;
+}
+
+uint32_t CommunicationLink::getMaxMessageSize(){
+	return maxMessageSize - 8; //max alowed message size minus header size
+}
+
+uint32_t CommunicationLink::getMaxChunkMessageSize(){
+
+	return getMaxMessageSize() - 12; //max allowed message size minus chunk message header size
 }
 
 /**
@@ -167,9 +226,9 @@ void CommunicationLink::flushMessage(Message *msg){
 	for (i=0; i<nTimes; i++){
 		//in the last call, flushes only the rest of the message instead of the entire 100 bytes
 		if(i + 1 == nTimes && msg->messageSize % bytesToDiscart != 0)
-			this->implGetMessage(receiveBuffer, msg->messageSize % bytesToDiscart);
+			this->getMessage(receiveBuffer, msg->messageSize % bytesToDiscart);
 		else
-			this->implGetMessage(receiveBuffer, bytesToDiscart);
+			this->getMessage(receiveBuffer, bytesToDiscart);
 	}
 	printf("flushed %d bytes with %d rcv calls\n",msg->messageSize, nTimes);
 

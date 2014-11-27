@@ -60,7 +60,10 @@ clean_sub_dirs:
 	$(foreach dir, $(FOLDERS), $(MAKE) -C $(dir) cleanobjs;)
 
 
-distclean:: clean
+distclean:: clean_executable clean_library clean_dirs
+
+clean_dirs:
+	$(shell rm -rf $(LIBDIR) $(BINDIR))
 
 %.o : %.cpp 
 	$(CXX) $(CPPFLAGS) $(DEFINES) $(INCLUDES) -c $< -o $@
@@ -68,11 +71,11 @@ distclean:: clean
 .SECONDEXPANSION:
 executable: $$(LOCAL_OBJS) $$(BINDIR) sub_dirs 
 	$(shell mkdir -p $(BINDIR))
-	$(CXX) $(CPPLAGS) $(INCLUDES) $(LOCAL_OBJS) -o $(EXECUTABLE_FULL) $(LDFLAGS)
+	$(CXX) $(CPPFLAGS) $(INCLUDES) $(LOCAL_OBJS) -o $(EXECUTABLE_FULL) $(LDFLAGS)
 
 .SECONDEXPANSION:
 library: $$(LOCAL_OBJS) $$(LIBDIR) sub_dirs
-	$(shell mkdir -p $(LIB_DIR))
+	$(shell mkdir -p $(LIBDIR))
 	$(CXX) $(LIB_FLAGS) $(CPPFLAGS) $(INCLUDES) $(LOCAL_OBJS) -o $(LIB_FULL) $(LDFLAGS)
 
 sub_dirs:

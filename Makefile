@@ -38,7 +38,8 @@ CPPFLAGS=$(CFLAGS)
 
 SRC_FOLDERS=$(CURDIR) \
 						 CommunicationModule \
-						 CommunicationHardware
+						 CommunicationHardware \
+						 Util
 
 LIB_NAME=lib$(COMPONENT_NAME).so
 LIB_FLAGS=-shared

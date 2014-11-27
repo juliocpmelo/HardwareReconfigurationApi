@@ -7,7 +7,7 @@
 
 using namespace std;
 
-CommunicationLink* CommunicationLink::createCommunicationLink(){
+CommunicationLink* CommunicationLink::createCommunicationLink(std::map<std::string, std::string> linkParams){
 
 	struct termios portSettings;
 	cfsetispeed(&portSettings, B115200);    // set baud rates
@@ -72,8 +72,6 @@ void UartCommunicationLink::implSendMessage (uint8_t * buffer, int bufferSize){
 		bytesSent += write(uartPortFd, buffer + bytesSent, bytesToWrite);
 		usleep(300000); //pc was too fast to uart communication
 	}
-
-
 }
 
 
