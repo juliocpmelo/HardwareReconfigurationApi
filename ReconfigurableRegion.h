@@ -3,22 +3,18 @@
 
 #include <systemc>
 #include "HardwareComponent.h"
+#include "Architecture.h"
 
 class ReconfigurableRegion {
 
 	public:
+		
 		/*
 		 * communication hardware generated to grant software and
 		 * external port acess to the emcapsulated componentns 
 		 * in this reconfigurable region
 		 */
-
 		HardwareComponent *communicationHardware;
-
-		/*
-		 * top component encapsulated in this reconfigurable region 
-		 */
-		HardwareComponent *assignedTopComponent;
 
 		/*
 		 * name is used to distinguish the reconfigurable regions in a
@@ -26,9 +22,26 @@ class ReconfigurableRegion {
 		 */
 		std::string name;
 
-		std::string totalBitstream;
 
-		std::string partialBitstream;
+		/*
+		 * used by the core components to know when this ReconfigurableRegion have
+		 * been modified
+		 */
+		bool modified;
+
+
+	private:
+
+		/*
+		 * top component encapsulated in this reconfigurable region 
+		 */
+		HardwareComponent *assignedTopComponent;
+
+		/*
+		 * Architecture active on this region
+		 */
+		Architecture *assignedArchitecture;
+		
 	public:
 			
 
@@ -47,11 +60,14 @@ class ReconfigurableRegion {
 		 * ammount of other components in its implementation
 		 * !param component the component to be assigned
 		 */
-		void assignTopComponent(HardwareComponent* component);
+		void assignArchitecture(Architecture *arch);
 
 		void setBitstreams(std::string totalBitstream, std::string partialBitstream);
-		
 
+
+		HardwareComponent* getAssignedTopComponent(){return assignedTopComponent;};
+		Architecture* getAssignedArchitecture(){return assignedArchitecture;};
+		
 };
 
 #endif 

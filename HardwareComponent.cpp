@@ -23,7 +23,17 @@ void HardwareComponent::createSoftwareAccess(std::string portName){
 	}
 }
 
+sc_signal_resolved* HardwareComponent::createSignal(std::string name, HardwareComponent::DataType *type){
 
+	sc_signal_resolved *signal = new sc_signal_resolved(name.c_str());
+
+	cout<<"create signal "<<signal->name()<<endl; 
+	sc_attribute<HardwareComponent::DataType*> *signalType = new sc_attribute<HardwareComponent::DataType*>( "DataType",type);
+	sc_attribute<std::string> *signalClass = new sc_attribute<std::string>("class", "external");
+	signal->add_attribute(*signalType);
+	signal->add_attribute(*signalClass);
+	return signal;
+}
 
 
 void HardwareComponent::buildComponentPorts(){
@@ -89,7 +99,6 @@ void HardwareComponent::addOutput(std::string name, DataType* type){
 		ports[name]->portType = PortType_out;
 		addPortAttributes(name, type);
 		this->sc_get_curr_simcontext()->hierarchy_pop ();
-
 	}
 }
 
@@ -236,10 +245,18 @@ void HardwareComponent::portMap(std::string selfPortName, sc_port_base *port){
 		}
 	}
 	else if (port != NULL){
-		cout << "can't portmap port "<< selfPortName << " from " << this->name() << " to " << port->name()<<endl;
+		cout<<__FILE__<<"::"<<__LINE__<<endl;
+		cout << "can't portmap port "<< selfPortName << " from " << this->name() << " to " << port->name() <<endl;
+		std::map<std::string, PortInfo*>::iterator portsIt = ports.begin();
+		cout << "possible ports in "<< this->name() << " are:"<<endl;
+		for (portsIt; portsIt!= ports.end(); portsIt++){
+			cout << "\t" << portsIt->first << endl;
+		}
 	}
-	else
+	else{
+		cout<<__FILE__<<"::"<<__LINE__<<endl;
 		cout << "can't portmap port "<< selfPortName << " from " << this->name() << " to null port"<<endl;
+	}
 }
 
 void HardwareComponent::portMap(std::string selfPortName, sc_signal_resolved *signal){
@@ -302,3 +319,81 @@ void HardwareComponent::setParamValue(std::string paramName, std::string value){
 	if(instanceParameters.count(paramName) != 0 )
 		instanceParameters[paramName].value = value;
 }
+
+sc_port_base* HardwareComponent::getConnectedPort(sc_object* channel){
+
+
+	std::vector<sc_object*> children = this->get_child_objects();
+	//cout << "testing to component "<<this->name()<< " with " << children.size() << " children"<<endl;
+	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
+		if (std::string((*i)->kind())=="sc_in" || std::string((*i)->kind()) =="sc_out") {
+			sc_port_base * port = dynamic_cast<sc_port_base*>(*i);
+			//cout<<" type for port "<< (*i)->name()<< " " <<std::string((*i)->kind())<<endl;
+			if(port->get_interface() != NULL){
+				sc_object * connectedChannel = dynamic_cast<sc_object*>(port->get_interface());
+				//std::cout<<"testing port "<<port->name()<<" that uses channel "<<connectedChannel->name()<<" to "<<channel->name()<<std::endl;
+				//std::cout<<"attribute "<<port->get_attribute("PortConnection")<<endl;
+				if(channel->name() == connectedChannel->name() and //connected through the same channel
+					 port->get_attribute("PortConnection") != NULL)
+					return port;
+			}
+		}
+	}
+	return NULL;
+}
+
+
+
+
+std::set<sc_signal_resolved* > HardwareComponent::getSignals() {
+	std::set<sc_signal_resolved* > signals;
+	std::vector<sc_object*> children = this->get_child_objects();
+	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
+		if ( std::string((*i)->kind())=="sc_module")	{
+			HardwareComponent *comp_child = (HardwareComponent*) (*i);
+			std::vector<sc_object*> children2 = comp_child->get_child_objects();
+
+			for (std::vector<sc_object*>::iterator i2 = children2.begin(); i2 != children2.end(); i2++) {
+
+				if (std::string((*i2)->kind())=="sc_in" || 
+						std::string((*i2)->kind()) =="sc_out" ||
+						std::string((*i2)->kind()) =="sc_inout") {
+					sc_port_base * port = dynamic_cast<sc_port_base*>(*i2);
+
+					sc_object * channel = dynamic_cast<sc_object*>(port->get_interface());
+
+					if(channel != NULL){
+						sc_port_base *connectedPort = this->getConnectedPort(channel);
+
+
+						/*
+						 * when a connetion exists and it is not direct to the component given, means
+						 * that a signal was automatically created and must be declared in the signal
+						 * list
+						 */
+						if(connectedPort == NULL){
+							signals.insert(dynamic_cast<sc_signal_resolved*>(channel));
+						}
+					}
+				}
+			}
+		}
+	}
+	return signals;
+}
+
+std::vector<HardwareComponent* > HardwareComponent::getChildModules() {
+	std::vector<HardwareComponent*> retVector;
+
+
+	std::vector<sc_object*> children = this->get_child_objects();
+	for (std::vector<sc_object*>::iterator i = children.begin(); i != children.end(); i++) {
+		if ( std::string((*i)->kind())=="sc_module")	{
+			HardwareComponent* mptr = dynamic_cast<HardwareComponent*>(*i);
+			retVector.push_back(mptr);
+		}
+	}
+
+	return retVector;
+}
+

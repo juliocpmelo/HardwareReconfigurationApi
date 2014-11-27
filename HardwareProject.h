@@ -24,12 +24,12 @@ class HardwareProject{
 
 		std::map<std::string, ReconfigurableRegion*> managedReconfRegions;
 		std::string projectXmlDescriptionUri;
+		std::string architectureDescriptionFile;
 
 		HardwareComponentXmlParser *hardwareComponentXmlParser;
 		HardwareProjectXmlParser *hardwareProjectXmlParser;
 
 
-		HardwareComponent *topLevelComponent;
 		/**
 		 *\member reconfRegionsProjectHandlers will hold a ProjectHanlder instance to each reconfigurable
 		 *region managed
@@ -43,12 +43,6 @@ class HardwareProject{
 		HardwareProject(std::string projectName, std::string projectPath);
 		HardwareProject(std::string projectXmlDescriptionUri);
 
-		/**
-		 *\param topLevelComponent the top level component to this hardware project
-		 */
-		void setTopLevelComponent(HardwareComponent *topLevelComponent);
-
-		
 		/**
 		*\brief sets the device target device name
 		*\param deviceName the name of the device (e.g.:EP3C10F256C8) 
@@ -70,7 +64,11 @@ class HardwareProject{
 
 		void generateConfigFile();
 
-		void generateHDLFiles(HardwareComponent *comp);
+		void generateHDLFiles();
+
+		void generateComponentDescriptionFiles();
+
+		std::string generateArchitectureDescription(Architecture *arch);
 
 		/**
 		 *\brief sets the assignments in the project
@@ -89,6 +87,7 @@ class HardwareProject{
 		*/
 		ReconfigurableRegion* getReconfigurableRegion(std::string name);
         
+		//void generateHDLFilesForAllRegions();
 
 };
 

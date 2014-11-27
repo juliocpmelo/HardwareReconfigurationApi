@@ -12,6 +12,8 @@
 #include "ComponentInstance.h"
 #include "SignalComponent.h"
 #include "HardwareComponent.h"
+#include "ReconfigurableRegion.h"
+#include "Architecture.h"
 
 
 typedef struct Component_t{
@@ -72,9 +74,10 @@ class HardwareComponentXmlParser{
 
 		std::string getValidComponentInstanceName(std::string componentType);
 		std::map<std::string, HardwareComponent::HardwareComponentInfo*> parseXmlComponentFile(std::string xmlFile);
-		HardwareComponent* parseMainEntityXmlFile(std::string xmlFile);
+		Architecture* parseArchitectureFile(std::string xmlFile, ReconfigurableRegion *region);
 		virtual HardwareComponent::PortInfo parsePort(xmlNode * portNode);
 		virtual HardwareComponent::Param parseParam(xmlNode * portNode);
+		HardwareComponent::DataType* parseType(xmlNode * typeNode);
 
 	private:
 		
@@ -86,11 +89,11 @@ class HardwareComponentXmlParser{
 		void parseAssignment(xmlNode * componentNode);
 
 		/*xml file that represents a whole hardware description*/
-		void parseHardwareTopEntity(xmlNode * rootNode);
+		HardwareComponent* parseHardwareTopEntity(xmlNode * rootNode, std::string entityName, ReconfigurableRegion *region);
 
 
 		void parseGeneric(xmlNode * componentNode);
-		void parseSignalComponents(xmlNode * componentNode);
+		void parseSignal(xmlNode * componentNode);
 
 };
 

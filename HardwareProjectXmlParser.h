@@ -17,6 +17,7 @@ class HardwareProjectXmlParser{
 		std::map<std::string, ReconfigurableRegion* > loadedReconfigurableRegions;
 
 		CommunicationHardwareXmlParser *communicationHardwareXmlParser;
+		HardwareComponentXmlParser *hardwareComponentXmlParser; 
 
 	public:
 		HardwareProjectXmlParser();

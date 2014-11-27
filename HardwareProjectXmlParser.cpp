@@ -1,16 +1,22 @@
 #include "HardwareProjectXmlParser.h"
+#include "HardwareComponentXmlParser.h"
+#include "HardwareComponent.h"
 
 using namespace std;
 
 
 HardwareProjectXmlParser::HardwareProjectXmlParser(){
 	communicationHardwareXmlParser = new CommunicationHardwareXmlParser();
+	hardwareComponentXmlParser = new HardwareComponentXmlParser();
 }
+
 
 void HardwareProjectXmlParser::parseHardwareProject(xmlNode *hardwareProjectNode){
 
 	xmlNode *currentNode = NULL;
 	xmlNode *communicationHardwareNode = NULL;
+
+	xmlNode *defaultTopComponentNode = NULL;
 
 	for (currentNode = hardwareProjectNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
 		if (currentNode->type == XML_ELEMENT_NODE) {
@@ -25,12 +31,35 @@ void HardwareProjectXmlParser::parseHardwareProject(xmlNode *hardwareProjectNode
 
 					/*search for the communicationHardware tag*/
 					for (communicationHardwareNode = currentNode->xmlChildrenNode; communicationHardwareNode; communicationHardwareNode = communicationHardwareNode->next){
-						if (xmlStrcmp(communicationHardwareNode->name, (const xmlChar *)"communicationHardware") == 0) break;
+						if (xmlStrcmp(communicationHardwareNode->name, (const xmlChar *)"communicationHardware") == 0){	
+							break;
+						}
 					}
 
 					HardwareComponent *communicationHardware = communicationHardwareXmlParser->parseCommunicationHardwareNode(regionName,communicationHardwareNode);
 					ReconfigurableRegion *region = new ReconfigurableRegion(regionName, communicationHardware);
+
+					for (defaultTopComponentNode = currentNode->xmlChildrenNode; defaultTopComponentNode; defaultTopComponentNode = defaultTopComponentNode->next){
+						if (xmlStrcmp(defaultTopComponentNode->name, (const xmlChar *)"defaultArchitecture") == 0){
+
+							xmlChar *filePathChar = xmlGetProp(defaultTopComponentNode, (const xmlChar *)"file");
+							std::string filePath = string((const char*)filePathChar);
+
+							if(xmlStrcmp(filePathChar, (const xmlChar *)"") != 0){
+								cout << "parsing default component for region "<<regionName<<endl; 
+								cout << "default component file "<<filePath<<endl; 
+
+								Architecture *defaultArch = hardwareComponentXmlParser->parseArchitectureFile(filePath, region);
+								defaultArch->uid = 0; //default arch has always uid 0
+								
+								region->assignArchitecture(defaultArch);
+								cout << "region default component parsing successfull"<<endl; 
+							}
+							break;
+						}
+					}
 					loadedReconfigurableRegions[regionName] = region;
+
 				}
 
 			}
@@ -78,7 +107,11 @@ void HardwareProjectXmlParser::parseProjectXmlDescription(std::string xmlUri){
 				}
 			}
 		}
+
+		xmlFreeDoc(doc);
+		xmlCleanupParser();
 	}
+
 
 }
 

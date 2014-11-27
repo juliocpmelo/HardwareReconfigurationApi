@@ -246,7 +246,8 @@ SC_MODULE(HardwareComponent) {
 		SC_HAS_PROCESS(HardwareComponent);
 		HardwareComponent(sc_module_name name, HardwareComponentInfo *infoTable);
 		void createSoftwareAccess(std::string portName);
-
+		
+		static sc_signal_resolved* createSignal(std::string name, HardwareComponent::DataType *type);
 		/*functions used in dynamic creation*/
 		void addInput(std::string name, DataType *type);
 		void addOutput(std::string name, DataType *type);
@@ -259,6 +260,18 @@ SC_MODULE(HardwareComponent) {
 
 		std::string getParamValue(std::string paramName);
 		void setParamValue(std::string paramName, std::string value);
+
+
+		/**
+		 * !brief seach for each signal used in the interconnection
+		 * !return a set containing each signal used within this component
+		 */
+		std::set<sc_signal_resolved* > getSignals();
+
+		/*returns the port that is connected with the given channel*/
+		sc_port_base* getConnectedPort(sc_object* channel);
+
+		std::vector<HardwareComponent* > getChildModules();
 
 	private:
 		void addPortAttributes(std::string name, DataType *type);

@@ -108,7 +108,7 @@ void XilinxProjectHandler::compileProject(std::string hardwareProjectName, std::
 	
 	generateConfigFiles();
 
-	char * workingDir = getcwd(0, NULL);
+	char * workingDir = getcwd(NULL, 0);
 		
 	char * xflowPath = getenv("XILINX_XFLOW_PATH");
 	string xflowCommand(xflowPath);

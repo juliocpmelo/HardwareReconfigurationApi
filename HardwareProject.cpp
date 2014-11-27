@@ -1,5 +1,6 @@
 #include "HardwareProject.h"
 #include "HardwareComponentConverterVHDL.h"
+#include "HardwareComponentConverterTxt.h"
 #include "CommunicationHardware/CommunicationHardwareConverterVHDL.h"
 #include <errno.h>
 #include <stdio.h>
@@ -17,14 +18,16 @@ HardwareProject::HardwareProject(std::string projectXmlDescriptionUri){
 
 	hardwareProjectXmlParser = new HardwareProjectXmlParser();
 	hardwareProjectXmlParser->parseProjectXmlDescription(this->projectXmlDescriptionUri);
+	
+	//loadProjectLocalDatabase();
 
-
+	//if(this->projectLocalDataBase)
 	this->managedReconfRegions = hardwareProjectXmlParser->getReconfigurableRegions();
-
+	/*else
+		this->managedReconfRegions = projectLocalDatabase->getReconfigurableRegions();
+*/
 	this->projectName = hardwareProjectXmlParser->getProjectName();
 	this->projectPath = hardwareProjectXmlParser->getProjectPath();
-
-
 }
 
 HardwareProject::HardwareProject(std::string projectName, std::string projectPath){
@@ -33,21 +36,15 @@ HardwareProject::HardwareProject(std::string projectName, std::string projectPat
 	this->projectPath = projectPath;
 }
 
-void HardwareProject::setTopLevelComponent(HardwareComponent *topLevelComponent){
-	this->topLevelComponent = topLevelComponent;
-
-	/*get all software accessible interfaces and generate a communication hardawre accordingly*/
-
-	/*get all portmaped interfaces to the communication hardware*/
-}
-
-
 void HardwareProject::burnProject(std::string cableName, std::string programmingMode){
+	/*used only when the server is connected directly to the embedded system*/
+	/* ALTERA only command
 	string systemCommand = "";
 	systemCommand += "C:/altera/70/quartus/bin/quartus_pgm "; //programmer executable name
 	systemCommand += "-c USB-Blaster -m JTAG "; //burner interface type
 	systemCommand += "-o p;C:"+projectPath+"/"+projectName+".sof"; //burn options and project name
 	system(systemCommand.c_str());
+	*/
 }
 
 void HardwareProject::setDevice(std::string deviceName){
@@ -84,7 +81,7 @@ void HardwareProject::generateConfigFile(){
     cout<<"config file saved to "<<fileLocation<<endl;
 }
 
-void HardwareProject::generateHDLFiles(HardwareComponent *comp){
+void HardwareProject::generateHDLFiles(){
 		HardwareComponentConverterVHDL *converter = new HardwareComponentConverterVHDL();
 
 		CommunicationHardwareConverterVHDL *communicationHardwareConverter = new CommunicationHardwareConverterVHDL();
@@ -109,17 +106,66 @@ void HardwareProject::generateHDLFiles(HardwareComponent *comp){
 				reconfRegionsProjectHandlers[it->first] = new XilinxProjectHandler(it->first + "_communicationHardware", this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->first);
 			}
 
-			if(it->second->assignedTopComponent)
-				converter->buildTopComponentFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second->assignedTopComponent);
-			communicationHardwareConverter->buildEntityForReconfigurableRegion(this->projectPath + "/HardwareReconfigurationAPI/"+ it->first, it->second);
-			
-			/*adding dependent files*/
-			reconfRegionsProjectHandlers[it->first]->addFile(communicationHardwareConverter->getNameForReconfRegionFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second), true);
-			reconfRegionsProjectHandlers[it->first]->addFile(converter->getNameForHardwareComponentFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second->assignedTopComponent), true);
-			set<string> dependentFiles = it->second->assignedTopComponent->getDependentFiles();
-			for(set<string>::iterator dependentFileIt = dependentFiles.begin(); dependentFileIt != dependentFiles.end(); dependentFileIt ++)
-				reconfRegionsProjectHandlers[it->first]->addFile(*dependentFileIt);
+			if(it->second->getAssignedTopComponent()){
+				converter->buildTopComponentFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second->getAssignedTopComponent());
+				communicationHardwareConverter->buildEntityForReconfigurableRegion(this->projectPath + "/HardwareReconfigurationAPI/"+ it->first, it->second);
+
+				/*adding dependent files*/
+				reconfRegionsProjectHandlers[it->first]->addFile(communicationHardwareConverter->getNameForReconfRegionFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second), true);
+				reconfRegionsProjectHandlers[it->first]->addFile(converter->getNameForHardwareComponentFile(this->projectPath + "/HardwareReconfigurationAPI/" + it->first, it->second->getAssignedTopComponent()), true);
+				set<string> dependentFiles = it->second->getAssignedTopComponent()->getDependentFiles();
+				for(set<string>::iterator dependentFileIt = dependentFiles.begin(); dependentFileIt != dependentFiles.end(); dependentFileIt ++)
+					reconfRegionsProjectHandlers[it->first]->addFile(*dependentFileIt);
+			}
 		}
+}
+
+void HardwareProject::generateComponentDescriptionFiles(){
+
+	this->architectureDescriptionFile = this->projectPath + "/HardwareReconfigurationAPI/" + this->projectName + ".cfg";
+	
+	HardwareComponentConverterTxt *converter = new HardwareComponentConverterTxt();
+	if (mkdir (string(this->projectPath + "/HardwareReconfigurationAPI").c_str(), 0755) == -1) {
+		if (errno != EEXIST){
+			cout <<"Failed to create directory " << this->projectPath + "/HardwareReconfigurationAPI" << endl;
+			cout <<"System generation will be ended " << endl;
+			return;
+		}
+	}
+	if( remove( architectureDescriptionFile.c_str() ) != 0 ){
+		if (errno != ENOENT){
+			cerr << "error removing file "<< architectureDescriptionFile <<endl;
+			cerr << strerror(errno) << endl;
+			return;
+		}
+	}
+
+	for (map<string, ReconfigurableRegion*>::iterator it = managedReconfRegions.begin(); it != managedReconfRegions.end(); it++){
+		converter->buildReconfRegionsDescriptionFile(this->projectPath + "/HardwareReconfigurationAPI/", this->projectName, it->second);
+	}
+	delete converter;
+}
+
+std::string HardwareProject::generateArchitectureDescription(Architecture *arch){
+
+	HardwareComponentConverterTxt *converter = new HardwareComponentConverterTxt();
+	if (mkdir (string(this->projectPath + "/HardwareReconfigurationAPI/architectures").c_str(), 0755) == -1) {
+		if (errno != EEXIST){
+			cout <<"Failed to create directory " << this->projectPath + "/HardwareReconfigurationAPI/architectures" << endl;
+			cout <<"System generation will be ended " << endl;
+			return "";
+		}
+	}
+	if( remove( architectureDescriptionFile.c_str() ) != 0 ){
+		if (errno != ENOENT){
+			cerr << "error removing file "<< architectureDescriptionFile <<endl;
+			cerr << strerror(errno) << endl;
+			return "";
+		}
+	}
+	string archDescription = converter->buildArchitectureDescriptionFile(this->projectPath + "/HardwareReconfigurationAPI/architectures", arch);
+	delete converter;
+	return archDescription;
 }
 
 static void copyAllFilesToWorkingDir(vector<string> files, string path){
@@ -134,8 +180,9 @@ static void copyAllFilesToWorkingDir(vector<string> files, string path){
 }
 
 void HardwareProject::compileProject(){
+
 	for (map<string, XilinxProjectHandler*>::iterator it = reconfRegionsProjectHandlers.begin(); it != reconfRegionsProjectHandlers.end(); it++){
-		it->second->compileProject(projectName, projectPath);
+		//it->second->compileProject(projectName, projectPath);
 
 
 		//$PROJECT_DIRECTORY/$PROJECT_NAME.runs/$RUN_NAME/${RUN_NAME}.bit
@@ -199,11 +246,16 @@ void HardwareProject::addFile(string file){
 }
 
 ReconfigurableRegion* HardwareProject::getReconfigurableRegion(std::string name){
-
 	if (managedReconfRegions.count(name) > 0)
 		return managedReconfRegions[name];
 	else
 		cout << "WARNING: reconf region " << name << " not found, returning NULL" <<endl;
 	return NULL;
 }
+
+/*void HardwareProject::generateHDLFilesForAllRegions(){
+	for (map<string, ReconfigurableRegion*>::iterator it = managedReconfRegions.begin(); it != managedReconfRegions.end(); it++){
+		generateHDLFiles(it->second->assignedTopComponent);
+	}
+}*/
 

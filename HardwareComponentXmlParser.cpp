@@ -1,4 +1,5 @@
 #include "HardwareComponentXmlParser.h"
+#include "ComponentDatabase.h"
 #include <sstream>
 #include <fstream>
 
@@ -9,47 +10,45 @@ HardwareComponentXmlParser::HardwareComponentXmlParser(){
 }
 
 
-HardwareComponent::PortInfo HardwareComponentXmlParser::parsePort(xmlNode * portNode){
-	xmlChar *portName = xmlGetProp(portNode, (const xmlChar *)"name");
-	string portNameStr((const char*)portName);
+HardwareComponent::DataType* HardwareComponentXmlParser::parseType(xmlNode * typeNode){
 
-	xmlChar *portTypeChar = xmlGetProp(portNode, (const xmlChar *)"type");
-	HardwareComponent::DataType *portType  = NULL;
+	xmlChar *typeChar = xmlGetProp(typeNode, (const xmlChar *)"type");
+	HardwareComponent::DataType * type;
 
-	if(xmlStrcmp(portTypeChar,(const xmlChar*) "bit") == 0)
-		portType = new HardwareComponent::DataType(HardwareComponent::DataTypeId_bit);
-	else if(xmlStrcmp(portTypeChar,(const xmlChar*) "vector") == 0){
+	if(xmlStrcmp(typeChar,(const xmlChar*) "bit") == 0)
+		type = new HardwareComponent::DataType(HardwareComponent::DataTypeId_bit);
+	else if(xmlStrcmp(typeChar,(const xmlChar*) "vector") == 0){
 		
 		/*start and end values are strings, thus the description is able to use the params*/
-		xmlChar *portStartIndexChar = xmlGetProp(portNode, (const xmlChar *)"startIndex");
-		string portStartIndex;
-		if(portStartIndexChar != NULL)
-			portStartIndex = string((const char*)portStartIndexChar);
+		xmlChar *startIndexChar = xmlGetProp(typeNode, (const xmlChar *)"startIndex");
+		string startIndex;
+		if(startIndexChar != NULL)
+			startIndex = string((const char*)startIndexChar);
 		else
-			portStartIndex = "1";
+			startIndex = "1";
 
 		/*operator could be downto, upto or to*/
-		xmlChar *portVectorIndexOperationChar = xmlGetProp(portNode, (const xmlChar *)"op");
-		string portVectorIndexOperation;
-		if(portVectorIndexOperationChar != NULL)
-			portVectorIndexOperation = string((const char*)portVectorIndexOperationChar);
+		xmlChar *vectorIndexOperationChar = xmlGetProp(typeNode, (const xmlChar *)"op");
+		string vectorIndexOperation;
+		if(vectorIndexOperationChar != NULL)
+			vectorIndexOperation = string((const char*)vectorIndexOperationChar);
 		else
-			portVectorIndexOperation = "downto";
+			vectorIndexOperation = "downto";
 
-		xmlChar *portEndIndexChar = xmlGetProp(portNode, (const xmlChar *)"endIndex");
-		string portEndIndex;
-		if(portEndIndexChar != NULL)
-			portEndIndex = string((const char*)portEndIndexChar);
+		xmlChar *endIndexChar = xmlGetProp(typeNode, (const xmlChar *)"endIndex");
+		string endIndex;
+		if(endIndexChar != NULL)
+			endIndex = string((const char*)endIndexChar);
 		else
-			portEndIndex = "0";
+			endIndex = "0";
 
-		cout<<"creating vector type "<<portStartIndex<<" "<<portEndIndex<<" "<<portVectorIndexOperation<<endl;
-		portType = new HardwareComponent::VectorType(portStartIndex,portEndIndex,portVectorIndexOperation);
+		cout<<"creating vector type "<<startIndex<<" "<<endIndex<<" "<<vectorIndexOperation<<endl;
+		type = new HardwareComponent::VectorType(startIndex,endIndex,vectorIndexOperation);
 
 	}
-	else if(xmlStrcmp(portTypeChar,(const xmlChar*) "integer") == 0){
+	else if(xmlStrcmp(typeChar,(const xmlChar*) "integer") == 0){
 		/*start and end values are strings, thus the description is able to use the params*/
-		xmlChar *rangeStartChar = xmlGetProp(portNode, (const xmlChar *)"rangeStart");
+		xmlChar *rangeStartChar = xmlGetProp(typeNode, (const xmlChar *)"rangeStart");
 		string rangeStart;
 		if(rangeStartChar != NULL)
 			rangeStart = atoi((const char*)rangeStartChar);
@@ -57,24 +56,33 @@ HardwareComponent::PortInfo HardwareComponentXmlParser::parsePort(xmlNode * port
 			rangeStart = "1";
 
 		/*operator could be downto, upto or to*/
-		xmlChar *rangeOperationChar = xmlGetProp(portNode, (const xmlChar *)"rangeOp");
+		xmlChar *rangeOperationChar = xmlGetProp(typeNode, (const xmlChar *)"rangeOp");
 		string rangeOperation;
 		if(rangeOperationChar != NULL)
 			rangeOperation = atoi((const char*)rangeOperationChar);
 		else
 			rangeOperation = "downto";
 
-		xmlChar *rangeEndChar = xmlGetProp(portNode, (const xmlChar *)"rangeEnd");
+		xmlChar *rangeEndChar = xmlGetProp(typeNode, (const xmlChar *)"rangeEnd");
 		string rangeEnd;
 		if(rangeEndChar != NULL)
 			rangeEnd = atoi((const char*)rangeEndChar);
 		else
 			rangeEnd = "0";
 
-		portType = new HardwareComponent::IntegerType(rangeStart,rangeEnd,rangeOperation);
+		type = new HardwareComponent::IntegerType(rangeStart,rangeEnd,rangeOperation);
 	}
 	else
-		portType = new HardwareComponent::DataType(HardwareComponent::DataTypeId_bit);
+		type = new HardwareComponent::DataType(HardwareComponent::DataTypeId_bit);
+
+	return type;
+}
+
+HardwareComponent::PortInfo HardwareComponentXmlParser::parsePort(xmlNode * portNode){
+	xmlChar *portName = xmlGetProp(portNode, (const xmlChar *)"name");
+	string portNameStr((const char*)portName);
+
+	HardwareComponent::DataType *portType  = parseType(portNode);
 
 	HardwareComponent::PortInfo info = {portNameStr, portType, HardwareComponent::PortType_in, NULL};
 	
@@ -120,7 +128,6 @@ HardwareComponent::Param HardwareComponentXmlParser::parseParam(xmlNode * paramN
 std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseComponentBase(xmlNode * componentBaseNode){
     xmlNode *componentNode = NULL;
 		map<string, HardwareComponent::HardwareComponentInfo*> loadedComponents;
-		cout<<__FILE__<<"::"<<__LINE__<<endl;
 		for(componentNode = componentBaseNode->xmlChildrenNode; componentNode; componentNode = componentNode->next){
 			HardwareComponent::HardwareComponentInfo *componentInfo = NULL;
 			if (componentNode->type == XML_ELEMENT_NODE &&
@@ -129,7 +136,6 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 				componentInfo = new HardwareComponent::HardwareComponentInfo();
 				xmlChar *name = xmlGetProp(componentNode, (const xmlChar *)"name");
 				string nameStr((const char*)name);
-				cout<<"componentName "<<nameStr<<endl;
 				componentInfo->name = nameStr;
 
 				xmlChar *file = xmlGetProp(componentNode, (const xmlChar *)"file");
@@ -323,78 +329,265 @@ void HardwareComponentXmlParser::parseAssignment(xmlNode * componentNode){
     assignments[portNameStr] = assignToStr;
 }
 
-void HardwareComponentXmlParser::parseSignalComponents(xmlNode * componentNode){
-    xmlNode *currentNode = NULL;
-    vector<pair<string,string> > genericMaps;
-    for (currentNode = componentNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
-        if (currentNode->type == XML_ELEMENT_NODE) {
-            if(xmlStrcmp(currentNode->name, (const xmlChar *)"signal") == 0){
-                xmlChar *signalName = xmlGetProp(currentNode, (const xmlChar *)"name");
-                string signalNameStr = "";
-                signalNameStr = string((const char*)signalName);
-                
-                xmlChar *type = xmlGetProp(currentNode, (const xmlChar *)"type");
-                string typeStr = "";
-                typeStr = string((const char*)type);
-                signals[signalNameStr] = typeStr;
-            }
-        }
-    }
+void HardwareComponentXmlParser::parseSignal(xmlNode * componentNode){
+	xmlNode *currentNode = NULL;
+	vector<pair<string,string> > genericMaps;
+	for (currentNode = componentNode->xmlChildrenNode; currentNode; currentNode = currentNode->next) {
+		xmlChar *signalName = xmlGetProp(currentNode, (const xmlChar *)"name");
+		string signalNameStr = "";
+		signalNameStr = string((const char*)signalName);
+
+		xmlChar *type = xmlGetProp(currentNode, (const xmlChar *)"type");
+		string typeStr = "";
+		typeStr = string((const char*)type);
+		signals[signalNameStr] = typeStr;
+	}
 }
 
 void HardwareComponentXmlParser::parseMap(xmlNode * currentNode){
-    cout<<__FILE__<<"::"<<__LINE__<<endl;
     xmlChar *signalName = xmlGetProp(currentNode, (const xmlChar *)"name");
     string signalNameStr = "";
     signalNameStr = string((const char*)signalName);
-    cout<<__FILE__<<"::"<<__LINE__<<endl;    
     xmlChar *value = xmlGetProp(currentNode, (const xmlChar *)"value");
     string valueStr = "";
     valueStr = string((const char*)value);
     pair<string, string> v(signalNameStr,valueStr);
     signalMaps.push_back(v);
-    cout<<__FILE__<<"::"<<__LINE__<<endl;    
 }
 
-void HardwareComponentXmlParser::parseHardwareTopEntity(xmlNode * rootNode){
-    xmlNode *currentNode = NULL;
-    for (currentNode = rootNode; currentNode; currentNode = currentNode->next) {
-        if (currentNode->type == XML_ELEMENT_NODE) {
-            if(xmlStrcmp(currentNode->name, (const xmlChar *)"componentBase") == 0){
-                cout<<"parsing componentBase tag"<<endl;
-                parseComponentBase(currentNode);
-            }
-            else if(xmlStrcmp(currentNode->name, (const xmlChar *)"instance") == 0){
-                cout<<"parsing instance tag"<<endl;
-                parseInstance(currentNode);
-            }
-            else if(xmlStrcmp(currentNode->name, (const xmlChar *)"output") == 0){
-                cout<<"parsing output tag"<<endl;
-                parseOutput(currentNode);
-            }
-            else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){
-                cout<<"parsing input tag"<<endl;
-                parseInput(currentNode);
-            }
-            else if(xmlStrcmp(currentNode->name, (const xmlChar *)"generic") == 0){
-                cout<<"parsing generic tag"<<endl;
-                parseGeneric(currentNode);
-            }
-            else if(xmlStrcmp(currentNode->name, (const xmlChar *)"assign") == 0){
-                cout<<"parsing assign tag"<<endl;
-                parseAssignment(currentNode);
-            }
-            else if(xmlStrcmp(currentNode->name, (const xmlChar *)"signalBase") == 0){
-                cout<<"signal base tag"<<endl;
-                parseSignalComponents(currentNode);
-            }
-            else if(xmlStrcmp(currentNode->name, (const xmlChar *)"ioMap") == 0 ||
-                    xmlStrcmp(currentNode->name, (const xmlChar *)"signalMap") == 0){
-                 cout<<"parsing "<<currentNode->name<<endl;
-                parseMap(currentNode);
-            }
-        }
-    }
+void parsePortBind(xmlNode *portBindNode, std::vector<HardwareComponent*> instantiedComponents){
+	
+	xmlChar *componentAname_char = xmlGetProp(portBindNode, (const xmlChar *)"componentA");
+	std::string componentAname = string((const char*)componentAname_char);
+
+	xmlChar *componentAPort_char = xmlGetProp(portBindNode, (const xmlChar *)"portA");
+	std::string componentAPort = string((const char*)componentAPort_char);
+
+	xmlChar *componentBname_char = xmlGetProp(portBindNode, (const xmlChar *)"componentB");
+	std::string componentBname = string((const char*)componentBname_char);
+
+	xmlChar *componentBPort_char = xmlGetProp(portBindNode, (const xmlChar *)"portB");
+	std::string componentBPort = string((const char*)componentBPort_char);
+
+	HardwareComponent *componentA=NULL, *componentB=NULL;
+
+	std::vector<HardwareComponent*>::iterator componentIt;
+	for(componentIt = instantiedComponents.begin(); componentIt != instantiedComponents.end(); componentIt++){
+		if((*componentIt)->name() == componentAname){
+			componentA = *componentIt;
+		}
+		else if ((*componentIt)->name() == componentBname){
+			componentB = *componentIt;
+		}
+		if(componentA != NULL && componentB != NULL)
+			break;
+	}
+
+	if(componentA != NULL)
+		if(componentB != NULL){
+			cout<<"Port Map ComponentA "<<componentAname<<" port "<< componentAPort<<endl;
+			cout<<"To ComponentB "<<componentBname<<" port "<<componentBPort<<endl;
+			componentA->portMap(componentAPort, componentB->getPort(componentBPort));
+		}
+		else
+			cout<<"ComponentB "<<componentBname<<" was not declared"<<endl;
+	else
+		cout<<"ComponentA "<<componentAname<<" was not declared"<<endl;
+}
+
+void parseRegionPortBind(xmlNode *regionPortBindNode, std::vector<HardwareComponent*> instantiedComponents, ReconfigurableRegion *region){
+	
+	xmlChar *regionPort_char = xmlGetProp(regionPortBindNode, (const xmlChar *)"regionport");
+	std::string regionPort = string((const char*)regionPort_char);
+
+	xmlChar *componentname_char = xmlGetProp(regionPortBindNode, (const xmlChar *)"component");
+	std::string componentname = string((const char*)componentname_char);
+
+	xmlChar *componentPort_char = xmlGetProp(regionPortBindNode, (const xmlChar *)"port");
+	std::string componentPort = string((const char*)componentPort_char);
+
+	HardwareComponent *component=NULL;
+
+	std::vector<HardwareComponent*>::iterator componentIt;
+	for(componentIt = instantiedComponents.begin(); componentIt != instantiedComponents.end(); componentIt++){
+		if ((*componentIt)->name() == componentname){
+			component = *componentIt;
+			break;
+		}
+	}
+
+	if(component != NULL){
+		if(region->getPort(regionPort) != NULL){
+			cout<<"Port Map Component "<<componentname<<" port "<< componentPort<<endl;
+			cout<<"To region "<<region->name<<" port "<<regionPort<<endl;
+			component->portMap(componentPort, region->getPort(regionPort));	
+		}
+		else
+			cout<<"No port "<<regionPort<<" on region "<< region->name<<endl;
+	}
+	else
+		cout<<"Component "<<componentname<<" was not declared"<<endl;
+}
+
+
+
+void parseSignalBind(xmlNode *signalBindNode, vector<HardwareComponent*> instantiedComponents, std::vector<sc_signal_resolved*> instantiedSignals){
+	
+	xmlChar *componentName_char = xmlGetProp(signalBindNode, (const xmlChar *)"component");
+	std::string componentName = string((const char*)componentName_char);
+
+	xmlChar *componentPort_char = xmlGetProp(signalBindNode, (const xmlChar *)"port");
+	std::string componentPort = string((const char*)componentPort_char);
+
+	xmlChar *signalName_char = xmlGetProp(signalBindNode, (const xmlChar *)"signal");
+	std::string signalName = string((const char*)signalName_char);
+
+
+	HardwareComponent *component = NULL; 
+	sc_signal_resolved* signal = NULL;
+
+
+	std::vector<HardwareComponent*>::iterator componentIt;
+	for(componentIt = instantiedComponents.begin(); componentIt != instantiedComponents.end(); componentIt++){
+		if((*componentIt)->name() == componentName){
+			component = *componentIt;
+			break;
+		}
+	}
+
+	std::vector<sc_signal_resolved*>::iterator signalIt;
+	for(signalIt = instantiedSignals.begin(); signalIt != instantiedSignals.end(); signalIt++){
+		if((*signalIt)->name() == signalName){
+			signal = *signalIt;
+			break;
+		}
+	}
+
+	if(component != NULL)
+		if(signal != NULL){
+			cout << "port map "<<componentName << " p "<<componentPort << " sig "<<signalName<<endl;
+			
+			component->portMap(componentPort, signal);
+		}
+		else
+			cout<<"Signal "<<signalName<<" was not declared"<<endl;
+	else
+		cout<<"Comopnent "<<componentName<<" was not declared"<<endl;
+}
+
+void parseRegionSignalBind(xmlNode *regionSignalBindNode, std::vector<sc_signal_resolved*> instantiedSignals, ReconfigurableRegion *region){
+	
+	xmlChar *regionPortName_char = xmlGetProp(regionSignalBindNode, (const xmlChar *)"regionport");
+	std::string regionPortName = string((const char*)regionPortName_char);
+
+	xmlChar *signalName_char = xmlGetProp(regionSignalBindNode, (const xmlChar *)"signal");
+	std::string signalName = string((const char*)signalName_char);
+
+
+	sc_signal_resolved* signal = NULL;
+
+
+	std::vector<sc_signal_resolved*>::iterator signalIt;
+	for(signalIt = instantiedSignals.begin(); signalIt != instantiedSignals.end(); signalIt++){
+		if((*signalIt)->name() == signalName){
+			signal = *signalIt;
+			break;
+		}
+	}
+
+	if(region->getPort(regionPortName) != NULL)
+		if(signal != NULL){
+			cout << "region signal map "<<region->name << " p "<<regionPortName << " sig "<<signalName<<endl;
+			
+			region->communicationHardware->portMap(regionPortName, signal);
+		}
+		else
+			cout<<"Signal "<<signalName<<" was not declared"<<endl;
+	else
+		cout<<"Region "<<region->name<<" has no port "<<regionPortName<<endl;
+}
+
+bool isPortSwAccessible(xmlNode *portNode){
+	xmlChar *portSwAccessible = xmlGetProp(portNode, (const xmlChar *)"swAccess");
+	if(portSwAccessible)
+		if(xmlStrcmp(portSwAccessible, (const xmlChar *)"true") == 0)
+			return true;
+	return false;
+}
+
+
+HardwareComponent* HardwareComponentXmlParser::parseHardwareTopEntity(xmlNode * rootNode, std::string entityName, ReconfigurableRegion *region){
+	xmlNode *currentNode = NULL;
+	ComponentDatabase *localDb = NULL;
+	std::vector<HardwareComponent*> instantiedComponents;
+
+	std::vector<sc_signal_resolved*> instantiedSignals;
+
+	HardwareComponent *hardwareTopEntity = new HardwareComponent(entityName.c_str(), NULL);
+	instantiedComponents.push_back(hardwareTopEntity);
+
+	for (currentNode = rootNode; currentNode; currentNode = currentNode->next) {
+		if (currentNode->type == XML_ELEMENT_NODE) {
+			if(xmlStrcmp(currentNode->name, (const xmlChar *)"componentDatabase") == 0){
+				xmlChar *dataBaseLocation_char = xmlGetProp(currentNode, (const xmlChar *)"file");
+				std::string dataBaseLocation = string((const char*)dataBaseLocation_char);
+				localDb = ComponentDatabase::getInstance();
+				localDb->addDatabaseAddress(dataBaseLocation);
+			}
+			else if(xmlStrcmp(currentNode->name, (const xmlChar *)"componentInstance") == 0){
+
+				xmlChar *name_char = xmlGetProp(currentNode, (const xmlChar *)"name");
+				std::string name = string((const char*)name_char);
+
+				xmlChar *type_char = xmlGetProp(currentNode, (const xmlChar *)"type");
+				std::string type = string((const char*)type_char);
+
+				HardwareComponent *comp = localDb->getHardwareComponent(name, type);
+				hardwareTopEntity->addChildObject(comp);
+				instantiedComponents.push_back(comp);
+				//parseInstance(currentNode);
+			}
+			else if(xmlStrcmp(currentNode->name, (const xmlChar *)"output") == 0){
+				HardwareComponent::PortInfo info = parsePort(currentNode);
+				hardwareTopEntity->addOutput(info.name, info.type);
+				if(isPortSwAccessible(currentNode)){
+					hardwareTopEntity->createSoftwareAccess(info.name);
+				}
+				//parseOutput(currentNode);
+			}
+			else if(xmlStrcmp(currentNode->name, (const xmlChar *)"input") == 0){
+				HardwareComponent::PortInfo info = parsePort(currentNode);
+				hardwareTopEntity->addInput(info.name, info.type);
+				if(isPortSwAccessible(currentNode))
+					hardwareTopEntity->createSoftwareAccess(info.name);
+				//parseInput(currentNode);
+			}
+			else if(xmlStrcmp(currentNode->name, (const xmlChar *)"signal") == 0){
+
+				xmlChar *name_char = xmlGetProp(currentNode, (const xmlChar *)"name");
+				std::string name = string((const char*)name_char);
+				
+				HardwareComponent::DataType *signalType = parseType(currentNode);
+				sc_signal_resolved *signal = HardwareComponent::createSignal(name, signalType);
+				instantiedSignals.push_back(signal);
+
+			}
+			else if(xmlStrcmp(currentNode->name, (const xmlChar *)"portbind") == 0){
+				parsePortBind(currentNode, instantiedComponents);
+			}
+			else if(xmlStrcmp(currentNode->name, (const xmlChar *)"signalbind") == 0){
+				parseSignalBind(currentNode, instantiedComponents, instantiedSignals);
+				//parseSignalComponents(currentNode);
+			}
+			else if(xmlStrcmp(currentNode->name, (const xmlChar *)"regionportbind") == 0){
+				parseRegionPortBind(currentNode, instantiedComponents, region);
+			}
+			else if(xmlStrcmp(currentNode->name, (const xmlChar *)"regionsignalbind") == 0){
+				parseRegionSignalBind(currentNode, instantiedSignals, region);
+			}
+		}
+	}
+	return hardwareTopEntity;
 }
 
 std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareComponentXmlParser::parseXmlComponentFile(std::string xmlFile){
@@ -428,12 +621,14 @@ std::map<std::string, HardwareComponent::HardwareComponentInfo*> HardwareCompone
 				}
 			}
 		}
+		xmlFreeDoc(doc);
+		xmlCleanupParser();
 	}
 	cout<<"returning"<<endl;
 	return retMap;
 }
 
-HardwareComponent* HardwareComponentXmlParser::parseMainEntityXmlFile(std::string xmlFile){
+Architecture* HardwareComponentXmlParser::parseArchitectureFile(std::string xmlFile, ReconfigurableRegion *region){
 	xmlDoc         *doc = NULL;
 	xmlNode        *root_element = NULL;
 
@@ -456,22 +651,33 @@ HardwareComponent* HardwareComponentXmlParser::parseMainEntityXmlFile(std::strin
 
 		for (currentNode = root_element; currentNode; currentNode = currentNode->next) {
 			if (currentNode->type == XML_ELEMENT_NODE) {
-				cout<<"xlm element node "<<currentNode->name<<endl;
 
-				if(xmlStrcmp(currentNode->name, (const xmlChar *)"HardwareTopEntity") == 0){
-					xmlChar *entityName = xmlGetProp(currentNode, (const xmlChar *)"name");
-					this->entityNameStr = string((const char*)entityName);
+				if(xmlStrcmp(currentNode->name, (const xmlChar *)"architecture") == 0){
+					xmlChar *regionName = xmlGetProp(currentNode, (const xmlChar *)"region");
+					string regionNameStr = string((const char*)regionName);
+					
+					xmlChar *bitstream = xmlGetProp(currentNode, (const xmlChar *)"bitstream");
+					string bitstreamStr = string((const char*)bitstream);
 
-					xmlChar *deviceFamily = xmlGetProp(currentNode, (const xmlChar *)"deviceFamily");
-					if(deviceFamily != NULL)
-						this->deviceFamily = string((const char*)deviceFamily);
+					HardwareComponent *topComponent = NULL;
 
-					xmlChar *deviceTarget = xmlGetProp(currentNode, (const xmlChar *)"deviceTarget");
-					if(deviceTarget != NULL)
-						this->deviceTarget = string((const char*)deviceTarget);
+					/*search for hardwareTopEntity tag*/
+					xmlNode *currentNode2 = NULL;
+					for (currentNode2 = currentNode->xmlChildrenNode; currentNode2; currentNode2 = currentNode2->next)
+					{
+						if(currentNode2->type == XML_ELEMENT_NODE){
+							if(xmlStrcmp(currentNode2->name, (const xmlChar *)"hardwareTopEntity") == 0){
 
-
-					parseHardwareTopEntity(currentNode->xmlChildrenNode);
+								xmlChar *entityName = xmlGetProp(currentNode2, (const xmlChar *)"name");
+								string entityNameStr = string((const char*)entityName);
+								topComponent = parseHardwareTopEntity(currentNode2->xmlChildrenNode, entityNameStr, region);
+								break;
+							}
+						}
+					}
+					Architecture *arch = new Architecture(topComponent,regionNameStr);
+					arch->bitstream = bitstreamStr;
+					return arch;
 				}
 			}
 		}
@@ -480,6 +686,7 @@ HardwareComponent* HardwareComponentXmlParser::parseMainEntityXmlFile(std::strin
 		 * free the document
 		 */
 		xmlFreeDoc(doc);
+		xmlCleanupParser();
 	}
 	return NULL;
 }
