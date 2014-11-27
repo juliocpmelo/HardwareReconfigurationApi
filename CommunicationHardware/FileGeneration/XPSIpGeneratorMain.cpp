@@ -10,6 +10,7 @@
 
 #include "CommunicationHardwareConverterVHDL.h"
 #include "CommunicationHardwareXmlParser.h"
+#include "ArchitectureManager.h"
 #include "HardwareProject.h"
 
 using namespace std;
@@ -40,11 +41,13 @@ int main(int argc, char** argv){
 //	HardwareProject *project= new HardwareProject("D:/AutonomicSegmentationSystem/AutonomicImageProcessingDesc.xml");
 //
 //
-	HardwareProject *project= new HardwareProject(string(argv[2]));
+
+	ArchitectureManager *archManager = new ArchitectureManager(NULL);
+	archManager->setManagedProject(string(argv[2]));
+
+	HardwareProject *project = archManager->hardwareProject;
 
 	map<std::string, ReconfigurableRegion* >	communicationHardwareTable = project->managedReconfRegions;
-
-
 
 
 	if(strcmp(argv[1], "vhdl") == 0){
@@ -71,6 +74,8 @@ int main(int argc, char** argv){
 	else{
 		cout<<"language "<<argv[2]<<" not supported yet"<<endl;
 	}
+	project->generateComponentDescriptionFiles();
+	project->generateHDLFiles();
 
 	return 0;
 }

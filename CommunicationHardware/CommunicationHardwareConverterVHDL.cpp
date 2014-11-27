@@ -77,7 +77,7 @@ std::string CommunicationHardwareConverterVHDL::getPadString(int size, int desir
 	
 	int binPartSize = (desiredSize - size)%4;
 
-	cout << "running get pad string to " << size << " , " << desiredSize<< endl;
+	//cout << "running get pad string to " << size << " , " << desiredSize<< endl;
 	if (hexPartSize > 0) {
 		retString += "x\"";
 		for (int i=0; i<hexPartSize; i++)
@@ -94,10 +94,7 @@ std::string CommunicationHardwareConverterVHDL::getPadString(int size, int desir
 		retString += "\"";
 	}
 
-
-
-	return retString;
-	
+	return retString;	
 }
 
 std::string CommunicationHardwareConverterVHDL::getNameForReconfRegionFile(std::string projectPath, ReconfigurableRegion *reg){
@@ -161,11 +158,14 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 
 	set<string> swAccessibleInterfaces;
 
-	if (reg->assignedTopComponent != NULL){
-		swAccessibleInterfaces = reg->assignedTopComponent->softwareAccessiblePorts;
+	HardwareComponent* assignedTopComponent = reg->getAssignedTopComponent();
+	if (assignedTopComponent != NULL){
+		swAccessibleInterfaces = assignedTopComponent->softwareAccessiblePorts;
+		cout << "get sw accessible ports for top component "<<assignedTopComponent->name()<<endl; 
 		for(set<string>::iterator it = swAccessibleInterfaces.begin(); it!= swAccessibleInterfaces.end(); it ++){
 
-			HardwareComponent::PortInfo *swAccessibleInterface = reg->assignedTopComponent->ports[*it];
+			HardwareComponent::PortInfo *swAccessibleInterface = assignedTopComponent->ports[*it];
+			cout << " port " << swAccessibleInterface->name << "sw access" << endl;
 
 			sc_signal_resolved* convertedSignal = getSignalToSwInterface(swAccessibleInterface);
 
@@ -178,7 +178,7 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 
 
 
-	if (reg->assignedTopComponent != NULL){
+	if (assignedTopComponent != NULL){
 	
 		outFile <<"-- Main Entity Portmap"<<endl<<endl;
 
@@ -187,38 +187,36 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 
 
 		/*no sence in using generic maps here*/
-		outFile << reg->assignedTopComponent->name() << "_inst : entity work." << reg->assignedTopComponent->name() << endl;
+		outFile << assignedTopComponent->name() << "_inst : entity work." << assignedTopComponent->name() << endl;
 		outFile << " port map ("<<endl;
 
-		map<string, HardwareComponent::PortInfo*>::iterator lastPortsIt = reg->assignedTopComponent->ports.end();
-		if (reg->assignedTopComponent->ports.size() > 0)
+		map<string, HardwareComponent::PortInfo*>::iterator lastPortsIt = assignedTopComponent->ports.end();
+		if (assignedTopComponent->ports.size() > 0)
 			lastPortsIt --;
 
-		for (map<string, HardwareComponent::PortInfo*>::iterator portsIt = reg->assignedTopComponent->ports.begin(); portsIt != reg->assignedTopComponent->ports.end(); portsIt++){
+		for (map<string, HardwareComponent::PortInfo*>::iterator portsIt = assignedTopComponent->ports.begin(); portsIt != assignedTopComponent->ports.end(); portsIt++){
 			if( swAccessibleInterfaces.count(portsIt->first) > 0){
 				outFile << portsIt->first << " => " << portsIt->first << "_reg";
 			}
 			else{
 				sc_port_base* port = portsIt->second->scPort;
 				if(port != NULL && port->get_interface() != NULL){
+					cout<<"port " << portsIt->first << " not null and has interface"<<endl;
 					sc_object * channel = dynamic_cast<sc_object*>(port->get_interface());
-					sc_port_base *connectedPort = getConnectedPort(channel, communicationHardwareComponent);
+					sc_port_base *connectedPort = communicationHardwareComponent->getConnectedPort(channel);
 
 					if( connectedPort != NULL){ //if any of the component's a port is connected to the current channel it is a direct connection
 						cout<<"port "<<connectedPort->name() << " directly connected to "<<port->name()<<endl;
 						outFile << port->basename() << " => " << connectedPort->basename();
-
 					}
-						else{
+					else{
 						if (portsIt->second->portType == HardwareComponent::PortType_in )
 							outFile << portsIt->first << " => " << "(others => 0)";
 						else
 							outFile << portsIt->first << " => " << "open";
 					}
 				}
-
 			}
-
 			if (portsIt != lastPortsIt)
 				outFile << ","<<endl;
 			else			
@@ -264,7 +262,7 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 
 		for(set<string>::iterator it = swAccessibleInterfaces.begin(); it!= swAccessibleInterfaces.end(); it ++){
 
-			HardwareComponent::PortInfo *swAccessibleInterface = reg->assignedTopComponent->ports[*it];
+			HardwareComponent::PortInfo *swAccessibleInterface = reg->getAssignedTopComponent()->ports[*it];
 
 			stringstream addrHex;
 
@@ -272,11 +270,18 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 
 			/*the string is already in hex format so its size is multiplied by 4*/
 			string paddedAddr = getPadString(addrHex.str().length() * 4, commHardwareAddressWidth);
-			paddedAddr += " & x\"" + addrHex.str() + "\"";
+			if(paddedAddr != "")
+				paddedAddr += " & x\"" + addrHex.str() + "\"";
+			else
+				paddedAddr = " x\"" + addrHex.str() + "\"";
+
 
 
 			string paddedDataReg = getPadString(swAccessibleInterface->type->size(),commHardwareDataWidth);
-			paddedDataReg += " & " + swAccessibleInterface->name + "_reg;";
+			if(paddedDataReg != "")
+				paddedDataReg += " & " + swAccessibleInterface->name + "_reg;";
+			else
+				paddedDataReg = swAccessibleInterface->name + "_reg;";
 
 			outFile <<"\t"<<"elsif commHardware_address = "<<paddedAddr<<" then"<<endl;
 
@@ -310,7 +315,7 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 
 		for(set<string>::iterator it = swAccessibleInterfaces.begin(); it!= swAccessibleInterfaces.end(); it ++){
 
-			HardwareComponent::PortInfo *swAccessibleInterface = reg->assignedTopComponent->ports[*it];
+			HardwareComponent::PortInfo *swAccessibleInterface = reg->getAssignedTopComponent()->ports[*it];
 
 			if (swAccessibleInterface->portType != HardwareComponent::PortType_out) { //only create sw write interfaces to in or inout ports
 				stringstream addrHex;
@@ -325,7 +330,10 @@ void CommunicationHardwareConverterVHDL::buildEntityForReconfigurableRegion(std:
 
 				cout << " requiring size from "<<*it<<endl;
 				string paddedDataReg = getPadString(swAccessibleInterface->type->size(),commHardwareDataWidth);
-				paddedDataReg += " & " + swAccessibleInterface->name + "_reg;";
+				if(paddedDataReg != "")
+					paddedDataReg += " & " + swAccessibleInterface->name + "_reg;";
+				else
+					paddedDataReg = swAccessibleInterface->name + "_reg;";
 
 				if (isFirstWritePort)
 					outFile <<"\t"<<"if commHardware_address = "<<paddedAddr<<" then"<<endl;

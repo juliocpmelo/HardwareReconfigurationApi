@@ -97,6 +97,9 @@ HardwareComponent* CommunicationHardwareXmlParser::parseXml(std::string communic
 				}
 			}
 		}
+
+		xmlFreeDoc(doc);
+		xmlCleanupParser();
 	}
 	return component;
 
