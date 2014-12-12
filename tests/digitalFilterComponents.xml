@@ -1,0 +1,34 @@
+<componentBase>
+	<component name="conf_adder" file="conf_adder.vhd">
+		<param name="dataSize" type="integer" defaultValue="8">
+		<input name="inputA" type="vector" startIndex="dataSize - 1" op="downto" endIndex="0"/>
+		<input name="inputB" type="vector" startIndex="dataSize - 1" op="downto" endIndex="0"/>
+		<output name="result" type="vector" startIndex="dataSize - 1" op="downto" endIndex="0"/>
+	</component>
+
+	<component name="conf_register" file="conf_register.vhd">
+		<param name="dataSize" type="integer" defaultValue="8">
+		<input name="clk" type="bit"/>
+		<input name="enable" type="bit"/>
+		<input name="data_in" type="vector" startIndex="dataSize - 1" op="downto" endIndex="0"/>
+		<output name="data_out" type="vector" startIndex="dataSize - 1" op="downto" endIndex="0"/>
+	</component>
+	
+	<component name="fixed_mult_ip" ipCoreManufacturer="xilinx" ipCore="xilinx.com:ip:floating_point:5.0">
+		<ipcoreParams>
+			<param name="c_a_exponent_width" type="integer" defaultValue="4"/>
+			<param name="c_a_fraction_width" type="integer" defaultValue="4"/>
+			<param name="c_result_precision_type" type="string" defaultValue="custom"/>
+			<param name="operation_type" type="string" defaultValue="multiply"/>
+		</ipcoreParams>
+		<input name="a" type="vector" startIndex="c_a_exponent_width + c_a_exponent_width - 1" op="downto" endIndex="0"/>
+		<input name="b" type="vector" startIndex="c_a_exponent_width + c_a_exponent_width - 1" op="downto" endIndex="0"/>
+		<input name="operation_nd" type="bit"> 
+		<input name="clk" type="bit"> 
+		<input name="scl" type="bit"> 
+		<output name="result" type="vector" startIndex="c_a_exponent_width + c_a_exponent_width - 1" op="downto" endIndex="0"/>
+		<output name="rdy" type="bit"> 
+	</component>
+</componentBase>
+
+
